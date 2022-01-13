@@ -1,0 +1,33 @@
+@use "sass:color";
+// Bootstrap
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+// Custom variables
+@import "variables";
+// Bootstrap
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+// Custom framework
+@import "functions";
+@import "mixins";
+@import "colors";
+@import "typography";
+@import "animations";
+@import "transitions";
+@import "layouts";
+@import "pages";
+@import "components";
+@import "custom";
+
+
+.logo{
+    max-width: 120px;
+}
+
+.title-wrap{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
