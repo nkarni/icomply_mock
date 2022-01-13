@@ -1,0 +1,30 @@
+[
+  {
+    "name": "list",
+    "path": "/list",
+    "component": "/client/pages/list.vue",
+    "chunkName": "pages/list",
+    "_name": "_1a3a78e8"
+  },
+  {
+    "name": "register",
+    "path": "/register",
+    "component": "/client/pages/register.vue",
+    "chunkName": "pages/register",
+    "_name": "_0dcfc7de"
+  },
+  {
+    "name": "report",
+    "path": "/report",
+    "component": "/client/pages/report.vue",
+    "chunkName": "pages/report",
+    "_name": "_6191afa2"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/client/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_f62ba458"
+  }
+]
