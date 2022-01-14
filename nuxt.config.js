@@ -52,6 +52,9 @@ export default {
 		'bootstrap-vue/nuxt',
 		'nuxt-vue-multiselect'
 	],
+	bootstrapVue: {
+		icons: true
+	},
 	// Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
 	buildModules: [
 	],

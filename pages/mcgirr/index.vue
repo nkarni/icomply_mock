@@ -51,7 +51,7 @@
         class="w-100 font-weight-bold mt-3"
         type="submit"
         variant="primary"
-        to="laap"
+        to="home"
       >
         Sign in
       </b-button>
