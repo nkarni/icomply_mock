@@ -48,12 +48,28 @@
   background-color: #fff;
   border-bottom: 1px solid #dee2e6;
 }
+
+// .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+//   border-bottom: solid #003566 2px;
+//   border-top: none;
+//   border-right: none;
+//   border-left: none;
+// }
 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    border-bottom: solid #003566 2px;
-    border-top: none;
-    border-right: none;
-    border-left: none;
+  color: #003566 !important;
+  border-color: #dee2e6 #dee2e6 #dee2e6 #dee2e6 !important;
+  border-radius: unset !important;
 }
+.nav-item {
+  margin-bottom: 5px;
+}
+.nav-link {
+  color: #495057;
+}
+.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+  color: #003566 !important;
+}
+
 .nav-tabs .nav-link{
   font-size: 16px;
 }

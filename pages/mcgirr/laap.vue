@@ -1,15 +1,20 @@
 <template>
-  <div class="container p-5">
+  <div class="container p-5 laap">
     <b-row>
       <h3 class="mb-3">
-        <span>Bias Detection Events</span
-        ><span style="float: right; font-size: 14px"
-          ><NuxtLink to="list" class="nav-link pr-0"
-            >Back to dashboard</NuxtLink
-          ></span
-        >
+        <span class="text-primary">Bias Detection Events</span>
+        <span style="float: right; font-size: 14px">
+          <NuxtLink to="list" class="nav-link pr-0">
+            Back to dashboard
+          </NuxtLink>
+        </span>
       </h3>
-      <b-tabs v-model="tabIndex" small card vertical nav-wrapper-class="col-3">
+      <b-tabs
+        v-model="tabIndex"
+        small
+        vertical
+        nav-wrapper-class="col-3"
+      >
         <b-tab>
           <template #title>
             <h5>Conditions of Legal Aid</h5>
@@ -109,6 +114,7 @@ import Eligibility from "~/components/laap/eligibility.vue";
 import Problem from "~/components/laap/problem.vue";
 import ReviewTab from "~/components/reviewTab.vue";
 import toggle from "~/components/toggle.vue";
+
 export default {
   layout: 'user',
   components: {
@@ -122,6 +128,7 @@ export default {
     Eligibility,
     ApplicantDetails,
   },
+
   data() {
     return {
       form: {
@@ -152,4 +159,5 @@ export default {
 </script>
 
 <style>
+
 </style>
