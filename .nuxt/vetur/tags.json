@@ -35,6 +35,12 @@
   "Toggle": {
     "description": "Auto imported from components/toggle.vue"
   },
+  "LazyEmbed": {
+    "description": "Auto imported from components/Lazy/Embed.vue"
+  },
+  "LazyImg": {
+    "description": "Auto imported from components/Lazy/Img.vue"
+  },
   "LaapApplicantDetails": {
     "description": "Auto imported from components/laap/applicantDetails.vue"
   },
@@ -58,11 +64,5 @@
   },
   "LaapProblem": {
     "description": "Auto imported from components/laap/problem.vue"
-  },
-  "LazyEmbed": {
-    "description": "Auto imported from components/Lazy/Embed.vue"
-  },
-  "LazyImg": {
-    "description": "Auto imported from components/Lazy/Img.vue"
   }
 }

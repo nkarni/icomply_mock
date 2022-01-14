@@ -10,6 +10,8 @@ export { default as ReportTab } from '../../components/reportTab.vue'
 export { default as ReviewTab } from '../../components/reviewTab.vue'
 export { default as TestTab } from '../../components/testTab.vue'
 export { default as Toggle } from '../../components/toggle.vue'
+export { default as LazyEmbed } from '../../components/Lazy/Embed.vue'
+export { default as LazyImg } from '../../components/Lazy/Img.vue'
 export { default as LaapApplicantDetails } from '../../components/laap/applicantDetails.vue'
 export { default as LaapAttachments } from '../../components/laap/attachments.vue'
 export { default as LaapConditions } from '../../components/laap/conditions.vue'
@@ -18,8 +20,6 @@ export { default as LaapEligiblity } from '../../components/laap/eligiblity.vue'
 export { default as LaapLodge } from '../../components/laap/lodge.vue'
 export { default as LaapNextPrevButtons } from '../../components/laap/nextPrevButtons.vue'
 export { default as LaapProblem } from '../../components/laap/problem.vue'
-export { default as LazyEmbed } from '../../components/Lazy/Embed.vue'
-export { default as LazyImg } from '../../components/Lazy/Img.vue'
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {

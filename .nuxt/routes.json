@@ -2,36 +2,36 @@
   {
     "name": "laap",
     "path": "/laap",
-    "component": "/client/pages/laap.vue",
+    "component": "/home/timofeybiryukov/nitzan/fmockup/pages/laap.vue",
     "chunkName": "pages/laap",
-    "_name": "_2cc15052"
+    "_name": "_4809d7d8"
   },
   {
     "name": "list",
     "path": "/list",
-    "component": "/client/pages/list.vue",
+    "component": "/home/timofeybiryukov/nitzan/fmockup/pages/list.vue",
     "chunkName": "pages/list",
-    "_name": "_1a3a78e8"
+    "_name": "_bbc6f164"
   },
   {
     "name": "register",
     "path": "/register",
-    "component": "/client/pages/register.vue",
+    "component": "/home/timofeybiryukov/nitzan/fmockup/pages/register.vue",
     "chunkName": "pages/register",
-    "_name": "_0dcfc7de"
+    "_name": "_2a662ed3"
   },
   {
     "name": "report",
     "path": "/report",
-    "component": "/client/pages/report.vue",
+    "component": "/home/timofeybiryukov/nitzan/fmockup/pages/report.vue",
     "chunkName": "pages/report",
-    "_name": "_6191afa2"
+    "_name": "_29698ae4"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "/client/pages/index.vue",
+    "component": "/home/timofeybiryukov/nitzan/fmockup/pages/index.vue",
     "chunkName": "pages/index",
-    "_name": "_f62ba458"
+    "_name": "_862e3b5c"
   }
 ]

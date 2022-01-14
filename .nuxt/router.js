@@ -4,11 +4,11 @@ import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _2cc15052 = () => interopDefault(import('../pages/laap.vue' /* webpackChunkName: "pages/laap" */))
-const _1a3a78e8 = () => interopDefault(import('../pages/list.vue' /* webpackChunkName: "pages/list" */))
-const _0dcfc7de = () => interopDefault(import('../pages/register.vue' /* webpackChunkName: "pages/register" */))
-const _6191afa2 = () => interopDefault(import('../pages/report.vue' /* webpackChunkName: "pages/report" */))
-const _f62ba458 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _4809d7d8 = () => interopDefault(import('../pages/laap.vue' /* webpackChunkName: "pages/laap" */))
+const _bbc6f164 = () => interopDefault(import('../pages/list.vue' /* webpackChunkName: "pages/list" */))
+const _2a662ed3 = () => interopDefault(import('../pages/register.vue' /* webpackChunkName: "pages/register" */))
+const _29698ae4 = () => interopDefault(import('../pages/report.vue' /* webpackChunkName: "pages/report" */))
+const _862e3b5c = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 const emptyFn = () => {}
 
@@ -16,30 +16,30 @@ Vue.use(Router)
 
 export const routerOptions = {
   mode: 'history',
-  base: '/',
+  base: '/fmockup/',
   linkActiveClass: 'nuxt-link-active',
   linkExactActiveClass: 'nuxt-link-exact-active',
   scrollBehavior,
 
   routes: [{
     path: "/laap",
-    component: _2cc15052,
+    component: _4809d7d8,
     name: "laap"
   }, {
     path: "/list",
-    component: _1a3a78e8,
+    component: _bbc6f164,
     name: "list"
   }, {
     path: "/register",
-    component: _0dcfc7de,
+    component: _2a662ed3,
     name: "register"
   }, {
     path: "/report",
-    component: _6191afa2,
+    component: _29698ae4,
     name: "report"
   }, {
     path: "/",
-    component: _f62ba458,
+    component: _862e3b5c,
     name: "index"
   }],
 
