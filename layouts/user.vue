@@ -10,7 +10,7 @@
           aria-label="Mcgirr Technologies"
           target="_self"
           class="navbar-brand top-navbar--brand"
-          to="/mcgirr/"
+          to="/mcgirr/home"
         >
           <img
             src="/img/mcms.png"

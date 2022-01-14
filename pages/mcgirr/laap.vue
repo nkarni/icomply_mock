@@ -110,6 +110,7 @@ import Problem from "~/components/laap/problem.vue";
 import ReviewTab from "~/components/reviewTab.vue";
 import toggle from "~/components/toggle.vue";
 export default {
+  layout: 'user',
   components: {
     toggle,
     DatasetTab,
