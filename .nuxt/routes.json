@@ -1,5 +1,12 @@
 [
   {
+    "name": "laap",
+    "path": "/laap",
+    "component": "/client/pages/laap.vue",
+    "chunkName": "pages/laap",
+    "_name": "_2cc15052"
+  },
+  {
     "name": "list",
     "path": "/list",
     "component": "/client/pages/list.vue",

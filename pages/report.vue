@@ -2,6 +2,11 @@
   <div class="container p-5">
     <div class="row">
       <div class="col">
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
         <h3 class="mb-3">
           <span>Bias Detection Events</span
           ><span style="float: right; font-size: 14px"

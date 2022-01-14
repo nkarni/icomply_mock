@@ -35,6 +35,30 @@
   "Toggle": {
     "description": "Auto imported from components/toggle.vue"
   },
+  "LaapApplicantDetails": {
+    "description": "Auto imported from components/laap/applicantDetails.vue"
+  },
+  "LaapAttachments": {
+    "description": "Auto imported from components/laap/attachments.vue"
+  },
+  "LaapConditions": {
+    "description": "Auto imported from components/laap/conditions.vue"
+  },
+  "LaapEligibility": {
+    "description": "Auto imported from components/laap/eligibility.vue"
+  },
+  "LaapEligiblity": {
+    "description": "Auto imported from components/laap/eligiblity.vue"
+  },
+  "LaapLodge": {
+    "description": "Auto imported from components/laap/lodge.vue"
+  },
+  "LaapNextPrevButtons": {
+    "description": "Auto imported from components/laap/nextPrevButtons.vue"
+  },
+  "LaapProblem": {
+    "description": "Auto imported from components/laap/problem.vue"
+  },
   "LazyEmbed": {
     "description": "Auto imported from components/Lazy/Embed.vue"
   },
