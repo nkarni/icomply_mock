@@ -51,7 +51,7 @@
         class="w-100 font-weight-bold mt-3"
         type="submit"
         variant="primary"
-        to="home"
+        to="/mcgirr/home"
       >
         Sign in
       </b-button>

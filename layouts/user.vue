@@ -87,7 +87,7 @@
               <b-dropdown-item to="/user/profile-manager">
                 Profile management
               </b-dropdown-item>
-              <b-dropdown-item @click="signOut">
+              <b-dropdown-item to="/mcgirr">
                 Logout
               </b-dropdown-item>
             </b-nav-item-dropdown>
