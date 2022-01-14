@@ -13,7 +13,7 @@
           to="/mcgirr/home"
         >
           <img
-            src="/img/mcms.png"
+            src="/mcms.png"
             alt="Mcgirr Technologies Logo"
             style="height: 40px;"
           >
