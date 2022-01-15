@@ -85,17 +85,9 @@
               :entity="form.entities.applicant"
               idPrefix="applicant"
               showFirstName
-              :firstNameLabel="
-                form.repType === 'self'
-                  ? 'Your given name(s)'
-                  : 'The Applicant\'s given name(s)'
-              "
+              :firstNameLabel="yourString + ' given name(s)'"
               showLastName
-              :lastNameLabel="
-                form.repType === 'self'
-                  ? 'Your family name(s)'
-                  : 'The Applicant\'s family name(s)'
-              "
+              :lastNameLabel="yourString + ' family name(s)'"
             >
             </entity>
             <b-form-group
@@ -158,7 +150,7 @@
             >
           </b-col>
           <b-col>
-            <b-form-group label="Are you homeless or at risk of homelessness?">
+            <b-form-group :label="AreYouString + ' homeless or at risk of homelessness?'">
               <b-form-radio-group
                 id="homeless"
                 v-model="form.homeless"
@@ -167,7 +159,7 @@
               ></b-form-radio-group>
             </b-form-group>
 
-            <b-form-group label="Do you live on the APY lands?">
+            <b-form-group :label="DoYouStringCont + ' live on the APY lands?'">
               <b-form-radio-group
                 id="apyLands"
                 v-model="form.apyLands"
@@ -180,16 +172,119 @@
               :entity="form.entities.applicant"
               idPrefix="applicant"
               showAddress showPostalAddress showPostalAddessSame showIsSafePostalAddress showPhones showEmail showIsSafeEmail showPreferredContact showIsSafePhone
-              addressLabel="Home address (even if you are in custody)"
+              :addressLabel="yourString + ' Home address (even if ' + youAreString + ' in custody)'"
+              :emailLabel="yourString + ' email'"
+              :phonesLabel="yourString + ' phone number(s)'"
+              :safeEmailAddressLabel="'is it safe to contact ' + youString + ' on this email address?'"
+              :safePhoneLabel="'is it safe to contact ' + youString + ' on this phone number?'"
+              :safePostalAddressLabel="'is it safe to send ' + youString + ' mail to this address?'"
+              :postalAddressLabel="yourString + ' postal address'"           
             >
             </entity>
-
-           
-
 
           </b-col>
         </b-row>
       </section>
+
+<section v-if="form.repType" class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h5>{{yourString}} circumstances</h5> 
+          </b-col>
+          <b-col>
+<b-form-group
+              :label="DoYouStringCont + ' identify as Aboriginal or Torres Strait Islander?'"
+            >
+              <b-form-radio-group
+                id="aborginality"
+                v-model="form.aborginality"
+                :options="aboriginalityOptions"
+                name="aborginality"
+              ></b-form-radio-group>
+            </b-form-group>
+
+            <b-form-group :label="AreYouString + ' in prison or detention?'">
+              <b-form-radio-group
+                id="inPrison"
+                v-model="form.inPrison"
+                :options="boolOptions"
+                name="inPrison"
+              ></b-form-radio-group>
+            </b-form-group>
+             <b-form-group v-if="form.inPrison" label="Where">
+                <b-form-input
+                  id="prisonName"
+                  name="prisonName"
+                  v-model="form.prisonName"
+                ></b-form-input>
+              </b-form-group>
+               <b-form-group v-if="form.inPrison" label="Section (optional)">
+                <b-form-input
+                  id="prisonSection"
+                  name="prisonSection"
+                  v-model="form.prisonSection"
+                ></b-form-input>
+              </b-form-group>
+               <b-form-group v-if="form.inPrison" label="Idnetification number (optional)">
+                <b-form-input
+                  id="prisonId"
+                  name="prisonId"
+                  v-model="form.prisonId"
+                ></b-form-input>
+              </b-form-group>
+
+              <b-form-group :label="wereYouString + ' born overseas?'">
+              <b-form-radio-group
+                id="bornOs"
+                v-model="form.bornOs"
+                :options="boolOptions"
+                name="bornOs"
+              ></b-form-radio-group>
+            </b-form-group>
+             <b-form-group v-if="form.bornOs" :label="'Where ' + wereYouString + ' born?'">
+                <b-form-input
+                  id="bornWhere"
+                  name="bornWhere"
+                  v-model="form.bornWhere"
+                ></b-form-input>
+              </b-form-group>
+
+                <b-form-group label="What is the main language spoken at home?">
+              <b-form-select
+                v-model="form.homeLanguage"
+                id="homeLanguage"
+                name="homeLanguage"
+                :options="[
+                  { value: 'english', text: 'English' },
+                  { value: 'mandarin', text: 'Mandarin' },
+                ]"
+              ></b-form-select>
+            </b-form-group>
+
+            <b-form-group :label="DoYouStringCont + ' require an interpreter?'">
+              <b-form-radio-group
+                id="requireInterpreter"
+                v-model="form.requireInterpreter"
+                :options="boolOptions"
+                name="requireInterpreter"
+              ></b-form-radio-group>
+            </b-form-group>
+
+             <b-form-group v-if="form.requireInterpreter" label="What language/dialect?">
+              <b-form-select
+                v-model="form.language"
+                id="language"
+                name="language"
+                :options="[
+                  { value: 'english', text: 'English' },
+                  { value: 'mandarin', text: 'Mandarin' },
+                ]"
+              ></b-form-select>
+            </b-form-group>
+
+          </b-col>
+        </b-row>
+        </section>
     </b-form>
   </div>
 </template>
@@ -219,12 +314,46 @@ export default {
         { text: "Yes", value: true },
         { text: "No", value: false },
       ],
+      aboriginalityOptions: [
+        { text: "Yes, Aboriginal", value: "aboriginal" },
+        { text: "Yes, Tores Strait Islander", value: "islander" },
+        { text: "Both Aboriginal and Tores Strait Islander", value: "both" },
+        { text: "No", value: "no" }
+
+      ]
     };
   },
-  computed: {},
+  computed: {
+    youString: function () {
+      return this.form.repType === 'self'? 'you' : 'the Applicant';
+    },
+    yourString: function () {
+      return this.form.repType === 'self'? 'your' : 'the Applicant\'s';
+    },
+    AreYouString: function () {
+      return this.form.repType === 'self'? 'are you' : 'is the Applicant';
+    },
+    DoYouString: function () {
+      return this.form.repType === 'self'? 'do you' : 'is the Applicant';
+    },
+     DoYouStringCont: function () {
+      return this.form.repType === 'self'? 'do you' : 'does the Applicant';
+    },
+    youAreString: function () {
+      return this.form.repType === 'self'? 'you are' : 'the Applicant is';
+    },
+    wereYouString: function () {
+      return this.form.repType === 'self'? 'were you' : 'was the Applicant';
+    },
+
+    
+  },
   methods: {},
 };
 </script>
 
 <style lang="scss" scoped >
+h5::first-letter {
+  text-transform: uppercase;
+}
 </style>

@@ -284,7 +284,8 @@ preferredContactLabel: {
     };
   },
   computed: {
-    preferredContactOptions() {
+    preferredContactOptions: function () {
+      // `this` points to the vm instance
       let options = []
       if(this.entity.email.length){
         options.push(
@@ -301,6 +302,7 @@ preferredContactLabel: {
           { value: 'mail', text: 'Mail' }
         )
       }
+      return options
     }
   },
   methods: {

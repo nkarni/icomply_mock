@@ -200,7 +200,17 @@ export default {
           otherFamilyName: '',
           homeless: null,
           apyLands: null,
-          
+          aborginality: '',
+          inPrison: null,
+          prisonName: '',
+          prisonSection: '',
+          prisonId: '',
+          gender: '',
+          bornOs: null,
+          bornWhere: '',
+          homeLanguage: '',
+          requireInterpreter: null,
+          language: ''
           
         },
       },

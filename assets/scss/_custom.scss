@@ -117,3 +117,6 @@ a, .removeIcon {
 .removeIcon:hover{
   color: #0b3d6c;
 }
+label::first-letter, .col-form-label::first-letter {
+  text-transform: uppercase;
+}
