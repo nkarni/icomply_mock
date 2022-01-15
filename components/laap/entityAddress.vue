@@ -2,7 +2,7 @@
   <div>
     <b-form-group
       :label="addressLabel"
-      description="Strat typing your address and select one of the options"
+      description="Start typing your address and select one of the options"
       class="mb-0"
     >
       <b-form-input

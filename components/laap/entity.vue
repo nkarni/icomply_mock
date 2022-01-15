@@ -28,59 +28,135 @@
         v-model="entity.email"
       ></b-form-input>
     </b-form-group>
+    <b-form-group v-if="showIsSafeEmail" :label="safeEmailAddressLabel">
+      <b-form-radio-group
+        id="isAEmailSafeToMail"
+        v-model="entity.isEmailSafeToMail"
+        :options="boolOptions"
+        name="isAEmailSafeToMail"
+      ></b-form-radio-group>
+    </b-form-group>
 
-    <label v-if="showPhones">{{ phonesLabel }}</label>
+    <div v-if="showPhones">
+      <label>{{ phonesLabel }}</label>
 
-    <b-row
-      v-for="(phone, index) of entity.phones"
-      :key="index"
-      v-bind:id="index"
-    >
-      <b-col cols="4">
-        <b-form-group>
-          <b-form-select
-            v-model="entity.phones[index].type"
-            :id="idPrefix + '-phoneType' + index"
-            :name="idPrefix + '-phoneType' + index"
-            :options="[
-              { value: 'mobile', text: 'Mobile' },
-              { value: 'landline', text: 'Land line' },
-            ]"
-          ></b-form-select>
-        </b-form-group>
-      </b-col>
-      <b-col cols="7">
-        <b-form-group>
-          <b-form-input
-            :id="idPrefix + '-phoneNumber' + index"
-            :name="idPrefix + '-phoneNumber' + index"
-            v-model="entity.phones[index].number"
-          ></b-form-input>
-        </b-form-group>
-      </b-col>
-      <b-col cols="1">
-        <i
-          @click.prevent="removePhone(index)"
-          v-b-tooltip.hover
-          title="Remove"
-          class="bi bi-x-circle fs-5 removeIcon"
-        ></i>
-      </b-col>
-    </b-row>
-    <div class="text-end">
-      <b-button variant="link" class="p-0" @click.prevent="addPhone"
-        >Add another phone number</b-button
+      <div
+        v-for="(phone, index) of entity.phones"
+        :key="index"
+        v-bind:id="index"
       >
-    </div>
-    <entity-address v-if="showAddress" :addressLabel="addressLabel" :address="entity.address"></entity-address>
-    <entity-address v-if="showPostalAddress" :addressLabel="postalAddressLabel" :address="entity.postalAddress"></entity-address>
+        <b-row
+          v-for="(phone, index) of entity.phones"
+          :key="index"
+          v-bind:id="index"
+        >
+          <b-col cols="4">
+            <b-form-group>
+              <b-form-select
+                v-model="entity.phones[index].type"
+                :id="idPrefix + '-phoneType' + index"
+                :name="idPrefix + '-phoneType' + index"
+                :options="[
+                  { value: 'mobile', text: 'Mobile' },
+                  { value: 'landline', text: 'Land line' },
+                ]"
+              ></b-form-select>
+            </b-form-group>
+          </b-col>
+          <b-col cols="7">
+            <b-form-group>
+              <b-form-input
+                :id="idPrefix + '-phoneNumber' + index"
+                :name="idPrefix + '-phoneNumber' + index"
+                v-model="entity.phones[index].number"
+              ></b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col cols="1">
+            <i
+              @click.prevent="removePhone(index)"
+              v-b-tooltip.hover
+              title="Remove"
+              class="bi bi-x-circle fs-5 removeIcon"
+            ></i>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <b-form-group v-if="showIsSafePhone" :label="safePhoneLabel">
+              <b-form-radio-group
+                id="showIsSafePhone"
+                v-model="entity.phones[index].isSafe"
+                :options="boolOptions"
+                name="showIsSafePhone"
+              ></b-form-radio-group>
+            </b-form-group>
+          </b-col>
+        </b-row>
+      </div>
 
-    {{ entity }}
+      <div class="text-end">
+        <b-button variant="link" class="p-0" @click.prevent="addPhone"
+          >Add another phone number</b-button
+        >
+      </div>
+    </div>
+
+    <entity-address
+      v-if="showAddress"
+      :addressLabel="addressLabel"
+      :address="entity.address"
+      showOrgName
+    ></entity-address>
+    
+     <b-form-group v-if="showPostalAddessSame">
+              <b-form-checkbox
+                id="postalAddressSame"
+                v-model="entity.postalAddressSame"
+                name="postalAddressSame"
+                :value="true"
+                :unchecked-value="false"
+              >
+                {{ postalAddessSameLabel}}
+              </b-form-checkbox>
+            </b-form-group>
+            
+
+    <entity-address
+      v-if="showPostalAddress && !entity.postalAddressSame"
+      :addressLabel="postalAddressLabel"
+      :address="entity.postalAddress"
+    ></entity-address>
+    
+    
+    
+    
+    <b-form-group
+      v-if="showIsSafePostalAddress"
+      :label="safePostalAddressLabel"
+    >
+      <b-form-radio-group
+        id="isPostalAddressSafeToMail"
+        v-model="entity.isPostalAddressSafeToMail"
+        :options="boolOptions"
+        name="isPostalAddressSafeToMail"
+      ></b-form-radio-group>
+    </b-form-group>
+
+      <b-form-group v-if="showPreferredContact" :label="preferredContactLabel">
+              <b-form-select
+                v-model="entity.preferredContact"
+                id="preferredContact"
+                name="preferredContact"
+                :options="preferredContactOptions"
+              ></b-form-select>
+            </b-form-group>
+
   </div>
 </template>
 
 <script>
-import entityAddress from './entityAddress.vue';
+import entityAddress from "./entityAddress.vue";
 export default {
   components: { entityAddress },
   name: "entity",
@@ -99,7 +175,7 @@ export default {
     },
     showOrgName: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     firstNameLabel: {
       type: String,
@@ -107,7 +183,7 @@ export default {
     },
     showFirstName: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     lastNameLabel: {
       type: String,
@@ -115,7 +191,7 @@ export default {
     },
     showLastName: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     emailLabel: {
       type: String,
@@ -123,7 +199,7 @@ export default {
     },
     showEmail: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     phonesLabel: {
       type: String,
@@ -131,7 +207,7 @@ export default {
     },
     showPhones: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     addressLabel: {
       type: String,
@@ -139,7 +215,7 @@ export default {
     },
     showAddress: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     postalAddressLabel: {
       type: String,
@@ -147,20 +223,92 @@ export default {
     },
     showPostalAddress: {
       type: Boolean,
-      default: true,
+      default: false,
     },
+    safeAddressLabel: {
+      type: String,
+      default: "Is it safe to send you mail to this address?",
+    },
+    showIsSafeAddress: {
+      type: Boolean,
+      default: false,
+    },
+    safePostalAddressLabel: {
+      type: String,
+      default: "Is it safe to send you mail to this address?",
+    },
+    showIsSafePostalAddress: {
+      type: Boolean,
+      default: false,
+    },
+    safeEmailAddressLabel: {
+      type: String,
+      default: "Is it safe to contact on this email address?",
+    },
+    showIsSafeEmail: {
+      type: Boolean,
+      default: false,
+    },
+    safePhoneLabel: {
+      type: String,
+      default: "Is it safe to contact on this phone number?",
+    },
+    showIsSafePhone: {
+      type: Boolean,
+      default: false,
+    },
+     postalAddessSameLabel: {
+      type: String,
+      default: "Postal address is the same as home address",
+    },
+    showPostalAddessSame: {
+      type: Boolean,
+      default: false,
+    },
+preferredContactLabel: {
+      type: String,
+      default: "Preferred Contact",
+    },
+    showPreferredContact: {
+      type: Boolean,
+      default: false,
+    },
+    
   },
   data() {
     return {
       firstname: "",
       lastname: "",
       firstnameLabel: "",
+      boolOptions: [
+        { text: "Yes", value: true },
+        { text: "No", value: false },
+      ],
     };
   },
-  computed: {},
+  computed: {
+    preferredContactOptions() {
+      let options = []
+      if(this.entity.email.length){
+        options.push(
+          { value: 'email', text: 'Email' }
+        )
+      }
+      if(this.entity.phones.length){
+        options.push(
+          { value: 'phone', text: 'Phone' }
+        )
+      }
+      if(this.entity.postalAddress){
+        options.push(
+          { value: 'mail', text: 'Mail' }
+        )
+      }
+    }
+  },
   methods: {
     addPhone() {
-      this.entity.phones.push({ type: "", number: "" });
+      this.entity.phones.push({ type: "", number: "", isSafe: null });
     },
     removePhone(i) {
       this.entity.phones.splice(i);

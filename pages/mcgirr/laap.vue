@@ -134,10 +134,12 @@ export default {
               {
                 type: "mobile",
                 number: "0402222777",
+                isSafe: false
               },
               {
                 type: "landline",
                 number: "0266856655",
+                isDafe: null
               },
             ],
             address: {
@@ -157,7 +159,49 @@ export default {
               country: "",
             },
           },
-          applicant: {},
+          applicant: {
+            orgName: "",
+            firstName: "",
+            lastName: "",
+            email: "",
+            phones: [
+              {
+                type: "",
+                number: "",
+              },
+              {
+                type: "",
+                number: "",
+              },
+            ],
+            address: {
+              line1: "",
+              line2: "",
+              suburb: "",
+              postcode: "",
+              state: "",
+              country: "",
+            },
+            postalAddress: {
+              line1: "",
+              line2: "",
+              suburb: "",
+              postcode: "",
+              state: "",
+              country: "",
+            },
+            isAddressSafeToMail: null,
+          isEmailSafeToMail: null,
+          isPostalAddressSafeToMail: null,
+          postalAddressSame: null,
+          },
+          lscFileNumber: '',
+          otherGivenName: '',
+          otherFamilyName: '',
+          homeless: null,
+          apyLands: null,
+          
+          
         },
       },
       tabIndex: 0,
