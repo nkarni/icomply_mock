@@ -69,23 +69,22 @@
 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
   color: #003566 !important;
 }
-
-.nav-tabs .nav-link{
-  font-size: 16px;
-}
 .form-text {
   font-size: 0.9em;
-  padding: 17px;
+  padding: 8px;
   margin-bottom: 15px;
   background-color: #eef1f7;
   color: #516181;
-  margin-top: 17px;
   border-left: 3px solid #93b2e5;
   display: flex;
   
 }
 .btn {
     border-radius: 1px;
+}
+.btn-link{
+  font-size: 0.875rem !important;
+  text-decoration: none;
 }
 label {
   margin-bottom: 4px;
@@ -98,7 +97,7 @@ label {
   
 }
 
-a {
+a, .removeIcon {
   color: #04429d;
 }
 .btn:focus {
@@ -114,4 +113,7 @@ a {
 
 .list-group-item {
   border-bottom: none !important;
+}
+.removeIcon:hover{
+  color: #0b3d6c;
 }

@@ -26,9 +26,11 @@
             ></b-form-radio-group>
           </b-form-group>
 
-          <b-form-group label="Are you a LSC panel lawyer?">
+          <b-form-group
+            label="Are you a LSC panel lawyer?"
+            v-if="form.repType === 'solicitor'"
+          >
             <b-form-radio-group
-              v-if="form.repType === 'solicitor'"
               id="isLscPanelMember"
               v-model="form.isLscPanelMember"
               :options="boolOptions"
@@ -38,23 +40,23 @@
 
           <b-form-group
             label="Have you previously represented this client (the applicant)?"
+            v-if="form.repType === 'solicitor' && form.isLscPanelMember"
           >
             <b-form-radio-group
-              v-if="form.repType === 'solicitor' && form.isLscPanelMember"
               id="prevRepresented"
               v-model="form.prevRepresented"
               :options="boolOptions"
               name="prevRepresented"
             ></b-form-radio-group>
           </b-form-group>
-           <b-form-group
-            v-if="form.repType === 'solicitor'"
-            label="Your firm or organisation name"
-          >
-            <b-form-input id="repSolicitorOrgName" name="repSolicitorOrgName" v-model="form.repSolicitorOrgName"></b-form-input>
-          </b-form-group>
+         
 
-          
+          <entity 
+          :entity="form.entities.repSolicitor"
+          orgNameLabel="Your firm or organisation name"
+          idPrefix="repSolicitor"
+          >
+          </entity>
         </b-col>
       </b-row>
     </b-form>
@@ -62,7 +64,9 @@
 </template>
 
 <script>
+import entity from "./entity.vue";
 export default {
+  components: { entity },
   name: "applicantDetails",
   props: {
     form: {
@@ -81,8 +85,8 @@ export default {
         },
       ],
       boolOptions: [
-        { text: "Yes", value: "1" },
-        { text: "No", value: "0" },
+        { text: "Yes", value: true },
+        { text: "No", value: false },
       ],
     };
   },

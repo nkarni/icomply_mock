@@ -13,9 +13,9 @@
           to="/mcgirr/home"
         >
           <img
-            src="/mcms.png"
-            alt="Mcgirr Technologies Logo"
-            style="height: 40px;"
+            src="/LSC_Logo.png"
+            alt="Legal Services Commission South Australia"
+            style="height: 60px;"
           >
         </router-link>
 
