@@ -179,7 +179,7 @@
             <entity
               :entity="form.entities.applicant"
               idPrefix="applicant"
-              showAddress showPostalAddress showPostalAddessSame showIsSafePostalAddress showPhones showEmail showIsSafeEmail showPreferredContact
+              showAddress showPostalAddress showPostalAddessSame showIsSafePostalAddress showPhones showEmail showIsSafeEmail showPreferredContact showIsSafePhone
               addressLabel="Home address (even if you are in custody)"
             >
             </entity>

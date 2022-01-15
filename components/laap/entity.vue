@@ -46,9 +46,6 @@
         v-bind:id="index"
       >
         <b-row
-          v-for="(phone, index) of entity.phones"
-          :key="index"
-          v-bind:id="index"
         >
           <b-col cols="4">
             <b-form-group>
