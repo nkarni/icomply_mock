@@ -195,6 +195,7 @@ export default {
           isPostalAddressSafeToMail: null,
           postalAddressSame: null,
           },
+        },
           lscFileNumber: '',
           otherGivenName: '',
           otherFamilyName: '',
@@ -210,9 +211,28 @@ export default {
           bornWhere: '',
           homeLanguage: '',
           requireInterpreter: null,
-          language: ''
-          
-        },
+          language: '',
+          disability: '',
+          disabilityDetail: '',
+          requireExtraHelp: null,
+          extraHelpDetail: '',
+          under18: null,
+          relationshipStatus: '',
+          relationshipStatusDetail: '',
+          riskOfViolence: null,
+          familyViolenceAllegation: null,
+          riskOfElderAbuse: null,
+          dependants: [
+            
+          ],
+          numOfDependants: '',
+          repRelation: '',
+          repRelationDetail:'',
+          authToDisclose:null,
+          authToDiscloseRelationship: '',
+          authToDiscloseGivenName: '',
+          authToDiscloseLastName: '',
+          authToDiscloseContactDetail: ''
       },
       tabIndex: 0,
     };

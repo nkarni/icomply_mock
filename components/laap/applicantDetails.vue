@@ -150,7 +150,9 @@
             >
           </b-col>
           <b-col>
-            <b-form-group :label="AreYouString + ' homeless or at risk of homelessness?'">
+            <b-form-group
+              :label="AreYouString + ' homeless or at risk of homelessness?'"
+            >
               <b-form-radio-group
                 id="homeless"
                 v-model="form.homeless"
@@ -171,29 +173,53 @@
             <entity
               :entity="form.entities.applicant"
               idPrefix="applicant"
-              showAddress showPostalAddress showPostalAddessSame showIsSafePostalAddress showPhones showEmail showIsSafeEmail showPreferredContact showIsSafePhone
-              :addressLabel="yourString + ' Home address (even if ' + youAreString + ' in custody)'"
+              showAddress
+              showPostalAddress
+              showPostalAddessSame
+              showIsSafePostalAddress
+              showPhones
+              showEmail
+              showIsSafeEmail
+              showPreferredContact
+              showIsSafePhone
+              :addressLabel="
+                yourString +
+                ' Home address (even if ' +
+                youAreString +
+                ' in custody)'
+              "
               :emailLabel="yourString + ' email'"
               :phonesLabel="yourString + ' phone number(s)'"
-              :safeEmailAddressLabel="'is it safe to contact ' + youString + ' on this email address?'"
-              :safePhoneLabel="'is it safe to contact ' + youString + ' on this phone number?'"
-              :safePostalAddressLabel="'is it safe to send ' + youString + ' mail to this address?'"
-              :postalAddressLabel="yourString + ' postal address'"           
+              :safeEmailAddressLabel="
+                'is it safe to contact ' + youString + ' on this email address?'
+              "
+              :safePhoneLabel="
+                'is it safe to contact ' + youString + ' on this phone number?'
+              "
+              :safePostalAddressLabel="
+                'is it safe to send ' + youString + ' mail to this address?'
+              "
+              :postalAddressLabel="yourString + ' postal address'"
             >
             </entity>
-
           </b-col>
         </b-row>
       </section>
 
-<section v-if="form.repType" class="border-bottom border-secondary mb-4 pb-2">
+      <section
+        v-if="form.repType"
+        class="border-bottom border-secondary mb-4 pb-2"
+      >
         <b-row>
           <b-col cols="4">
-            <h5>{{yourString}} circumstances</h5> 
+            <h5>{{ yourString }} circumstances</h5>
           </b-col>
           <b-col>
-<b-form-group
-              :label="DoYouStringCont + ' identify as Aboriginal or Torres Strait Islander?'"
+            <b-form-group
+              :label="
+                DoYouStringCont +
+                ' identify as Aboriginal or Torres Strait Islander?'
+              "
             >
               <b-form-radio-group
                 id="aborginality"
@@ -211,29 +237,32 @@
                 name="inPrison"
               ></b-form-radio-group>
             </b-form-group>
-             <b-form-group v-if="form.inPrison" label="Where">
-                <b-form-input
-                  id="prisonName"
-                  name="prisonName"
-                  v-model="form.prisonName"
-                ></b-form-input>
-              </b-form-group>
-               <b-form-group v-if="form.inPrison" label="Section (optional)">
-                <b-form-input
-                  id="prisonSection"
-                  name="prisonSection"
-                  v-model="form.prisonSection"
-                ></b-form-input>
-              </b-form-group>
-               <b-form-group v-if="form.inPrison" label="Idnetification number (optional)">
-                <b-form-input
-                  id="prisonId"
-                  name="prisonId"
-                  v-model="form.prisonId"
-                ></b-form-input>
-              </b-form-group>
+            <b-form-group v-if="form.inPrison" label="Where">
+              <b-form-input
+                id="prisonName"
+                name="prisonName"
+                v-model="form.prisonName"
+              ></b-form-input>
+            </b-form-group>
+            <b-form-group v-if="form.inPrison" label="Section (optional)">
+              <b-form-input
+                id="prisonSection"
+                name="prisonSection"
+                v-model="form.prisonSection"
+              ></b-form-input>
+            </b-form-group>
+            <b-form-group
+              v-if="form.inPrison"
+              label="Idnetification number (optional)"
+            >
+              <b-form-input
+                id="prisonId"
+                name="prisonId"
+                v-model="form.prisonId"
+              ></b-form-input>
+            </b-form-group>
 
-              <b-form-group :label="wereYouString + ' born overseas?'">
+            <b-form-group :label="wereYouString + ' born overseas?'">
               <b-form-radio-group
                 id="bornOs"
                 v-model="form.bornOs"
@@ -241,15 +270,18 @@
                 name="bornOs"
               ></b-form-radio-group>
             </b-form-group>
-             <b-form-group v-if="form.bornOs" :label="'Where ' + wereYouString + ' born?'">
-                <b-form-input
-                  id="bornWhere"
-                  name="bornWhere"
-                  v-model="form.bornWhere"
-                ></b-form-input>
-              </b-form-group>
+            <b-form-group
+              v-if="form.bornOs"
+              :label="'Where ' + wereYouString + ' born?'"
+            >
+              <b-form-input
+                id="bornWhere"
+                name="bornWhere"
+                v-model="form.bornWhere"
+              ></b-form-input>
+            </b-form-group>
 
-                <b-form-group label="What is the main language spoken at home?">
+            <b-form-group label="What is the main language spoken at home?">
               <b-form-select
                 v-model="form.homeLanguage"
                 id="homeLanguage"
@@ -270,7 +302,10 @@
               ></b-form-radio-group>
             </b-form-group>
 
-             <b-form-group v-if="form.requireInterpreter" label="What language/dialect?">
+            <b-form-group
+              v-if="form.requireInterpreter"
+              label="What language/dialect?"
+            >
               <b-form-select
                 v-model="form.language"
                 id="language"
@@ -282,9 +317,400 @@
               ></b-form-select>
             </b-form-group>
 
+            <b-form-group :label="DoYouStringCont + ' have a disability?'">
+              <b-form-select
+                v-model="form.disability"
+                id="disability"
+                name="disability"
+                :options="[
+                  { value: 'none', text: 'No - I don’t have a disability' },
+                  { value: 'Intelectual', text: 'Intelectual' },
+                  {
+                    value: 'Psychological/Psychiatric',
+                    text: 'Psychological/Psychiatric',
+                  },
+                  {
+                    value: 'Sensory (including speech)',
+                    text: 'Sensory (including speech)',
+                  },
+                  {
+                    value: 'Head injury/stroke/brain damage',
+                    text: 'Head injury/stroke/brain damage',
+                  },
+                  { value: 'Physical', text: 'Physical' },
+                  { value: 'Other', text: 'Other' },
+                ]"
+              ></b-form-select>
+            </b-form-group>
+
+            <b-form-group
+              v-if="form.disability === 'Other'"
+              :label="'Provide details'"
+            >
+              <b-form-input
+                id="disabilityDetail"
+                name="disabilityDetail"
+                v-model="form.disabilityDetail"
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group
+              :label="
+                DoYouStringCont +
+                ' require extra or practical help to access our services?'
+              "
+            >
+              <b-form-radio-group
+                id="requireExtraHelp"
+                v-model="form.requireExtraHelp"
+                :options="boolOptions"
+                name="requireExtraHelp"
+              ></b-form-radio-group>
+            </b-form-group>
+
+            <b-form-group
+              v-if="form.requireExtraHelp"
+              :label="'Provide details'"
+            >
+              <b-form-input
+                id="extraHelpDetail"
+                name="extraHelpDetail"
+                v-model="form.disabilityDetail"
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group :label="AreYouString + ' under 18?'">
+              <b-form-radio-group
+                id="under18"
+                v-model="form.under18"
+                :options="boolOptions"
+                name="under18"
+              ></b-form-radio-group>
+            </b-form-group>
+
+            <b-form-group label="Relationship status">
+              <b-form-select
+                v-model="form.relationshipStatus"
+                id="relationshipStatus"
+                name="relationshipStatus"
+                :options="[
+                  { value: 'Never married', text: 'Never married' },
+                  { value: 'Married/DeFacto', text: 'Married/DeFacto' },
+                  { value: 'Separated', text: 'Separated' },
+                  { value: 'Divorced', text: 'Divorced' },
+                  { value: 'Widowed', text: 'Widowed' },
+                  { value: 'Other', text: 'Other' },
+                ]"
+              ></b-form-select>
+            </b-form-group>
+
+            <b-form-group
+              v-if="form.relationshipStatus === 'Other'"
+              :label="'Provide details'"
+            >
+              <b-form-input
+                id="relationshipStatusDetail"
+                name="relationshipStatusDetail"
+                v-model="form.relationshipStatusDetail"
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group
+              :label="
+                AreYouString +
+                ' currently experiencing or at risk of family violence?'
+              "
+            >
+              <b-form-radio-group
+                id="riskOfViolence"
+                v-model="form.riskOfViolence"
+                :options="boolOptions"
+                name="riskOfViolence"
+              ></b-form-radio-group>
+            </b-form-group>
+
+            <b-form-group
+              :label="
+                'Has an allegation of family violence been made against ' +
+                youString +
+                '?'
+              "
+            >
+              <b-form-radio-group
+                id="familyViolenceAllegation"
+                v-model="form.familyViolenceAllegation"
+                :options="boolOptions"
+                name="familyViolenceAllegation"
+              ></b-form-radio-group>
+            </b-form-group>
+
+            <b-form-group
+              :label="AreYouString + ' experiencing or at risk of elder abuse?'"
+              description="Elder abuse is any act occurring within a relationship where there is an expectation of trust, which results in harm to an older person (65 or over). Abuse can include physical, sexual, financial, psychological or social abuse can include neglect."
+            >
+              <b-form-radio-group
+                id="riskOfElderAbuse"
+                v-model="form.riskOfElderAbuse"
+                :options="boolOptions"
+                name="riskOfElderAbuse"
+              ></b-form-radio-group>
+            </b-form-group>
+
+            <b-form-group
+              :label="
+                'Has an allegation of elder abuse been made against ' +
+                youString +
+                '?'
+              "
+            >
+              <b-form-radio-group
+                id="elderAbuseAllegation"
+                v-model="form.elderAbuseAllegation"
+                :options="boolOptions"
+                name="elderAbuseAllegation"
+              ></b-form-radio-group>
+            </b-form-group>
           </b-col>
         </b-row>
-        </section>
+      </section>
+
+      <section
+          v-if="form.repType && form.repType != 'solicitor'"
+        class="border-bottom border-secondary mb-4 pb-2"
+      >
+        <b-row>
+          <b-col cols="4">
+            <h5>{{ yourString }} dependants</h5>
+            Dependants are people you are finanically reponsible for.
+          </b-col>
+          <b-col>
+            <b-form-group
+              :label="
+                'How many people ' +
+                AreYouString +
+                ' financially responsible for?'
+              "
+            >
+              <b-form-input
+                id="numOfDependants"
+                name="numOfDependants"
+                v-model="form.numOfDependants"
+                type="number"
+                @change="onNumDepnedantsChange"
+              ></b-form-input>
+            </b-form-group>
+            <div v-if="form.dependants.length > 0">
+              <div
+                v-for="(dependant, index) of form.dependants"
+                :key="index"
+                v-bind:id="index"
+                class="border-5 border-start ps-3 mb-4"
+              >
+                <h5>Dependant {{ index + 1 }}</h5>
+                <b-row>
+                  <b-col>
+                    <entity
+                      :entity="form.dependants[index]"
+                      idPrefix="dep0"
+                      showFirstName
+                      showLastName
+                      :firstNameLabel="
+                        'Dependant ' + (index + 1) + ' given name(s)'
+                      "
+                      :lastNameLabel="
+                        'Dependant ' + (index + 1) + ' family name(s)'
+                      "
+                    >
+                      <template v-slot:additionalFields>
+                        <b-form-group
+                          :label="
+                            'Dependant ' + index + 1 + ' relationship to you'
+                          "
+                        >
+                          <b-form-select
+                            v-model="form.dependants[index].relationship"
+                            id="relationship"
+                            name="relationship"
+                            :options="[
+                              { value: 'Spouse', text: 'Spouse' },
+                              { value: 'Defacto', text: 'Defacto' },
+                              { value: 'Partner', text: 'Partner' },
+                              { value: 'Child', text: 'Child' },
+                              { value: 'StepChild', text: 'Step Child' },
+                              { value: 'Parent', text: 'Parent' },
+                              { value: 'Other', text: 'Other' },
+                            ]"
+                          ></b-form-select>
+                        </b-form-group>
+
+                        <b-form-group
+                          :label="'Dependant ' + index + 1 + 'Date of birth'"
+                        >
+                          <b-form-datepicker
+                            id="dep0dob"
+                            v-model="form.dependants[index].dob"
+                            class="mb-2"
+                          ></b-form-datepicker>
+                        </b-form-group>
+                        Do they stay overnight with you at least once a week?
+
+                        <b-form-group
+                          label="Do they stay overnight with you at least once a week?"
+                        >
+                          <b-form-radio-group
+                            id="stayOvernight"
+                            v-model="form.dependants[index].stayOvernight"
+                            :options="boolOptions"
+                            name="stayOvernight"
+                          ></b-form-radio-group>
+                        </b-form-group>
+
+                        <b-form-group
+                          label="Are they involved in your legal problem?"
+                        >
+                          <b-form-radio-group
+                            id="involvedInLegalIssue"
+                            v-model="
+                              form.dependants[index].involvedInLegalIssue
+                            "
+                            :options="boolOptions"
+                            name="involvedInLegalIssue"
+                          ></b-form-radio-group>
+                        </b-form-group>
+                      </template>
+                    </entity>
+                  </b-col>
+                </b-row>
+              </div>
+            </div>
+          </b-col>
+        </b-row>
+      </section>
+
+      <section
+        v-if="form.repType === 'other'"
+        class="border-bottom border-secondary mb-4 pb-2"
+      >
+        <b-row>
+          <b-col cols="4">
+            <h5>Your authority to fill this form</h5>
+            We need proof that you are allowed to fill this form on behalf of
+            the Applicant.
+            <br /><br />This authority will be in place for 12 months. If you
+            would like to remove the authority please email
+            <a href="">grants@lsc.sa.gov.au</a>.
+          </b-col>
+          <b-col>
+            <b-form-group :label="'Your relationship to ' + youString">
+              <b-form-select
+                v-model="form.repRelation"
+                id="repRelation"
+                name="repRelation"
+                :options="[
+                  { value: 'Power of attorney', text: 'Power of attorney' },
+                  { value: 'Parent', text: 'Parent' },
+                  { value: 'Guardian', text: 'Guardian' },
+                  { value: 'Child', text: 'Child' },
+                  { value: 'Social worker', text: 'Social worker' },
+                  { value: 'Friend', text: 'Friend' },
+                  { value: 'Other', text: 'Other' },
+                ]"
+              ></b-form-select>
+            </b-form-group>
+            <b-form-group
+              v-if="form.repRelation === 'Other'"
+              label="Provide details"
+            >
+              <b-form-input
+                id="repRelationDetail"
+                name="repRelationDetail"
+                v-model="form.repRelationDetail"
+              ></b-form-input>
+            </b-form-group>
+            <div class="text-danger">
+              Please download and sign the
+              <a href="">Authority to Discolose form</a>. You will be asked to
+              upload it in the Attachments step.
+            </div>
+          </b-col>
+        </b-row>
+      </section>
+
+      <section
+        v-if="form.repType && form.repType != 'solicitor'"
+        class="border-bottom border-secondary mb-4 pb-2"
+      >
+        <b-row>
+          <b-col cols="4">
+            <h5>Authority to disclose</h5>
+            This will only apply to the application for aid, not the legal
+            matter. If there is a conflict with the person that is nominated, we
+            reserve the right to overide the authority
+            <br /><br />This authority will be in place for 12 months. If you
+            would like to remove the authority please email
+            <a href="">grants@lsc.sa.gov.au</a>.
+          </b-col>
+          <b-col>
+     
+            <b-form-group
+              :label="
+                DoYouStringCont +
+                ' authorise us to provide information to another person about your legal aid application? '
+              "
+            >
+              <b-form-radio-group
+                id="authToDisclose"
+                v-model="form.authToDisclose"
+                :options="boolOptions"
+                name="authToDisclose"
+              ></b-form-radio-group>
+            </b-form-group>
+            
+              <b-form-group label="Their given names(s)"
+            v-if="form.authToDisclose" >
+            <b-form-input
+              id="authToDiscloseGivenName"
+              name="authToDiscloseGivenName"
+              v-model="form.authToDiscloseGivenName"
+            ></b-form-input>
+            </b-form-group>
+
+              <b-form-group label="Their family names(s)"
+            v-if="form.authToDisclose" >
+            <b-form-input
+              id="authToDiscloseLastName"
+              name="authToDiscloseLastName"
+              v-model="form.authToDiscloseLastName"
+            ></b-form-input>
+            </b-form-group>
+
+              <b-form-group :label=" 'Their relationship to ' + youString "
+            v-if="form.authToDisclose" >
+            <b-form-input
+              id="authToDiscloseRelationship"
+              name="authToDiscloseRelationship"
+              v-model="form.authToDiscloseRelationship"
+            ></b-form-input>
+            </b-form-group>
+            
+         <b-form-group
+                label="Their contact details"
+                v-if="form.authToDisclose"
+              >
+                <b-form-textarea
+                  id="authToDiscloseContactDetail"
+                  name="authToDiscloseContactDetail"
+                  v-model="form.authToDiscloseContactDetail"
+                  rows="3"
+                  max-rows="6"
+                ></b-form-textarea>
+              </b-form-group>
+         
+
+          
+          </b-col>
+        </b-row>
+      </section>
     </b-form>
   </div>
 </template>
@@ -318,37 +744,56 @@ export default {
         { text: "Yes, Aboriginal", value: "aboriginal" },
         { text: "Yes, Tores Strait Islander", value: "islander" },
         { text: "Both Aboriginal and Tores Strait Islander", value: "both" },
-        { text: "No", value: "no" }
-
-      ]
+        { text: "No", value: "no" },
+      ],
     };
   },
   computed: {
     youString: function () {
-      return this.form.repType === 'self'? 'you' : 'the Applicant';
+      return this.form.repType === "self" ? "you" : "the Applicant";
     },
     yourString: function () {
-      return this.form.repType === 'self'? 'your' : 'the Applicant\'s';
+      return this.form.repType === "self" ? "your" : "the Applicant's";
     },
     AreYouString: function () {
-      return this.form.repType === 'self'? 'are you' : 'is the Applicant';
+      return this.form.repType === "self" ? "are you" : "is the Applicant";
     },
     DoYouString: function () {
-      return this.form.repType === 'self'? 'do you' : 'is the Applicant';
+      return this.form.repType === "self" ? "do you" : "is the Applicant";
     },
-     DoYouStringCont: function () {
-      return this.form.repType === 'self'? 'do you' : 'does the Applicant';
+    DoYouStringCont: function () {
+      return this.form.repType === "self" ? "do you" : "does the Applicant";
     },
     youAreString: function () {
-      return this.form.repType === 'self'? 'you are' : 'the Applicant is';
+      return this.form.repType === "self" ? "you are" : "the Applicant is";
     },
     wereYouString: function () {
-      return this.form.repType === 'self'? 'were you' : 'was the Applicant';
+      return this.form.repType === "self" ? "were you" : "was the Applicant";
     },
-
-    
+    AreYouString: function () {
+      return this.form.repType === "self" ? "are you" : "the Applicant is";
+    },
   },
-  methods: {},
+  methods: {
+    onNumDepnedantsChange() {
+      if (this.form.numOfDependants < this.form.dependants.length) {
+        while (this.form.numOfDependants < this.form.dependants.length) {
+          this.form.dependants.pop();
+        }
+      } else if (this.form.numOfDependants > this.form.dependants.length) {
+        while (this.form.numOfDependants > this.form.dependants.length) {
+          this.form.dependants.push({
+            firstName: "",
+            lastName: "",
+            dob: "",
+            relationship: "",
+            stayOvernight: null,
+            involvedInLegalIssue: null,
+          });
+        }
+      }
+    },
+  },
 };
 </script>
 

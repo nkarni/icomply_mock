@@ -149,6 +149,8 @@
               ></b-form-select>
             </b-form-group>
 
+            <slot name="additionalFields"></slot>
+
   </div>
 </template>
 
