@@ -10,10 +10,13 @@
         </span>
       </h3>
       <b-tabs v-model="tabIndex" small vertical nav-wrapper-class="col-3">
-        <b-tab>
+        <b-tab >
           <template #title>
-            <h5>Conditions of Legal Aid</h5>
+            <div :class = "(tabIndex > 0 ? 'completed' : '')">
+<h5>Conditions of Legal Aid</h5>
             The eligiblity criteria explained
+            </div>
+            
           </template>
           <conditions :form="form"></conditions>
           <div class="text-center">
@@ -24,8 +27,10 @@
         </b-tab>
         <b-tab>
           <template #title>
+            <div :class = "(tabIndex > 1 ? 'completed' : '')">
             <h5>Applicant details</h5>
             <p>Contact and other details</p>
+            </div>
           </template>
           <applicant-details :form="form"></applicant-details>
           <div class="text-center">
@@ -38,8 +43,10 @@
         </b-tab>
         <b-tab>
           <template #title>
+            <div :class = "(tabIndex > 2 ? 'completed' : '')">
             <h5>Eligiblity</h5>
             <p>Applicant’s means test</p>
+            </div>
           </template>
           <eligibility :form="form"></eligibility>
           <div class="text-center">
@@ -52,8 +59,10 @@
         </b-tab>
         <b-tab>
           <template #title>
+            <div :class = "(tabIndex > 3 ? 'completed' : '')">
             <h5>The legal problem</h5>
             <p>Information about the legal help needed</p>
+            </div>
           </template>
           <problem :form="form"></problem>
           <div class="text-center">
@@ -66,8 +75,10 @@
         </b-tab>
         <b-tab>
           <template #title>
+            <div :class = "(tabIndex > 5 ? 'completed' : '')">
             <h5>Attachments</h5>
             <p>Relevant attachments to support the application</p>
+            </div>
           </template>
           <attachments :form="form"></attachments>
           <div class="text-center">

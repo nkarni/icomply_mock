@@ -120,3 +120,18 @@ a, .removeIcon {
 label::first-letter, .col-form-label::first-letter {
   text-transform: uppercase;
 }
+
+.laap .nav-tabs .nav-link.active{
+  border-left: green solid 4px !important;
+}
+
+.laap .nav-tabs .nav-link .completed{
+  color: green;
+}
+input[type="radio" i], input[type="checkbox" i] {
+   margin-left: 8px;
+   margin-right: 8px;
+}
+input[type="checkbox" i] {
+  margin-right: 8px;
+}

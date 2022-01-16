@@ -93,7 +93,7 @@
       </div>
 
       <div class="text-end">
-        <b-button variant="link" class="p-0" @click.prevent="addPhone"
+        <b-button variant="link" class="p-0 mb-4" @click.prevent="addPhone"
           >Add another phone number</b-button
         >
       </div>

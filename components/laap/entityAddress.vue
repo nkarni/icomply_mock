@@ -13,7 +13,7 @@
     </b-form-group>
 
     <div class="text-end">
-      <b-button variant="link" class="p-0" v-b-modal.manualAddress
+      <b-button variant="link" class="p-0 mb-4" v-b-modal.manualAddress
         >Click here if you cannot find the right address</b-button
       >
     </div>
