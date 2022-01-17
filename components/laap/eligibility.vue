@@ -214,7 +214,7 @@
                 <entity></entity>
 
                 <entity
-                v-if="form.hasFap === true"
+                  v-if="form.hasFap === true"
                   :entity="form.fap"
                   idPrefix="fap"
                   showFirstName
@@ -239,20 +239,28 @@
                         ]"
                       ></b-form-select>
                     </b-form-group>
-                     <b-form-group
-                  label="Do they receive a Centrelink pension or benefit or allowance (optional)?"
-                >
-                  <b-form-radio-group
-                    id="fap.receivesBenefit"
-                    v-model="form.fap.receivesBenefit"
-                    :options="boolOptions"
-                    name="fap.receivesBenefit"
-                  ></b-form-radio-group>
-                  <div class="form-text"  v-if="form.fap.receivesBenefit === true">Note: a copy of their most recent Centrelink Income Statement may be required.</div>
-                </b-form-group>
+                    <b-form-group
+                      label="Do they receive a Centrelink pension or benefit or allowance (optional)?"
+                    >
+                      <b-form-radio-group
+                        id="fap.receivesBenefit"
+                        v-model="form.fap.receivesBenefit"
+                        :options="boolOptions"
+                        name="fap.receivesBenefit"
+                      ></b-form-radio-group>
+                      <div
+                        class="form-text"
+                        v-if="form.fap.receivesBenefit === true"
+                      >
+                        Note: a copy of their most recent Centrelink Income
+                        Statement may be required.
+                      </div>
+                    </b-form-group>
 
-                  
-                    <b-form-group label="Their CRN (optional)" v-if="form.fap.receivesBenefit === true">
+                    <b-form-group
+                      label="Their CRN (optional)"
+                      v-if="form.fap.receivesBenefit === true"
+                    >
                       <b-form-input
                         id="fap.crnNumber"
                         name="fap.crnNumber"
@@ -264,7 +272,6 @@
                       v-if="form.fap.receivesBenefit === true"
                     >
                       <b-form-checkbox-group
-                      
                         id="fap.benefitsPaymentTypes"
                         v-model="form.fap.benefitsPaymentTypes"
                         :options="benefitsOptions"
@@ -272,7 +279,10 @@
                       ></b-form-checkbox-group>
                     </b-form-group>
 
-                    <b-form-group label="Do they receive the maximum payment?" v-if="form.fap.receivesBenefit === true">
+                    <b-form-group
+                      label="Do they receive the maximum payment?"
+                      v-if="form.fap.receivesBenefit === true"
+                    >
                       <b-form-radio-group
                         id="fap.receivesMaxBenefits"
                         v-model="form.fap.receivesMaxBenefits"
@@ -293,7 +303,7 @@
                 <h5>Property Details</h5>
               </b-col>
               <b-col>
-   <b-form-group
+                <b-form-group
                   :label="DoYouStringCont + ' own (or paying off) a home?'"
                 >
                   <b-form-radio-group
@@ -304,9 +314,15 @@
                   ></b-form-radio-group>
                 </b-form-group>
 
+                <entity-address
+                  v-if="form.ownsAHome === true"
+                  addressLabel="Property address"
+                  :address="form.propertyAddress"
+                ></entity-address>
 
+                
               </b-col>
-              </b-row>
+            </b-row>
           </section>
         </b-tab>
         <b-tab title="Income & Assets"><p>I'm a disabled tab!</p></b-tab>

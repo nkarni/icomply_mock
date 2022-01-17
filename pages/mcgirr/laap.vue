@@ -10,13 +10,12 @@
         </span>
       </h3>
       <b-tabs v-model="tabIndex" small vertical nav-wrapper-class="col-3">
-        <b-tab >
+        <b-tab>
           <template #title>
-            <div :class = "(tabIndex > 0 ? 'completed' : '')">
-<h5>Conditions of Legal Aid</h5>
-            The eligiblity criteria explained
+            <div :class="tabIndex > 0 ? 'completed' : ''">
+              <h5>Conditions of Legal Aid</h5>
+              The eligiblity criteria explained
             </div>
-            
           </template>
           <conditions :form="form"></conditions>
           <div class="text-center">
@@ -27,9 +26,9 @@
         </b-tab>
         <b-tab>
           <template #title>
-            <div :class = "(tabIndex > 1 ? 'completed' : '')">
-            <h5>Applicant details</h5>
-            <p>Contact and other details</p>
+            <div :class="tabIndex > 1 ? 'completed' : ''">
+              <h5>Applicant details</h5>
+              <p>Contact and other details</p>
             </div>
           </template>
           <applicant-details :form="form"></applicant-details>
@@ -43,9 +42,9 @@
         </b-tab>
         <b-tab>
           <template #title>
-            <div :class = "(tabIndex > 2 ? 'completed' : '')">
-            <h5>Eligiblity</h5>
-            <p>Applicant’s means test</p>
+            <div :class="tabIndex > 2 ? 'completed' : ''">
+              <h5>Eligiblity</h5>
+              <p>Applicant’s means test</p>
             </div>
           </template>
           <eligibility :form="form"></eligibility>
@@ -59,9 +58,9 @@
         </b-tab>
         <b-tab>
           <template #title>
-            <div :class = "(tabIndex > 3 ? 'completed' : '')">
-            <h5>The legal problem</h5>
-            <p>Information about the legal help needed</p>
+            <div :class="tabIndex > 3 ? 'completed' : ''">
+              <h5>The legal problem</h5>
+              <p>Information about the legal help needed</p>
             </div>
           </template>
           <problem :form="form"></problem>
@@ -75,9 +74,9 @@
         </b-tab>
         <b-tab>
           <template #title>
-            <div :class = "(tabIndex > 5 ? 'completed' : '')">
-            <h5>Attachments</h5>
-            <p>Relevant attachments to support the application</p>
+            <div :class="tabIndex > 5 ? 'completed' : ''">
+              <h5>Attachments</h5>
+              <p>Relevant attachments to support the application</p>
             </div>
           </template>
           <attachments :form="form"></attachments>
@@ -145,12 +144,12 @@ export default {
               {
                 type: "mobile",
                 number: "0402222777",
-                isSafe: false
+                isSafe: false,
               },
               {
                 type: "landline",
                 number: "0266856655",
-                isDafe: null
+                isDafe: null,
               },
             ],
             address: {
@@ -202,67 +201,72 @@ export default {
               country: "",
             },
             isAddressSafeToMail: null,
-          isEmailSafeToMail: null,
-          isPostalAddressSafeToMail: null,
-          postalAddressSame: null,
+            isEmailSafeToMail: null,
+            isPostalAddressSafeToMail: null,
+            postalAddressSame: null,
           },
         },
-          lscFileNumber: '',
-          otherGivenName: '',
-          otherFamilyName: '',
-          homeless: null,
-          apyLands: null,
-          aborginality: '',
-          inPrison: null,
-          prisonName: '',
-          prisonSection: '',
-          prisonId: '',
-          gender: '',
-          bornOs: null,
-          bornWhere: '',
-          homeLanguage: '',
-          requireInterpreter: null,
-          language: '',
-          disability: '',
-          disabilityDetail: '',
-          requireExtraHelp: null,
-          extraHelpDetail: '',
-          under18: null,
-          relationshipStatus: '',
-          relationshipStatusDetail: '',
-          riskOfViolence: null,
-          familyViolenceAllegation: null,
-          riskOfElderAbuse: null,
-          dependants: [
-            
-          ],
-          numOfDependants: '',
-          repRelation: '',
-          repRelationDetail:'',
-          authToDisclose:null,
-          authToDiscloseRelationship: '',
-          authToDiscloseGivenName: '',
-          authToDiscloseLastName: '',
-          authToDiscloseContactDetail: '',
-          receivesBenefit: null,
-          crnNumber: '',
-          dvaNumber: '',
+        lscFileNumber: "",
+        otherGivenName: "",
+        otherFamilyName: "",
+        homeless: null,
+        apyLands: null,
+        aborginality: "",
+        inPrison: null,
+        prisonName: "",
+        prisonSection: "",
+        prisonId: "",
+        gender: "",
+        bornOs: null,
+        bornWhere: "",
+        homeLanguage: "",
+        requireInterpreter: null,
+        language: "",
+        disability: "",
+        disabilityDetail: "",
+        requireExtraHelp: null,
+        extraHelpDetail: "",
+        under18: null,
+        relationshipStatus: "",
+        relationshipStatusDetail: "",
+        riskOfViolence: null,
+        familyViolenceAllegation: null,
+        riskOfElderAbuse: null,
+        dependants: [],
+        numOfDependants: "",
+        repRelation: "",
+        repRelationDetail: "",
+        authToDisclose: null,
+        authToDiscloseRelationship: "",
+        authToDiscloseGivenName: "",
+        authToDiscloseLastName: "",
+        authToDiscloseContactDetail: "",
+        receivesBenefit: null,
+        crnNumber: "",
+        dvaNumber: "",
+        benefitsPaymentTypes: [],
+        maxPayment: null,
+        consentToCentrelink: null,
+        authoriseCentrelink: null,
+        benefitsAmount: "",
+        hasFap: null,
+        fap: {
+          firstName: "",
+          lastName: "",
+          crn: "",
+          relationshipToApplicant: "",
           benefitsPaymentTypes: [],
-          maxPayment: null,
-          consentToCentrelink: null,
-          authoriseCentrelink: null,
-          benefitsAmount: '',
-          hasFap: null,
-          fap: {
-            firstName: '',
-            lastName: '',
-            crn: '',
-            relationshipToApplicant: '',
-            benefitsPaymentTypes: [],
-            receivesMaxBenefits: null
-          },
-          ownsAHome: null
-
+          receivesMaxBenefits: null,
+        },
+        ownsAHome: null,
+        propertyAddress: {
+          line1: "",
+          line2: "",
+          suburb: "",
+          postcode: "",
+          state: "",
+          country: "",
+        },
       },
       tabIndex: 0,
     };
