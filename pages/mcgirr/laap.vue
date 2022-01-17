@@ -33,7 +33,7 @@
             </div>
           </template>
           <applicant-details :form="form"></applicant-details>
-          <div class="text-center">
+          <div class="text-center" v-if="form.repType">
             <b-button-group class="d-grid gap-2 d-md-block">
               <b-button @click="tabIndex--">Previous</b-button>
               &nbsp;
