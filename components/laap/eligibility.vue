@@ -286,7 +286,29 @@
             </b-row>
           </section>
         </b-tab>
-        <b-tab title="Property"><p>I'm the second tab</p></b-tab>
+        <b-tab title="Property">
+          <section class="border-bottom border-secondary mb-4 pb-2">
+            <b-row>
+              <b-col cols="4">
+                <h5>Property Details</h5>
+              </b-col>
+              <b-col>
+   <b-form-group
+                  :label="DoYouStringCont + ' own (or paying off) a home?'"
+                >
+                  <b-form-radio-group
+                    id="ownsAHome"
+                    v-model="form.ownsAHome"
+                    :options="boolOptions"
+                    name="ownsAHome"
+                  ></b-form-radio-group>
+                </b-form-group>
+
+
+              </b-col>
+              </b-row>
+          </section>
+        </b-tab>
         <b-tab title="Income & Assets"><p>I'm a disabled tab!</p></b-tab>
       </b-tabs>
     </b-form>
