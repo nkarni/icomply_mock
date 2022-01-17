@@ -22,26 +22,26 @@ $enable-rounded: false;
 
 // $body-color: #666666;
 
-// @font-face {
-// 	font-family: 'Open Sans';
-// 	src: url('@/style/fonts/OpenSans-Regular.ttf');
-// 	font-weight: 400;
-// }
-// @font-face {
-// 	font-family: 'Open Sans';
-// 	src: url('@/style/fonts/OpenSans-Medium.ttf');
-// 	font-weight: 500;
-// }
-// @font-face {
-// 	font-family: 'Open Sans';
-// 	src: url('@/style/fonts/OpenSans-SemiBold.ttf');
-// 	font-weight: 600;
-// }
-// @font-face {
-// 	font-family: 'Open Sans';
-// 	src: url('@/style/fonts/OpenSans-Bold.ttf');
-// 	font-weight: 700;
-// }
+@font-face {
+	font-family: 'Open Sans';
+	src: url('/fonts/OpenSans-Regular.ttf');
+	font-weight: 400;
+}
+@font-face {
+	font-family: 'Open Sans';
+	src: url('/fonts/OpenSans-Medium.ttf');
+	font-weight: 500;
+}
+@font-face {
+	font-family: 'Open Sans';
+	src: url('/fonts/OpenSans-SemiBold.ttf');
+	font-weight: 600;
+}
+@font-face {
+	font-family: 'Open Sans';
+	src: url('/fonts/OpenSans-Bold.ttf');
+	font-weight: 700;
+}
 
 body > * {
 	font-size: 0.875rem;
