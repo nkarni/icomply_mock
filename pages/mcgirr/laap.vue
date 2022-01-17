@@ -260,7 +260,8 @@ export default {
             relationshipToApplicant: '',
             benefitsPaymentTypes: [],
             receivesMaxBenefits: null
-          }
+          },
+          ownsAHome: null
 
       },
       tabIndex: 0,
