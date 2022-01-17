@@ -12,12 +12,9 @@
             section, or use our <a href="">Authority to Disclose form</a>.
           </b-col>
           <b-col>
-            <label
-              >Are you making this application for yourself, or someone
-              else?</label
-            >
+
             <b-form-group
-              label="Are you making this application for yourself, or someone else?"
+              label="Are you making this application for yourself, or for someone else?"
             >
               <b-form-radio-group
                 id="repType"

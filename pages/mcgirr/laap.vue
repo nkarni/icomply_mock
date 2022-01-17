@@ -243,7 +243,25 @@ export default {
           authToDiscloseRelationship: '',
           authToDiscloseGivenName: '',
           authToDiscloseLastName: '',
-          authToDiscloseContactDetail: ''
+          authToDiscloseContactDetail: '',
+          receivesBenefit: null,
+          crnNumber: '',
+          dvaNumber: '',
+          benefitsPaymentTypes: [],
+          maxPayment: null,
+          consentToCentrelink: null,
+          authoriseCentrelink: null,
+          benefitsAmount: '',
+          hasFap: null,
+          fap: {
+            firstName: '',
+            lastName: '',
+            crn: '',
+            relationshipToApplicant: '',
+            benefitsPaymentTypes: [],
+            receivesMaxBenefits: null
+          }
+
       },
       tabIndex: 0,
     };

@@ -128,6 +128,9 @@ label::first-letter, .col-form-label::first-letter {
 .laap .nav-tabs .nav-link .completed{
   color: green;
 }
+.laap .nav-tabs{
+  border-bottom: none;
+}
 input[type="radio" i], input[type="checkbox" i] {
    margin-left: 8px;
    margin-right: 8px;
