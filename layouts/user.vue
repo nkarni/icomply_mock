@@ -33,7 +33,7 @@
                 title="Home"
                 aria-label="Home"
                 class="nav-link"
-                to="/user"
+                to="/home"
                 target="_self"
               >
                 Home
@@ -44,10 +44,7 @@
                 title="Apply"
                 aria-label="Apply"
                 class="nav-link"
-                :href="
-                  'http://localhost:8080' +
-                    '/trunk_mcms/apps/ols-fee/ols-triage.jsp#!/ols-triage'
-                "
+                href="/laap"
                 target="_self"
               >
                 Apply
