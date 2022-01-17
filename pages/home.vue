@@ -26,7 +26,7 @@
         <div
           tabindex="0"
           class="menu-item menu-item--shadow"
-          @click="$router.push('/mcgirr/laap')"
+          @click="$router.push('/laap')"
         >
           <div class="menu-item--icon">
             <b-icon icon="file-earmark-text" />
