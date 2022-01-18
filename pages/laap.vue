@@ -124,6 +124,22 @@
     </b-row>
 
     <b-row class="mt-4">
+      <b-col
+        cols="12"
+        class="text-right"
+      >
+        <b-button
+          :disabled="tabIndex === 0"
+          @click="tabIndex--"
+        >Prev</b-button>
+        <b-button
+          :disabled="tabIndex === 5"
+          @click="tabIndex++"
+        >Next</b-button>
+      </b-col>
+    </b-row>
+
+    <b-row class="mt-4">
       <b-col cols="12">
         <b-card>
           <pre>{{ form }}</pre>
