@@ -23,6 +23,7 @@
     <b-row class="mt-4">
 
       <b-tabs
+        v-model="tabIndex"
         vertical
         nav-wrapper-class="w-30"
         class="w-100"
@@ -31,157 +32,93 @@
         content-class="card p-4"
       >
         <b-tab
-          title-link-class="laap-title-link mb-2 p-4 laap-nav-item-complete"
+          :title-link-class="[
+            'laap-title-link',
+            'mb-2',
+            'p-4',
+            {'laap-nav-item-complete': true}
+          ]"
         >
           <template #title>
             <h5>Conditions of Legal Aid</h5>
             <span>The eligibility criteria explained</span>
           </template>
-          <conditions :form="form"></conditions>
+          <laap-conditions :form="form"></laap-conditions>
         </b-tab>
 
         <b-tab
-          active
-          title-link-class="laap-title-link mb-2 p-4"
+          :title-link-class="[
+            'laap-title-link',
+            'mb-2',
+            'p-4',
+            {'laap-nav-item-complete': false}
+          ]"
         >
           <template #title>
             <h5>Applicant details</h5>
             <span>Contact and other details</span>
           </template>
-          <applicant-details :form="form"></applicant-details>
+          <laap-applicant-details :form="form"></laap-applicant-details>
         </b-tab>
 
         <b-tab
-          title-link-class="laap-title-link mb-2 p-4"
+          :title-link-class="[
+            'laap-title-link',
+            'mb-2',
+            'p-4',
+            {'laap-nav-item-complete': false}
+          ]"
         >
           <template #title>
             <h5>Eligibility</h5>
             <span>Applicant's means test</span>
           </template>
-          <eligibility :form="form"></eligibility>
+          <laap-eligibility :form="form"></laap-eligibility>
         </b-tab>
 
         <b-tab
-          title-link-class="laap-title-link mb-2 p-4"
+          :title-link-class="[
+            'laap-title-link',
+            'mb-2',
+            'p-4',
+            {'laap-nav-item-complete': false}
+          ]"
         >
           <template #title>
             <h5>The legal problem</h5>
             <span>Information about the legal help needed</span>
           </template>
-          <eligibility :form="form"></eligibility>
+          <laap-eligibility :form="form"></laap-eligibility>
         </b-tab>
 
         <b-tab
-          title-link-class="laap-title-link mb-2 p-4"
+          :title-link-class="[
+            'laap-title-link',
+            'mb-2',
+            'p-4',
+            {'laap-nav-item-complete': false}
+          ]"
         >
           <template #title>
             <h5>Attachments</h5>
             <span>Relevant attachments to support the application</span>
           </template>
-          <attachments :form="form"></attachments>
+          <laap-attachments :form="form"></laap-attachments>
         </b-tab>
 
         <b-tab
-          title-link-class="laap-title-link mb-2 p-4"
+          :title-link-class="[
+            'laap-title-link',
+            'mb-2',
+            'p-4',
+            {'laap-nav-item-complete': false}
+          ]"
         >
           <template #title>
             <h5>Lodge the application</h5>
             <span>Confirm and submit the application</span>
           </template>
-          <lodge :form="form"></lodge>
-        </b-tab>
-      </b-tabs>
-
-      <b-tabs v-model="tabIndex" small vertical nav-wrapper-class="col-3" class="mt-4">
-        <b-tab>
-          <template #title>
-            <div :class="tabIndex > 0 ? 'completed' : ''">
-              <h5>Conditions of Legal Aid</h5>
-              The eligiblity criteria explained
-            </div>
-          </template>
-          <conditions :form="form"></conditions>
-          <div class="text-center">
-            <b-button-group class="mt-2">
-              <b-button @click="tabIndex++">Next</b-button>
-            </b-button-group>
-          </div>
-        </b-tab>
-        <b-tab>
-          <template #title>
-            <div :class="tabIndex > 1 ? 'completed' : ''">
-              <h5>Applicant details</h5>
-              <p>Contact and other details</p>
-            </div>
-          </template>
-          <applicant-details :form="form"></applicant-details>
-          <div class="text-center" v-if="form.repType">
-            <b-button-group class="d-grid gap-2 d-md-block">
-              <b-button @click="tabIndex--">Previous</b-button>
-              &nbsp;
-              <b-button @click="tabIndex++">Next</b-button>
-            </b-button-group>
-          </div>
-        </b-tab>
-        <b-tab>
-          <template #title>
-            <div :class="tabIndex > 2 ? 'completed' : ''">
-              <h5>Eligiblity</h5>
-              <p>Applicant’s means test</p>
-            </div>
-          </template>
-          <eligibility :form="form"></eligibility>
-          <div class="text-center">
-            <b-button-group class="d-grid gap-2 d-md-block">
-              <b-button @click="tabIndex--">Previous</b-button>
-              &nbsp;
-              <b-button @click="tabIndex++">Next</b-button>
-            </b-button-group>
-          </div>
-        </b-tab>
-        <b-tab>
-          <template #title>
-            <div :class="tabIndex > 3 ? 'completed' : ''">
-              <h5>The legal problem</h5>
-              <p>Information about the legal help needed</p>
-            </div>
-          </template>
-          <problem :form="form"></problem>
-          <div class="text-center">
-            <b-button-group class="d-grid gap-2 d-md-block">
-              <b-button @click="tabIndex--">Previous</b-button>
-              &nbsp;
-              <b-button @click="tabIndex++">Next</b-button>
-            </b-button-group>
-          </div>
-        </b-tab>
-        <b-tab>
-          <template #title>
-            <div :class="tabIndex > 5 ? 'completed' : ''">
-              <h5>Attachments</h5>
-              <p>Relevant attachments to support the application</p>
-            </div>
-          </template>
-          <attachments :form="form"></attachments>
-          <div class="text-center">
-            <b-button-group class="d-grid gap-2 d-md-block">
-              <b-button @click="tabIndex--">Previous</b-button>
-              &nbsp;
-              <b-button @click="tabIndex++">Next</b-button>
-            </b-button-group>
-          </div>
-        </b-tab>
-        <b-tab>
-          <template #title>
-            <h5>Lodge the application</h5>
-            <p>Confirm and submit the application</p>
-          </template>
-          <lodge :form="form"></lodge>
-          <div class="text-center">
-            <b-button-group class="d-grid gap-2 d-md-block">
-              <b-button @click="tabIndex--">Previous</b-button>
-            </b-button-group>
-          </div>
+          <laap-lodge :form="form"></laap-lodge>
         </b-tab>
       </b-tabs>
     </b-row>
@@ -193,23 +130,8 @@
 </template>
 
 <script>
-import ApplicantDetails from "~/components/laap/applicantDetails.vue";
-import Attachments from "~/components/laap/attachments.vue";
-import Conditions from "~/components/laap/conditions.vue";
-import Eligibility from "~/components/laap/eligibility.vue";
-import Problem from "~/components/laap/problem.vue";
-import Lodge from "~/components/laap/lodge.vue";
-
 export default {
   layout: "user",
-  components: {
-    Conditions,
-    Problem,
-    Attachments,
-    Eligibility,
-    ApplicantDetails,
-    Lodge,
-  },
 
   data() {
     return {
@@ -352,7 +274,7 @@ export default {
           country: "",
         },
       },
-      tabIndex: 0,
+      tabIndex: 1,
     };
   },
   mounted: function () {},
