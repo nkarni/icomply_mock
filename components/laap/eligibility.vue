@@ -1,10 +1,17 @@
 <template>
   <div>
     <b-form>
-      <b-tabs content-class="mt-3 inner-tab">
+      <b-tabs
+        content-class="mt-3 inner-tab"
+        active-nav-item-class="text-primary laap-inner-nav-item-active"
+        nav-class="laap-inner-nav"
+      >
         <b-tab
           title="Benefits"
-          active
+          :title-link-class="[
+            'laap-inner-title-link',
+            {'laap-inner-nav-item-complete': true}
+          ]"
         >
           <section class="border-bottom border-secondary mb-4 pb-2">
             <b-row>
@@ -299,7 +306,15 @@
             </b-row>
           </section>
         </b-tab>
-        <b-tab title="Property">
+
+        <b-tab
+          title="Property"
+          active
+          :title-link-class="[
+            'laap-inner-title-link',
+            {'laap-inner-nav-item-complete': false}
+          ]"
+        >
           <section class="border-bottom border-secondary mb-4 pb-2">
             <b-row>
               <b-col cols="4">
@@ -328,7 +343,16 @@
             </b-row>
           </section>
         </b-tab>
-        <b-tab title="Income & Assets"><p>I'm a disabled tab!</p></b-tab>
+
+        <b-tab
+          title="Income & Assets"
+          :title-link-class="[
+            'laap-inner-title-link',
+            {'laap-inner-nav-item-complete': false}
+          ]"
+        >
+          <p>I'm a disabled tab!</p>
+        </b-tab>
       </b-tabs>
     </b-form>
   </div>
@@ -401,5 +425,25 @@ export default {
 <style lang="scss" scoped >
 .tab-content {
   padding-left: 0px !important;
+}
+</style>
+
+<style>
+.laap-inner-nav {
+  border: 0;
+}
+
+.laap-inner-title-link {
+  border: 0 !important;
+  font-size: 1.2em;
+}
+
+.laap-inner-nav-item-complete {
+  color: var(--success) !important;
+  border-bottom: 2px solid var(--success) !important;
+}
+
+.laap-inner-nav-item-active {
+  border-bottom: 2px solid var(--primary) !important;
 }
 </style>

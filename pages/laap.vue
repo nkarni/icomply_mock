@@ -51,7 +51,7 @@
             'laap-title-link',
             'mb-2',
             'p-4',
-            {'laap-nav-item-complete': false}
+            {'laap-nav-item-complete': true}
           ]"
         >
           <template #title>
@@ -88,7 +88,7 @@
             <h5>The legal problem</h5>
             <span>Information about the legal help needed</span>
           </template>
-          <laap-eligibility :form="form"></laap-eligibility>
+          <laap-applicant-details :form="form"></laap-applicant-details>
         </b-tab>
 
         <b-tab
@@ -278,7 +278,7 @@ export default {
           country: "",
         },
       },
-      tabIndex: 1,
+      tabIndex: 2,
     };
   },
   mounted: function () {},
