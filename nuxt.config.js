@@ -9,6 +9,10 @@ export default {
     base: '/fmockup/'
   },
 
+  server: {
+    host: '0.0.0.0'
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'fmockup',
