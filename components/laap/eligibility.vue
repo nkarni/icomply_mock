@@ -427,23 +427,3 @@ export default {
   padding-left: 0px !important;
 }
 </style>
-
-<style>
-.laap-inner-nav {
-  border: 0;
-}
-
-.laap-inner-title-link {
-  border: 0 !important;
-  font-size: 1.2em;
-}
-
-.laap-inner-nav-item-complete {
-  color: var(--success) !important;
-  border-bottom: 2px solid var(--success) !important;
-}
-
-.laap-inner-nav-item-active {
-  border-bottom: 2px solid var(--primary) !important;
-}
-</style>

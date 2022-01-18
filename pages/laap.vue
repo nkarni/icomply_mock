@@ -285,30 +285,3 @@ export default {
   methods: {},
 };
 </script>
-
-<style>
-.laap-nav {
-  border-bottom: 0 !important;
-}
-
-.laap-title-link {
-  border-top-left-radius: 0 !important;
-  border-top-right-radius: 0 !important;
-}
-
-.laap-title-link:hover {
-  background-color: var(--white) !important;
-}
-
-.laap-nav-item-complete {
-  border: 1px solid var(--grey-200) !important;
-  border-left: 3px solid var(--success) !important;
-  background-color: var(--white) !important;
-  color: var(--success) !important;
-}
-
-.laap-nav-item-active {
-  border: 1px solid var(--grey-200) !important;
-  border-left: 3px solid var(--primary) !important;
-}
-</style>

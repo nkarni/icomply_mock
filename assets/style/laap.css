@@ -1,0 +1,44 @@
+
+.laap-nav {
+  border-bottom: 0 !important;
+}
+
+.laap-title-link {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+.laap-title-link:hover {
+  background-color: var(--white) !important;
+}
+
+.laap-nav-item-complete {
+  border: 1px solid var(--grey-200) !important;
+  border-left: 3px solid var(--success) !important;
+  background-color: var(--white) !important;
+  color: var(--success) !important;
+}
+
+.laap-nav-item-active {
+  border: 1px solid var(--grey-200) !important;
+  border-left: 3px solid var(--primary) !important;
+}
+
+
+.laap-inner-nav {
+  border: 0;
+}
+
+.laap-inner-title-link {
+  border: 0 !important;
+  font-size: 1.2em;
+}
+
+.laap-inner-nav-item-complete {
+  color: var(--success) !important;
+  border-bottom: 2px solid var(--success) !important;
+}
+
+.laap-inner-nav-item-active {
+  border-bottom: 2px solid var(--primary) !important;
+}

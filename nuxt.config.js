@@ -32,6 +32,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '@/assets/style/laap.css',
     '@/assets/style.scss'
   ],
 
