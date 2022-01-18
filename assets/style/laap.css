@@ -14,19 +14,20 @@
 
 .laap-nav-item-complete {
   border: 1px solid var(--grey-200) !important;
-  border-left: 3px solid var(--success) !important;
+  border-left: 4px solid var(--success) !important;
   background-color: var(--white) !important;
   color: var(--success) !important;
 }
 
 .laap-nav-item-active {
   border: 1px solid var(--grey-200) !important;
-  border-left: 3px solid var(--primary) !important;
+  border-left: 4px solid var(--primary) !important;
 }
 
 
 .laap-inner-nav {
   border: 0;
+  margin-bottom: 32px !important;
 }
 
 .laap-inner-title-link {
