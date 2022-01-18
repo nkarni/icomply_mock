@@ -286,18 +286,6 @@ export default {
 };
 </script>
 
-<style scoped>
-/* .nav-tabs .nav-link {
-  font-size: 1.1rem;
-}
-.nav-item h5 {
-  font-size: 1.15rem;
-}
-.col-3 {
-  width: 20%;
-} */
-</style>
-
 <style>
 .laap-nav {
   border-bottom: 0 !important;

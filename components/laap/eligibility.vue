@@ -2,7 +2,10 @@
   <div>
     <b-form>
       <b-tabs content-class="mt-3 inner-tab">
-        <b-tab title="Benefits" active>
+        <b-tab
+          title="Benefits"
+          active
+        >
           <section class="border-bottom border-secondary mb-4 pb-2">
             <b-row>
               <b-col cols="4">
@@ -189,7 +192,7 @@
                 <p>
                   The term 'Financially Associated Person' refers to anyone who:
                   regularly gives you money or pays your bills; OR shares your
-                  living expenses 
+                  living expenses
                 </p>
                 <p>For example a spouse, partner or relative.</p>
                 <p>
@@ -320,7 +323,7 @@
                   :address="form.propertyAddress"
                 ></entity-address>
 
-                
+
               </b-col>
             </b-row>
           </section>
