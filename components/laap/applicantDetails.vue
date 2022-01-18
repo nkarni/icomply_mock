@@ -648,7 +648,7 @@
             <a href="">grants@lsc.sa.gov.au</a>.
           </b-col>
           <b-col>
-     
+
             <b-form-group
               :label="
                 DoYouStringCont +
@@ -662,7 +662,7 @@
                 name="authToDisclose"
               ></b-form-radio-group>
             </b-form-group>
-            
+
               <b-form-group label="Their given names(s)"
             v-if="form.authToDisclose" >
             <b-form-input
@@ -689,7 +689,7 @@
               v-model="form.authToDiscloseRelationship"
             ></b-form-input>
             </b-form-group>
-            
+
          <b-form-group
                 label="Their contact details"
                 v-if="form.authToDisclose"
@@ -702,9 +702,9 @@
                   max-rows="6"
                 ></b-form-textarea>
               </b-form-group>
-         
 
-          
+
+
           </b-col>
         </b-row>
       </section>
@@ -794,7 +794,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped >
+<style lang="scss" scoped>
 h5::first-letter {
   text-transform: uppercase;
 }

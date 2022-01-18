@@ -10,7 +10,7 @@
           aria-label="Mcgirr Technologies"
           target="_self"
           class="navbar-brand top-navbar--brand"
-          to="/mcgirr/home"
+          to="/home"
         >
           <img
             src="/LSC_Logo.png"
@@ -33,7 +33,7 @@
                 title="Home"
                 aria-label="Home"
                 class="nav-link"
-                to="/user"
+                to="/home"
                 target="_self"
               >
                 Home
@@ -44,10 +44,7 @@
                 title="Apply"
                 aria-label="Apply"
                 class="nav-link"
-                :href="
-                  'http://localhost:8080' +
-                    '/trunk_mcms/apps/ols-fee/ols-triage.jsp#!/ols-triage'
-                "
+                href="/laap"
                 target="_self"
               >
                 Apply
@@ -87,7 +84,7 @@
               <b-dropdown-item to="/user/profile-manager">
                 Profile management
               </b-dropdown-item>
-              <b-dropdown-item to="/mcgirr">
+              <b-dropdown-item to="/">
                 Logout
               </b-dropdown-item>
             </b-nav-item-dropdown>

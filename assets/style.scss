@@ -1,0 +1,105 @@
+@use "sass:map";
+
+$theme-colors: (
+  "primaryDark": #0f2544,
+  "primary": #003566,
+  "primaryLighter": #627297,
+  "primaryLight": #bec5d5,
+
+  "grey-500": #666,
+  "grey-400": #8c8c8c,
+  "grey-200": #d9d9d9,
+  "grey-100": #f5f5f5,
+  "grey-50": #fafafa,
+
+  "white": #fff,
+  "accent": #006fd6,
+  "success": #08cca9,
+  "danger": #e73801
+);
+
+$enable-rounded: false;
+
+// $body-color: #666666;
+
+@font-face {
+	font-family: 'Open Sans';
+	src: url('./fonts/OpenSans-Regular.ttf');
+	font-weight: 400;
+}
+@font-face {
+	font-family: 'Open Sans';
+	src: url('./fonts/OpenSans-Medium.ttf');
+	font-weight: 500;
+}
+@font-face {
+	font-family: 'Open Sans';
+	src: url('./fonts/OpenSans-SemiBold.ttf');
+	font-weight: 600;
+}
+@font-face {
+	font-family: 'Open Sans';
+	src: url('./fonts/OpenSans-Bold.ttf');
+	font-weight: 700;
+}
+
+body > * {
+	font-size: 0.875rem;
+	font-family: 'Open Sans', sans-serif;
+}
+
+@import '~bootstrap';
+@import '~bootstrap-vue';
+// @import 'vue-multiselect/dist/vue-multiselect.min.css';
+
+body {
+	background-color: map.get($theme-colors, 'grey-100');
+}
+
+.multiselect,
+.multiselect__input,
+.multiselect__single {
+	font-size: 0.875rem;
+}
+
+.multiselect__content-wrapper,
+.multiselect__tags {
+	border-radius: 0;
+	border-color: var(--grey-200);
+}
+
+.multiselect__tags {
+	min-height: 38px;
+	max-height: 38px;
+}
+
+.multiselect__option {
+	background-color: var(--grey-50);
+	border-bottom: 1px solid var(--grey-200);
+}
+
+.multiselect__option--highlight {
+	background-color: var(--grey-200);
+	color: #000;
+}
+
+.multiselect__placeholder {
+	color: #000;
+	display: inline-block;
+	margin-bottom: 0;
+	padding-top: 0;
+	padding-left: 5px;
+}
+
+.font-base-large {
+	font-size: 1rem !important;
+}
+
+form .divider {
+  border-bottom: 0.1em solid var(--grey-200);
+}
+
+form .btn {
+	padding-left: 50px;
+	padding-right: 50px;
+}
