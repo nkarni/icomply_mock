@@ -362,5 +362,6 @@ export default {
   border: 1px solid var(--grey-200) !important;
   border-left: 3px solid var(--success) !important;
   background-color: var(--white) !important;
+  color: var(--success) !important;
 }
 </style>
