@@ -12,7 +12,10 @@
         md="6"
         class="text-right"
       >
-        <NuxtLink to="list" class="text-right pr-0">
+        <NuxtLink
+          to="/home"
+          class="text-right pr-0"
+        >
           Back to dashboard
         </NuxtLink>
       </b-col>
@@ -21,31 +24,41 @@
 
       <b-tabs
         vertical
-        nav-wrapper-class="w-25"
+        nav-wrapper-class="w-30"
         class="w-100"
-        active-nav-item-class="text-primary border-secondary bg-white laap-nav-active"
+        active-nav-item-class="text-primary bg-white laap-nav-item-active"
+        nav-class="laap-nav"
       >
         <b-tab
-          title="Tab 1"
-          active
-          title-link-class="laap-nav mb-2 p-4"
+          title-link-class="laap-title-link mb-2 p-4 laap-nav-item-complete"
         >
+          <template #title>
+            <h5>Conditions of Legal Aid</h5>
+            <span>The eligibility criteria explained</span>
+          </template>
           <b-card-text>
             Tab contents 1
           </b-card-text>
         </b-tab>
         <b-tab
-          title="Tab 2"
-          title-link-class="laap-nav mb-2 p-4"
+          active
+          title-link-class="laap-title-link mb-2 p-4"
         >
+          <template #title>
+            <h5>Applicant details</h5>
+            <span>Contact and other details</span>
+          </template>
           <b-card-text>
             Tab contents 2
           </b-card-text>
         </b-tab>
         <b-tab
-          title="Tab 3"
-          title-link-class="laap-nav mb-2 p-4"
+          title-link-class="laap-title-link mb-2 p-4"
         >
+          <template #title>
+            <h5>Eligibility</h5>
+            <span>Applicant's means test</span>
+          </template>
           <b-card-text>
             Tab contents 3
           </b-card-text>
@@ -333,11 +346,21 @@ export default {
 
 <style>
 .laap-nav {
+  border-bottom: 0 !important;
+}
+
+.laap-title-link {
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
 }
 
-.laap-nav-complete {
+.laap-nav-item-active {
+  border: 1px solid var(--grey-200) !important;
+}
+
+.laap-nav-item-complete {
+  border: 1px solid var(--grey-200) !important;
   border-left: 3px solid var(--success) !important;
+  background-color: var(--white) !important;
 }
 </style>
