@@ -26,7 +26,7 @@
         vertical
         nav-wrapper-class="w-30"
         class="w-100"
-        active-nav-item-class="text-primary bg-white laap-nav-item-active"
+        active-nav-item-class="text-primary laap-nav-item-active"
         nav-class="laap-nav"
       >
         <b-tab
@@ -354,8 +354,8 @@ export default {
   border-top-right-radius: 0 !important;
 }
 
-.laap-nav-item-active {
-  border: 1px solid var(--grey-200) !important;
+.laap-title-link:hover {
+  background-color: var(--white) !important;
 }
 
 .laap-nav-item-complete {
@@ -363,5 +363,10 @@ export default {
   border-left: 3px solid var(--success) !important;
   background-color: var(--white) !important;
   color: var(--success) !important;
+}
+
+.laap-nav-item-active {
+  border: 1px solid var(--grey-200) !important;
+  border-left: 3px solid var(--primary) !important;
 }
 </style>
