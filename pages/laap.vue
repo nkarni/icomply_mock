@@ -40,6 +40,7 @@
             Tab contents 1
           </b-card-text>
         </b-tab>
+
         <b-tab
           active
           title-link-class="laap-title-link mb-2 p-4"
@@ -52,6 +53,7 @@
             Tab contents 2
           </b-card-text>
         </b-tab>
+
         <b-tab
           title-link-class="laap-title-link mb-2 p-4"
         >
@@ -61,6 +63,42 @@
           </template>
           <b-card-text>
             Tab contents 3
+          </b-card-text>
+        </b-tab>
+
+        <b-tab
+          title-link-class="laap-title-link mb-2 p-4"
+        >
+          <template #title>
+            <h5>The legal problem</h5>
+            <span>Information about the legal help needed</span>
+          </template>
+          <b-card-text>
+            Tab contents 4
+          </b-card-text>
+        </b-tab>
+
+        <b-tab
+          title-link-class="laap-title-link mb-2 p-4"
+        >
+          <template #title>
+            <h5>Attachments</h5>
+            <span>Relevant attachments to support the application</span>
+          </template>
+          <b-card-text>
+            Tab contents 5
+          </b-card-text>
+        </b-tab>
+
+        <b-tab
+          title-link-class="laap-title-link mb-2 p-4"
+        >
+          <template #title>
+            <h5>Lodge the application</h5>
+            <span>Confirm and submit the application</span>
+          </template>
+          <b-card-text>
+            Tab contents 6
           </b-card-text>
         </b-tab>
       </b-tabs>
