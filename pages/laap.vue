@@ -123,8 +123,12 @@
       </b-tabs>
     </b-row>
 
-    <b-row>
-      <pre>{{ form }}</pre>
+    <b-row class="mt-4">
+      <b-col cols="12">
+        <b-card>
+          <pre>{{ form }}</pre>
+        </b-card>
+      </b-col>
     </b-row>
   </b-container>
 </template>
