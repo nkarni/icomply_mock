@@ -1,14 +1,16 @@
 <template>
-  <div class="container p-5 laap">
+  <div class="container p-5">
     <b-row>
-      <h3 class="mb-3">
-        <span class="text-primary">Application for Legal Aid</span>
-        <span style="float: right; font-size: 14px">
-          <NuxtLink to="list" class="nav-link pr-0">
-            Back to dashboard
-          </NuxtLink>
-        </span>
-      </h3>
+      <b-col>
+        <h3 class="text-primary">Application for Legal Aid</h3>
+      </b-col>
+      <b-col class="text-right">
+        <NuxtLink to="list" class="text-right pr-0">
+          Back to dashboard
+        </NuxtLink>
+      </b-col>
+    </b-row>
+    <b-row class="mt-4">
       <b-tabs v-model="tabIndex" small vertical nav-wrapper-class="col-3">
         <b-tab>
           <template #title>
@@ -277,7 +279,7 @@ export default {
 </script>
 
 <style scoped>
-.nav-tabs .nav-link {
+/* .nav-tabs .nav-link {
   font-size: 1.1rem;
 }
 .nav-item h5 {
@@ -285,5 +287,5 @@ export default {
 }
 .col-3 {
   width: 20%;
-}
+} */
 </style>
