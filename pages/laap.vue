@@ -11,7 +11,41 @@
       </b-col>
     </b-row>
     <b-row class="mt-4">
-      <b-tabs v-model="tabIndex" small vertical nav-wrapper-class="col-3">
+
+      <b-tabs
+        vertical
+        nav-wrapper-class="w-25"
+        class="w-100"
+        active-nav-item-class="text-primary border-secondary bg-white laap-nav-active"
+      >
+        <b-tab
+          title="Tab 1"
+          active
+          title-link-class="laap-nav mb-2 p-4"
+        >
+          <b-card-text>
+            Tab contents 1
+          </b-card-text>
+        </b-tab>
+        <b-tab
+          title="Tab 2"
+          title-link-class="laap-nav mb-2 p-4"
+        >
+          <b-card-text>
+            Tab contents 2
+          </b-card-text>
+        </b-tab>
+        <b-tab
+          title="Tab 3"
+          title-link-class="laap-nav mb-2 p-4"
+        >
+          <b-card-text>
+            Tab contents 3
+          </b-card-text>
+        </b-tab>
+      </b-tabs>
+
+      <b-tabs v-model="tabIndex" small vertical nav-wrapper-class="col-3" class="mt-4">
         <b-tab>
           <template #title>
             <div :class="tabIndex > 0 ? 'completed' : ''">
@@ -288,4 +322,15 @@ export default {
 .col-3 {
   width: 20%;
 } */
+</style>
+
+<style>
+.laap-nav {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+
+.laap-nav-complete {
+  border-left: 3px solid var(--success) !important;
+}
 </style>
