@@ -1,10 +1,17 @@
 <template>
   <div class="container p-5">
     <b-row>
-      <b-col>
+      <b-col
+        cols="12"
+        md="6"
+      >
         <h3 class="text-primary">Application for Legal Aid</h3>
       </b-col>
-      <b-col class="text-right">
+      <b-col
+        cols="12"
+        md="6"
+        class="text-right"
+      >
         <NuxtLink to="list" class="text-right pr-0">
           Back to dashboard
         </NuxtLink>
