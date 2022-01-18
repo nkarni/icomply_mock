@@ -1,5 +1,5 @@
 <template>
-  <div class="container p-5">
+  <b-container>
     <b-row>
       <b-col
         cols="12"
@@ -28,6 +28,7 @@
         class="w-100"
         active-nav-item-class="text-primary laap-nav-item-active"
         nav-class="laap-nav"
+        content-class="card p-4"
       >
         <b-tab
           title-link-class="laap-title-link mb-2 p-4 laap-nav-item-complete"
@@ -36,9 +37,7 @@
             <h5>Conditions of Legal Aid</h5>
             <span>The eligibility criteria explained</span>
           </template>
-          <b-card-text>
-            Tab contents 1
-          </b-card-text>
+          <conditions :form="form"></conditions>
         </b-tab>
 
         <b-tab
@@ -49,9 +48,7 @@
             <h5>Applicant details</h5>
             <span>Contact and other details</span>
           </template>
-          <b-card-text>
-            Tab contents 2
-          </b-card-text>
+          <applicant-details :form="form"></applicant-details>
         </b-tab>
 
         <b-tab
@@ -61,9 +58,7 @@
             <h5>Eligibility</h5>
             <span>Applicant's means test</span>
           </template>
-          <b-card-text>
-            Tab contents 3
-          </b-card-text>
+          <eligibility :form="form"></eligibility>
         </b-tab>
 
         <b-tab
@@ -73,9 +68,7 @@
             <h5>The legal problem</h5>
             <span>Information about the legal help needed</span>
           </template>
-          <b-card-text>
-            Tab contents 4
-          </b-card-text>
+          <eligibility :form="form"></eligibility>
         </b-tab>
 
         <b-tab
@@ -85,9 +78,7 @@
             <h5>Attachments</h5>
             <span>Relevant attachments to support the application</span>
           </template>
-          <b-card-text>
-            Tab contents 5
-          </b-card-text>
+          <attachments :form="form"></attachments>
         </b-tab>
 
         <b-tab
@@ -97,9 +88,7 @@
             <h5>Lodge the application</h5>
             <span>Confirm and submit the application</span>
           </template>
-          <b-card-text>
-            Tab contents 6
-          </b-card-text>
+          <lodge :form="form"></lodge>
         </b-tab>
       </b-tabs>
 
@@ -196,10 +185,11 @@
         </b-tab>
       </b-tabs>
     </b-row>
+
     <b-row>
       <pre>{{ form }}</pre>
     </b-row>
-  </div>
+  </b-container>
 </template>
 
 <script>
