@@ -12,7 +12,7 @@
       ></b-form-input>
     </b-form-group>
 
-    <div class="text-end">
+    <div class="text-right">
       <b-button variant="link" class="p-0 mb-4" v-b-modal.manualAddress
         >Click here if you cannot find the right address</b-button
       >
@@ -20,7 +20,7 @@
 
     <b-modal id="manualAddress" title="BootstrapVue">
       <template #modal-header="{ close }">
-        <h5>Address</h5>
+        <h6>Address</h6>
         <!-- Emulate built in modal header close button action -->
 
         <i

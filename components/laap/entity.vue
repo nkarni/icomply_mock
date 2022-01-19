@@ -80,21 +80,22 @@
         </b-row>
         <b-row>
           <b-col>
-            <b-form-group v-if="showIsSafePhone" :label="safePhoneLabel">
+            <b-form-group v-if="showIsSafePhone" :label="safePhoneLabel" class="mb-0">
               <b-form-radio-group
                 id="showIsSafePhone"
                 v-model="entity.phones[index].isSafe"
                 :options="boolOptions"
                 name="showIsSafePhone"
+                
               ></b-form-radio-group>
             </b-form-group>
           </b-col>
         </b-row>
       </div>
 
-      <div class="text-end">
+      <div class="text-right">
         <b-button variant="link" class="p-0 mb-4" @click.prevent="addPhone"
-          >Add another phone number</b-button
+          >Click here to add another phone number</b-button
         >
       </div>
     </div>

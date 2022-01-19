@@ -18,13 +18,13 @@
         class="w-100"
         active-nav-item-class="text-primary laap-nav-item-active"
         nav-class="laap-nav"
-        content-class="card p-4"
+        content-class="card p-3"
       >
         <b-tab
           :title-link-class="[
             'laap-title-link',
             'mb-2',
-            'p-4',
+            'p-3',
             { 'laap-nav-item-complete': true },
           ]"
         >
@@ -39,7 +39,7 @@
           :title-link-class="[
             'laap-title-link',
             'mb-2',
-            'p-4',
+            'p-3',
             { 'laap-nav-item-complete': true },
           ]"
         >
@@ -54,7 +54,7 @@
           :title-link-class="[
             'laap-title-link',
             'mb-2',
-            'p-4',
+            'p-3',
             { 'laap-nav-item-complete': false },
           ]"
         >
@@ -69,7 +69,7 @@
           :title-link-class="[
             'laap-title-link',
             'mb-2',
-            'p-4',
+            'p-3',
             { 'laap-nav-item-complete': false },
           ]"
         >
@@ -84,7 +84,7 @@
           :title-link-class="[
             'laap-title-link',
             'mb-2',
-            'p-4',
+            'p-3',
             { 'laap-nav-item-complete': false },
           ]"
         >
@@ -148,15 +148,10 @@ export default {
             email: "",
             phones: [
               {
-                type: "mobile",
-                number: "0402222777",
-                isSafe: false,
-              },
-              {
-                type: "landline",
-                number: "0266856655",
-                isDafe: null,
-              },
+                type: "",
+                number: "",
+                isSafe: null,
+              }
             ],
             address: {
               line1: "",
@@ -184,6 +179,7 @@ export default {
               {
                 type: "",
                 number: "",
+                isSafe: null
               }
             ],
             address: {

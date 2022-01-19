@@ -16,7 +16,7 @@
           <section class="border-bottom border-secondary mb-4 pb-2">
             <b-row>
               <b-col cols="4">
-                <h5>Financial Details</h5>
+                <h6>Financial Details</h6>
                 <p>
                   You must give us all relevant financial information about your
                   financial circumstances.<br /><br />All fields are mandatory
@@ -94,7 +94,7 @@
           <section class="border-bottom border-secondary mb-4 pb-2">
             <b-row>
               <b-col cols="4">
-                <h5>Benefit Amounts</h5>
+                <h6>Benefit Amounts</h6>
                 <p>
                   If you provide consent to LSC checking the details of your
                   benefit or pension with Centrelink, we don&rsquo;t need any
@@ -196,7 +196,7 @@
           >
             <b-row>
               <b-col cols="4">
-                <h5>Financially Associated Person</h5>
+                <h6>Financially Associated Person</h6>
                 <p>
                   The term 'Financially Associated Person' refers to anyone who:
                   regularly gives you money or pays your bills; OR shares your
@@ -319,7 +319,7 @@
           <section class="border-bottom border-secondary mb-4 pb-2">
             <b-row>
               <b-col cols="4">
-                <h5>Property Details</h5>
+                <h6>Property Details</h6>
                 <p>
                   We need to know about any real estate properties
                   {{ youString }} own{{ additionalS }} or paying off in
@@ -350,7 +350,7 @@
           >
             <b-row>
               <b-col cols="4">
-                <h5>Additional Property</h5>
+                <h6>Additional Property</h6>
               </b-col>
               <b-col>
                 <b-form-group
@@ -381,10 +381,10 @@
           >
             <b-row>
               <b-col cols="4">
-                <h5>
+                <h6>
                   Property Owned by {{ form.entities.fap.firstName }}
                   {{ form.entities.fap.lastName }}
-                </h5>
+                </h6>
                 <p v-if="form.repType === 'self'">
                   We need to know about any real estate properties the
                   Applicant's Financially Associated Person owns or paying off

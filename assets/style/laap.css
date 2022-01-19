@@ -43,3 +43,13 @@
 .laap-inner-nav-item-active {
   border-bottom: 2px solid var(--primary) !important;
 }
+
+h6{
+  font-weight: 600 !important;
+}
+h5{
+  font-size: 1.2rem;
+}
+.w-30{
+  width: 28% !important
+}

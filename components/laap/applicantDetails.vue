@@ -4,7 +4,7 @@
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h5>Are you the Applicant?</h5>
+            <h6>Are you the Applicant?</h6>
             The Applicant is the person this form is about, If you are not the
             Applicant please provide some details about yourself.NOTE: if you
             are not the Applicant but want to be contacted about this
@@ -69,11 +69,11 @@
       >
         <b-row>
           <b-col cols="4" v-if="form.repType === 'self'">
-            <h5>Your personal information</h5>
+            <h6>Your personal information</h6>
             Please provide details about yourself.
           </b-col>
           <b-col cols="4" v-else>
-            <h5>Applicant information</h5>
+            <h6>Applicant information</h6>
             Please provide details about the applicant (the person this form is
             about).
           </b-col>
@@ -94,7 +94,7 @@
               <b-form-input
                 id="otherFirstName"
                 name="otherFirstName"
-                v-model="form.otherFirstName"
+                v-model="form.entities.applicant.otherFirstName"
               ></b-form-input>
             </b-form-group>
             <b-form-group
@@ -104,7 +104,7 @@
               <b-form-input
                 id="otherFamilyName"
                 name="otherFamilyName"
-                v-model="form.otherFamilyName"
+                v-model="form.entities.applicant.otherFamilyName"
               ></b-form-input>
             </b-form-group>
 
@@ -138,7 +138,7 @@
       >
         <b-row>
           <b-col cols="4">
-            <h5>Contact details</h5>
+            <h6>Contact details</h6>
             We need at least one address (Home address, postal address or email
             address) so we can contact you. <br />
             <strong
@@ -209,7 +209,7 @@
       >
         <b-row>
           <b-col cols="4">
-            <h5>{{ yourString }} circumstances</h5>
+            <h6>{{ yourString }} circumstances</h6>
           </b-col>
           <b-col>
             <b-form-group
@@ -478,7 +478,7 @@
       >
         <b-row>
           <b-col cols="4">
-            <h5>{{ yourString }} dependents</h5>
+            <h6>{{ yourString }} dependents</h6>
             Dependents are people you are financially responsible for.
           </b-col>
           <b-col>
@@ -504,7 +504,7 @@
                 v-bind:id="index"
                 class="border-5 border-start ps-3 mb-4"
               >
-                <h5>Dependant {{ index + 1 }}</h5>
+                <h6>Dependant {{ index + 1 }}</h6>
                 <b-row>
                   <b-col>
                     <entity
@@ -591,7 +591,7 @@
       >
         <b-row>
           <b-col cols="4">
-            <h5>Your authority to fill this form</h5>
+            <h6>Your authority to fill this form</h6>
             We need proof that you are allowed to fill this form on behalf of
             the Applicant.
             <br /><br />This authority will be in place for 12 months. If you
@@ -640,7 +640,7 @@
       >
         <b-row>
           <b-col cols="4">
-            <h5>Authority to disclose</h5>
+            <h6>Authority to disclose</h6>
             This will only apply to the application for aid, not the legal
             matter. If there is a conflict with the person that is nominated, we
             reserve the right to overide the authority
@@ -796,7 +796,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h5::first-letter {
+h6::first-letter {
   text-transform: uppercase;
 }
 </style>

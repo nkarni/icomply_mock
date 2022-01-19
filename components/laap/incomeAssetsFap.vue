@@ -3,7 +3,7 @@
               <section class="border-bottom border-secondary mb-4 pb-2">
             <b-row>
               <b-col cols="4">
-                <h5>{{ fapName }}'s Income Details</h5>
+                <h6>{{ fapName }}'s Income Details</h6>
                 <p>All fields are mandatory unless marked as optional.</p>
               </b-col>
               <b-col>
@@ -131,7 +131,7 @@
           <section class="border-bottom border-secondary mb-4 pb-2">
             <b-row>
               <b-col cols="4">
-                <h5>{{ fapName }}'s Expenses</h5>
+                <h6>{{ fapName }}'s Expenses</h6>
               </b-col>
               <b-col>
                 <b-form-group
@@ -179,7 +179,7 @@
           <section class="border-bottom border-secondary mb-4 pb-2">
             <b-row>
               <b-col cols="4">
-                <h5>{{ fapName }}'s Vehicles</h5>
+                <h6>{{ fapName }}'s Vehicles</h6>
                 <p>
                   We need to know about any motor vehicles where
                   their equity is more than $30,000.
@@ -266,7 +266,7 @@
           <section class="border-bottom border-secondary mb-4 pb-2">
             <b-row>
               <b-col cols="4">
-                <h5>Other Information</h5>
+                <h6>Other Information</h6>
               </b-col>
               <b-col>
                 <b-form-group
