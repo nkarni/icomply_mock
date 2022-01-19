@@ -226,7 +226,7 @@
 
                 <entity
                   v-if="form.entities.applicant.details.hasFap === true"
-                  :entity="form.fap"
+                  :entity="form.entities.fap"
                   idPrefix="fap"
                   showFirstName
                   showLastName

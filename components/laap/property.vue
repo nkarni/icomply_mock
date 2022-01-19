@@ -7,15 +7,19 @@
                   ></entity-address>
 
                   <b-form-group label="Current market value">
+                     <b-input-group  prepend="$" >
                     <b-form-input
                       v-model="property.homeCurrentValue"
                     ></b-form-input>
+                     </b-input-group>
                   </b-form-group>
 
                    <b-form-group label="Current mortgage owing">
+                      <b-input-group  prepend="$" >
                     <b-form-input
                       v-model="property.homeMortgageOwing"
                     ></b-form-input>
+                      </b-input-group>
                   </b-form-group>
 
                   <div v-if="showCoOwners">
@@ -30,9 +34,11 @@
                 <div v-if="property.homeSoleOwner === false">
 
                  <b-form-group :label="'What percentage ' + DoYouStringCont + ' own?'" >
+                    <b-input-group  append="%" >
                     <b-form-input
                       v-model="property.homeOwnershipShare"
                     ></b-form-input>
+                    </b-input-group>
                   </b-form-group>
 
                   <b-form-group label="How many co-owners?" >

@@ -35,9 +35,11 @@
               'Unemployed'
             "
           >
+           <b-input-group  prepend="$" >
             <b-form-input
               v-model="form.entities.applicant.incomeAssets.benefitsAmount"
             ></b-form-input>
+           </b-input-group>
           </b-form-group>
 
           <notice
@@ -124,7 +126,9 @@
                     ></b-form-select>
                   </td>
                   <td align="right">
+                    <b-input-group  prepend="$" >
                     <b-form-input v-model="income.amount"></b-form-input>
+                    </b-input-group>
                   </td>
                 </tr>
               </tbody>
@@ -181,7 +185,9 @@
                     ></b-form-select>
                   </td>
                   <td align="right">
+                     <b-input-group  prepend="$" >
                     <b-form-input v-model="expense.amount"></b-form-input>
+                     </b-input-group>
                   </td>
                 </tr>
               </tbody>
@@ -248,10 +254,14 @@
                     <b-form-input v-model="car.year"></b-form-input>
                   </td>
                   <td align="right">
+                     <b-input-group  prepend="$" >
                     <b-form-input v-model="car.value"></b-form-input>
+                     </b-input-group>
                   </td>
                   <td align="right">
+                     <b-input-group  prepend="$" >
                     <b-form-input v-model="car.owing"></b-form-input>
+                     </b-input-group>
                   </td>
                   <td class="align-middle">
                     <b-button
@@ -286,9 +296,11 @@
             :label="yourString + ' current bank balance'"
             description="Enter combined total if more than one account."
           >
+           <b-input-group  prepend="$" >
             <b-form-input
               v-model="form.entities.applicant.incomeAssets.bankBalance"
             ></b-form-input>
+           </b-input-group>
           </b-form-group>
 
           <b-form-group
@@ -296,19 +308,23 @@
               DoYouStringCont + ' own any shares/investments/cryptocurrency?'
             "
           >
-            <b-form-select
+          
+            <b-form-radio-group
               v-model="form.entities.applicant.incomeAssets.hasInvestments"
               :options="boolOptions"
-            ></b-form-select>
+            ></b-form-radio-group>
           </b-form-group>
 
           <b-form-group
             :label="'Please provide net value if sold today'"
             description="Enter combined total."
+            v-if="form.entities.applicant.incomeAssets.hasInvestments === true"
           >
+           <b-input-group  prepend="$" >
             <b-form-input
               v-model="form.entities.applicant.incomeAssets.investmentsValue"
             ></b-form-input>
+           </b-input-group>
           </b-form-group>
 
           <b-form-group
@@ -320,12 +336,12 @@
               ' legal fees for this case?'
             "
           >
-            <b-form-select
+            <b-form-radio-group
               v-model="
                 form.entities.applicant.incomeAssets.hasLegalFeesBeenPaid
               "
               :options="boolOptions"
-            ></b-form-select>
+            ></b-form-radio-group>
           </b-form-group>
 
           <notice
@@ -350,12 +366,12 @@
               ' sold or given away money or real estate property in the last 12 months worth more than $1,000?'
             "
           >
-            <b-form-select
+            <b-form-radio-group
               v-model="
                 form.entities.applicant.incomeAssets.gaveAwayMoneyOrProperty
               "
               :options="boolOptions"
-            ></b-form-select>
+            ></b-form-radio-group>
           </b-form-group>
 
           <b-form-group label="Please provide details">

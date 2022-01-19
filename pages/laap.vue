@@ -1,5 +1,10 @@
 <template>
   <b-container>
+    <!-- <b-row>
+      <b-col class="text-center">
+        If you need help filling out this form or have any questions you can call us on 1 300 366 424
+      </b-col>
+    </b-row> -->
     <b-row>
       <b-col cols="12" md="6">
         <h3 class="text-primary">Application for Legal Aid</h3>
@@ -119,9 +124,35 @@
       </b-col>
     </b-row>
 
+    
+<b-row class="mt-4">
+      <b-col cols="12">
+        <b-card>
+      <p>Validation information:</p>
+      <ul>
+        <li>
+          All visible fields are mandatory unless they are marked as optional
+        </li>
+        <li>
+          At least one contact method is required (email, phone or address ? )
+          if showing
+        </li>
+        <li>
+          all number fields will be validated as integers, except when it is
+          currency field (it will allow a decimal)
+        </li>
+        <li>
+          CRN number validated as 9 digits and 1 letter, DVA number is 8 digits.
+          Either a CRN number or DVA number is mandatory (if showing)
+        </li>
+      </ul>
+        </b-card>
+      </b-col>
+    </b-row>
     <b-row class="mt-4">
       <b-col cols="12">
         <b-card>
+          <p>Current data:</p>
           <pre>{{ form }}</pre>
         </b-card>
       </b-col>
@@ -130,7 +161,9 @@
 </template>
 
 <script>
+import notice from "../components/laap/notice.vue";
 export default {
+  components: { notice },
   layout: "user",
 
   data() {
@@ -151,7 +184,7 @@ export default {
                 type: "",
                 number: "",
                 isSafe: null,
-              }
+              },
             ],
             address: {
               line1: "",
@@ -179,8 +212,8 @@ export default {
               {
                 type: "",
                 number: "",
-                isSafe: null
-              }
+                isSafe: null,
+              },
             ],
             address: {
               line1: "",
