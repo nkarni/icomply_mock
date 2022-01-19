@@ -10,7 +10,7 @@
           title="Benefits"
           :title-link-class="[
             'laap-inner-title-link',
-            {'laap-inner-nav-item-complete': true}
+            { 'laap-inner-nav-item-complete': true },
           ]"
         >
           <section class="border-bottom border-secondary mb-4 pb-2">
@@ -31,18 +31,18 @@
                 >
                   <b-form-radio-group
                     id="receivesBenefit"
-                    v-model="form.receivesBenefit"
+                    v-model="form.entities.applicant.benefits.receivesBenefit"
                     :options="boolOptions"
                     name="receivesBenefit"
                   ></b-form-radio-group>
                 </b-form-group>
 
-                <div v-if="form.receivesBenefit">
+                <div v-if="form.entities.applicant.benefits.receivesBenefit">
                   <b-form-group :label="yourString + ' CRN Number'">
                     <b-form-input
                       id="crnNumber"
                       name="crnNumber"
-                      v-model="form.crnNumber"
+                      v-model="form.entities.applicant.benefits.crnNumber"
                     ></b-form-input>
                   </b-form-group>
 
@@ -50,7 +50,7 @@
                     <b-form-input
                       id="dvaNumber"
                       name="dvaNumber"
-                      v-model="form.dvaNumber"
+                      v-model="form.entities.applicant.benefits.dvaNumber"
                     ></b-form-input>
                   </b-form-group>
 
@@ -64,7 +64,8 @@
                   >
                     <b-form-checkbox-group
                       id="benefitsPaymentTypes"
-                      v-model="form.benefitsPaymentTypes"
+                      stacked
+                      v-model="form.entities.applicant.benefits.benefitsPaymentTypes"
                       :options="benefitsOptions"
                       name="benefitsPaymentTypes"
                     ></b-form-checkbox-group>
@@ -80,7 +81,7 @@
                   >
                     <b-form-radio-group
                       id="maxPayment"
-                      v-model="form.maxPayment"
+                      v-model="form.entities.applicant.benefits.maxPayment"
                       :options="boolOptions"
                       name="maxPayment"
                     ></b-form-radio-group>
@@ -111,14 +112,14 @@
                 >
                   <b-form-radio-group
                     id="consentToCentrelink"
-                    v-model="form.consentToCentrelink"
+                    v-model="form.entities.applicant.benefits.consentToCentrelink"
                     :options="boolOptions"
                     name="consentToCentrelink"
                   ></b-form-radio-group>
                 </b-form-group>
                 <b-form-group
                   label="Authority to Release"
-                  v-if="form.consentToCentrelink === true"
+                  v-if="form.entities.applicant.benefits.consentToCentrelink === true"
                 >
                   <div>
                     <p>
@@ -163,9 +164,9 @@
                     </ul>
                   </div>
                   <b-form-checkbox
-                    v-if="form.consentToCentrelink === true"
+                    v-if="form.entities.applicant.benefits.consentToCentrelink === true"
                     id="authoriseCentrelink"
-                    v-model="form.authoriseCentrelink"
+                    v-model="form.entities.applicant.benefits.authoriseCentrelink"
                     name="authoriseCentrelink"
                     :value="true"
                     :unchecked-value="false"
@@ -175,14 +176,14 @@
                 </b-form-group>
 
                 <b-form-group
-                  v-if="form.benefitsPaymentTypes === 'None of the above'"
+                  v-if="form.entities.applicant.benefits.benefitsPaymentTypes === 'None of the above'"
                   label="How much is received per fortnight from any pension, benefit or allowance?"
                   description="You do not provide us consent to obtain your financial details directly from Centrelink. Please upload a Centrelink Income Statement in the Attachments step."
                 >
                   <b-form-input
                     id="benefitsAmount"
                     name="benefitsAmount"
-                    v-model="form.benefitsAmount"
+                    v-model="form.entities.applicant.benefits.benefitsAmount"
                   ></b-form-input>
                 </b-form-group>
               </b-col>
@@ -191,7 +192,7 @@
 
           <section
             class="border-bottom border-secondary mb-4 pb-2"
-            v-if="form.maxPayment === false"
+            v-if="form.entities.applicant.benefits.maxPayment === false"
           >
             <b-row>
               <b-col cols="4">
@@ -216,7 +217,7 @@
                 >
                   <b-form-radio-group
                     id="hasFap"
-                    v-model="form.hasFap"
+                    v-model="form.entities.applicant.details.hasFap"
                     :options="boolOptions"
                     name="hasFap"
                   ></b-form-radio-group>
@@ -224,7 +225,7 @@
                 <entity></entity>
 
                 <entity
-                  v-if="form.hasFap === true"
+                  v-if="form.entities.applicant.details.hasFap === true"
                   :entity="form.fap"
                   idPrefix="fap"
                   showFirstName
@@ -235,7 +236,7 @@
                   <template v-slot:additionalFields>
                     <b-form-group :label="'Relationship to ' + youString">
                       <b-form-select
-                        v-model="form.fap.relationshipToApplicant"
+                        v-model="form.entities.fap.relationshipToApplicant"
                         id="relationshipToApplicant"
                         name="relationshipToApplicant"
                         :options="[
@@ -254,13 +255,13 @@
                     >
                       <b-form-radio-group
                         id="fap.receivesBenefit"
-                        v-model="form.fap.receivesBenefit"
+                        v-model="form.entities.fap.receivesBenefit"
                         :options="boolOptions"
                         name="fap.receivesBenefit"
                       ></b-form-radio-group>
                       <div
                         class="form-text"
-                        v-if="form.fap.receivesBenefit === true"
+                        v-if="form.entities.fap.receivesBenefit === true"
                       >
                         Note: a copy of their most recent Centrelink Income
                         Statement may be required.
@@ -269,21 +270,21 @@
 
                     <b-form-group
                       label="Their CRN (optional)"
-                      v-if="form.fap.receivesBenefit === true"
+                      v-if="form.entities.fap.receivesBenefit === true"
                     >
                       <b-form-input
                         id="fap.crnNumber"
                         name="fap.crnNumber"
-                        v-model="form.fap.crnNumber"
+                        v-model="form.entities.fap.crnNumber"
                       ></b-form-input>
                     </b-form-group>
                     <b-form-group
                       label="Select the type of payment(s) they receive"
-                      v-if="form.fap.receivesBenefit === true"
+                      v-if="form.entities.fap.receivesBenefit === true"
                     >
                       <b-form-checkbox-group
                         id="fap.benefitsPaymentTypes"
-                        v-model="form.fap.benefitsPaymentTypes"
+                        v-model="form.entities.fap.benefitsPaymentTypes"
                         :options="benefitsOptions"
                         name="fap.benefitsPaymentTypes"
                       ></b-form-checkbox-group>
@@ -291,11 +292,11 @@
 
                     <b-form-group
                       label="Do they receive the maximum payment?"
-                      v-if="form.fap.receivesBenefit === true"
+                      v-if="form.entities.fap.receivesBenefit === true"
                     >
                       <b-form-radio-group
                         id="fap.receivesMaxBenefits"
-                        v-model="form.fap.receivesMaxBenefits"
+                        v-model="form.entities.fap.receivesMaxBenefits"
                         :options="boolOptions"
                         name="fap.receivesMaxBenefits"
                       ></b-form-radio-group>
@@ -312,33 +313,111 @@
           active
           :title-link-class="[
             'laap-inner-title-link',
-            {'laap-inner-nav-item-complete': false}
+            { 'laap-inner-nav-item-complete': false },
           ]"
         >
           <section class="border-bottom border-secondary mb-4 pb-2">
             <b-row>
               <b-col cols="4">
                 <h5>Property Details</h5>
+                <p>
+                  We need to know about any real estate properties
+                  {{ youString }} own{{ additionalS }} or paying off in
+                  Australia or elsewhere.
+                </p>
               </b-col>
               <b-col>
                 <b-form-group
                   :label="DoYouStringCont + ' own (or paying off) a home?'"
                 >
                   <b-form-radio-group
-                    id="ownsAHome"
-                    v-model="form.ownsAHome"
+                    v-model="form.entities.applicant.property.ownsAHome"
                     :options="boolOptions"
-                    name="ownsAHome"
                   ></b-form-radio-group>
                 </b-form-group>
 
-                <entity-address
-                  v-if="form.ownsAHome === true"
-                  addressLabel="Property address"
-                  :address="form.propertyAddress"
-                ></entity-address>
+                <property
+                  :property="form.entities.applicant.property.properties[0]"
+                  :form="form"
+                  v-if="form.entities.applicant.property.ownsAHome === true"
+                ></property>
+              </b-col>
+            </b-row>
+          </section>
+          <section
+            class="border-bottom border-secondary mb-4 pb-2"
+            v-if="form.entities.applicant.property.ownsAHome === true"
+          >
+            <b-row>
+              <b-col cols="4">
+                <h5>Additional Property</h5>
+              </b-col>
+              <b-col>
+                <b-form-group
+                  :label="
+                    DoYouStringCont +
+                    ' own (or paying off) another real estate property in Australia or elsewhere?'
+                  "
+                >
+                  <b-form-radio-group
+                    v-model="form.ownsAdditionalHome"
+                    :options="boolOptions"
+                  ></b-form-radio-group>
+                </b-form-group>
 
+                <div v-if="form.entities.applicant.property.ownsAHome === true">
+                  <property
+                    :property="form.entities.applicant.property.properties[1]"
+                    :form="form"
+                    v-if="form.ownsAdditionalHome === true"
+                  ></property>
+                </div>
+              </b-col>
+            </b-row>
+          </section>
+          <section
+            class="border-bottom border-secondary mb-4 pb-2"
+            v-if="form.entities.applicant.details.hasFap === true"
+          >
+            <b-row>
+              <b-col cols="4">
+                <h5>
+                  Property Owned by {{ form.entities.fap.firstName }}
+                  {{ form.entities.fap.lastName }}
+                </h5>
+                <p v-if="form.repType === 'self'">
+                  We need to know about any real estate properties the
+                  Applicant's Financially Associated Person owns or paying off
+                  in Australia or elsewhere
+                </p>
+                <p v-else>
+                  We need to know about any real estate properties the
+                  Applicant's Financially Associated Person owns or paying off
+                  in Australia or elsewhere
+                </p>
+              </b-col>
+              <b-col>
+                <b-form-group
+                  :label="
+                    'does ' +
+                    form.entities.fap.firstName +
+                    ' ' +
+                    form.entities.fap.lastName +
+                    ' own (or paying off) a real estate property in Australia or elsewhere?'
+                  "
+                >
+                  <b-form-radio-group
+                    v-model="form.entities.applicant.property.fapOwnsHome"
+                    :options="boolOptions"
+                  ></b-form-radio-group>
+                </b-form-group>
 
+                <property
+                  :property="form.entities.fap.property"
+                  :form="form"
+                  :showCoOwners="false"
+                  v-if="form.entities.applicant.property.fapOwnsHome === true"
+                ></property>
               </b-col>
             </b-row>
           </section>
@@ -348,10 +427,11 @@
           title="Income & Assets"
           :title-link-class="[
             'laap-inner-title-link',
-            {'laap-inner-nav-item-complete': false}
+            { 'laap-inner-nav-item-complete': false },
           ]"
         >
-          <p>I'm a disabled tab!</p>
+<income-assets-applicant :form="form"></income-assets-applicant>
+<income-assets-fap v-if="form.entities.applicant.hasFap" :form="form" ></income-assets-fap>
         </b-tab>
       </b-tabs>
     </b-form>
@@ -361,8 +441,12 @@
 <script>
 import Entity from "./entity.vue";
 import entityAddress from "./entityAddress.vue";
+import IncomeAssetsApplicant from './incomeAssetsApplicant.vue';
+import IncomeAssetsFap from './incomeAssetsFap.vue';
+import Notice from "./notice.vue";
+import Property from "./property.vue";
 export default {
-  components: { entityAddress, Entity },
+  components: { entityAddress, Entity, Property, Notice, IncomeAssetsApplicant, IncomeAssetsFap },
   name: "eligibility",
   props: {
     form: {
@@ -376,7 +460,7 @@ export default {
         { text: "Yes", value: true },
         { text: "No", value: false },
       ],
-      benefitsOptions: [
+       benefitsOptions: [
         "Age Pension",
         "ABSTUDY",
         "Austudy",
@@ -414,11 +498,29 @@ export default {
     AreYouString: function () {
       return this.form.repType === "self" ? "are you" : "the Applicant is";
     },
+    AreYouStringReverse: function () {
+      return this.form.repType === "self" ? "are you" : "is the Applicant";
+    },
     additionalS: function () {
       return this.form.repType === "self" ? "" : "s";
     },
+    yoursString: function () {
+      return this.form.repType === "self" ? "yours" : "the Applicant/'s";
+    },
+    haveYouString: function () {
+      return this.form.repType === "self" ? "have you" : "has the Applicant";
+    },
+    noIncomeLabel() {
+      if (this.form.repType === "self") {
+        return "If you do not receive any income, please give details of how you are supported";
+      } else {
+        return "If the Applicant does not receive any income, please give details of how they are supported";
+      }
+    },
   },
-  methods: {},
+  methods: {
+    
+  },
 };
 </script>
 

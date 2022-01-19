@@ -1,27 +1,16 @@
 <template>
   <b-container>
     <b-row>
-      <b-col
-        cols="12"
-        md="6"
-      >
+      <b-col cols="12" md="6">
         <h3 class="text-primary">Application for Legal Aid</h3>
       </b-col>
-      <b-col
-        cols="12"
-        md="6"
-        class="text-right"
-      >
-        <NuxtLink
-          to="/home"
-          class="text-right pr-0"
-        >
+      <b-col cols="12" md="6" class="text-right">
+        <NuxtLink to="/home" class="text-right pr-0">
           Back to dashboard
         </NuxtLink>
       </b-col>
     </b-row>
     <b-row class="mt-4">
-
       <b-tabs
         v-model="tabIndex"
         vertical
@@ -36,7 +25,7 @@
             'laap-title-link',
             'mb-2',
             'p-4',
-            {'laap-nav-item-complete': true}
+            { 'laap-nav-item-complete': true },
           ]"
         >
           <template #title>
@@ -51,7 +40,7 @@
             'laap-title-link',
             'mb-2',
             'p-4',
-            {'laap-nav-item-complete': true}
+            { 'laap-nav-item-complete': true },
           ]"
         >
           <template #title>
@@ -66,7 +55,7 @@
             'laap-title-link',
             'mb-2',
             'p-4',
-            {'laap-nav-item-complete': false}
+            { 'laap-nav-item-complete': false },
           ]"
         >
           <template #title>
@@ -81,7 +70,7 @@
             'laap-title-link',
             'mb-2',
             'p-4',
-            {'laap-nav-item-complete': false}
+            { 'laap-nav-item-complete': false },
           ]"
         >
           <template #title>
@@ -96,7 +85,7 @@
             'laap-title-link',
             'mb-2',
             'p-4',
-            {'laap-nav-item-complete': false}
+            { 'laap-nav-item-complete': false },
           ]"
         >
           <template #title>
@@ -111,7 +100,7 @@
             'laap-title-link',
             'mb-2',
             'p-4',
-            {'laap-nav-item-complete': false}
+            { 'laap-nav-item-complete': false },
           ]"
         >
           <template #title>
@@ -124,18 +113,9 @@
     </b-row>
 
     <b-row class="mt-4">
-      <b-col
-        cols="12"
-        class="text-right"
-      >
-        <b-button
-          :disabled="tabIndex === 0"
-          @click="tabIndex--"
-        >Prev</b-button>
-        <b-button
-          :disabled="tabIndex === 5"
-          @click="tabIndex++"
-        >Next</b-button>
+      <b-col cols="12" class="text-right">
+        <b-button :disabled="tabIndex === 0" @click="tabIndex--">Prev</b-button>
+        <b-button :disabled="tabIndex === 5" @click="tabIndex++">Next</b-button>
       </b-col>
     </b-row>
 
@@ -204,11 +184,7 @@ export default {
               {
                 type: "",
                 number: "",
-              },
-              {
-                type: "",
-                number: "",
-              },
+              }
             ],
             address: {
               line1: "",
@@ -230,36 +206,304 @@ export default {
             isEmailSafeToMail: null,
             isPostalAddressSafeToMail: null,
             postalAddressSame: null,
+            incomeAssets: {
+              employmentType: null,
+              isPrimaryProducer: null,
+              netWeeklyEarning: "",
+              usualJob: "",
+              lasWorked: "",
+              noIncomeExplanation: "",
+              incomePayments: [
+                {
+                  type: "Child support",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Rent received",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Workess compensation",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Superannuation",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Income from Trusts",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Spousal maintenance",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Other",
+                  frequency: "",
+                  amount: "",
+                },
+              ],
+              expensePayments: [
+                {
+                  type: "Rent/Board",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Mortgage",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Rates",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Childcare fees",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Child support",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Spousal maintenance",
+                  frequency: "",
+                  amount: "",
+                },
+              ],
+              hasVehicles: null,
+              vehicles: [
+                {
+                  make: "",
+                  model: "",
+                  year: "",
+                  value: "",
+                  owing: "",
+                },
+              ],
+              bankBalance: "",
+              hasInvestments: null,
+              investmentsValue: "",
+              hasLegalFeesBeenPaid: null,
+              hasLegalFeesBeenPaidDetails: "",
+              gaveAwayMoneyOrProperty: null,
+              gaveAwayMoneyOrPropertyDetails: "",
+            },
+            details: {
+              lscFileNumber: "",
+              otherGivenName: "",
+              otherFamilyName: "",
+              homeless: null,
+              apyLands: null,
+              aboriginality: "",
+              inPrison: null,
+              prisonName: "",
+              prisonSection: "",
+              prisonId: "",
+              gender: "",
+              bornOs: null,
+              bornWhere: "",
+              homeLanguage: "",
+              requireInterpreter: null,
+              language: "",
+              disability: "",
+              disabilityDetail: "",
+              requireExtraHelp: null,
+              extraHelpDetail: "",
+              under18: null,
+              relationshipStatus: "",
+              relationshipStatusDetail: "",
+              riskOfViolence: null,
+              familyViolenceAllegation: null,
+              riskOfElderAbuse: null,
+              dependants: [],
+              numOfDependants: "",
+              hasFap: null,
+            },
+            benefits: {
+              receivesBenefit: null,
+              crnNumber: "",
+              dvaNumber: "",
+              benefitsPaymentTypes: [],
+              maxPayment: null,
+              consentToCentrelink: null,
+              authoriseCentrelink: null,
+              benefitsAmount: "",
+            },
+            property: {
+              ownsAHome: null,
+              ownsAdditionalHome: null,
+              fapOwnsHome: null,
+              properties: [
+                {
+                  homeCurrentValue: "",
+                  homeMortgageOwing: "",
+                  homeSoleOwner: null,
+                  homeOwnershipShare: "",
+                  homeCoOwners: "",
+                  homeCoOwnersRelationship: "",
+                  homeCoOwnersRelationshipDetail: "",
+                  propertyAddress: {
+                    line1: "",
+                    line2: "",
+                    suburb: "",
+                    postcode: "",
+                    state: "",
+                    country: "",
+                  },
+                },
+                {
+                  homeCurrentValue: "",
+                  homeMortgageOwing: "",
+                  homeSoleOwner: null,
+                  homeOwnershipShare: "",
+                  homeCoOwners: "",
+                  homeCoOwnersRelationship: "",
+                  homeCoOwnersRelationshipDetail: "",
+                  propertyAddress: {
+                    line1: "",
+                    line2: "",
+                    suburb: "",
+                    postcode: "",
+                    state: "",
+                    country: "",
+                  },
+                },
+              ],
+            },
+          },
+          fap: {
+            firstName: "",
+            lastName: "",
+            crn: "",
+            relationshipToApplicant: "",
+            benefitsPaymentTypes: [],
+            receivesMaxBenefits: null,
+            property: {
+              homeCurrentValue: "",
+              homeMortgageOwing: "",
+              homeSoleOwner: null,
+              homeOwnershipShare: "",
+              homeCoOwners: "",
+              homeCoOwnersRelationship: "",
+              homeCoOwnersRelationshipDetail: "",
+              propertyAddress: {
+                line1: "",
+                line2: "",
+                suburb: "",
+                postcode: "",
+                state: "",
+                country: "",
+              },
+            },
+            incomeAssets: {
+              employmentType: null,
+              isPrimaryProducer: null,
+              netWeeklyEarning: "",
+              usualJob: "",
+              lasWorked: "",
+              noIncomeExplanation: "",
+              incomePayments: [
+                {
+                  type: "Child support",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Rent received",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Workess compensation",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Superannuation",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Income from Trusts",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Spousal maintenance",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Other",
+                  frequency: "",
+                  amount: "",
+                },
+              ],
+              expensePayments: [
+                {
+                  type: "Rent/Board",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Mortgage",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Rates",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Childcare fees",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Child support",
+                  frequency: "",
+                  amount: "",
+                },
+                {
+                  type: "Spousal maintenance",
+                  frequency: "",
+                  amount: "",
+                },
+              ],
+              hasVehicles: null,
+              vehicles: [
+                {
+                  make: "",
+                  model: "",
+                  year: "",
+                  value: "",
+                  owing: "",
+                },
+              ],
+              bankBalance: "",
+              hasInvestments: null,
+              investmentsValue: "",
+              hasLegalFeesBeenPaid: null,
+              hasLegalFeesBeenPaidDetails: "",
+              gaveAwayMoneyOrProperty: null,
+              gaveAwayMoneyOrPropertyDetails: "",
+            },
           },
         },
-        lscFileNumber: "",
-        otherGivenName: "",
-        otherFamilyName: "",
-        homeless: null,
-        apyLands: null,
-        aborginality: "",
-        inPrison: null,
-        prisonName: "",
-        prisonSection: "",
-        prisonId: "",
-        gender: "",
-        bornOs: null,
-        bornWhere: "",
-        homeLanguage: "",
-        requireInterpreter: null,
-        language: "",
-        disability: "",
-        disabilityDetail: "",
-        requireExtraHelp: null,
-        extraHelpDetail: "",
-        under18: null,
-        relationshipStatus: "",
-        relationshipStatusDetail: "",
-        riskOfViolence: null,
-        familyViolenceAllegation: null,
-        riskOfElderAbuse: null,
-        dependants: [],
-        numOfDependants: "",
+
         repRelation: "",
         repRelationDetail: "",
         authToDisclose: null,
@@ -267,32 +511,101 @@ export default {
         authToDiscloseGivenName: "",
         authToDiscloseLastName: "",
         authToDiscloseContactDetail: "",
-        receivesBenefit: null,
-        crnNumber: "",
-        dvaNumber: "",
-        benefitsPaymentTypes: [],
-        maxPayment: null,
-        consentToCentrelink: null,
-        authoriseCentrelink: null,
-        benefitsAmount: "",
-        hasFap: null,
-        fap: {
-          firstName: "",
-          lastName: "",
-          crn: "",
-          relationshipToApplicant: "",
-          benefitsPaymentTypes: [],
-          receivesMaxBenefits: null,
-        },
-        ownsAHome: null,
-        propertyAddress: {
-          line1: "",
-          line2: "",
-          suburb: "",
-          postcode: "",
-          state: "",
-          country: "",
-        },
+
+        // incomeAssets: {
+        //   employmentType: null,
+        //   isPrimaryProducer: null,
+        //   netWeeklyEarning: "",
+        //   usualJob: "",
+        //   lasWorked: "",
+        //   noIncomeExplanation: "",
+        //   incomePayments: [
+        //     {
+        //       type: "Child support",
+        //       frequency: "",
+        //       amount: "",
+        //     },
+        //     {
+        //       type: "Rent received",
+        //       frequency: "",
+        //       amount: "",
+        //     },
+        //     {
+        //       type: "Workess compensation",
+        //       frequency: "",
+        //       amount: "",
+        //     },
+        //     {
+        //       type: "Superannuation",
+        //       frequency: "",
+        //       amount: "",
+        //     },
+        //     {
+        //       type: "Income from Trusts",
+        //       frequency: "",
+        //       amount: "",
+        //     },
+        //     {
+        //       type: "Spousal maintenance",
+        //       frequency: "",
+        //       amount: "",
+        //     },
+        //     {
+        //       type: "Other",
+        //       frequency: "",
+        //       amount: "",
+        //     },
+        //   ],
+        //   expensePayments: [
+        //     {
+        //       type: "Rent/Board",
+        //       frequency: "",
+        //       amount: "",
+        //     },
+        //     {
+        //       type: "Mortgage",
+        //       frequency: "",
+        //       amount: "",
+        //     },
+        //     {
+        //       type: "Rates",
+        //       frequency: "",
+        //       amount: "",
+        //     },
+        //     {
+        //       type: "Childcare fees",
+        //       frequency: "",
+        //       amount: "",
+        //     },
+        //     {
+        //       type: "Child support",
+        //       frequency: "",
+        //       amount: "",
+        //     },
+        //     {
+        //       type: "Spousal maintenance",
+        //       frequency: "",
+        //       amount: "",
+        //     },
+        //   ],
+        //   hasVehicles: null,
+        //   vehicles: [
+        //     {
+        //       make: "",
+        //       model: "",
+        //       year: "",
+        //       value: "",
+        //       owing: "",
+        //     },
+        //   ],
+        //   bankBalance: "",
+        //   hasInvestments: null,
+        //   investmentsValue: "",
+        //   hasLegalFeesBeenPaid: null,
+        //   hasLegalFeesBeenPaidDetails: "",
+        //   gaveAwayMoneyOrProperty: null,
+        //   gaveAwayMoneyOrPropertyDetails: "",
+        // },
       },
       tabIndex: 2,
     };

@@ -111,18 +111,18 @@
             <div v-if="form.repType === 'solicitor' && form.prevRepresented">
               <b-form-group label="LSC File number (optional)">
                 <b-form-input
-                  id="lscFileNumber"
-                  name="lscFileNumber"
-                  v-model="form.lscFileNumber"
+                  id="entities.applicant.details.lscFileNumber"
+                  name="entities.applicant.details.lscFileNumber"
+                  v-model="form.entities.applicant.details.lscFileNumber"
                 ></b-form-input>
               </b-form-group>
               <b-form-group
                 label="If no LSC file number is provided, please provide covering letter details (or you can upload a document in the uploads section)"
               >
                 <b-form-textarea
-                  id="lscFileNumberDetails"
-                  name="lscFileNumberDetails"
-                  v-model="form.lscFileNumberDetails"
+                  id="entities.applicant.details.lscFileNumberDetails"
+                  name="entities.applicant.details.lscFileNumberDetails"
+                  v-model="form.entities.applicant.details.lscFileNumberDetails"
                   rows="3"
                   max-rows="6"
                 ></b-form-textarea>
@@ -152,7 +152,7 @@
             >
               <b-form-radio-group
                 id="homeless"
-                v-model="form.homeless"
+                v-model="form.entities.applicant.details.homeless"
                 :options="boolOptions"
                 name="homeless"
               ></b-form-radio-group>
@@ -161,7 +161,7 @@
             <b-form-group :label="DoYouStringCont + ' live on the APY lands?'">
               <b-form-radio-group
                 id="apyLands"
-                v-model="form.apyLands"
+                v-model="form.entities.applicant.details.apyLands"
                 :options="boolOptions"
                 name="apyLands"
               ></b-form-radio-group>
@@ -219,68 +219,69 @@
               "
             >
               <b-form-radio-group
-                id="aborginality"
-                v-model="form.aborginality"
+              stacked
+                id="aboriginality"
+                v-model="form.entities.applicant.details.aboriginality"
                 :options="aboriginalityOptions"
-                name="aborginality"
+                name="aboriginality"
               ></b-form-radio-group>
             </b-form-group>
 
             <b-form-group :label="AreYouString + ' in prison or detention?'">
               <b-form-radio-group
                 id="inPrison"
-                v-model="form.inPrison"
+                v-model="form.entities.applicant.details.inPrison"
                 :options="boolOptions"
                 name="inPrison"
               ></b-form-radio-group>
             </b-form-group>
-            <b-form-group v-if="form.inPrison" label="Where">
+            <b-form-group v-if="form.entities.applicant.details.inPrison" label="Where">
               <b-form-input
                 id="prisonName"
                 name="prisonName"
-                v-model="form.prisonName"
+                v-model="form.entities.applicant.details.prisonName"
               ></b-form-input>
             </b-form-group>
-            <b-form-group v-if="form.inPrison" label="Section (optional)">
+            <b-form-group v-if="form.entities.applicant.details.inPrison" label="Section (optional)">
               <b-form-input
                 id="prisonSection"
                 name="prisonSection"
-                v-model="form.prisonSection"
+                v-model="form.entities.applicant.details.prisonSection"
               ></b-form-input>
             </b-form-group>
             <b-form-group
-              v-if="form.inPrison"
+              v-if="form.entities.applicant.details.inPrison"
               label="Idnetification number (optional)"
             >
               <b-form-input
                 id="prisonId"
                 name="prisonId"
-                v-model="form.prisonId"
+                v-model="form.entities.applicant.details.prisonId"
               ></b-form-input>
             </b-form-group>
 
             <b-form-group :label="wereYouString + ' born overseas?'">
               <b-form-radio-group
                 id="bornOs"
-                v-model="form.bornOs"
+                v-model="form.entities.applicant.details.bornOs"
                 :options="boolOptions"
                 name="bornOs"
               ></b-form-radio-group>
             </b-form-group>
             <b-form-group
-              v-if="form.bornOs"
+              v-if="form.entities.applicant.details.bornOs"
               :label="'Where ' + wereYouString + ' born?'"
             >
               <b-form-input
                 id="bornWhere"
                 name="bornWhere"
-                v-model="form.bornWhere"
+                v-model="form.entities.applicant.details.bornWhere"
               ></b-form-input>
             </b-form-group>
 
             <b-form-group label="What is the main language spoken at home?">
               <b-form-select
-                v-model="form.homeLanguage"
+                v-model="form.entities.applicant.details.homeLanguage"
                 id="homeLanguage"
                 name="homeLanguage"
                 :options="[
@@ -293,18 +294,18 @@
             <b-form-group :label="DoYouStringCont + ' require an interpreter?'">
               <b-form-radio-group
                 id="requireInterpreter"
-                v-model="form.requireInterpreter"
+                v-model="form.entities.applicant.details.requireInterpreter"
                 :options="boolOptions"
                 name="requireInterpreter"
               ></b-form-radio-group>
             </b-form-group>
 
             <b-form-group
-              v-if="form.requireInterpreter"
+              v-if="form.entities.applicant.details.requireInterpreter"
               label="What language/dialect?"
             >
               <b-form-select
-                v-model="form.language"
+                v-model="form.entities.applicant.details.language"
                 id="language"
                 name="language"
                 :options="[
@@ -316,7 +317,7 @@
 
             <b-form-group :label="DoYouStringCont + ' have a disability?'">
               <b-form-select
-                v-model="form.disability"
+                v-model="form.entities.applicant.details.disability"
                 id="disability"
                 name="disability"
                 :options="[
@@ -341,13 +342,13 @@
             </b-form-group>
 
             <b-form-group
-              v-if="form.disability === 'Other'"
+              v-if="form.entities.applicant.details.disability === 'Other'"
               :label="'Provide details'"
             >
               <b-form-input
                 id="disabilityDetail"
                 name="disabilityDetail"
-                v-model="form.disabilityDetail"
+                v-model="form.entities.applicant.details.disabilityDetail"
               ></b-form-input>
             </b-form-group>
 
@@ -359,27 +360,27 @@
             >
               <b-form-radio-group
                 id="requireExtraHelp"
-                v-model="form.requireExtraHelp"
+                v-model="form.entities.applicant.details.requireExtraHelp"
                 :options="boolOptions"
                 name="requireExtraHelp"
               ></b-form-radio-group>
             </b-form-group>
 
             <b-form-group
-              v-if="form.requireExtraHelp"
+              v-if="form.entities.applicant.details.requireExtraHelp"
               :label="'Provide details'"
             >
               <b-form-input
                 id="extraHelpDetail"
                 name="extraHelpDetail"
-                v-model="form.disabilityDetail"
+                v-model="form.entities.applicant.details.extraHelpDetail"
               ></b-form-input>
             </b-form-group>
 
             <b-form-group :label="AreYouString + ' under 18?'">
               <b-form-radio-group
                 id="under18"
-                v-model="form.under18"
+                v-model="form.entities.applicant.details.under18"
                 :options="boolOptions"
                 name="under18"
               ></b-form-radio-group>
@@ -420,7 +421,7 @@
             >
               <b-form-radio-group
                 id="riskOfViolence"
-                v-model="form.riskOfViolence"
+                v-model="form.entities.applicant.details.riskOfViolence"
                 :options="boolOptions"
                 name="riskOfViolence"
               ></b-form-radio-group>
@@ -435,7 +436,7 @@
             >
               <b-form-radio-group
                 id="familyViolenceAllegation"
-                v-model="form.familyViolenceAllegation"
+                v-model="form.entities.applicant.details.familyViolenceAllegation"
                 :options="boolOptions"
                 name="familyViolenceAllegation"
               ></b-form-radio-group>
@@ -447,7 +448,7 @@
             >
               <b-form-radio-group
                 id="riskOfElderAbuse"
-                v-model="form.riskOfElderAbuse"
+                v-model="form.entities.applicant.details.riskOfElderAbuse"
                 :options="boolOptions"
                 name="riskOfElderAbuse"
               ></b-form-radio-group>
@@ -477,8 +478,8 @@
       >
         <b-row>
           <b-col cols="4">
-            <h5>{{ yourString }} dependants</h5>
-            Dependants are people you are finanically reponsible for.
+            <h5>{{ yourString }} dependents</h5>
+            Dependents are people you are financially responsible for.
           </b-col>
           <b-col>
             <b-form-group
@@ -491,14 +492,14 @@
               <b-form-input
                 id="numOfDependants"
                 name="numOfDependants"
-                v-model="form.numOfDependants"
+                v-model="form.entities.applicant.details.numOfDependants"
                 type="number"
                 @change="onNumDepnedantsChange"
               ></b-form-input>
             </b-form-group>
-            <div v-if="form.dependants.length > 0">
+            <div v-if="form.entities.applicant.details.dependants.length > 0">
               <div
-                v-for="(dependant, index) of form.dependants"
+                v-for="(dependant, index) of form.entities.applicant.details.dependants"
                 :key="index"
                 v-bind:id="index"
                 class="border-5 border-start ps-3 mb-4"
@@ -507,7 +508,7 @@
                 <b-row>
                   <b-col>
                     <entity
-                      :entity="form.dependants[index]"
+                      :entity="form.entities.applicant.details.dependants[index]"
                       idPrefix="dep0"
                       showFirstName
                       showLastName
@@ -525,7 +526,7 @@
                           "
                         >
                           <b-form-select
-                            v-model="form.dependants[index].relationship"
+                            v-model="form.entities.applicant.details.dependants[index].relationship"
                             id="relationship"
                             name="relationship"
                             :options="[
@@ -545,7 +546,7 @@
                         >
                           <b-form-datepicker
                             id="dep0dob"
-                            v-model="form.dependants[index].dob"
+                            v-model="form.entities.applicant.details.dependants[index].dob"
                             class="mb-2"
                           ></b-form-datepicker>
                         </b-form-group>
@@ -556,7 +557,7 @@
                         >
                           <b-form-radio-group
                             id="stayOvernight"
-                            v-model="form.dependants[index].stayOvernight"
+                            v-model="form.entities.applicant.details.dependants[index].stayOvernight"
                             :options="boolOptions"
                             name="stayOvernight"
                           ></b-form-radio-group>
@@ -568,7 +569,7 @@
                           <b-form-radio-group
                             id="involvedInLegalIssue"
                             v-model="
-                              form.dependants[index].involvedInLegalIssue
+                              form.entities.applicant.details.dependants[index].involvedInLegalIssue
                             "
                             :options="boolOptions"
                             name="involvedInLegalIssue"
@@ -773,13 +774,13 @@ export default {
   },
   methods: {
     onNumDepnedantsChange() {
-      if (this.form.numOfDependants < this.form.dependants.length) {
-        while (this.form.numOfDependants < this.form.dependants.length) {
-          this.form.dependants.pop();
+      if (this.form.entities.applicant.details.numOfDependants < this.form.entities.applicant.details.dependants.length) {
+        while (this.form.entities.applicant.details.numOfDependants < this.form.entities.applicant.details.dependants.length) {
+          this.form.entities.applicant.details.dependants.pop();
         }
-      } else if (this.form.numOfDependants > this.form.dependants.length) {
-        while (this.form.numOfDependants > this.form.dependants.length) {
-          this.form.dependants.push({
+      } else if (this.form.entities.applicant.details.numOfDependants > this.form.entities.applicant.details.dependants.length) {
+        while (this.form.entities.applicant.details.numOfDependants > this.form.entities.applicant.details.dependants.length) {
+          this.form.entities.applicant.details.dependants.push({
             firstName: "",
             lastName: "",
             dob: "",
