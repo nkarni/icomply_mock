@@ -8,21 +8,20 @@
       <b-form-input
         :id="idPrefix + '-address'"
         :name="idPrefix + '-address'"
-       
+
       ></b-form-input>
     </b-form-group>
 
     <div class="text-right">
-      <b-button variant="link" class="p-0 mb-4" v-b-modal.manualAddress
-        >Click here if you cannot find the right address</b-button
-      >
+      <b-button variant="link" class="p-0 mb-4" v-b-modal="`manual-address-${modalId}`">
+        Click here if you cannot find the right address
+      </b-button>
     </div>
 
-    <b-modal id="manualAddress" title="BootstrapVue">
+    <b-modal :id="`manual-address-${modalId}`" title="BootstrapVue">
       <template #modal-header="{ close }">
-        <h6>Address</h6>
+        <h6>Address {{ modalId }}</h6>
         <!-- Emulate built in modal header close button action -->
-
         <i
           @click="close()"
           v-b-tooltip.hover
@@ -89,7 +88,7 @@
 <script>
 export default {
   name: "entityAddress",
-  
+
   props: {
     addressLabel: {
       type: String,
@@ -116,7 +115,12 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      // random id for the modal
+      modalId: Math.random()
+        .toString(36)
+        .substring(7),
+    };
   },
   computed: {
   },

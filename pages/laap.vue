@@ -552,7 +552,7 @@ export default {
               state: "",
               country: "",
           }
-          
+
           },
           incomeAssets: {
             employmentType: null,
@@ -723,7 +723,7 @@ export default {
             ],
             hasCriminalRecord: '',
             policeTakenBelonging: null
-           
+
           },
           familyLaw: {
             haveToGoto: null,
@@ -761,17 +761,17 @@ export default {
                 nextDate: "",
                 nextDateReason: "",
                 courtFileNumber: '',
-               
-               
+
+
                 wantsToAppeal: null,
                 appealDetails: '',
                 appealCourtType: '',
                 appealCourtTown: '',
                 appealCourtDate: '',
                 problemType: [],
-               
+
                 problemDetails: '' ,
-               
+
           },
         },
       },
