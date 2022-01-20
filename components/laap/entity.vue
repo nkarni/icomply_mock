@@ -82,11 +82,11 @@
           <b-col>
             <b-form-group v-if="showIsSafePhone" :label="safePhoneLabel" class="mb-0">
               <b-form-radio-group
-                id="showIsSafePhone"
+                :id="idPrefix + '-isSafe' + index"
+                :name="idPrefix + '-isSafe' + index"
                 v-model="entity.phones[index].isSafe"
                 :options="boolOptions"
-                name="showIsSafePhone"
-                
+
               ></b-form-radio-group>
             </b-form-group>
           </b-col>
@@ -106,7 +106,7 @@
       :address="entity.address"
       showOrgName
     ></entity-address>
-    
+
      <b-form-group v-if="showPostalAddessSame">
               <b-form-checkbox
                 id="postalAddressSame"
@@ -118,17 +118,17 @@
                 {{ postalAddessSameLabel}}
               </b-form-checkbox>
             </b-form-group>
-            
+
 
     <entity-address
       v-if="showPostalAddress && !entity.postalAddressSame"
       :addressLabel="postalAddressLabel"
       :address="entity.postalAddress"
     ></entity-address>
-    
-    
-    
-    
+
+
+
+
     <b-form-group
       v-if="showIsSafePostalAddress"
       :label="safePostalAddressLabel"
@@ -273,7 +273,7 @@ preferredContactLabel: {
       type: Boolean,
       default: false,
     },
-    
+
   },
   data() {
     return {
