@@ -128,15 +128,20 @@
                 class="mb-2 courts pl-3 mb-4"
               >
                 <div v-if="form.problem.criminalLaw.courts.length > 0">
-                  <strong>Court {{ index + 1 }}</strong
-                  ><b-button
-                    variant="link"
-                    class="p-0"
-                    @click.prevent="removeCriminalLawCourt(index)"
-                    v-b-tooltip.hover
-                    title="Remove"
-                    ><b-icon icon="x-circle"
-                  /></b-button>
+                  <b-row>
+                    <b-col cols="6">
+                      <strong>Court {{ index + 1 }}</strong>
+                    </b-col>
+                    <b-col cols="6" class="text-right">
+                      <b-button
+                        variant="link"
+                        class="p-0"
+                        @click.prevent="removeCriminalLawCourt(index)"
+                        v-b-tooltip.hover
+                        title="Remove"
+                      ><b-icon icon="x-circle"/></b-button>
+                    </b-col>
+                  </b-row>
                 </div>
 
                 <court
@@ -764,15 +769,13 @@ import Court from "./court.vue";
 import Entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
+
+import laap from '@/mixins/laap.js';
+
 export default {
   name: "problem",
   components: { Entity, Court, Notice, EntityAddress },
-  props: {
-    form: {
-      type: Object,
-      default: () => ({}),
-    },
-  },
+  mixins: [laap],
   data() {
     return {
       boolOptions: [
@@ -794,44 +797,6 @@ export default {
         "Unsure",
       ],
     };
-  },
-  computed: {
-    youString: function () {
-      return this.form.repType === "self" ? "you" : "the Applicant";
-    },
-    yourString: function () {
-      return this.form.repType === "self" ? "your" : "the Applicant's";
-    },
-    AreYouString: function () {
-      return this.form.repType === "self" ? "are you" : "is the Applicant";
-    },
-    DoYouString: function () {
-      return this.form.repType === "self" ? "do you" : "is the Applicant";
-    },
-    DoYouStringCont: function () {
-      return this.form.repType === "self" ? "do you" : "does the Applicant";
-    },
-    youAreString: function () {
-      return this.form.repType === "self" ? "you are" : "the Applicant is";
-    },
-    wereYouString: function () {
-      return this.form.repType === "self" ? "were you" : "was the Applicant";
-    },
-    AreYouString: function () {
-      return this.form.repType === "self" ? "are you" : "the Applicant is";
-    },
-    AreYouStringReverse: function () {
-      return this.form.repType === "self" ? "are you" : "is the Applicant";
-    },
-    additionalS: function () {
-      return this.form.repType === "self" ? "" : "s";
-    },
-    yoursString: function () {
-      return this.form.repType === "self" ? "yours" : "the Applicant/'s";
-    },
-    haveYouString: function () {
-      return this.form.repType === "self" ? "have you" : "has the Applicant";
-    },
   },
   methods: {
     addCriminalLawCourt() {
