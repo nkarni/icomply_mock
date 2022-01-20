@@ -535,7 +535,6 @@
               <entity
                 :form="form"
                 :entity="form.entities.otherParty"
-                idPrefix="applicant"
                 showAddress
                 showFirstName
                 showLastName
@@ -598,17 +597,32 @@
                 ></entity-address>
               </div>
 
-
-               <b-form-group :label=" haveYouString +  ' been to counselling/mediation or any family dispute resolution sessions with the person you are in dispute with? '">
+              <b-form-group
+                :label="
+                  haveYouString +
+                  ' been to counselling/mediation or any family dispute resolution sessions with the person you are in dispute with? '
+                "
+              >
                 <b-form-radio-group
                   stacked
                   v-model="form.problem.familyLaw.beenToCounseling"
                   :options="boolOptions"
                 ></b-form-radio-group>
-                <notice class="mb-4" v-if="form.problem.familyLaw.beenToCounseling === true" message="A copy of the family dispute resolution certificate will be required in the attachments step."></notice>
+                <notice
+                  class="mb-4"
+                  v-if="form.problem.familyLaw.beenToCounseling === true"
+                  message="A copy of the family dispute resolution certificate will be required in the attachments step."
+                ></notice>
               </b-form-group>
 
-              <b-form-group :label=" AreYouString + ' or ' + haveYouString +  ' been married the person you are in dispute with? '">
+              <b-form-group
+                :label="
+                  AreYouString +
+                  ' or ' +
+                  haveYouString +
+                  ' been married the person you are in dispute with? '
+                "
+              >
                 <b-form-radio-group
                   stacked
                   v-model="form.problem.familyLaw.marriedToOtherParty"
@@ -616,60 +630,131 @@
                 ></b-form-radio-group>
               </b-form-group>
               <div v-if="form.problem.familyLaw.marriedToOtherParty === true">
-              <b-form-group :label="'Marriage date'">
-                <b-form-datepicker
-                  v-model="form.problem.familyLaw.marriageDate"
-                  class="mb-2"
-                ></b-form-datepicker>
-              </b-form-group>
-              <b-form-group :label="'Separation date'">
-                <b-form-datepicker
-                  v-model="form.problem.familyLaw.SeparationDate"
-                  class="mb-2"
-                ></b-form-datepicker>
-              </b-form-group>
-              <b-form-group :label="'Divorce date'">
-                <b-form-datepicker
-                  v-model="form.problem.familyLaw.DivorceDate"
-                  class="mb-2"
-                ></b-form-datepicker>
-              </b-form-group>
+                <b-form-group :label="'Marriage date'">
+                  <b-form-datepicker
+                    v-model="form.problem.familyLaw.marriageDate"
+                    class="mb-2"
+                  ></b-form-datepicker>
+                </b-form-group>
+                <b-form-group :label="'Separation date'">
+                  <b-form-datepicker
+                    v-model="form.problem.familyLaw.SeparationDate"
+                    class="mb-2"
+                  ></b-form-datepicker>
+                </b-form-group>
+                <b-form-group :label="'Divorce date'">
+                  <b-form-datepicker
+                    v-model="form.problem.familyLaw.DivorceDate"
+                    class="mb-2"
+                  ></b-form-datepicker>
+                </b-form-group>
               </div>
               <div v-if="form.problem.familyLaw.marriedToOtherParty === false">
-
-                <b-form-group :label=" wereYouString + ' in a de-facto relationship with the person you are in dispute with? '">
-                <b-form-radio-group
-                  stacked
-                  v-model="form.problem.familyLaw.defacto"
-                  :options="boolOptions"
-                ></b-form-radio-group>
+                <b-form-group
+                  :label="
+                    wereYouString +
+                    ' in a de-facto relationship with the person you are in dispute with? '
+                  "
+                >
+                  <b-form-radio-group
+                    stacked
+                    v-model="form.problem.familyLaw.defacto"
+                    :options="boolOptions"
+                  ></b-form-radio-group>
                 </b-form-group>
 
                 <div v-if="form.problem.familyLaw.defacto === true">
-                    <b-form-group :label="'Date relationship started'">
-                      <b-form-datepicker
-                        v-model="form.problem.familyLaw.relationshipStartDate"
-                        class="mb-2"
-                      ></b-form-datepicker>
-                    </b-form-group>
-                    <b-form-group :label="'Separation date'">
-                      <b-form-datepicker
-                        v-model="form.problem.familyLaw.SeparationDate"
-                        class="mb-2"
-                      ></b-form-datepicker>
-                    </b-form-group>
+                  <b-form-group :label="'Date relationship started'">
+                    <b-form-datepicker
+                      v-model="form.problem.familyLaw.relationshipStartDate"
+                      class="mb-2"
+                    ></b-form-datepicker>
+                  </b-form-group>
+                  <b-form-group :label="'Separation date'">
+                    <b-form-datepicker
+                      v-model="form.problem.familyLaw.SeparationDate"
+                      class="mb-2"
+                    ></b-form-datepicker>
+                  </b-form-group>
                 </div>
-
-
               </div>
-              
-
-
-
             </b-col>
           </b-row>
         </section>
       </div>
+    </div>
+    <!-- Civic law section -->
+    <div v-if="form.problem.problemType.includes('Civil/General Law problem')">
+      <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Civic/General Law</h6>
+            <p>For example:</p>
+<ul>
+<li>What the legal problem is</li>
+<li>How is involved and how they are involved</li>
+<li>How and when the legal problem started</li>
+<li>What has happened since then</li>
+<li>Financial details (if you don't receive any income)</li>
+<li>Any special circumstances that apply to your situation</li>
+</ul>
+          </b-col>
+          <b-col>
+            <b-form-group :label="DoYouStringCont + ' have to go to a'">
+              <b-form-radio-group
+                stacked
+                v-model="form.problem.civicLaw.haveToGoto"
+                :options="['Court','Tribunal']"
+              ></b-form-radio-group>
+            </b-form-group>
+
+            <!-- Civic law court details -->
+            <div v-if="form.problem.civicLaw.haveToGoto === 'Court'">
+              <b-form-group label="Which court?">
+                <b-form-select
+                  v-model="form.problem.civicLaw.courtType"
+                  :options="['Select one from civic courts options']"
+                ></b-form-select>
+              </b-form-group>
+
+              <b-form-group label="Which suburb/town?">
+                <b-form-select
+                  v-model="form.problem.civicLaw.courtTown"
+                  :options="[
+                    'Options will cascade from the selected court option ',
+                  ]"
+                ></b-form-select>
+              </b-form-group>
+
+              <b-form-group label="Court File Number">
+                <b-form-input
+                  v-model="form.problem.familyLaw.courtFileNumber"
+                ></b-form-input>
+              </b-form-group>
+
+              <b-form-group
+                :label="'When is ' + yourString + ' next court date (if known)'"
+              >
+                <b-form-datepicker
+                  v-model="form.problem.civicLaw.nextDate"
+                  class="mb-2"
+                ></b-form-datepicker>
+              </b-form-group>
+
+              <b-form-group
+                :label="'What is the next Court date for? e.g. mentions, committal, trial'"
+              >
+                <b-form-textarea
+                  v-model="form.problem.civicLaw.nextDateReason"
+                  rows="3"
+                  max-rows="6"
+                ></b-form-textarea>
+              </b-form-group>
+            </div>
+
+          </b-col>
+        </b-row>
+      </section>
     </div>
   </div>
 </template>

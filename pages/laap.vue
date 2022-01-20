@@ -753,8 +753,25 @@ export default {
                 DivorceDate: '',
                 inDefacto: null,
                 relationshipStartDate: ''
-
-
+          },
+          civicLaw: {
+            haveToGoto: null,
+                courtType: null,
+                courtTown: null,
+                nextDate: "",
+                nextDateReason: "",
+                courtFileNumber: '',
+               
+               
+                wantsToAppeal: null,
+                appealDetails: '',
+                appealCourtType: '',
+                appealCourtTown: '',
+                appealCourtDate: '',
+                problemType: [],
+               
+                problemDetails: '' ,
+               
           },
         },
       },
