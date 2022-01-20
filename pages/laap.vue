@@ -82,7 +82,7 @@
             <h5>The legal problem</h5>
             <span>Information about the legal help needed</span>
           </template>
-          <laap-applicant-details :form="form"></laap-applicant-details>
+          <problem :form="form"></problem>
         </b-tab>
 
         <b-tab
@@ -124,28 +124,29 @@
       </b-col>
     </b-row>
 
-    
-<b-row class="mt-4">
+    <b-row class="mt-4">
       <b-col cols="12">
         <b-card>
-      <p>Validation information:</p>
-      <ul>
-        <li>
-          All visible fields are mandatory unless they are marked as optional
-        </li>
-        <li>
-          At least one contact method is required (email, phone or address ? )
-          if showing
-        </li>
-        <li>
-          all number fields will be validated as integers, except when it is
-          currency field (it will allow a decimal)
-        </li>
-        <li>
-          CRN number validated as 9 digits and 1 letter, DVA number is 8 digits.
-          Either a CRN number or DVA number is mandatory (if showing)
-        </li>
-      </ul>
+          <p>Validation information:</p>
+          <ul>
+            <li>
+              All visible fields are mandatory unless they are marked as
+              optional
+            </li>
+            <li>
+              At least one contact method is required (email, phone or address ?
+              ) if showing
+            </li>
+            <li>
+              all number fields will be validated as integers, except when it is
+              currency field (it will allow a decimal)
+            </li>
+            <li>
+              CRN number validated as 9 digits and 1 letter, DVA number is 8
+              digits. Either a CRN number or DVA number is mandatory (if
+              showing)
+            </li>
+          </ul>
         </b-card>
       </b-col>
     </b-row>
@@ -153,6 +154,7 @@
       <b-col cols="12">
         <b-card>
           <p>Current data:</p>
+          <pre>{{ form.problem.criminalLaw.appealCourts }}</pre>
           <pre>{{ form }}</pre>
         </b-card>
       </b-col>
@@ -162,9 +164,11 @@
 
 <script>
 import notice from "../components/laap/notice.vue";
+import Problem from '../components/laap/problem.vue';
 export default {
-  components: { notice },
-  layout: "user",
+  components: { notice , Problem},
+  layout:
+     "user",
 
   data() {
     return {
@@ -531,6 +535,119 @@ export default {
               gaveAwayMoneyOrPropertyDetails: "",
             },
           },
+          otherParty: {
+          firstName: "",
+          lastName: "",
+          crn: "",
+          relationshipToApplicant: "",
+          lawyerFirstName: '',
+          lawyerLastName: '',
+          hasLawyer: null,
+          lawyerFirm: '',
+          lawyerAddress: {
+            line1: "",
+              line2: "",
+              suburb: "",
+              postcode: "",
+              state: "",
+              country: "",
+          }
+          
+          },
+          incomeAssets: {
+            employmentType: null,
+            isPrimaryProducer: null,
+            netWeeklyEarning: "",
+            usualJob: "",
+            lasWorked: "",
+            noIncomeExplanation: "",
+            incomePayments: [
+              {
+                type: "Child support",
+                frequency: "",
+                amount: "",
+              },
+              {
+                type: "Rent received",
+                frequency: "",
+                amount: "",
+              },
+              {
+                type: "Workess compensation",
+                frequency: "",
+                amount: "",
+              },
+              {
+                type: "Superannuation",
+                frequency: "",
+                amount: "",
+              },
+              {
+                type: "Income from Trusts",
+                frequency: "",
+                amount: "",
+              },
+              {
+                type: "Spousal maintenance",
+                frequency: "",
+                amount: "",
+              },
+              {
+                type: "Other",
+                frequency: "",
+                amount: "",
+              },
+            ],
+            expensePayments: [
+              {
+                type: "Rent/Board",
+                frequency: "",
+                amount: "",
+              },
+              {
+                type: "Mortgage",
+                frequency: "",
+                amount: "",
+              },
+              {
+                type: "Rates",
+                frequency: "",
+                amount: "",
+              },
+              {
+                type: "Childcare fees",
+                frequency: "",
+                amount: "",
+              },
+              {
+                type: "Child support",
+                frequency: "",
+                amount: "",
+              },
+              {
+                type: "Spousal maintenance",
+                frequency: "",
+                amount: "",
+              },
+            ],
+            hasVehicles: null,
+            vehicles: [
+              {
+                make: "",
+                model: "",
+                year: "",
+                value: "",
+                owing: "",
+              },
+            ],
+            bankBalance: "",
+            hasInvestments: null,
+            investmentsValue: "",
+            hasLegalFeesBeenPaid: null,
+            hasLegalFeesBeenPaidDetails: "",
+            gaveAwayMoneyOrProperty: null,
+            gaveAwayMoneyOrPropertyDetails: "",
+          },
         },
 
         repRelation: "",
@@ -540,101 +657,106 @@ export default {
         authToDiscloseGivenName: "",
         authToDiscloseLastName: "",
         authToDiscloseContactDetail: "",
+        problem: {
+          preferredLawyerType: "",
+          preferredLawyerDetails: "",
+          preferredLawyer: {
+            orgName: "",
+            firstName: "",
+            lastName: "",
+            email: "",
+            phones: [
+              {
+                type: "",
+                number: "",
+                isSafe: null,
+              },
+            ],
+          },
+          lawyerOrgName: "",
+          problemType: [],
+          criminalLaw: {
+            haveToGoCourt: null,
+            courts: [
+              {
+                courtType: null,
+                courtTown: null,
+                nextDate: "",
+                nextDateReason: "",
+                offenses: "",
+                offenceDetails: "",
+                victims: [
+                  {
+                    firstName: "",
+                    lastName: "",
+                  },
+                ],
+                hasOtherCharged: null,
+                othersCharged: [{ firstName: "", lastName: "" }],
+              },
+            ],
+            hasParoleBoard: null,
+            paroleBoards: [
+              {
+                date: "",
+                details: "",
+              },
+            ],
+            appealingAgainst: [],
+            appealCourts: [
+              {
+                courtType: null,
+                courtTown: null,
+                nextDate: "",
+                nextDateReason: "",
+                offenses: "",
+                offenceDetails: "",
+                victims: [
+                  {
+                    firstName: "",
+                    lastName: "",
+                  },
+                ],
+                hasOtherCharged: null,
+                othersCharged: [{ firstName: "", lastName: "" }],
+              },
+            ],
+            hasCriminalRecord: '',
+            policeTakenBelonging: null
+           
+          },
+          familyLaw: {
+            haveToGoto: null,
+                courtType: null,
+                courtTown: null,
+                nextDate: "",
+                nextDateReason: "",
+                courtFileNumber: '',
+                conferenceDate: '',
+                otherPartyFirstName: '',
+                otherPartyLastName: '',
+                isClcInvolved: null,
+                whichClc: '',
+                wantsToAppeal: null,
+                appealDetails: '',
+                appealCourtType: '',
+                appealCourtTown: '',
+                appealCourtDate: '',
+                problemType: [],
+                policeAppliedForIntervention: null,
+                policeInterventionDetails: '',
+                problemDetails: '' ,
+                beenToCounseling: null,
+                marriedToOtherParty: null,
+                marriageDate: '',
+                SeparationDate: '',
+                DivorceDate: '',
+                inDefacto: null,
+                relationshipStartDate: ''
 
-        // incomeAssets: {
-        //   employmentType: null,
-        //   isPrimaryProducer: null,
-        //   netWeeklyEarning: "",
-        //   usualJob: "",
-        //   lasWorked: "",
-        //   noIncomeExplanation: "",
-        //   incomePayments: [
-        //     {
-        //       type: "Child support",
-        //       frequency: "",
-        //       amount: "",
-        //     },
-        //     {
-        //       type: "Rent received",
-        //       frequency: "",
-        //       amount: "",
-        //     },
-        //     {
-        //       type: "Workess compensation",
-        //       frequency: "",
-        //       amount: "",
-        //     },
-        //     {
-        //       type: "Superannuation",
-        //       frequency: "",
-        //       amount: "",
-        //     },
-        //     {
-        //       type: "Income from Trusts",
-        //       frequency: "",
-        //       amount: "",
-        //     },
-        //     {
-        //       type: "Spousal maintenance",
-        //       frequency: "",
-        //       amount: "",
-        //     },
-        //     {
-        //       type: "Other",
-        //       frequency: "",
-        //       amount: "",
-        //     },
-        //   ],
-        //   expensePayments: [
-        //     {
-        //       type: "Rent/Board",
-        //       frequency: "",
-        //       amount: "",
-        //     },
-        //     {
-        //       type: "Mortgage",
-        //       frequency: "",
-        //       amount: "",
-        //     },
-        //     {
-        //       type: "Rates",
-        //       frequency: "",
-        //       amount: "",
-        //     },
-        //     {
-        //       type: "Childcare fees",
-        //       frequency: "",
-        //       amount: "",
-        //     },
-        //     {
-        //       type: "Child support",
-        //       frequency: "",
-        //       amount: "",
-        //     },
-        //     {
-        //       type: "Spousal maintenance",
-        //       frequency: "",
-        //       amount: "",
-        //     },
-        //   ],
-        //   hasVehicles: null,
-        //   vehicles: [
-        //     {
-        //       make: "",
-        //       model: "",
-        //       year: "",
-        //       value: "",
-        //       owing: "",
-        //     },
-        //   ],
-        //   bankBalance: "",
-        //   hasInvestments: null,
-        //   investmentsValue: "",
-        //   hasLegalFeesBeenPaid: null,
-        //   hasLegalFeesBeenPaidDetails: "",
-        //   gaveAwayMoneyOrProperty: null,
-        //   gaveAwayMoneyOrPropertyDetails: "",
-        // },
+
+          },
+        },
       },
       tabIndex: 2,
     };
