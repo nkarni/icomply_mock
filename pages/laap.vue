@@ -82,7 +82,7 @@
             <h5>The legal problem</h5>
             <span>Information about the legal help needed</span>
           </template>
-          <problem :form="form"></problem>
+          <laap-problem :form="form"></laap-problem>
         </b-tab>
 
         <b-tab
@@ -163,13 +163,8 @@
 </template>
 
 <script>
-import notice from "../components/laap/notice.vue";
-import Problem from '../components/laap/problem.vue';
 export default {
-  components: { notice , Problem},
-  layout:
-     "user",
-
+  layout: 'form',
   data() {
     return {
       form: {
