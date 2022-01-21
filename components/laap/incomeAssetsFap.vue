@@ -9,19 +9,20 @@
               <b-col>
                 <b-form-group :label="'Is ' + fapName + ' currently employed?'">
                   <b-form-radio-group
-                    v-model="form.entities.applicant.incomeAssets.employmentType"
+                  stacked
+                    v-model="form.entities.fap.incomeAssets.employmentType"
                     :options="['Employed', 'Self employed', 'Unemployed']"
                   ></b-form-radio-group>
                 </b-form-group>
 
                 <b-form-group
-                  v-if="form.entities.applicant.incomeAssets.employmentType === 'Self employed'"
+                  v-if="form.entities.fap.incomeAssets.employmentType === 'Self employed'"
                   :label="
                     'Is ' + fapName + ' a primary producer (farmer, grazier etc)?'
                   "
                 >
                   <b-form-radio-group
-                    v-model="form.entities.applicant.incomeAssets.isPrimaryProducer"
+                    v-model="form.entities.fap.incomeAssets.isPrimaryProducer"
                     :options="boolOptions"
                   ></b-form-radio-group>
                 </b-form-group>
@@ -29,17 +30,17 @@
                 <b-form-group
                   label="Net weekly wages or earnings"
                   description="The amount paid after tax, the cash income."
-                  v-if="form.entities.applicant.incomeAssets.employmentType !== 'Unemployed'"
+                  v-if="form.entities.fap.incomeAssets.employmentType !== 'Unemployed'"
                 >
                 <b-input-group  prepend="$" >
                   <b-form-input
-                    v-model="form.entities.applicant.incomeAssets.benefitsAmount"
+                    v-model="form.entities.fap.incomeAssets.benefitsAmount"
                   ></b-form-input>
                 </b-input-group>
                 </b-form-group>
 
                 <notice class="mb-4"
-                  v-if="form.entities.applicant.incomeAssets.employmentType === 'Employed'"
+                  v-if="form.entities.fap.incomeAssets.employmentType === 'Employed'"
                   :message="
                     'A copy of their' +
                     ' last 4 payslips will be required in the attachments page.'
@@ -47,7 +48,7 @@
                 ></notice>
 
                 <notice class="mb-4"
-                  v-if="form.entities.applicant.incomeAssets.employmentType === 'Self employed'"
+                  v-if="form.entities.fap.incomeAssets.employmentType === 'Self employed'"
                   :message="
                     'A copy of ' +
                     'their' +
@@ -57,10 +58,10 @@
 
                 <b-form-group
                   :label="fapName + '\'s usual job'"
-                  v-if="form.entities.applicant.incomeAssets.employmentType === 'Employed'"
+                  v-if="form.entities.fap.incomeAssets.employmentType === 'Employed'"
                 >
                   <b-form-select
-                    v-model="form.entities.applicant.incomeAssets.usualJob"
+                    v-model="form.entities.fap.incomeAssets.usualJob"
                     :options="usualJobOption"
                   ></b-form-select>
                 </b-form-group>
@@ -70,9 +71,9 @@
                     'When did they last do paid work? (optional)'
                   "
                   description="Enter the month and year."
-                  v-if="form.entities.applicant.incomeAssets.employmentType === 'Unemployed'"
+                  v-if="form.entities.fap.incomeAssets.employmentType === 'Unemployed'"
                 >
-                  <b-form-input v-model="form.entities.applicant.incomeAssets"></b-form-input>
+                  <b-form-input v-model="form.entities.fap.incomeAssets.lasWorked"></b-form-input>
                 </b-form-group>
 
                 <b-form-group
@@ -96,7 +97,7 @@
                     </thead>
                     <tbody>
                       <tr
-                        v-for="(income, index) of form.entities.applicant.incomeAssets
+                        v-for="(income, index) of form.entities.fap.incomeAssets
                           .incomePayments"
                         :key="index"
                         v-bind:id="index"
@@ -125,7 +126,7 @@
                   description="This field is mandatory if no other income was indicated."
                 >
                   <b-form-input
-                    v-model="form.entities.applicant.incomeAssets.noIncomeExplanation"
+                    v-model="form.entities.fap.incomeAssets.noIncomeExplanation"
                   ></b-form-input>
                 </b-form-group>
               </b-col>
@@ -155,7 +156,7 @@
                     </thead>
                     <tbody>
                       <tr
-                        v-for="(expense, index) of form.entities.applicant.incomeAssets
+                        v-for="(expense, index) of form.entities.fap.incomeAssets
                           .expensePayments"
                         :key="index"
                         v-bind:id="index"
@@ -198,7 +199,7 @@
                   "
                 >
                   <b-form-radio-group
-                    v-model="form.entities.applicant.incomeAssets.hasVehicles"
+                    v-model="form.entities.fap.incomeAssets.hasVehicles"
                     :options="boolOptions"
                   ></b-form-radio-group>
                 </b-form-group>
@@ -208,7 +209,7 @@
               <b-col>
                 <b-form-group
                   :label="'Please list their vehicles'"
-                  v-if="form.entities.applicant.incomeAssets.hasVehicles === true"
+                  v-if="form.entities.fap.incomeAssets.hasVehicles === true"
                 >
                   <table class="table table-bordered">
                     <thead>
@@ -223,7 +224,7 @@
                     </thead>
                     <tbody>
                       <tr
-                        v-for="(car, index) of form.entities.applicant.incomeAssets.vehicles"
+                        v-for="(car, index) of form.entities.fap.incomeAssets.vehicles"
                         :key="index"
                         v-bind:id="index"
                       >
@@ -285,7 +286,7 @@
                 >
                 <b-input-group  prepend="$" >
                   <b-form-input
-                    v-model="form.entities.applicant.incomeAssets.bankBalance"
+                    v-model="form.entities.fap.incomeAssets.bankBalance"
                   ></b-form-input>
                 </b-input-group>
                 </b-form-group>
@@ -297,7 +298,7 @@
                   "
                 >
                   <b-form-radio-group
-                    v-model="form.entities.applicant.incomeAssets.hasInvestments"
+                    v-model="form.entities.fap.incomeAssets.hasInvestments"
                     :options="boolOptions"
                   ></b-form-radio-group>
                 </b-form-group>
@@ -305,11 +306,11 @@
                 <b-form-group
                   :label="'Please provide net value if sold today'"
                   description="Enter combined total."
-                  v-if="form.entities.applicant.incomeAssets.hasInvestments"
+                  v-if="form.entities.fap.incomeAssets.hasInvestments"
                 >
                 <b-input-group  prepend="$" >
                   <b-form-input
-                    v-model="form.entities.applicant.incomeAssets.investmentsValue"
+                    v-model="form.entities.fap.incomeAssets.investmentsValue"
                   ></b-form-input>
                 </b-input-group>
                 </b-form-group>
@@ -322,7 +323,7 @@
                   "
                 >
                   <b-form-radio-group
-                    v-model="form.entities.applicant.incomeAssets.gaveAwayMoneyOrProperty"
+                    v-model="form.entities.fap.incomeAssets.gaveAwayMoneyOrProperty"
                     :options="boolOptions"
                   ></b-form-radio-group>
                 </b-form-group>
@@ -330,7 +331,7 @@
     
                 <b-form-group label="Please provide details">
                   <b-form-textarea
-                    v-model="form.entities.applicant.incomeAssets.gaveAwayMoneyOrPropertyDetails"
+                    v-model="form.entities.fap.incomeAssets.gaveAwayMoneyOrPropertyDetails"
                     rows="3"
                     max-rows="6"
                   ></b-form-textarea>

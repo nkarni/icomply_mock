@@ -432,7 +432,7 @@
           ]"
         >
 <income-assets-applicant :form="form"></income-assets-applicant>
-<income-assets-fap v-if="form.entities.applicant.hasFap" :form="form" ></income-assets-fap>
+<income-assets-fap v-if="form.entities.applicant.details.hasFap" :form="form" ></income-assets-fap>
         </b-tab>
       </b-tabs>
     </b-form>

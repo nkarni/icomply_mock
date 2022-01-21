@@ -67,7 +67,7 @@
           ></notice>
 
           <b-form-group
-            :label="yourString + 'usual job'"
+            :label="yourString + ' usual job'"
             v-if="
               form.entities.applicant.incomeAssets.employmentType === 'Employed'
             "
@@ -87,7 +87,7 @@
             "
           >
             <b-form-input
-              v-model="form.entities.applicant.incomeAssets"
+              v-model="form.entities.applicant.incomeAssets.lasWorked"
             ></b-form-input>
           </b-form-group>
 

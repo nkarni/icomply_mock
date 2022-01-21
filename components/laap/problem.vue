@@ -914,12 +914,14 @@
                 v-model="form.problem.dcp.hasDcpDocuments"
                 :options="boolOptions"
               ></b-form-radio-group>
+              <notice v-if="form.problem.dcp.hasDcpDocuments === true" message="Upload these documents in the attachments step"></notice>
             </b-form-group>
 
 
           </b-col>
         </b-row>
       </section>
+      
     </div>
   </div>
 </template>

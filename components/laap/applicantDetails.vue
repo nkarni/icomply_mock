@@ -120,9 +120,7 @@
                 label="If no LSC file number is provided, please provide covering letter details (or you can upload a document in the uploads section)"
               >
                 <b-form-textarea
-                  id="entities.applicant.details.lscFileNumberDetails"
-                  name="entities.applicant.details.lscFileNumberDetails"
-                  v-model="form.entities.applicant.details.lscFileNumberDetails"
+                  v-model="form.coverLetterDetails"
                   rows="3"
                   max-rows="6"
                 ></b-form-textarea>

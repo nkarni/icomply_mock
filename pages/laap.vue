@@ -170,7 +170,7 @@ export default {
       form: {
         repType: "",
         isLscPanelMember: null,
-        prevRepresented: "",
+        prevRepresented: null,
         repSolicitorOrgName: "",
         entities: {
           repSolicitor: {
@@ -781,6 +781,7 @@ export default {
             hasDcpDocuments: null,
           }
         },
+        coverLetterDetails: ''
       },
       tabIndex: 2,
     };
