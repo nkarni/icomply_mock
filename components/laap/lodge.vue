@@ -22,11 +22,8 @@
           </ul>
           In order to evaluate our service, your name and telephone number may
           be provided to an organisation to undertake a client survey.
-          <b-form-group>
-            <b-form-checkbox :value="true" :unchecked-value="false">
-              If you object, please tick
-            </b-form-checkbox>
-          </b-form-group>
+          If you object, please tick here: <input type="checkbox" v-model="form.objectToConfidentiality" class="" value="true" >
+         <br><br>
         </b-col>
       </b-row>
     </section>
@@ -38,7 +35,7 @@
         </b-col>
         <b-col>
           <p>
-        If You Need More Information once you accept legal aid, the conditions
+        If you need More information once you accept legal aid, the conditions
         of aid will apply to you whether or not you agree with them or
         understand them.
       </p>
@@ -68,44 +65,55 @@
           or mislead LSC.&nbsp;
         </li>
       </ul>
-      <p>
-        
-      </p>
-          <b-form-group>
-            <b-form-checkbox :value="true" :unchecked-value="false">
-              I have read the confidentiality statement and conditions of legal aid.
-        All the information I have given is true and correct. 
-            </b-form-checkbox>
-          </b-form-group>
+        <b-form-checkbox
+                    v-model="form.agreeToTerms"
+                    :value="true"
+                    :unchecked-value="false"
+                  >
+                    I have read the confidentiality statement and conditions of legal aid. All the information I have given is true and correct. 
+                  </b-form-checkbox>
+
+          
         </b-col>
       </b-row>
     </section>
 
-    <div>
-      <p>APPLICANT DECLARATION</p>
-      
-    </div>
-
-    <div>
-      <p>SOLICITOR&rsquo;S CERTIFICATE</p>
-      <p>
+    <section class="border-bottom border-secondary mb-4 pb-2" v-if="form.repType==='solicitor'">
+      <b-row>
+        <b-col cols="4">
+          <h6>Solicitor's Certificate</h6>
+        </b-col>
+        <b-col>
+          <p>
         If this application is made through a solicitor, this certificate must
         be completed. If not, it may be interpreted as an expression of opinion
         that the application has no merit.
       </p>
-      <p>
-        I [Name], of the firm of [Firm] of [Address] verify that the applicant
+      <b-form-group>
+       <b-form-checkbox
+                    v-model="form.agreeToTerms"
+                    :value="true"
+                    :unchecked-value="false"
+                  >
+                    I {{ form.entities.repSolicitor.firstName }} {{ form.entities.repSolicitor.lastName }}, of the firm of {{ form.entities.repSolicitor.orgName }} of {{ form.entities.repSolicitor.address.line1 }} 
+        {{ form.entities.repSolicitor.address.line2 }} {{ form.entities.repSolicitor.address.suburb }} {{ form.entities.repSolicitor.address.state }} {{ form.entities.repSolicitor.address.postcode }} {{ form.entities.repSolicitor.address.country }} 
+        verify that the applicant
         has consulted me and I am of the opinion that this application has legal
-        merit and/or is otherwise deserving of aid. Auto-populate [Name] and
-        [Firm] from the profile Mandatory to tick the check box if answer to
-        question 1 on Applicant Details tab is &ldquo;I am the applicant&rsquo;s
-        solicitor&rdquo;
-      </p>
-    </div>
+        merit and/or is otherwise deserving of aid.
+                  </b-form-checkbox>
+      </b-form-group>
+     
+        </b-col>
+      </b-row>
+    </section>
 
-    <div>
-      <p>ON BEHARF OF APPLICANT</p>
-      <p>I acknowledge it is an offence to:</p>
+   <section class="border-bottom border-secondary mb-4 pb-2" v-if="form.repType==='other'">
+      <b-row>
+        <b-col cols="4">
+          <h6>On behalf of the Applicant</h6>
+        </b-col>
+        <b-col>
+          <p>I acknowledge it is an offence to:</p>
       <ul>
         <li>
           Make a false or misleading statement when applying for legal aid
@@ -116,13 +124,29 @@
           or mislead LSC.&nbsp;
         </li>
       </ul>
-      <p>
-        I have read the confidentiality statement and conditions of legal aid.
-        All the information I have given is true and correct. Mandatory to tick
-        the check box if answer to question 1 on Applicant Details tab is
-        &ldquo;I am applying on behalf of the applicant&rdquo;
-      </p>
+      <b-form-group>
+ <b-form-checkbox
+                    v-model="form.agreeToTerms"
+                    :value="true"
+                    :unchecked-value="false"
+                  >
+                    I have read the confidentiality statement and conditions of legal aid. All the information I have given is true and correct. 
+                  </b-form-checkbox>
+      </b-form-group>
+ 
+        </b-col>
+      </b-row>
+   </section>
+
+    <b-row>
+      <b-col class="text-center mt-3">
+<b-button  variant="primary">Lodge the Application</b-button>
+      </b-col>
+    </b-row>
+
     </div>
+
+  
   </div>
 </template>
 

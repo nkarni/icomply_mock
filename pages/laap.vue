@@ -781,7 +781,9 @@ export default {
             hasDcpDocuments: null,
           }
         },
-        coverLetterDetails: ''
+        coverLetterDetails: '',
+        agreeToTerms: null,
+        objectToConfidentiality: null
       },
       tabIndex: 2,
     };

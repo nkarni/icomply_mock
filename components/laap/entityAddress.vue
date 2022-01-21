@@ -49,7 +49,7 @@
         <b-form-input
           :id="idPrefix + '-Suburb'"
           :name="idPrefix + '-Suburb'"
-          v-model="address.Suburb"
+          v-model="address.suburb"
         ></b-form-input>
       </b-form-group>
       <b-row>
@@ -58,7 +58,7 @@
             <b-form-input
               :id="idPrefix + '-Postcode'"
               :name="idPrefix + '-Postcode'"
-              v-model="address.Postcode"
+              v-model="address.postcode"
             ></b-form-input>
           </b-form-group>
         </b-col>
@@ -67,7 +67,7 @@
             <b-form-input
               :id="idPrefix + '-State'"
               :name="idPrefix + '-State'"
-              v-model="address.State"
+              v-model="address.state"
             ></b-form-input>
           </b-form-group>
         </b-col>

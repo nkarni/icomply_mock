@@ -57,6 +57,7 @@
               showFirstName
               showLastName
               showEmail
+              showAddress
             >
             </entity>
           </b-col>
