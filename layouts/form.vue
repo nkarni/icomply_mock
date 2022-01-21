@@ -108,7 +108,7 @@
 
     <div class="w-100 text-center pt-1 pb-1 text-primary bg-lightblue">
       If you need help filling out this form or have any questions you
-      can call us on 1300 366424
+      can call us on 1300 366 424
     </div>
 
     <b-container class="mt-4">

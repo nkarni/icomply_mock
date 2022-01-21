@@ -38,7 +38,7 @@
                 </b-input-group>
                 </b-form-group>
 
-                <notice
+                <notice class="mb-4"
                   v-if="form.entities.applicant.incomeAssets.employmentType === 'Employed'"
                   :message="
                     'A copy of their' +
@@ -46,7 +46,7 @@
                   "
                 ></notice>
 
-                <notice
+                <notice class="mb-4"
                   v-if="form.entities.applicant.incomeAssets.employmentType === 'Self employed'"
                   :message="
                     'A copy of ' +
@@ -344,8 +344,10 @@
 </template>
 
 <script>
+import Notice from "./notice.vue";
 export default {
   name: "incomeAssetsFap",
+  components: {Notice},
   props: {
     form: {
       type: Object,
@@ -452,7 +454,7 @@ export default {
       });
     },
     removeCar(i) {
-       this.form.entities.applicant.incomeAssets.vehicles.splice(i);
+       this.form.entities.applicant.incomeAssets.vehicles.splice(i,1);
     },
   },
 };

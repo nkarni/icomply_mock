@@ -60,15 +60,23 @@
       class="mb-2 victims pl-4"
     >
       <div>
-        <strong>Alleged victim {{ index + 1 }}</strong
-        ><b-button
-          variant="link"
-          class="p-0"
-          @click.prevent="removeVictim(index)"
-          v-b-tooltip.hover
-          title="Remove"
-          ><b-icon icon="x-circle"
-        /></b-button>
+
+<b-row>
+                    <b-col cols="6">
+                      <strong>Alleged victim {{ index + 1 }}</strong>
+                    </b-col>
+                    <b-col cols="6" class="text-right">
+                      <b-button
+                        variant="link"
+                        class="p-0"
+                        @click.prevent="removeVictim(index)"
+                        v-b-tooltip.hover
+                        title="Remove"
+                      ><b-icon icon="x-circle"/></b-button>
+                    </b-col>
+                  </b-row>
+        
+        
       </div>
 
       <entity
@@ -103,15 +111,21 @@
         class="mb-2 victims pl-3"
       >
         <div>
-          <strong>Person {{ index + 1 }}</strong
-          ><b-button
-            variant="link"
-            class="p-0"
-            @click.prevent="removePersonCharged(index)"
-            v-b-tooltip.hover
-            title="Remove"
-            ><b-icon icon="x-circle"
-          /></b-button>
+<b-row>
+           <b-col cols="6">
+                      <strong>Person {{ index + 1 }}</strong>
+                    </b-col>
+                    <b-col cols="6" class="text-right">
+                      <b-button
+                        variant="link"
+                        class="p-0"
+                        @click.prevent="removePersonCharged(index)"
+                        v-b-tooltip.hover
+                        title="Remove"
+                      ><b-icon icon="x-circle"/></b-button>
+                    </b-col>
+                  </b-row>
+          
         </div>
 
         <entity
@@ -209,7 +223,7 @@ export default {
       this.court.othersCharged.push({ firstName: "", lastName: "" });
     },
     removePersonCharged(i) {
-      this.court.othersCharged.splice(i);
+      this.court.othersCharged.splice(i,1);
     },
   },
 };

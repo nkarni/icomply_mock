@@ -69,13 +69,15 @@
               ></b-form-input>
             </b-form-group>
           </b-col>
-          <b-col cols="1">
-            <i
-              @click.prevent="removePhone(index)"
-              v-b-tooltip.hover
-              title="Remove"
-              class="bi bi-x-circle fs-5 removeIcon"
-            ></i>
+          <b-col cols="1" class="align-middle">
+             <b-button
+                        variant="link"
+                        class="p-0 "
+                        @click.prevent="removePhone(index)"
+                        v-b-tooltip.hover
+                        title="Remove"
+                      ><b-icon icon="x-circle"/></b-button>
+            
           </b-col>
         </b-row>
         <b-row>
@@ -313,7 +315,7 @@ preferredContactLabel: {
       this.entity.phones.push({ type: "", number: "", isSafe: null });
     },
     removePhone(i) {
-      this.entity.phones.splice(i);
+      this.entity.phones.splice(i,1);
     },
     onAddressModalClose() {
       this.addressString = this.entity.addresses[0].join;

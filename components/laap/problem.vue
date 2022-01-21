@@ -179,15 +179,21 @@
                 class="mb-2 courts pl-3 mb-4"
               >
                 <div v-if="form.problem.criminalLaw.paroleBoards.length > 0">
-                  <strong>Parole Board {{ index + 1 }}</strong
-                  ><b-button
-                    variant="link"
-                    class="p-0"
-                    @click.prevent="removeCriminalLawParoleBoard(index)"
-                    v-b-tooltip.hover
-                    title="Remove"
-                    ><b-icon icon="x-circle"
-                  /></b-button>
+                  <b-row>
+                    <b-col cols="6">
+                      <strong>Parole Board {{ index + 1 }}</strong>
+                    </b-col>
+                    <b-col cols="6" class="text-right">
+                      <b-button
+                        variant="link"
+                        class="p-0"
+                        @click.prevent="removeCriminalLawParoleBoard(index)"
+                        v-b-tooltip.hover
+                        title="Remove"
+                      ><b-icon icon="x-circle"/></b-button>
+                    </b-col>
+                  </b-row>
+                 
                 </div>
 
                 <b-form-group
@@ -240,15 +246,20 @@
                 class="mb-2 courts pl-3 mb-4"
               >
                 <div v-if="form.problem.criminalLaw.appealCourts.length > 0">
-                  <strong>Court {{ index + 1 }}</strong
-                  ><b-button
-                    variant="link"
-                    class="p-0"
-                    @click.prevent="removeCriminalLawAppealCourt(index)"
-                    v-b-tooltip.hover
-                    title="Remove"
-                    ><b-icon icon="x-circle"
-                  /></b-button>
+                  <b-row>
+                    <b-col cols="6">
+                      <strong>Court {{ index + 1 }}</strong>
+                    </b-col>
+                    <b-col cols="6" class="text-right">
+                      <b-button
+                        variant="link"
+                        class="p-0"
+                        @click.prevent="removeCriminalLawAppealCourt(index)"
+                        v-b-tooltip.hover
+                        title="Remove"
+                      ><b-icon icon="x-circle"/></b-button>
+                    </b-col>
+                  </b-row>
                 </div>
 
                 <court
@@ -818,7 +829,7 @@ export default {
       });
     },
     removeCriminalLawCourt(i) {
-      this.form.problem.criminalLaw.courts.splice(i);
+      this.form.problem.criminalLaw.courts.splice(i,1);
     },
     addCriminalLawParoleBoard() {
       this.form.problem.criminalLaw.paroleBoards.push({
@@ -827,7 +838,7 @@ export default {
       });
     },
     removeCriminalLawParoleBoard(i) {
-      this.form.problem.criminalLaw.paroleBoards.splice(i);
+      this.form.problem.criminalLaw.paroleBoards.splice(i,1);
     },
     addCriminalLawAppealCourt() {
       this.form.problem.criminalLaw.appealCourts.push({
@@ -848,7 +859,7 @@ export default {
       });
     },
     removeCriminalLawAppealCourt(i) {
-      this.form.problem.criminalLaw.appealCourts.splice(i);
+      this.form.problem.criminalLaw.appealCourts.splice(i,1);
     },
   },
 };

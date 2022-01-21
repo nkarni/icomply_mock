@@ -171,7 +171,7 @@
                     :value="true"
                     :unchecked-value="false"
                   >
-                    {{ youString }} agree{{ additionalS }} to the above
+                    I agree{{ additionalS }} to the above
                   </b-form-checkbox>
                 </b-form-group>
 
@@ -263,8 +263,8 @@
                         class="form-text"
                         v-if="form.entities.fap.receivesBenefit === true"
                       >
-                        Note: a copy of their most recent Centrelink Income
-                        Statement may be required.
+                      <notice message="A copy of their most recent Centrelink Income Statement may be required."></notice>
+                        
                       </div>
                     </b-form-group>
 
@@ -283,6 +283,7 @@
                       v-if="form.entities.fap.receivesBenefit === true"
                     >
                       <b-form-checkbox-group
+                      stacked
                         id="fap.benefitsPaymentTypes"
                         v-model="form.entities.fap.benefitsPaymentTypes"
                         :options="benefitsOptions"

@@ -9,6 +9,7 @@
         <b-col>
           <b-form-group :label="AreYouString + ' currently employed?'">
             <b-form-radio-group
+            stacked
               v-model="form.entities.applicant.incomeAssets.employmentType"
               :options="['Employed', 'Self employed', 'Unemployed']"
             ></b-form-radio-group>
@@ -42,7 +43,7 @@
            </b-input-group>
           </b-form-group>
 
-          <notice
+          <notice class="mb-4"
             v-if="
               form.entities.applicant.incomeAssets.employmentType === 'Employed'
             "
@@ -53,7 +54,7 @@
             "
           ></notice>
 
-          <notice
+          <notice class="mb-4"
             v-if="
               form.entities.applicant.incomeAssets.employmentType ===
               'Self employed'
@@ -329,7 +330,6 @@
 
           <b-form-group
             :label="
-              'Has' +
               haveYouString +
               ' or any person or group paid any of ' +
               yourString +
@@ -344,7 +344,7 @@
             ></b-form-radio-group>
           </b-form-group>
 
-          <notice
+          <notice class="mb-4"
             v-if="form.entities.applicant.incomeAssets.hasLegalFeesBeenPaid"
             :form="form"
             message="A copy of the receipts will be required in the attachments step. "
@@ -391,8 +391,10 @@
 </template>
 
 <script>
+import Notice from "./notice.vue";
 export default {
   name: "incomeAssetsApplicant",
+  components: {Notice},
   props: {
     form: {
       type: Object,
@@ -495,7 +497,7 @@ export default {
       });
     },
     removeCar(i) {
-      this.form.entities.applicant.incomeAssets.vehicles.splice(i);
+      this.form.entities.applicant.incomeAssets.vehicles.splice(i,1);
     },
   },
 };
