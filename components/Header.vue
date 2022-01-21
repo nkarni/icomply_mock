@@ -14,7 +14,7 @@
 					 <b-navbar-brand to="/">
 				
 						<img
-            src="/LSC_Logo_cropped.png"
+            src="~/assets/img/LSC_Logo_cropped.png"
             alt="Legal Services Commission South Australia"
             style="height: 82px;"
 						v-if="this.$route.path"

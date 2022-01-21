@@ -5,7 +5,7 @@
         <div class="section">
           <h2 class="text-primary">
             <img
-              src="/LSC_Logo_cropped.png"
+              src="~/assets/img/LSC_Logo_cropped.png"
               alt="Legal Services Commission South Australia"
               style="height: 82px"
             /><br />
