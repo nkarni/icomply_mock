@@ -13,9 +13,9 @@
           to="/home"
         >
           <img
-            src="/LSC_Logo.png"
+            src="/LSC_Logo_cropped.png"
             alt="Legal Services Commission South Australia"
-            style="height: 60px;"
+            style="height: 50px;"
           >
         </router-link>
 

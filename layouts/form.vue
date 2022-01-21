@@ -6,17 +6,18 @@
     >
       <div class="container-md">
         <router-link
-          title="Mcgirr Technologies"
-          aria-label="Mcgirr Technologies"
+          title="Legal Services Commission South Australia"
+          aria-label="Legal Services Commission South Australia"
           target="_self"
           class="navbar-brand top-navbar--brand"
           to="/home"
         >
           <img
-            src="/LSC_Logo.png"
+            src="/LSC_Logo_cropped.png"
             alt="Legal Services Commission South Australia"
-            style="height: 60px;"
+            style="height: 50px;"
           >
+          
         </router-link>
 
         <b-navbar-toggle

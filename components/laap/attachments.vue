@@ -9,7 +9,7 @@
             a file, click on the pencil icon.
           </p>
           <notice
-            :message="'Prototype notes: <br>For the purpose of this mockup - not all functionality is enabled)<br>Click on comment icon will open a popup with a text area. When submitted a comment - it will be displayed below the file upload field (see example below).<br>Clicking on Add another {{ docType }} will add another file input in the same doc type row.'"
+            :message="'Prototype notes: <br>Not all functionality is enabled in the prototype.<br>Clicking on the comment icon will open a popup with a text area. When submitted a comment - it will be displayed below the file upload field (see example below).<br>Clicking on Add another {{ docType }} will add another file input in the same doc type row.'"
           ></notice>
           <small></small>
         </b-col>
@@ -67,7 +67,7 @@
 
                     <b-row v-if="file.comments">
                     <b-col >
-                      <notice :message="'Your comments: ' +  file.comments"></notice>
+                      <notice :message="'Your comments: ' +  file.comments" :borderClass="'blue'"></notice>
                       
                     </b-col>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="notice p-2" v-html="message"></div>
+  <div :class="borderClass + ' notice p-2'" v-html="message"></div>
 </template>
 
 <script>
@@ -9,6 +9,10 @@ export default {
     message: {
       type: String,
       default: ''
+    },
+     borderClass: {
+      type: String,
+      default: 'green'
     },
   },
   data() {
@@ -21,9 +25,15 @@ export default {
 
 <style  scoped >
 .notice{
-  border-left: 4px solid var(--success) !important;
+  
   background: var(--grey-100) !important;
   color: var(--grey-500) !important;
+}
+.green{
+  border-left: 4px solid var(--success) !important;
+}
+.blue{
+border-left: 4px solid var(--primary) !important;
 }
   
 </style>

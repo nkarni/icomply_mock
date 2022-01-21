@@ -6,7 +6,7 @@
           <b-col cols="4">
             <h6>Are you the Applicant?</h6>
             The Applicant is the person this form is about, If you are not the
-            Applicant please provide some details about yourself.NOTE: if you
+            Applicant please provide some details about yourself. NOTE: if you
             are not the Applicant but want to be contacted about this
             application please upload authority documentation in the uploads
             section, or use our <a href="">Authority to Disclose form</a>.
@@ -702,9 +702,6 @@
                   max-rows="6"
                 ></b-form-textarea>
               </b-form-group>
-
-
-
           </b-col>
         </b-row>
       </section>

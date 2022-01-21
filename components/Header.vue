@@ -12,12 +12,13 @@
 			<div class="container">
 				<NuxtLink to="/" class="navbar-brand">
 					 <b-navbar-brand to="/">
+				
 						<img
-							class="logo"
-							src="~/assets/img/logo-dark.svg"
-							alt="AI Bidet Logo"
-							v-if="this.$route.path"
-						>
+            src="/LSC_Logo_cropped.png"
+            alt="Legal Services Commission South Australia"
+            style="height: 82px;"
+						v-if="this.$route.path"
+          >
 					</b-navbar-brand>
 				</NuxtLink>
 

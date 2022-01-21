@@ -1,6 +1,6 @@
 <template>
   <div> 
-    <h6>Please read before completing your application</h6>
+    <h6>Please read before completing your application</h6><br>
     
     <b-row class="border-bottom border-secondary mb-4 pb-2">
       <b-col cols="4"><h6>Legal aid is not free</h6> </b-col>

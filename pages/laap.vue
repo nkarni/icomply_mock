@@ -1,10 +1,5 @@
 <template>
   <b-container>
-    <!-- <b-row>
-      <b-col class="text-center">
-        If you need help filling out this form or have any questions you can call us on 1 300 366 424
-      </b-col>
-    </b-row> -->
     <b-row>
       <b-col cols="12" md="6">
         <h3 class="text-primary">Application for Legal Aid</h3>
@@ -119,26 +114,32 @@
 
     <b-row class="mt-4">
       <b-col cols="12" class="text-right">
-        <b-button :disabled="tabIndex === 0" @click="tabIndex--">Prev</b-button>
-        <b-button :disabled="tabIndex === 5" @click="tabIndex++">Next</b-button>
+        <b-button v-if="tabIndex > 0"  @click="tabIndex--">Prev</b-button>
+        <b-button v-if="tabIndex < 5" @click="tabIndex++">Next</b-button>
       </b-col>
     </b-row>
 
     <b-row class="mt-4">
       <b-col cols="12">
         <b-card>
-          <p>Validation information:</p>
+          <p>Validation information and limitations of this mockup:</p>
           <ul>
+             <li>
+              The purpose of this prototype is to verify the logic of conditionally hidden fields, labels and text, and user flow. It does not apply validation.</li>
+              <li>
+The data is not saved in a database - the form data will reset every time the browser window is refreshed. When testing different use cases, it would be good to refresh the browser window and start with a fresh form when switching from on use case to another (to avoid confusion).
+              </li>
+
+             <li>
+              Each tab will be validated before the user can go to the next tab (this ensures they don't have to go back and forth to pass validation). This mockup doesn't affect validation however the rule is that All visible fields are mandatory unless they are marked as
+              optional. However, the following specific rules should be mentioned:
+            </li>
+            <ul>
             <li>
-              All visible fields are mandatory unless they are marked as
-              optional
+              At least one contact method is required (email, phone or address)  (applies to the Applicant's address only, or to all?)
             </li>
             <li>
-              At least one contact method is required (email, phone or address ?
-              ) if showing
-            </li>
-            <li>
-              all number fields will be validated as integers, except when it is
+              All number fields will be validated as integers, except when it is
               currency field (it will allow a decimal)
             </li>
             <li>
@@ -146,6 +147,18 @@
               digits. Either a CRN number or DVA number is mandatory (if
               showing)
             </li>
+            </ul>
+            <li>
+              The section below shows the data as it exists in the form and is updated in real time. The data structure is temporary and may be changed when actual development starts. However, I thought it may help you in seeing what data exists in the form as you test it. 
+            </li>
+            <li>
+              With regards to tabs navigation, the following two items will be completed when we build the site and do not work in the prototype because they depend on validation:
+              <ul>
+                <li>Tab navigation links will change colour depending on the state of that tab (currently open has blue tag, completed is in green, etc)</li>
+                <li>The next/previous button don't progress ot the inner tabs inside Eligibility step </li>
+                </ul>
+            </li>
+          
           </ul>
         </b-card>
       </b-col>
@@ -785,7 +798,7 @@ export default {
         agreeToTerms: null,
         objectToConfidentiality: null
       },
-      tabIndex: 2,
+      tabIndex: 0,
     };
   },
   mounted: function () {},
