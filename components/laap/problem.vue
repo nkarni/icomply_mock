@@ -127,7 +127,7 @@
                 v-bind:id="index"
                 class="mb-2 courts pl-3 mb-4"
               >
-                <div v-if="form.problem.criminalLaw.courts.length > 0">
+                <div v-if="form.problem.criminalLaw.courts.length > 1">
                   <b-row>
                     <b-col cols="6">
                       <strong>Court {{ index + 1 }}</strong>
@@ -139,7 +139,8 @@
                         @click.prevent="removeCriminalLawCourt(index)"
                         v-b-tooltip.hover
                         title="Remove"
-                      ><b-icon icon="x-circle"/></b-button>
+                        ><b-icon icon="x-circle"
+                      /></b-button>
                     </b-col>
                   </b-row>
                 </div>
@@ -178,7 +179,7 @@
                 v-bind:id="index"
                 class="mb-2 courts pl-3 mb-4"
               >
-                <div v-if="form.problem.criminalLaw.paroleBoards.length > 0">
+                <div v-if="form.problem.criminalLaw.paroleBoards.length > 1">
                   <b-row>
                     <b-col cols="6">
                       <strong>Parole Board {{ index + 1 }}</strong>
@@ -190,10 +191,10 @@
                         @click.prevent="removeCriminalLawParoleBoard(index)"
                         v-b-tooltip.hover
                         title="Remove"
-                      ><b-icon icon="x-circle"/></b-button>
+                        ><b-icon icon="x-circle"
+                      /></b-button>
                     </b-col>
                   </b-row>
-                 
                 </div>
 
                 <b-form-group
@@ -257,7 +258,8 @@
                         @click.prevent="removeCriminalLawAppealCourt(index)"
                         v-b-tooltip.hover
                         title="Remove"
-                      ><b-icon icon="x-circle"/></b-button>
+                        ><b-icon icon="x-circle"
+                      /></b-button>
                     </b-col>
                   </b-row>
                 </div>
@@ -699,74 +701,221 @@
         </section>
       </div>
     </div>
-    <!-- Civic law section -->
+    <!-- Civil law section -->
     <div v-if="form.problem.problemType.includes('Civil/General Law problem')">
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Civic/General Law</h6>
+            <h6>Civil/General Law</h6>
             <p>For example:</p>
-<ul>
-<li>What the legal problem is</li>
-<li>How is involved and how they are involved</li>
-<li>How and when the legal problem started</li>
-<li>What has happened since then</li>
-<li>Financial details (if you don't receive any income)</li>
-<li>Any special circumstances that apply to your situation</li>
-</ul>
+            <ul>
+              <li>What the legal problem is</li>
+              <li>How is involved and how they are involved</li>
+              <li>How and when the legal problem started</li>
+              <li>What has happened since then</li>
+              <li>Financial details (if you don't receive any income)</li>
+              <li>Any special circumstances that apply to your situation</li>
+            </ul>
           </b-col>
           <b-col>
             <b-form-group :label="DoYouStringCont + ' have to go to a'">
               <b-form-radio-group
                 stacked
-                v-model="form.problem.civicLaw.haveToGoto"
-                :options="['Court','Tribunal']"
+                v-model="form.problem.civilLaw.haveToGoto"
+                :options="['Court', 'Tribunal']"
               ></b-form-radio-group>
             </b-form-group>
 
-            <!-- Civic law court details -->
-            <div v-if="form.problem.civicLaw.haveToGoto === 'Court'">
-              <b-form-group label="Which court?">
-                <b-form-select
-                  v-model="form.problem.civicLaw.courtType"
-                  :options="['Select one from civic courts options']"
-                ></b-form-select>
-              </b-form-group>
+            <!-- Civil law court details -->
 
-              <b-form-group label="Which suburb/town?">
-                <b-form-select
-                  v-model="form.problem.civicLaw.courtTown"
-                  :options="[
-                    'Options will cascade from the selected court option ',
-                  ]"
-                ></b-form-select>
-              </b-form-group>
-
-              <b-form-group label="Court File Number">
-                <b-form-input
-                  v-model="form.problem.familyLaw.courtFileNumber"
-                ></b-form-input>
-              </b-form-group>
-
-              <b-form-group
-                :label="'When is ' + yourString + ' next court date (if known)'"
+            <div v-if="form.problem.civilLaw.haveToGoto === 'Court'">
+              <div
+                v-for="(court, index) of form.problem.civilLaw.courts"
+                :key="index"
+                v-bind:id="index"
+                class="mb-2 courts pl-3 mb-4"
               >
-                <b-form-datepicker
-                  v-model="form.problem.civicLaw.nextDate"
-                  class="mb-2"
-                ></b-form-datepicker>
-              </b-form-group>
+                <b-row v-if="form.problem.civilLaw.courts.length > 1">
+                  <b-col cols="6">
+                    <strong>Court {{ index + 1 }}</strong>
+                  </b-col>
+                  <b-col cols="6" class="text-right">
+                    <b-button
+                      variant="link"
+                      class="p-0"
+                      @click.prevent="removeCivilLawCourt(index)"
+                      v-b-tooltip.hover
+                      title="Remove"
+                      ><b-icon icon="x-circle"
+                    /></b-button>
+                  </b-col>
+                </b-row>
 
-              <b-form-group
-                :label="'What is the next Court date for? e.g. mentions, committal, trial'"
-              >
-                <b-form-textarea
-                  v-model="form.problem.civicLaw.nextDateReason"
-                  rows="3"
-                  max-rows="6"
-                ></b-form-textarea>
-              </b-form-group>
+                <b-form-group label="Which court?">
+                  <b-form-select
+                    v-model="court.courtType"
+                    :options="['Select one from civil courts options']"
+                  ></b-form-select>
+                </b-form-group>
+
+                <b-form-group label="Which suburb/town?">
+                  <b-form-select
+                    v-model="court.courtTown"
+                    :options="[
+                      'Options will cascade from the selected court option ',
+                    ]"
+                  ></b-form-select>
+                </b-form-group>
+
+                <b-form-group label="Court File Number">
+                  <b-form-input v-model="court.courtFileNumber"></b-form-input>
+                </b-form-group>
+
+                <b-form-group
+                  :label="
+                    'When is ' + yourString + ' next court date (if known)'
+                  "
+                >
+                  <b-form-datepicker
+                    v-model="court.nextDate"
+                    class="mb-2"
+                  ></b-form-datepicker>
+                </b-form-group>
+
+                <b-form-group
+                  :label="'What is the next Court date for? e.g. mentions, committal, trial'"
+                >
+                  <b-form-textarea
+                    v-model="court.nextDateReason"
+                    rows="3"
+                    max-rows="6"
+                  ></b-form-textarea>
+                </b-form-group>
+              </div>
+
+              <div class="text-right">
+                <b-button
+                  variant="link"
+                  class="p-0 mb-4"
+                  @click.prevent="addCivilLawCourt"
+                  >Click here to add another Court</b-button
+                >
+              </div>
             </div>
+
+            <div v-if="form.problem.civilLaw.haveToGoto === 'Tribunal'">
+              <div
+                v-for="(court, index) of form.problem.civilLaw.tribunals"
+                :key="index"
+                v-bind:id="index"
+                class="mb-2 courts pl-3 mb-4"
+              >
+                <b-row v-if="form.problem.civilLaw.tribunals.length > 1">
+                  <b-col cols="6">
+                    <strong>Tribunal {{ index + 1 }}</strong>
+                  </b-col>
+                  <b-col cols="6" class="text-right">
+                    <b-button
+                      variant="link"
+                      class="p-0"
+                      @click.prevent="removeCivilLawTribunal(index)"
+                      v-b-tooltip.hover
+                      title="Remove"
+                      ><b-icon icon="x-circle"
+                    /></b-button>
+                  </b-col>
+                </b-row>
+
+                <b-form-group :label="'Please provide tribunal details'">
+                  <b-form-textarea
+                    v-model="court.details"
+                    rows="3"
+                    max-rows="6"
+                  ></b-form-textarea>
+                </b-form-group>
+              </div>
+
+              <div class="text-right">
+                <b-button
+                  variant="link"
+                  class="p-0 mb-4"
+                  @click.prevent="addCivilLawTribunal"
+                  >Click here to add another Tribunal</b-button
+                >
+              </div>
+            </div>
+          </b-col>
+        </b-row>
+      </section>
+    </div>
+
+    <div
+      v-if="
+        form.problem.problemType.includes(
+          'Children removed from your care by Department of Child Protection (DCP)'
+        )
+      "
+    >
+      <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>
+              Children removed from your care by Department of Child Protection
+              (DCP)
+            </h6>
+          </b-col>
+          <b-col>
+            <b-form-group
+              :label="
+                'What is ' + yourString + 'relationship to the child/ren?'
+              "
+            >
+              <b-form-textarea
+                v-model="form.problem.dcp.relationshipToChildren"
+                rows="3"
+                max-rows="6"
+              ></b-form-textarea>
+            </b-form-group>
+
+              <b-form-group label="Which court?">
+                  <b-form-select
+                    v-model="form.problem.dcp.courtType"
+                    :options="['Select one from civil courts options']"
+                  ></b-form-select>
+                </b-form-group>
+
+                <b-form-group label="Which suburb/town?">
+                  <b-form-select
+                    v-model="form.problem.dcp.courtTown"
+                    :options="[
+                      'Options will cascade from the selected court option ',
+                    ]"
+                  ></b-form-select>
+                </b-form-group>
+
+                <b-form-group label="Court File Number">
+                  <b-form-input v-model="form.problem.dcp.courtFileNumber"></b-form-input>
+                </b-form-group>
+
+                <b-form-group
+                  :label="
+                    'When is ' + yourString + ' next court date (if known)'
+                  "
+                >
+                  <b-form-datepicker
+                    v-model="form.problem.dcp.nextDate"
+                    class="mb-2"
+                  ></b-form-datepicker>
+                </b-form-group>
+
+                 <b-form-group :label="DoYouStringCont + ' have any DCP documents or Court Orders?'">
+              <b-form-radio-group
+                stacked
+                v-model="form.problem.dcp.hasDcpDocuments"
+                :options="boolOptions"
+              ></b-form-radio-group>
+            </b-form-group>
+
 
           </b-col>
         </b-row>
@@ -781,7 +930,7 @@ import Entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
 
-import laap from '@/mixins/laap.js';
+import laap from "@/mixins/laap.js";
 
 export default {
   name: "problem",
@@ -829,7 +978,7 @@ export default {
       });
     },
     removeCriminalLawCourt(i) {
-      this.form.problem.criminalLaw.courts.splice(i,1);
+      this.form.problem.criminalLaw.courts.splice(i, 1);
     },
     addCriminalLawParoleBoard() {
       this.form.problem.criminalLaw.paroleBoards.push({
@@ -838,7 +987,7 @@ export default {
       });
     },
     removeCriminalLawParoleBoard(i) {
-      this.form.problem.criminalLaw.paroleBoards.splice(i,1);
+      this.form.problem.criminalLaw.paroleBoards.splice(i, 1);
     },
     addCriminalLawAppealCourt() {
       this.form.problem.criminalLaw.appealCourts.push({
@@ -859,7 +1008,27 @@ export default {
       });
     },
     removeCriminalLawAppealCourt(i) {
-      this.form.problem.criminalLaw.appealCourts.splice(i,1);
+      this.form.problem.criminalLaw.appealCourts.splice(i, 1);
+    },
+    addCivilLawCourt() {
+      this.form.problem.civilLaw.courts.push({
+        courtType: null,
+        courtTown: null,
+        nextDate: "",
+        nextDateReason: "",
+        courtFileNumber: "",
+      });
+    },
+    removeCivilLawCourt(i) {
+      this.form.problem.civilLaw.courts.splice(i, 1);
+    },
+    addCivilLawTribunal() {
+      this.form.problem.civilLaw.tribunals.push({
+        details: "",
+      });
+    },
+    removeCivilLawTribunal(i) {
+      this.form.problem.civilLaw.tribunals.splice(i, 1);
     },
   },
 };

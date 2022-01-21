@@ -164,7 +164,7 @@
 
 <script>
 export default {
-  layout: 'form',
+  layout: "form",
   data() {
     return {
       form: {
@@ -531,23 +531,22 @@ export default {
             },
           },
           otherParty: {
-          firstName: "",
-          lastName: "",
-          crn: "",
-          relationshipToApplicant: "",
-          lawyerFirstName: '',
-          lawyerLastName: '',
-          hasLawyer: null,
-          lawyerFirm: '',
-          lawyerAddress: {
-            line1: "",
+            firstName: "",
+            lastName: "",
+            crn: "",
+            relationshipToApplicant: "",
+            lawyerFirstName: "",
+            lawyerLastName: "",
+            hasLawyer: null,
+            lawyerFirm: "",
+            lawyerAddress: {
+              line1: "",
               line2: "",
               suburb: "",
               postcode: "",
               state: "",
               country: "",
-          }
-
+            },
           },
           incomeAssets: {
             employmentType: null,
@@ -716,58 +715,71 @@ export default {
                 othersCharged: [{ firstName: "", lastName: "" }],
               },
             ],
-            hasCriminalRecord: '',
-            policeTakenBelonging: null
-
+            hasCriminalRecord: "",
+            policeTakenBelonging: null,
           },
           familyLaw: {
             haveToGoto: null,
-                courtType: null,
-                courtTown: null,
-                nextDate: "",
-                nextDateReason: "",
-                courtFileNumber: '',
-                conferenceDate: '',
-                otherPartyFirstName: '',
-                otherPartyLastName: '',
-                isClcInvolved: null,
-                whichClc: '',
-                wantsToAppeal: null,
-                appealDetails: '',
-                appealCourtType: '',
-                appealCourtTown: '',
-                appealCourtDate: '',
-                problemType: [],
-                policeAppliedForIntervention: null,
-                policeInterventionDetails: '',
-                problemDetails: '' ,
-                beenToCounseling: null,
-                marriedToOtherParty: null,
-                marriageDate: '',
-                SeparationDate: '',
-                DivorceDate: '',
-                inDefacto: null,
-                relationshipStartDate: ''
+            courtType: null,
+            courtTown: null,
+            nextDate: "",
+            nextDateReason: "",
+            courtFileNumber: "",
+            conferenceDate: "",
+            otherPartyFirstName: "",
+            otherPartyLastName: "",
+            isClcInvolved: null,
+            whichClc: "",
+            wantsToAppeal: null,
+            appealDetails: "",
+            appealCourtType: "",
+            appealCourtTown: "",
+            appealCourtDate: "",
+            problemType: [],
+            policeAppliedForIntervention: null,
+            policeInterventionDetails: "",
+            problemDetails: "",
+            beenToCounseling: null,
+            marriedToOtherParty: null,
+            marriageDate: "",
+            SeparationDate: "",
+            DivorceDate: "",
+            inDefacto: null,
+            relationshipStartDate: "",
           },
-          civicLaw: {
+          civilLaw: {
             haveToGoto: null,
+            courts: [
+              {
                 courtType: null,
                 courtTown: null,
                 nextDate: "",
                 nextDateReason: "",
-                courtFileNumber: '',
+                courtFileNumber: "",
+              },
+            ],
+            tribunals: [
+              {
+                details: "",
+              },
+            ],
+            wantsToAppeal: null,
+            appealDetails: "",
+            appealCourtType: "",
+            appealCourtTown: "",
+            appealCourtDate: "",
+            problemType: [],
 
-
-                wantsToAppeal: null,
-                appealDetails: '',
-                appealCourtType: '',
-                appealCourtTown: '',
-                appealCourtDate: '',
-                problemType: [],
-
-                problemDetails: '' ,
-
+            problemDetails: "",
           },
+          dcp: {
+            relationshipToChildren: '',
+             courtType: null,
+            courtTown: null,
+            nextDate: "",
+            courtFileNumber: "",
+            hasDcpDocuments: null,
+          }
         },
       },
       tabIndex: 2,
