@@ -92,7 +92,7 @@
                 'Criminal Law problem',
                 'Family Law problem',
                 'Civil/General Law problem',
-                'Children removed from your care by Department of Child Protection (DCP)',
+                'Children removed from your care by Department for Child Protection (DCP)',
               ]"
             ></b-form-checkbox-group>
           </b-form-group>
@@ -874,7 +874,7 @@
     <div
       v-if="
         form.problem.problemType.includes(
-          'Children removed from your care by Department of Child Protection (DCP)'
+          'Children removed from your care by Department for Child Protection (DCP)'
         )
       "
     >
@@ -882,7 +882,7 @@
         <b-row>
           <b-col cols="4">
             <h6>
-              Children removed from your care by Department of Child Protection
+              Children removed from your care by Department for Child Protection
               (DCP)
             </h6>
           </b-col>
