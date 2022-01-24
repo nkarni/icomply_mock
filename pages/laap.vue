@@ -342,6 +342,8 @@ export default {
               gaveAwayMoneyOrPropertyDetails: "",
             },
             details: {
+              dob: '',
+              hasOtherNames: null,
               lscFileNumber: "",
               otherGivenName: "",
               otherFamilyName: "",
@@ -380,7 +382,7 @@ export default {
               maxPayment: null,
               consentToCentrelink: null,
               authoriseCentrelink: null,
-              benefitsAmount: "",
+              benefitsAmounts: [],
             },
             property: {
               ownsAHome: null,

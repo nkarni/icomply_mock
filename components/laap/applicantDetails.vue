@@ -60,6 +60,16 @@
               showAddress
             >
             </entity>
+
+             <entity
+              v-if="form.repType === 'other'"
+              :entity="form.entities.repSolicitor"
+              idPrefix="repOther"
+              showFirstName
+              showLastName
+              showEmail
+            >
+            </entity>
           </b-col>
         </b-row>
       </section>
@@ -88,26 +98,48 @@
               :lastNameLabel="yourString + ' family name(s)'"
             >
             </entity>
+            <b-form-group v-if="form.repType === 'self'" :label="'Have you been known by any other name?'">
+              <b-form-radio-group
+                v-model="form.entities.applicant.details.hasOtherNames"
+                :options="boolOptions"
+              ></b-form-radio-group>
+            </b-form-group>
+            <b-form-group v-if="form.repType === 'other'" :label="'Has the Applicant been known by any other name?'">
+              <b-form-radio-group
+                v-model="form.entities.applicant.details.hasOtherNames"
+                :options="boolOptions"
+              ></b-form-radio-group>
+            </b-form-group>
+
+
             <b-form-group
-              v-if="form.repType === 'self'"
-              label="Have you previously used or been known by any other given names? (optional)"
+              
+              label="Other given names"
+              v-if="form.entities.applicant.details.hasOtherNames"
             >
               <b-form-input
-                id="otherFirstName"
-                name="otherFirstName"
-                v-model="form.entities.applicant.otherFirstName"
+                v-model="form.entities.applicant.details.otherGivenName"
               ></b-form-input>
             </b-form-group>
             <b-form-group
-              v-if="form.repType === 'self'"
-              label="Have you previously used or been known by any other family names? (optional)"
+              v-if="form.entities.applicant.details.hasOtherNames"
+              label="Other family names"
             >
               <b-form-input
                 id="otherFamilyName"
                 name="otherFamilyName"
-                v-model="form.entities.applicant.otherFamilyName"
+                v-model="form.entities.applicant.details.otherFamilyName"
               ></b-form-input>
             </b-form-group>
+
+             <b-form-group
+                          :label="yourString + ' date of birth'"
+                        >
+                          <b-form-datepicker
+                            v-model="form.entities.applicant.details.dob"
+      
+                          ></b-form-datepicker>
+             </b-form-group>
 
             <div v-if="form.repType === 'solicitor' && form.prevRepresented">
               <b-form-group label="LSC File number (optional)">
