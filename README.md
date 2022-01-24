@@ -15,6 +15,23 @@ $ npm run start
 
 # generate static project
 $ npm run generate
+
+# generate static file in the MIT repo
+npm run generate
+
+git pull # just the first time
+
+git checkout gh-pages
+
+cp -r dist/* ./
+
+git add .
+
+git commit -m 'dist'
+
+git push origin HEAD
+
+
 ```
 
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
