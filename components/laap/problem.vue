@@ -221,14 +221,14 @@
                 </b-form-group>
               </div>
 
-              <div class="text-right">
+              <!-- <div class="text-right">
                 <b-button
                   variant="link"
                   class="p-0 mb-4"
                   @click.prevent="addCriminalLawParoleBoard"
                   >Click here to add another Parole Board</b-button
                 >
-              </div>
+              </div> -->
             </div>
 
             <!-- Criminal Law: Appeal Courts -->
@@ -495,7 +495,7 @@
             ></notice>
 
             <b-form-group
-              :label="'have the police applied for an intervention order about this matter?'"
+              :label="'have the police applied for an Intervention Order about this matter?'"
             >
               <b-form-radio-group
                 stacked
@@ -508,7 +508,7 @@
               v-if="
                 form.problem.familyLaw.policeAppliedForIntervention === 'Yes'
               "
-              message="A copy of the intervention order will be required in the attachments step."
+              message="A copy of the Intervention Order will be required in the attachments step."
             ></notice>
 
             <b-form-group
@@ -612,6 +612,7 @@
 
                 <entity-address
                   :address="form.entities.otherParty.lawyerAddress"
+                  addressLabel="Address (optional)"
                 ></entity-address>
               </div>
 
@@ -660,7 +661,7 @@
                     class="mb-2"
                   ></b-form-datepicker>
                 </b-form-group>
-                <b-form-group :label="'Divorce date'">
+                <b-form-group :label="'Divorce date (if divorced)'">
                   <b-form-datepicker
                     v-model="form.problem.familyLaw.DivorceDate"
                     class="mb-2"
@@ -915,7 +916,7 @@
                   ></b-form-select>
                 </b-form-group>
 
-                <b-form-group label="Court File Number">
+                <b-form-group label="Court File Number (if known)">
                   <b-form-input v-model="form.problem.dcp.courtFileNumber"></b-form-input>
                 </b-form-group>
 
