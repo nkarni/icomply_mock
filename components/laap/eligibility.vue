@@ -176,9 +176,8 @@
                 </b-form-group>
 
                 <b-form-group
-                  v-if="form.entities.applicant.benefits.benefitsPaymentTypes === 'None of the above'"
+                  v-if="form.entities.applicant.benefits.maxPayment === false || (form.entities.applicant.benefits.maxPayment === true && form.entities.applicant.benefits.consentToCentrelink === false) "
                   label="How much is received per fortnight from any pension, benefit or allowance?"
-                  description="You do not provide us consent to obtain your financial details directly from Centrelink. Please upload a Centrelink Income Statement in the Attachments step."
                 >
                   <b-form-input
                     id="benefitsAmount"
@@ -186,6 +185,7 @@
                     v-model="form.entities.applicant.benefits.benefitsAmount"
                   ></b-form-input>
                 </b-form-group>
+                <notice class="mb-4" :message="'If you do not provide us consent to obtain ' + yourString + ' financial details directly from Centrelink, a Centrelink Income Statement will be required in the attachments page'"></notice>
               </b-col>
             </b-row>
           </section>
@@ -321,6 +321,9 @@
             <b-row>
               <b-col cols="4">
                 <h6>Property Details</h6>
+                <p>Legal Aid is not free.</p>
+<p>Simple guilty pleas, very short criminal trials and family dispute resolutions usually cost less than $2,280.00.</p>
+<p>By accepting aid you accept the conditions. Read our <a href="#">charge brochure</a> for more information. All fields are manadatory unless marked as optional.</p>
                 <p>
                   We need to know about any real estate properties
                   {{ youString }} own{{ additionalS }} or paying off in

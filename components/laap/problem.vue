@@ -51,8 +51,8 @@
               form.problem.preferredLawyerType !== '' &&
               form.problem.preferredLawyerType !== 'I don\'t mind'
             "
-            firstNameLabel="The lawyer's give name(s) (if known)"
-            lastNameLabel="The lawyer's give name(s) (if known)"
+            firstNameLabel="The lawyer's given name(s) (if known)"
+            lastNameLabel="The lawyer's family name(s) (if known)"
             orgNameLabel="The lawyer's firm or organisation name"
             phonesLabel="The lawyer's phone number"
           >
@@ -844,6 +844,28 @@
                 >
               </div>
             </div>
+
+             <b-form-group :label="'What is ' +  yourString + ' civil law problem?'">
+              <b-form-radio-group
+                stacked
+                v-model="form.problem.dcp.problemType"
+                :options="['Administrative Appeals Tribunal','Migration', 'Service and ex-service personnel appeal', 'Not sure']"
+              ></b-form-radio-group>
+             </b-form-group>
+              <b-form-group
+                  :label="'Please provide details'"
+                  v-if="form.problem.dcp.problemType === 'Not sure'"
+                >
+                  <b-form-textarea
+                    v-model="form.problem.dcp.problemDetails"
+                    rows="3"
+                    max-rows="6"
+                  ></b-form-textarea>
+                </b-form-group>
+
+
+
+
           </b-col>
         </b-row>
       </section>
