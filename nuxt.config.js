@@ -6,7 +6,7 @@ export default {
   target: 'static',
 
   router: {
-    base: '/fmockup/'
+    base: '/lsc-prototype/'
   },
 
   server: {
