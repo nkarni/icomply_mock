@@ -311,7 +311,6 @@
 
         <b-tab
           title="Property"
-          active
           :title-link-class="[
             'laap-inner-title-link',
             { 'laap-inner-nav-item-complete': false },
