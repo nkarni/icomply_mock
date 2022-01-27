@@ -6,7 +6,7 @@
           <b-col cols="4">
             <h6>Are you the Applicant?</h6>
             The Applicant is the person this form is about, If you are not the
-            Applicant please provide some details about yourself. NOTE: if you
+            Applicant please provide some details about yourself. <br><br>NOTE: if you
             are not the Applicant but want to be contacted about this
             application please upload authority documentation in the uploads
             section, or use our <a href="">Authority to Disclose form</a>.
@@ -171,7 +171,7 @@
           <b-col cols="4">
             <h6>Contact details</h6>
             We need at least one address (Home address, postal address or email
-            address) so we can contact you. <br />
+            address) so we can contact you. <br /><br>
             <strong
               >Please only provide contact information that feels safe to
               provide.</strong
