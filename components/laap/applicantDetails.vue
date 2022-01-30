@@ -756,7 +756,7 @@ export default {
     return {
       repTypeOptions: [
         { text: "I am the Applicant (submitting for myself)", value: "self" },
-        { text: "I am the Applicant/'s solicitor", value: "solicitor" },
+        { text: "I am the Applicant's solicitor", value: "solicitor" },
         {
           text: "I am submitting this form on behalf of the Applicant",
           value: "other",
