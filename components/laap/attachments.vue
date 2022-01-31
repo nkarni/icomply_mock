@@ -77,6 +77,7 @@
                         <b-button
                           variant="link"
                           class="p-0 mt-3"
+                          v-if="file.multi"
                           @click.prevent=""
                           >Click here to add another {{ file.type }}</b-button
                         >
@@ -114,7 +115,7 @@ export default {
         {
           type: 'Mockup sample with comments',
           comments: 'This will not be part of the form, only added so it shows how comments will appear.',
-          multi: true
+
         }
       ];
       if (
