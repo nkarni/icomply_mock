@@ -708,15 +708,7 @@
         <b-row>
           <b-col cols="4">
             <h6>Civil/General Law</h6>
-            <p>For example:</p>
-            <ul>
-              <li>What the legal problem is</li>
-              <li>How is involved and how they are involved</li>
-              <li>How and when the legal problem started</li>
-              <li>What has happened since then</li>
-              <li>Financial details (if you don't receive any income)</li>
-              <li>Any special circumstances that apply to your situation</li>
-            </ul>
+          
           </b-col>
           <b-col>
             <b-form-group :label="DoYouStringCont + ' have to go to a'">
@@ -849,24 +841,41 @@
              <b-form-group :label="'What is ' +  yourString + ' civil law problem?'">
               <b-form-radio-group
                 stacked
-                v-model="form.problem.dcp.problemType"
+                v-model="form.problem.civilLaw.problemType"
                 :options="['Administrative Appeals Tribunal','Migration', 'Service and ex-service personnel appeal', 'Not sure']"
               ></b-form-radio-group>
              </b-form-group>
-              <b-form-group
-                  :label="'Please provide details'"
-                  v-if="form.problem.dcp.problemType === 'Not sure'"
+             <notice :message="'Please provide additional details below'" v-if="form.problem.civilLaw.problemType === 'Not sure'"></notice>
+
+          </b-col>
+        </b-row>
+      </section>
+     
+      <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Additional Information</h6>
+            <p>Do you have anything further to add about your Civil/General Law problem?</p>
+<p>For example:</p>
+<ul>
+<li>What the legal problem is</li>
+<li>How is involved and how they are involved</li>
+<li>How and when the legal problem started</li>
+<li>What has happened since then</li>
+<li>Financial details (if you don't receive any income)</li>
+<li>Any special circumstances that apply to your situation</li>
+</ul>
+          </b-col>
+          <b-col>
+            <b-form-group
+                  :label="'Additional information'"
                 >
                   <b-form-textarea
-                    v-model="form.problem.dcp.problemDetails"
-                    rows="3"
+                    v-model="form.problem.civilLaw.problemDetails"
+                    rows="9"
                     max-rows="6"
                   ></b-form-textarea>
                 </b-form-group>
-
-
-
-
           </b-col>
         </b-row>
       </section>

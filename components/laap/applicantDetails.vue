@@ -9,7 +9,6 @@
             Applicant please provide some details about yourself.
           </b-col>
           <b-col>
-
             <b-form-group
               label="Are you making this application for yourself, or for someone else?"
             >
@@ -20,8 +19,6 @@
                 name="repType"
               ></b-form-radio-group>
             </b-form-group>
-
-           
 
             <b-form-group
               label="Are you a LSC panel lawyer?"
@@ -60,7 +57,7 @@
             >
             </entity>
 
-             <entity
+            <entity
               v-if="form.repType === 'other'"
               :entity="form.entities.repSolicitor"
               idPrefix="repOther"
@@ -70,33 +67,33 @@
             >
             </entity>
 
-            <div v-if="form.repType==='other'">
-                      <b-form-group :label="'Your relationship to ' + youString">
-              <b-form-select
-                v-model="form.repRelation"
-                id="repRelation"
-                name="repRelation"
-                :options="[
-                  { value: 'Power of attorney', text: 'Power of attorney' },
-                  { value: 'Parent', text: 'Parent' },
-                  { value: 'Guardian', text: 'Guardian' },
-                  { value: 'Child', text: 'Child' },
-                  { value: 'Social worker', text: 'Social worker' },
-                  { value: 'Friend', text: 'Friend' },
-                  { value: 'Other', text: 'Other' },
-                ]"
-              ></b-form-select>
-            </b-form-group>
-            <b-form-group
-              v-if="form.repRelation === 'Other'"
-              label="Provide details"
-            >
-              <b-form-input
-                id="repRelationDetail"
-                name="repRelationDetail"
-                v-model="form.repRelationDetail"
-              ></b-form-input>
-            </b-form-group>
+            <div v-if="form.repType === 'other'">
+              <b-form-group :label="'Your relationship to ' + youString">
+                <b-form-select
+                  v-model="form.repRelation"
+                  id="repRelation"
+                  name="repRelation"
+                  :options="[
+                    { value: 'Power of attorney', text: 'Power of attorney' },
+                    { value: 'Parent', text: 'Parent' },
+                    { value: 'Guardian', text: 'Guardian' },
+                    { value: 'Child', text: 'Child' },
+                    { value: 'Social worker', text: 'Social worker' },
+                    { value: 'Friend', text: 'Friend' },
+                    { value: 'Other', text: 'Other' },
+                  ]"
+                ></b-form-select>
+              </b-form-group>
+              <b-form-group
+                v-if="form.repRelation === 'Other'"
+                label="Provide details"
+              >
+                <b-form-input
+                  id="repRelationDetail"
+                  name="repRelationDetail"
+                  v-model="form.repRelationDetail"
+                ></b-form-input>
+              </b-form-group>
             </div>
           </b-col>
         </b-row>
@@ -126,22 +123,26 @@
               :lastNameLabel="yourString + ' family name(s)'"
             >
             </entity>
-            <b-form-group v-if="form.repType === 'self'" :label="'Have you been known by any other name?'">
+            <b-form-group
+              v-if="form.repType === 'self'"
+              :label="'Have you been known by any other name?'"
+            >
               <b-form-radio-group
                 v-model="form.entities.applicant.details.hasOtherNames"
                 :options="boolOptions"
               ></b-form-radio-group>
             </b-form-group>
-            <b-form-group v-if="form.repType === 'other'" :label="'Has the Applicant been known by any other name?'">
+            <b-form-group
+              v-if="form.repType === 'other'"
+              :label="'Has the Applicant been known by any other name?'"
+            >
               <b-form-radio-group
                 v-model="form.entities.applicant.details.hasOtherNames"
                 :options="boolOptions"
               ></b-form-radio-group>
             </b-form-group>
-
 
             <b-form-group
-              
               label="Other given names"
               v-if="form.entities.applicant.details.hasOtherNames"
             >
@@ -160,17 +161,17 @@
               ></b-form-input>
             </b-form-group>
 
-             <b-form-group
-                          :label="yourString + ' date of birth'"
-                        >
-                          <b-form-datepicker
-                            v-model="form.entities.applicant.details.dob"
-      
-                          ></b-form-datepicker>
-             </b-form-group>
+            <b-form-group :label="yourString + ' date of birth'">
+              <b-form-datepicker
+                v-model="form.entities.applicant.details.dob"
+              ></b-form-datepicker>
+            </b-form-group>
 
             <div v-if="form.repType === 'solicitor' && form.prevRepresented">
-              <b-form-group label="LSC File number" description="Either a LSC file number or a cover letter is required">
+              <b-form-group
+                label="LSC File number"
+                description="Either a LSC file number or a cover letter is required"
+              >
                 <b-form-input
                   id="entities.applicant.details.lscFileNumber"
                   name="entities.applicant.details.lscFileNumber"
@@ -187,7 +188,11 @@
                 ></b-form-textarea>
               </b-form-group>
             </div>
-            <div v-if="form.repType === 'solicitor' && form.prevRepresented === false">
+            <div
+              v-if="
+                form.repType === 'solicitor' && form.prevRepresented === false
+              "
+            >
               <b-form-group
                 label="Please provide covering letter details (or you can upload a document in the uploads section)"
               >
@@ -210,7 +215,7 @@
           <b-col cols="4">
             <h6>Contact details</h6>
             We need at least one address (Home address, postal address or email
-            address) so we can contact you. <br /><br>
+            address) so we can contact you. <br /><br />
             <strong
               >Please only provide contact information that feels safe to
               provide.</strong
@@ -289,7 +294,7 @@
               "
             >
               <b-form-radio-group
-              stacked
+                stacked
                 id="aboriginality"
                 v-model="form.entities.applicant.details.aboriginality"
                 :options="aboriginalityOptions"
@@ -305,14 +310,20 @@
                 name="inPrison"
               ></b-form-radio-group>
             </b-form-group>
-            <b-form-group v-if="form.entities.applicant.details.inPrison" label="Where">
+            <b-form-group
+              v-if="form.entities.applicant.details.inPrison"
+              label="Where"
+            >
               <b-form-input
                 id="prisonName"
                 name="prisonName"
                 v-model="form.entities.applicant.details.prisonName"
               ></b-form-input>
             </b-form-group>
-            <b-form-group v-if="form.entities.applicant.details.inPrison" label="Section (optional)">
+            <b-form-group
+              v-if="form.entities.applicant.details.inPrison"
+              label="Section (optional)"
+            >
               <b-form-input
                 id="prisonSection"
                 name="prisonSection"
@@ -506,7 +517,9 @@
             >
               <b-form-radio-group
                 id="familyViolenceAllegation"
-                v-model="form.entities.applicant.details.familyViolenceAllegation"
+                v-model="
+                  form.entities.applicant.details.familyViolenceAllegation
+                "
                 :options="boolOptions"
                 name="familyViolenceAllegation"
               ></b-form-radio-group>
@@ -543,7 +556,7 @@
       </section>
 
       <section
-          v-if="form.repType && form.repType != 'solicitor'"
+        v-if="form.repType && form.repType != 'solicitor'"
         class="border-bottom border-secondary mb-4 pb-2"
       >
         <b-row>
@@ -569,7 +582,8 @@
             </b-form-group>
             <div v-if="form.entities.applicant.details.dependants.length > 0">
               <div
-                v-for="(dependant, index) of form.entities.applicant.details.dependants"
+                v-for="(dependant, index) of form.entities.applicant.details
+                  .dependants"
                 :key="index"
                 v-bind:id="index"
                 class="border-5 border-start ps-3 mb-4"
@@ -578,7 +592,9 @@
                 <b-row>
                   <b-col>
                     <entity
-                      :entity="form.entities.applicant.details.dependants[index]"
+                      :entity="
+                        form.entities.applicant.details.dependants[index]
+                      "
                       idPrefix="dep0"
                       showFirstName
                       showLastName
@@ -596,7 +612,10 @@
                           "
                         >
                           <b-form-select
-                            v-model="form.entities.applicant.details.dependants[index].relationship"
+                            v-model="
+                              form.entities.applicant.details.dependants[index]
+                                .relationship
+                            "
                             id="relationship"
                             name="relationship"
                             :options="[
@@ -616,7 +635,10 @@
                         >
                           <b-form-datepicker
                             id="dep0dob"
-                            v-model="form.entities.applicant.details.dependants[index].dob"
+                            v-model="
+                              form.entities.applicant.details.dependants[index]
+                                .dob
+                            "
                             class="mb-2"
                           ></b-form-datepicker>
                         </b-form-group>
@@ -627,7 +649,10 @@
                         >
                           <b-form-radio-group
                             id="stayOvernight"
-                            v-model="form.entities.applicant.details.dependants[index].stayOvernight"
+                            v-model="
+                              form.entities.applicant.details.dependants[index]
+                                .stayOvernight
+                            "
                             :options="boolOptions"
                             name="stayOvernight"
                           ></b-form-radio-group>
@@ -639,7 +664,8 @@
                           <b-form-radio-group
                             id="involvedInLegalIssue"
                             v-model="
-                              form.entities.applicant.details.dependants[index].involvedInLegalIssue
+                              form.entities.applicant.details.dependants[index]
+                                .involvedInLegalIssue
                             "
                             :options="boolOptions"
                             name="involvedInLegalIssue"
@@ -655,7 +681,6 @@
         </b-row>
       </section>
 
-     
       <section
         v-if="form.repType && form.repType != 'solicitor'"
         class="border-bottom border-secondary mb-4 pb-2"
@@ -671,7 +696,6 @@
             <a href="">grants@lsc.sa.gov.au</a>.
           </b-col>
           <b-col>
-
             <b-form-group
               :label="
                 DoYouStringCont +
@@ -686,49 +710,67 @@
               ></b-form-radio-group>
             </b-form-group>
 
-              <b-form-group label="Their given names(s)"
-            v-if="form.authToDisclose" >
-            <b-form-input
-              id="authToDiscloseGivenName"
-              name="authToDiscloseGivenName"
-              v-model="form.authToDiscloseGivenName"
-            ></b-form-input>
+            <b-form-group
+              label="Their given names(s)"
+              v-if="form.authToDisclose"
+            >
+              <b-form-input
+                id="authToDiscloseGivenName"
+                name="authToDiscloseGivenName"
+                v-model="form.authToDiscloseGivenName"
+              ></b-form-input>
             </b-form-group>
 
-              <b-form-group label="Their family names(s)"
-            v-if="form.authToDisclose" >
-            <b-form-input
-              id="authToDiscloseLastName"
-              name="authToDiscloseLastName"
-              v-model="form.authToDiscloseLastName"
-            ></b-form-input>
+            <b-form-group
+              label="Their family names(s)"
+              v-if="form.authToDisclose"
+            >
+              <b-form-input
+                id="authToDiscloseLastName"
+                name="authToDiscloseLastName"
+                v-model="form.authToDiscloseLastName"
+              ></b-form-input>
             </b-form-group>
 
-              <b-form-group :label=" 'Their relationship to ' + youString "
-            v-if="form.authToDisclose" >
-            <b-form-input
-              id="authToDiscloseRelationship"
-              name="authToDiscloseRelationship"
-              v-model="form.authToDiscloseRelationship"
-            ></b-form-input>
+            <b-form-group
+              :label="'Their relationship to ' + youString"
+              v-if="form.authToDisclose"
+            >
+              <b-form-select
+                v-model="form.authToDiscloseRelationship"
+                id="relationship"
+                name="relationship"
+                :options="[
+                  { value: 'Spouse', text: 'Spouse' },
+                  { value: 'Defacto', text: 'Defacto' },
+                  { value: 'Partner', text: 'Partner' },
+                  { value: 'Child', text: 'Child' },
+                  { value: 'StepChild', text: 'Step Child' },
+                  { value: 'Parent', text: 'Parent' },
+                  { value: 'Other', text: 'Other' },
+                ]"
+              ></b-form-select>
             </b-form-group>
 
-         <b-form-group
-                label="Their contact details"
-                v-if="form.authToDisclose"
-              >
-                <b-form-textarea
-                  id="authToDiscloseContactDetail"
-                  name="authToDiscloseContactDetail"
-                  v-model="form.authToDiscloseContactDetail"
-                  rows="3"
-                  max-rows="6"
-                ></b-form-textarea>
-              </b-form-group>
+            <b-form-group
+              label="Their contact details"
+              v-if="form.authToDisclose"
+            >
+              <b-form-textarea
+                id="authToDiscloseContactDetail"
+                name="authToDiscloseContactDetail"
+                v-model="form.authToDiscloseContactDetail"
+                rows="3"
+                max-rows="6"
+              ></b-form-textarea>
+            </b-form-group>
 
-              <notice v-if="form.authToDisclose === true" message="Please download and sign the
+            <notice
+              v-if="form.authToDisclose === true"
+              message="Please download and sign the
               <a href=''>Authority to Discolose form</a>. You will be asked to
-              upload it in the Attachments step."></notice>
+              upload it in the Attachments step."
+            ></notice>
           </b-col>
         </b-row>
       </section>
@@ -738,7 +780,7 @@
 
 <script>
 import entity from "./entity.vue";
-import Notice from './notice.vue';
+import Notice from "./notice.vue";
 export default {
   components: { entity, Notice },
   name: "applicantDetails",
@@ -798,12 +840,24 @@ export default {
   },
   methods: {
     onNumDepnedantsChange() {
-      if (this.form.entities.applicant.details.numOfDependants < this.form.entities.applicant.details.dependants.length) {
-        while (this.form.entities.applicant.details.numOfDependants < this.form.entities.applicant.details.dependants.length) {
+      if (
+        this.form.entities.applicant.details.numOfDependants <
+        this.form.entities.applicant.details.dependants.length
+      ) {
+        while (
+          this.form.entities.applicant.details.numOfDependants <
+          this.form.entities.applicant.details.dependants.length
+        ) {
           this.form.entities.applicant.details.dependants.pop();
         }
-      } else if (this.form.entities.applicant.details.numOfDependants > this.form.entities.applicant.details.dependants.length) {
-        while (this.form.entities.applicant.details.numOfDependants > this.form.entities.applicant.details.dependants.length) {
+      } else if (
+        this.form.entities.applicant.details.numOfDependants >
+        this.form.entities.applicant.details.dependants.length
+      ) {
+        while (
+          this.form.entities.applicant.details.numOfDependants >
+          this.form.entities.applicant.details.dependants.length
+        ) {
           this.form.entities.applicant.details.dependants.push({
             firstName: "",
             lastName: "",
