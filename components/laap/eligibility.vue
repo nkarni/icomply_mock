@@ -5,6 +5,7 @@
         content-class="mt-3 inner-tab"
         active-nav-item-class="text-primary laap-inner-nav-item-active"
         nav-class="laap-inner-nav"
+        v-model="innerTabIndex"
       >
         <b-tab
           title="Benefits"
@@ -46,8 +47,10 @@
                     ></b-form-input>
                   </b-form-group>
 
-                  <b-form-group :label="'OR ' + yourString + ' DVA Number'"
-                  description="A CRN number or DVA number is required" >
+                  <b-form-group
+                    :label="'OR ' + yourString + ' DVA Number'"
+                    description="A CRN number or DVA number is required"
+                  >
                     <b-form-input
                       id="dvaNumber"
                       name="dvaNumber"
@@ -66,7 +69,9 @@
                     <b-form-checkbox-group
                       id="benefitsPaymentTypes"
                       stacked
-                      v-model="form.entities.applicant.benefits.benefitsPaymentTypes"
+                      v-model="
+                        form.entities.applicant.benefits.benefitsPaymentTypes
+                      "
                       :options="benefitsOptions"
                       name="benefitsPaymentTypes"
                     ></b-form-checkbox-group>
@@ -79,7 +84,14 @@
                       additionalS +
                       ' the maximum payment?'
                     "
-                    v-if="form.entities.applicant.benefits.benefitsPaymentTypes.length > 1 || (form.entities.applicant.benefits.benefitsPaymentTypes.length===1 && form.entities.applicant.benefits.benefitsPaymentTypes[0]!=='None of the above')"
+                    v-if="
+                      form.entities.applicant.benefits.benefitsPaymentTypes
+                        .length > 1 ||
+                      (form.entities.applicant.benefits.benefitsPaymentTypes
+                        .length === 1 &&
+                        form.entities.applicant.benefits
+                          .benefitsPaymentTypes[0] !== 'None of the above')
+                    "
                   >
                     <b-form-radio-group
                       id="maxPayment"
@@ -112,14 +124,19 @@
                 >
                   <b-form-radio-group
                     id="consentToCentrelink"
-                    v-model="form.entities.applicant.benefits.consentToCentrelink"
+                    v-model="
+                      form.entities.applicant.benefits.consentToCentrelink
+                    "
                     :options="boolOptions"
                     name="consentToCentrelink"
                   ></b-form-radio-group>
                 </b-form-group>
                 <b-form-group
                   label="Authority to Release"
-                  v-if="form.entities.applicant.benefits.consentToCentrelink === true"
+                  v-if="
+                    form.entities.applicant.benefits.consentToCentrelink ===
+                    true
+                  "
                 >
                   <div>
                     <p>
@@ -164,9 +181,14 @@
                     </ul>
                   </div>
                   <b-form-checkbox
-                    v-if="form.entities.applicant.benefits.consentToCentrelink === true"
+                    v-if="
+                      form.entities.applicant.benefits.consentToCentrelink ===
+                      true
+                    "
                     id="authoriseCentrelink"
-                    v-model="form.entities.applicant.benefits.authoriseCentrelink"
+                    v-model="
+                      form.entities.applicant.benefits.authoriseCentrelink
+                    "
                     name="authoriseCentrelink"
                     :value="true"
                     :unchecked-value="false"
@@ -176,25 +198,40 @@
                 </b-form-group>
 
                 <b-form-group
-                  v-if="form.entities.applicant.benefits.maxPayment === false && form.entities.applicant.benefits.consentToCentrelink === false"
+                  v-if="
+                    form.entities.applicant.benefits.maxPayment === false &&
+                    form.entities.applicant.benefits.consentToCentrelink ===
+                      false
+                  "
                   label="How much is received per fortnight from any pension, benefit or allowance?"
                 >
                   <b-form-input
                     id="benefitsAmount"
                     name="benefitsAmount"
                     v-model="form.entities.applicant.benefits.benefitsAmount"
-                    v-if="form.entities.applicant.benefits.consentToCentrelink === false "
+                    v-if="
+                      form.entities.applicant.benefits.consentToCentrelink ===
+                      false
+                    "
                   ></b-form-input>
                 </b-form-group>
-                <notice  v-if="form.entities.applicant.benefits.consentToCentrelink === false" class="mb-4" :message="'If you do not provide us consent to obtain ' + yourString + ' financial details directly from Centrelink, a Centrelink Income Statement will be required in the attachments page'"></notice>
+                <notice
+                  v-if="
+                    form.entities.applicant.benefits.consentToCentrelink ===
+                    false
+                  "
+                  class="mb-4"
+                  :message="
+                    'If you do not provide us consent to obtain ' +
+                    yourString +
+                    ' financial details directly from Centrelink, a Centrelink Income Statement will be required in the attachments page'
+                  "
+                ></notice>
               </b-col>
             </b-row>
           </section>
 
-          <section
-            class="border-bottom border-secondary mb-4 pb-2"
-            
-          >
+          <section class="border-bottom border-secondary mb-4 pb-2">
             <b-row>
               <b-col cols="4">
                 <h6>Financially Associated Person</h6>
@@ -264,8 +301,9 @@
                         class="form-text"
                         v-if="form.entities.fap.receivesBenefit === true"
                       >
-                      <notice message="A copy of their most recent Centrelink Income Statement may be required."></notice>
-                        
+                        <notice
+                          message="A copy of their most recent Centrelink Income Statement may be required."
+                        ></notice>
                       </div>
                     </b-form-group>
 
@@ -284,7 +322,7 @@
                       v-if="form.entities.fap.receivesBenefit === true"
                     >
                       <b-form-checkbox-group
-                      stacked
+                        stacked
                         id="fap.benefitsPaymentTypes"
                         v-model="form.entities.fap.benefitsPaymentTypes"
                         :options="benefitsOptions"
@@ -308,6 +346,19 @@
               </b-col>
             </b-row>
           </section>
+
+          <div class="hackButtonsWrapper">
+            <b-row class="mt-4">
+              <b-col cols="12" class="text-right">
+                <b-button v-if="innerTabIndex === 0" @click="parentTabIndex(1)"
+                  >Prev</b-button
+                >
+                <b-button v-if="innerTabIndex < 5" @click="innerTabIndex++"
+                  >Next</b-button
+                >
+              </b-col>
+            </b-row>
+          </div>
         </b-tab>
 
         <b-tab
@@ -317,13 +368,20 @@
             { 'laap-inner-nav-item-complete': false },
           ]"
         >
-          <section class="border-bottom border-secondary mb-4 pb-2">
+          <section class="border-bottom border-secondary mb-4 pb-2" style="min-height:500px">
             <b-row>
               <b-col cols="4">
                 <h6>Property Details</h6>
                 <p>Legal Aid is not free.</p>
-<p>Simple guilty pleas, very short criminal trials and family dispute resolutions usually cost less than $2,280.00.</p>
-<p>By accepting aid you accept the conditions. Read our <a href="#">charge brochure</a> for more information. All fields are manadatory unless marked as optional.</p>
+                <p>
+                  Simple guilty pleas, very short criminal trials and family
+                  dispute resolutions usually cost less than $2,280.00.
+                </p>
+                <p>
+                  By accepting aid you accept the conditions. Read our
+                  <a href="#">charge brochure</a> for more information. All
+                  fields are manadatory unless marked as optional.
+                </p>
                 <p>
                   We need to know about any real estate properties
                   {{ youString }} own{{ additionalS }} or paying off in
@@ -425,6 +483,18 @@
               </b-col>
             </b-row>
           </section>
+          <div class="hackButtonsWrapper">
+            <b-row class="mt-4">
+              <b-col cols="12" class="text-right">
+                <b-button  @click="innerTabIndex--"
+                  >Prev</b-button
+                >
+                <b-button  @click="innerTabIndex++"
+                  >Next</b-button
+                >
+              </b-col>
+            </b-row>
+          </div>
         </b-tab>
 
         <b-tab
@@ -434,8 +504,25 @@
             { 'laap-inner-nav-item-complete': false },
           ]"
         >
-<income-assets-applicant :form="form"></income-assets-applicant>
-<income-assets-fap v-if="form.entities.applicant.details.hasFap" :form="form" ></income-assets-fap>
+          <income-assets-applicant :form="form"></income-assets-applicant>
+          <income-assets-fap
+            v-if="form.entities.applicant.details.hasFap"
+            :form="form"
+          ></income-assets-fap>
+
+          <div class="hackButtonsWrapper">
+            <b-row class="mt-4">
+              <b-col cols="12" class="text-right">
+                <b-button  @click="innerTabIndex--"
+                  >Prev</b-button
+                >
+                <b-button  @click="parentTabIndex(3)"
+                  >Next</b-button
+                >
+              </b-col>
+            </b-row>
+          </div>
+
         </b-tab>
       </b-tabs>
     </b-form>
@@ -445,12 +532,19 @@
 <script>
 import Entity from "./entity.vue";
 import entityAddress from "./entityAddress.vue";
-import IncomeAssetsApplicant from './incomeAssetsApplicant.vue';
-import IncomeAssetsFap from './incomeAssetsFap.vue';
+import IncomeAssetsApplicant from "./incomeAssetsApplicant.vue";
+import IncomeAssetsFap from "./incomeAssetsFap.vue";
 import Notice from "./notice.vue";
 import Property from "./property.vue";
 export default {
-  components: { entityAddress, Entity, Property, Notice, IncomeAssetsApplicant, IncomeAssetsFap },
+  components: {
+    entityAddress,
+    Entity,
+    Property,
+    Notice,
+    IncomeAssetsApplicant,
+    IncomeAssetsFap,
+  },
   name: "eligibility",
   props: {
     form: {
@@ -460,11 +554,12 @@ export default {
   },
   data() {
     return {
+      innerTabIndex: 0,
       boolOptions: [
         { text: "Yes", value: true },
         { text: "No", value: false },
       ],
-       benefitsOptions: [
+      benefitsOptions: [
         "Age Pension",
         "ABSTUDY",
         "Austudy",
@@ -523,7 +618,9 @@ export default {
     },
   },
   methods: {
-    
+    parentTabIndex(index) {
+      this.$emit("changeTabIndex", index);
+    },
   },
 };
 </script>
@@ -531,5 +628,17 @@ export default {
 <style lang="scss" scoped >
 .tab-content {
   padding-left: 0px !important;
+}
+.hackButtonsWrapper {
+ margin-left: -120px;
+    margin-right: -20px;
+    padding-right: 5px;
+    margin-bottom: -20px;
+    background: #f5f5f5;
+    border-top: #f5f5f5 30px solid;
+}
+.hackButtonsWrapper .btn {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
 }
 </style>

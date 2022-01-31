@@ -62,7 +62,7 @@
             <h5>Financial Information</h5>
             <span>Applicant's means test</span>
           </template>
-          <laap-eligibility :form="form"></laap-eligibility>
+          <laap-eligibility @changeTabIndex="changeTabIndex" :form="form"></laap-eligibility>
         </b-tab>
 
         <b-tab
@@ -112,7 +112,7 @@
       </b-tabs>
     </b-row>
 
-    <b-row class="mt-4">
+    <b-row class="mt-4" v-if="tabIndex !== 2">
       <b-col cols="12" class="text-right">
         <b-button v-if="tabIndex > 0"  @click="tabIndex--">Prev</b-button>
         <b-button v-if="tabIndex < 5" @click="tabIndex++">Next</b-button>
@@ -805,6 +805,11 @@ export default {
     };
   },
   mounted: function () {},
-  methods: {},
+  methods: {
+    changeTabIndex(index){
+      this.tabIndex = index
+      console.log('changed to index', index)
+    }
+  },
 };
 </script>
