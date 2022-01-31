@@ -249,10 +249,12 @@ export default {
           this.form.problem.dcp.hasDcpDocuments === true
       ) {
         docs.push({
-          type: 'Court Order'
+          type: 'Court Order',
+          multi: true
         });
         docs.push({
-          type: 'DCP Documents'
+          type: 'DCP Documents',
+          multi: true
         });
       }
       
