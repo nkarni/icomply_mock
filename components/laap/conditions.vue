@@ -83,7 +83,7 @@
 <li>You must tell us and your lawyer if you change address. If you are released from prison, you must tell us and your lawyer where you will be living. If we cannot contact you, legal aid can be stopped and your lawyer can stop work on your case.</li>
 <li>You must tell us and your lawyer if your financial circumstances change. This includes if you get a job, enter a financially associated relationship, separate, receive money, etc.</li>
 <li>You must follow your lawyer&rsquo;s advice. Legal aid can be stopped if you do not do this.</li>
-<li>You must tell your lawyer everything they needs to know about your case.</li>
+<li>You must tell your lawyer everything they need to know about your case.</li>
 <li>You must tell us and your lawyer if you do not want legal aid. By accepting legal aid you accept these conditions. Ask your lawyer if you are unsure.</li>
 </ol>
       </b-col>

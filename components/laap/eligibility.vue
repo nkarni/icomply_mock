@@ -46,7 +46,8 @@
                     ></b-form-input>
                   </b-form-group>
 
-                  <b-form-group :label="'OR ' + yourString + ' DVA Number'">
+                  <b-form-group :label="'OR ' + yourString + ' DVA Number'"
+                  description="A CRN number or DVA number is required" >
                     <b-form-input
                       id="dvaNumber"
                       name="dvaNumber"
@@ -78,6 +79,7 @@
                       additionalS +
                       ' the maximum payment?'
                     "
+                    v-if="form.entities.applicant.benefits.benefitsPaymentTypes.length > 1 || (form.entities.applicant.benefits.benefitsPaymentTypes.length===1 && form.entities.applicant.benefits.benefitsPaymentTypes[0]!=='None of the above')"
                   >
                     <b-form-radio-group
                       id="maxPayment"
