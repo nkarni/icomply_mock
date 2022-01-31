@@ -5,11 +5,8 @@
         <b-row>
           <b-col cols="4">
             <h6>Are you the Applicant?</h6>
-            The Applicant is the person this form is about, If you are not the
-            Applicant please provide some details about yourself. <br><br>NOTE: if you
-            are not the Applicant but want to be contacted about this
-            application please upload authority documentation in the uploads
-            section, or use our <a href="">Authority to Disclose form</a>.
+            Applicant is the person who needs legal help. If you are not the
+            Applicant please provide some details about yourself.
           </b-col>
           <b-col>
 
@@ -23,6 +20,8 @@
                 name="repType"
               ></b-form-radio-group>
             </b-form-group>
+
+           
 
             <b-form-group
               label="Are you a LSC panel lawyer?"
@@ -70,6 +69,35 @@
               showEmail
             >
             </entity>
+
+            <div v-if="form.repType==='other'">
+                      <b-form-group :label="'Your relationship to ' + youString">
+              <b-form-select
+                v-model="form.repRelation"
+                id="repRelation"
+                name="repRelation"
+                :options="[
+                  { value: 'Power of attorney', text: 'Power of attorney' },
+                  { value: 'Parent', text: 'Parent' },
+                  { value: 'Guardian', text: 'Guardian' },
+                  { value: 'Child', text: 'Child' },
+                  { value: 'Social worker', text: 'Social worker' },
+                  { value: 'Friend', text: 'Friend' },
+                  { value: 'Other', text: 'Other' },
+                ]"
+              ></b-form-select>
+            </b-form-group>
+            <b-form-group
+              v-if="form.repRelation === 'Other'"
+              label="Provide details"
+            >
+              <b-form-input
+                id="repRelationDetail"
+                name="repRelationDetail"
+                v-model="form.repRelationDetail"
+              ></b-form-input>
+            </b-form-group>
+            </div>
           </b-col>
         </b-row>
       </section>
@@ -142,7 +170,7 @@
              </b-form-group>
 
             <div v-if="form.repType === 'solicitor' && form.prevRepresented">
-              <b-form-group label="LSC File number (optional)">
+              <b-form-group label="LSC File number" description="Either a LSC file number or a cover letter is required">
                 <b-form-input
                   id="entities.applicant.details.lscFileNumber"
                   name="entities.applicant.details.lscFileNumber"
@@ -151,6 +179,17 @@
               </b-form-group>
               <b-form-group
                 label="If no LSC file number is provided, please provide covering letter details (or you can upload a document in the uploads section)"
+              >
+                <b-form-textarea
+                  v-model="form.coverLetterDetails"
+                  rows="3"
+                  max-rows="6"
+                ></b-form-textarea>
+              </b-form-group>
+            </div>
+            <div v-if="form.repType === 'solicitor' && form.prevRepresented === false">
+              <b-form-group
+                label="Please provide covering letter details (or you can upload a document in the uploads section)"
               >
                 <b-form-textarea
                   v-model="form.coverLetterDetails"
@@ -616,55 +655,7 @@
         </b-row>
       </section>
 
-      <section
-        v-if="form.repType === 'other'"
-        class="border-bottom border-secondary mb-4 pb-2"
-      >
-        <b-row>
-          <b-col cols="4">
-            <h6>Your authority to fill this form</h6>
-            We need proof that you are allowed to fill this form on behalf of
-            the Applicant.
-            <br /><br />This authority will be in place for 12 months. If you
-            would like to remove the authority please email
-            <a href="">grants@lsc.sa.gov.au</a>.
-          </b-col>
-          <b-col>
-            <b-form-group :label="'Your relationship to ' + youString">
-              <b-form-select
-                v-model="form.repRelation"
-                id="repRelation"
-                name="repRelation"
-                :options="[
-                  { value: 'Power of attorney', text: 'Power of attorney' },
-                  { value: 'Parent', text: 'Parent' },
-                  { value: 'Guardian', text: 'Guardian' },
-                  { value: 'Child', text: 'Child' },
-                  { value: 'Social worker', text: 'Social worker' },
-                  { value: 'Friend', text: 'Friend' },
-                  { value: 'Other', text: 'Other' },
-                ]"
-              ></b-form-select>
-            </b-form-group>
-            <b-form-group
-              v-if="form.repRelation === 'Other'"
-              label="Provide details"
-            >
-              <b-form-input
-                id="repRelationDetail"
-                name="repRelationDetail"
-                v-model="form.repRelationDetail"
-              ></b-form-input>
-            </b-form-group>
-            <div class="text-danger">
-              Please download and sign the
-              <a href="">Authority to Discolose form</a>. You will be asked to
-              upload it in the Attachments step.
-            </div>
-          </b-col>
-        </b-row>
-      </section>
-
+     
       <section
         v-if="form.repType && form.repType != 'solicitor'"
         class="border-bottom border-secondary mb-4 pb-2"
@@ -684,7 +675,7 @@
             <b-form-group
               :label="
                 DoYouStringCont +
-                ' authorise us to provide information to another person about your legal aid application? '
+                ' authorise us to provide information to another person about your Legal Aid application? '
               "
             >
               <b-form-radio-group
@@ -734,6 +725,10 @@
                   max-rows="6"
                 ></b-form-textarea>
               </b-form-group>
+
+              <notice v-if="form.authToDisclose === true" message="Please download and sign the
+              <a href=''>Authority to Discolose form</a>. You will be asked to
+              upload it in the Attachments step."></notice>
           </b-col>
         </b-row>
       </section>
@@ -743,8 +738,9 @@
 
 <script>
 import entity from "./entity.vue";
+import Notice from './notice.vue';
 export default {
-  components: { entity },
+  components: { entity, Notice },
   name: "applicantDetails",
   props: {
     form: {
@@ -768,8 +764,8 @@ export default {
       ],
       aboriginalityOptions: [
         { text: "Yes, Aboriginal", value: "aboriginal" },
-        { text: "Yes, Tores Strait Islander", value: "islander" },
-        { text: "Both Aboriginal and Tores Strait Islander", value: "both" },
+        { text: "Yes, Torres Strait Islander", value: "islander" },
+        { text: "Both Aboriginal and Torres Strait Islander", value: "both" },
         { text: "No", value: "no" },
       ],
     };

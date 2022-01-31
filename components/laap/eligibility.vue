@@ -100,9 +100,7 @@
                 <p>
                   If you provide consent to LSC checking the details of your
                   benefit or pension with Centrelink, we don&rsquo;t need any
-                  other information.<br /><br />If you do not want to provide
-                  consent, you will need to upload a copy of your most recent
-                  Centrelink Income Statement in the Document Upload step
+                  other information.
                 </p>
               </b-col>
               <b-col>
@@ -139,21 +137,21 @@
                         The department will disclose to LSC my personal
                         information including my name, address, concession card
                         status, payment type, payment status for LSC to confirm
-                        my eligibility for legal aid.
+                        my eligibility for Legal Aid.
                       </li>
                       <li>
                         This consent, once signed, remains valid while I have an
-                        active legal aid file, but I can stop it at any time by
+                        active Legal Aid file, but I can stop it at any time by
                         writing to LSC or the department.
                       </li>
                       <li>
                         I can obtain proof of my means from the department and
-                        provide it to LSC so that my eligibility for legal aid
+                        provide it to LSC so that my eligibility for Legal Aid
                         can be determined.
                       </li>
                       <li>
                         If I withdraw my consent or do not alternatively provide
-                        proof of my means, I may not be eligible for legal aid.
+                        proof of my means, I may not be eligible for Legal Aid.
                       </li>
                       <li>
                         A brochure is available from Centrelink that provides
@@ -178,23 +176,24 @@
                 </b-form-group>
 
                 <b-form-group
-                  v-if="form.entities.applicant.benefits.maxPayment === false || (form.entities.applicant.benefits.maxPayment === true && form.entities.applicant.benefits.consentToCentrelink === false) "
+                  v-if="form.entities.applicant.benefits.maxPayment === false && form.entities.applicant.benefits.consentToCentrelink === false"
                   label="How much is received per fortnight from any pension, benefit or allowance?"
                 >
                   <b-form-input
                     id="benefitsAmount"
                     name="benefitsAmount"
                     v-model="form.entities.applicant.benefits.benefitsAmount"
+                    v-if="form.entities.applicant.benefits.consentToCentrelink === false "
                   ></b-form-input>
                 </b-form-group>
-                <notice class="mb-4" :message="'If you do not provide us consent to obtain ' + yourString + ' financial details directly from Centrelink, a Centrelink Income Statement will be required in the attachments page'"></notice>
+                <notice  v-if="form.entities.applicant.benefits.consentToCentrelink === false" class="mb-4" :message="'If you do not provide us consent to obtain ' + yourString + ' financial details directly from Centrelink, a Centrelink Income Statement will be required in the attachments page'"></notice>
               </b-col>
             </b-row>
           </section>
 
           <section
             class="border-bottom border-secondary mb-4 pb-2"
-            v-if="form.entities.applicant.benefits.maxPayment === false"
+            
           >
             <b-row>
               <b-col cols="4">

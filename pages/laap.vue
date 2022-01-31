@@ -59,7 +59,7 @@
           ]"
         >
           <template #title>
-            <h5>Eligibility</h5>
+            <h5>Financial Information</h5>
             <span>Applicant's means test</span>
           </template>
           <laap-eligibility :form="form"></laap-eligibility>
@@ -181,6 +181,7 @@ export default {
   data() {
     return {
       form: {
+        agreeToConditions: null,
         repType: "",
         isLscPanelMember: null,
         prevRepresented: null,

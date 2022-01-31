@@ -92,15 +92,7 @@
           </b-form-group>
 
           <b-form-group
-            :label="
-              'Enter the net amount of any other income or payment  (after tax) ' +
-              youString +
-              'receives and how often ' +
-              youString +
-              ' receive' +
-              additionalS +
-              ' it'
-            "
+            :label="paymentsLabel"
           >
             <table class="table table-bordered">
               <thead>
@@ -151,14 +143,15 @@
     <section class="border-bottom border-secondary mb-4 pb-2">
       <b-row>
         <b-col cols="4">
-          <h6>{{ yourString }} Expenses</h6>
+          <h6 v-if="form.repType==='Self'">Your Expenses</h6>
+          <h6 v-else>The Applicant's Expenses</h6>
         </b-col>
         <b-col>
           <b-form-group
             :label="
               'Enter the amount of ' +
               yourString +
-              ' and how frequently they are paid'
+              ' expenses and how frequently they are paid'
             "
           >
             <table class="table table-bordered">
@@ -361,7 +354,6 @@
 
           <b-form-group
             :label="
-              'Has' +
               haveYouString +
               ' sold or given away money or real estate property in the last 12 months worth more than $1,000?'
             "
@@ -485,6 +477,14 @@ export default {
         return "If the Applicant does not receive any income, please give details of how they are supported";
       }
     },
+    paymentsLabel () {
+      
+      if (this.form.repType === "self") {
+        return "Enter the net amount of any other income or payment (after tax) you receive and how often you receive it";
+      } else {
+        return "Enter the net amount of any other income or payment (after tax) the Applicant receives and how often they receive it";
+      }
+    }
   },
   methods: {
     addCar() {

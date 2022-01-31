@@ -13,7 +13,7 @@
           </p>
           <p>Your information will be used to:</p>
           <ul>
-            <li>assess your eligibility for legal aid</li>
+            <li>assess your eligibility for Legal Aid</li>
             <li>help your lawyer with your legal representation</li>
             <li>update your personal details in our records</li>
             <li>
@@ -35,13 +35,13 @@
         </b-col>
         <b-col>
           <p>
-        If you need More information once you accept legal aid, the conditions
+        If you need More information once you accept Legal Aid, the conditions
         of aid will apply to you whether or not you agree with them or
         understand them.
       </p>
       <p>
         If you do not understand the conditions of aid or need more information
-        about legal aid, you can:
+        about Legal Aid, you can:
       </p>
       <ol style="list-style-type: lower-alpha">
         <li>&nbsp;ask your lawyer</li>
@@ -55,10 +55,10 @@
       <p>I acknowledge it is an offence to:</p>
       <ul>
         <li>
-          Make a false or misleading statement when applying for legal aid
+          Make a false or misleading statement when applying for Legal Aid
         </li>
         <li>
-          Give a false or misleading statement when applying for legal aid
+          Give a false or misleading statement when applying for Legal Aid
         </li>
         <li>
           Refuse to give information requested by LSC with the intent to deceive
@@ -70,7 +70,7 @@
                     :value="true"
                     :unchecked-value="false"
                   >
-                    I have read the confidentiality statement and conditions of legal aid. All the information I have given is true and correct. 
+                    I have read the confidentiality statement and conditions of Legal Aid. All the information I have given is true and correct. 
                   </b-form-checkbox>
 
           
@@ -116,10 +116,10 @@
           <p>I acknowledge it is an offence to:</p>
       <ul>
         <li>
-          Make a false or misleading statement when applying for legal aid
+          Make a false or misleading statement when applying for Legal Aid
         </li>
         <li>
-          Give a false or misleading statement when applying for legal aid
+          Give a false or misleading statement when applying for Legal Aid
           Refuse to give information requested by LSC with the intent to deceive
           or mislead LSC.&nbsp;
         </li>
@@ -130,7 +130,7 @@
                     :value="true"
                     :unchecked-value="false"
                   >
-                    I have read the confidentiality statement and conditions of legal aid. All the information I have given is true and correct. 
+                    I have read the confidentiality statement and conditions of Legal Aid. All the information I have given is true and correct. 
                   </b-form-checkbox>
       </b-form-group>
  

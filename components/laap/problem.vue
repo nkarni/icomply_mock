@@ -76,7 +76,7 @@
         <b-col cols="4">
           <h6>What is this application for?</h6>
           <p>
-            Choose all that apply, a relevant section will automtically show
+            Choose all that apply, a relevant section will automatically show
             below to match your selection(s).<br /><br />
 
             If you are not sure what your application is about and would like to
@@ -298,7 +298,7 @@
               :label="
                 'Have the police taken any of ' +
                 yourString +
-                ' your belonging under a proceeds of crime order?'
+                ' your belonging under a proceeds of crime Order?'
               "
             >
               <b-form-radio-group
@@ -311,7 +311,7 @@
                 :message="
                   'A copy of ' +
                   yourString +
-                  ' order will be required in the attachments page.'
+                  ' Order will be required in the attachments page.'
                 "
               ></notice>
             </b-form-group>
@@ -975,10 +975,10 @@ export default {
         "Property settlement",
         "Spousal maintenance",
         "Divorce",
-        "Enforcing a court order or advising an order has been breached",
-        "Seeking to change family court orders due to family violence",
-        "Applying for an intervention order",
-        "Responding to an application for an intervention order",
+        "Enforcing a Court Order or advising an Order has been breached",
+        "Seeking to change family Court Orders due to family violence",
+        "Applying for an intervention Order",
+        "Responding to an application for an intervention Order",
         "Unsure",
       ],
     };

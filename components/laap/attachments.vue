@@ -113,9 +113,17 @@ export default {
       let docs = [
         {
           type: 'Mockup sample with comments',
-          comments: 'This will not be part of the form, only added so it shows how comments will appear.'
+          comments: 'This will not be part of the form, only added so it shows how comments will appear.',
+          multi: true
         }
       ];
+      if (
+          this.form.authToDisclose === true
+      ) {
+        docs.push({
+          type: 'Authority to disclose form'
+        });
+      }
       if (
         this.form.entities.applicant.incomeAssets.employmentType ===
           "Employed" ||
@@ -137,19 +145,21 @@ export default {
             " " +
             this.form.entities.fap.lastName +
             " Pay Slip",
+          multi: true
         });
       }
 
        if (
-        this.form.entities.applicant.incomeAssets.maxPayment === true
+        this.form.entities.applicant.benefits.receivesBenefit === true && this.form.entities.applicant.benefits.maxPayment === true
       ) {
         docs.push({
-          type: this.yourString + ' Bank Statement'
+          type: this.yourString + ' Bank Statement',
+          multi: true
         });
       }
 
        if (
-        this.form.entities.fap.receivesMaxBenefits === true
+        this.form.entities.applicant.benefits.receivesBenefit === true && this.form.entities.applicant.benefits.maxPayment === true
       ) {
         docs.push({
           type:
@@ -157,11 +167,12 @@ export default {
             " " +
             this.form.entities.fap.lastName +
             "'s Bank Statement",
+            multi: true
         });
       }
 
       if (
-        this.form.entities.applicant.incomeAssets.maxPayment === false
+        this.form.entities.applicant.benefits.maxPayment === false
       ) {
         docs.push({
           type: this.yourString + ' Centrelink Statement'
@@ -228,7 +239,8 @@ export default {
           this.form.entities.applicant.incomeAssets.hasLegalFeesBeenPaid === true
       ) {
         docs.push({
-          type: 'Paid legal fees Receipts'
+          type: 'Paid legal fees Receipts',
+          multi: true
         });
       }
 
@@ -248,7 +260,8 @@ export default {
           this.form.problem.problemType.includes('Family Law problem')
       ) {
         docs.push({
-          type: 'Family Documents'
+          type: 'Family Documents',
+          multi: true
         });
       }
 
@@ -267,7 +280,8 @@ export default {
           this.form.problem.problemType.includes('Criminal Law problem')
       ) {
         docs.push({
-          type: 'Criminal Documents'
+          type: 'Criminal Documents',
+          multi: true
         });
       }
 
@@ -275,7 +289,8 @@ export default {
           this.form.problem.problemType.includes('Civil/General Law problem')
       ) {
         docs.push({
-          type: 'Civil/General Documents'
+          type: 'Civil/General Documents',
+          multi: true
         });
       }
 
