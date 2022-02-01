@@ -48,12 +48,13 @@
               v-if="form.repType === 'solicitor'"
               :entity="form.entities.repSolicitor"
               orgNameLabel="Your firm or organisation name"
+              orgAddressLabel="Firm or organisation address"
               idPrefix="repSolicitor"
               showOrgName
               showFirstName
               showLastName
               showEmail
-              showAddress
+              showOrgAddress
             >
             </entity>
 
@@ -578,6 +579,7 @@
                 v-model="form.entities.applicant.details.numOfDependants"
                 type="number"
                 @change="onNumDepnedantsChange"
+                min="0"
               ></b-form-input>
             </b-form-group>
             <div v-if="form.entities.applicant.details.dependants.length > 0">
@@ -608,7 +610,7 @@
                       <template v-slot:additionalFields>
                         <b-form-group
                           :label="
-                            'Dependant ' + index + 1 + ' relationship to you'
+                            'Dependant ' + (index + 1) + ' relationship to you'
                           "
                         >
                           <b-form-select
@@ -631,7 +633,7 @@
                         </b-form-group>
 
                         <b-form-group
-                          :label="'Dependant ' + index + 1 + 'Date of birth'"
+                          :label="'Dependant ' + (index + 1) + ' Date of birth'"
                         >
                           <b-form-datepicker
                             id="dep0dob"
@@ -642,7 +644,7 @@
                             class="mb-2"
                           ></b-form-datepicker>
                         </b-form-group>
-                        Do they stay overnight with you at least once a week?
+                        
 
                         <b-form-group
                           label="Do they stay overnight with you at least once a week?"
@@ -841,6 +843,7 @@ export default {
   },
   methods: {
     onNumDepnedantsChange() {
+      if(this.form.entities.applicant.details.numOfDependants < 0) return
       if (
         this.form.entities.applicant.details.numOfDependants <
         this.form.entities.applicant.details.dependants.length

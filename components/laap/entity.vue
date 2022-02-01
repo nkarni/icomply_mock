@@ -7,6 +7,13 @@
         v-model="entity.orgName"
       ></b-form-input>
     </b-form-group>
+
+    <entity-address
+      v-if="showOrgAddress"
+      :addressLabel="orgAddressLabel"
+      :address="entity.orgAddress"
+    ></entity-address>
+
     <b-form-group :label="firstNameLabel" v-if="showFirstName">
       <b-form-input
         :id="idPrefix + '-firstName'"
@@ -176,6 +183,14 @@ export default {
       default: "Organisation name",
     },
     showOrgName: {
+      type: Boolean,
+      default: false,
+    },
+    orgAddressLabel: {
+      type: String,
+      default: "Organisation address",
+    },
+    showOrgAddress: {
       type: Boolean,
       default: false,
     },

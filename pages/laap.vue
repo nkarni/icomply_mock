@@ -114,8 +114,8 @@
 
     <b-row class="mt-4" v-if="tabIndex !== 2">
       <b-col cols="12" class="text-right">
-        <b-button v-if="tabIndex > 0"  @click="tabIndex--">Prev</b-button>
-        <b-button v-if="tabIndex < 5" @click="tabIndex++">Next</b-button>
+        <b-button v-if="tabIndex > 0"  @click="tabIndex--">Save & Prev</b-button>
+        <b-button v-if="tabIndex < 5" @click="tabIndex++">Save & Next</b-button>
       </b-col>
     </b-row>
 
@@ -188,7 +188,8 @@ export default {
         repSolicitorOrgName: "",
         entities: {
           repSolicitor: {
-            orgName: "initial",
+            orgName: "",
+            orgAddress: "",
             firstName: "",
             lastName: "",
             email: "",
@@ -380,6 +381,7 @@ export default {
               crnNumber: "",
               dvaNumber: "",
               benefitsPaymentTypes: [],
+              benefitsPaymentTypesDetails: '',
               maxPayment: null,
               consentToCentrelink: null,
               authoriseCentrelink: null,
@@ -693,6 +695,7 @@ export default {
                 courtTown: null,
                 nextDate: "",
                 nextDateReason: "",
+                nextDateReasonDetails: "",
                 offenses: "",
                 offenceDetails: "",
                 victims: [
@@ -740,6 +743,7 @@ export default {
             courtTown: null,
             nextDate: "",
             nextDateReason: "",
+            nextDateReasonDetails: "",
             courtFileNumber: "",
             conferenceDate: "",
             otherPartyFirstName: "",

@@ -39,7 +39,7 @@
                 </b-form-group>
 
                 <div v-if="form.entities.applicant.benefits.receivesBenefit">
-                  <b-form-group :label="yourString + ' CRN Number'">
+                  <b-form-group :label="yourString + ' CRN Number (Centrelink reference number)'">
                     <b-form-input
                       id="crnNumber"
                       name="crnNumber"
@@ -48,7 +48,7 @@
                   </b-form-group>
 
                   <b-form-group
-                    :label="'OR ' + yourString + ' DVA Number'"
+                    :label="'OR ' + yourString + ' DVA Number (Department of Veterans\' Affairs)'"
                     description="A CRN number or DVA number is required"
                   >
                     <b-form-input
@@ -76,6 +76,18 @@
                       name="benefitsPaymentTypes"
                     ></b-form-checkbox-group>
                   </b-form-group>
+
+                    <b-form-group
+                  :label="'Please provide details'"
+                  v-if="form.entities.applicant.benefits.benefitsPaymentTypes.includes('None of the above')"
+                >
+                  <b-form-textarea
+                    v-model="form.entities.applicant.benefits.benefitsPaymentTypesDetails"
+                    rows="3"
+                    max-rows="6"
+                    
+                  ></b-form-textarea>
+                </b-form-group>
 
                   <b-form-group
                     :label="
@@ -351,10 +363,10 @@
             <b-row class="mt-4">
               <b-col cols="12" class="text-right">
                 <b-button v-if="innerTabIndex === 0" @click="parentTabIndex(1)"
-                  >Prev</b-button
+                  >Save & Prev</b-button
                 >
                 <b-button v-if="innerTabIndex < 5" @click="innerTabIndex++"
-                  >Next</b-button
+                  >Save & Next</b-button
                 >
               </b-col>
             </b-row>
@@ -390,7 +402,7 @@
               </b-col>
               <b-col>
                 <b-form-group
-                  :label="DoYouStringCont + ' own (or paying off) a home?'"
+                  :label="DoYouStringCont + ' own (or paying off) ' + yourString + ' home?'"
                 >
                   <b-form-radio-group
                     v-model="form.entities.applicant.property.ownsAHome"
@@ -487,10 +499,10 @@
             <b-row class="mt-4">
               <b-col cols="12" class="text-right">
                 <b-button  @click="innerTabIndex--"
-                  >Prev</b-button
+                  >Save & Prev</b-button
                 >
                 <b-button  @click="innerTabIndex++"
-                  >Next</b-button
+                  >Save & Next</b-button
                 >
               </b-col>
             </b-row>
@@ -514,10 +526,10 @@
             <b-row class="mt-4">
               <b-col cols="12" class="text-right">
                 <b-button  @click="innerTabIndex--"
-                  >Prev</b-button
+                  >Save & Prev</b-button
                 >
                 <b-button  @click="parentTabIndex(3)"
-                  >Next</b-button
+                  >Save & Next</b-button
                 >
               </b-col>
             </b-row>

@@ -23,15 +23,30 @@
       ></b-form-datepicker>
     </b-form-group>
 
-    <b-form-group
-      :label="'What is the next Court date for? e.g. mentions,committal'"
-    >
-      <b-form-textarea
-        v-model="court.nextDateReason"
-        rows="3"
-        max-rows="6"
-      ></b-form-textarea>
-    </b-form-group>
+   
+
+      <b-form-group
+                  :label="'What is the next Court date for? e.g. mentions, committal, trial'"
+                >
+
+                  <b-form-select
+                    v-model="court.nextDateReason"
+                    :options="['Select one', 'Option A', 'Other']"
+                  ></b-form-select>
+                </b-form-group>
+                 <b-form-group
+                  :label="'Please provide details'"
+                  v-if="court.nextDateReason === 'Other'"
+                >
+                  <b-form-textarea
+                    
+                    v-model="court.nextDateReasonDetails"
+                    rows="3"
+                    max-rows="6"
+                  ></b-form-textarea>
+                </b-form-group>
+
+
 
     <b-form-group
       :label="'What offences ' + haveYouString + ' been charged with?'"
