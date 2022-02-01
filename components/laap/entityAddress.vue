@@ -2,13 +2,13 @@
   <div>
     <b-form-group
       :label="addressLabel"
-      description="Start typing your address and select one of the options"
+      :description="addressHelp"
       class="mb-0"
     >
       <b-form-input
         :id="idPrefix + '-address'"
         :name="idPrefix + '-address'"
-
+        v-model="addressString"
       ></b-form-input>
     </b-form-group>
 
@@ -102,6 +102,11 @@ export default {
       type: String,
       default: "entity-form",
     },
+    addressHelp: {
+      type: String,
+      default: "Start typing your address and select one of the options",
+    },
+    
     address: {
       type: Object,
       default: () => ({
@@ -123,6 +128,9 @@ export default {
     };
   },
   computed: {
+    addressString: function(){
+      this.address.line1 + '' + this.address.line2 + '' +this.address.suburb + '' +this.address.postcode + '' +this.address.state + '' +this.address.country
+    }
   },
   methods: {},
 };

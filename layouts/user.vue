@@ -6,8 +6,8 @@
     >
       <div class="container-md">
         <router-link
-          title="Mcgirr Technologies"
-          aria-label="Mcgirr Technologies"
+          title="Fair Work Commission"
+          aria-label="Fair Work Commission"
           target="_self"
           class="navbar-brand top-navbar--brand"
           to="/home"
@@ -44,7 +44,7 @@
                 title="Apply"
                 aria-label="Apply"
                 class="nav-link"
-                href="/laap"
+                href="/f3"
                 target="_self"
               >
                 Apply

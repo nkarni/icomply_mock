@@ -147,7 +147,7 @@
     </div>
 
   
-  </div>
+ 
 </template>
 
 <script>

@@ -6,15 +6,15 @@
     >
       <div class="container-md">
         <router-link
-          title="Fair Work Commission South Australia"
-          aria-label="Fair Work Commission South Australia"
+          title="Fair Work Commission"
+          aria-label="Fair Work Commission"
           target="_self"
           class="navbar-brand top-navbar--brand"
           to="/home"
         >
           <img
-            src="~/assets/img/LSC_Logo_cropped.png"
-            alt="Fair Work Commission South Australia"
+            src="~/assets/img/fwc_logo.png"
+            alt="Fair Work Commission"
             style="height: 50px;"
           >
           
@@ -109,7 +109,7 @@
 
     <div class="w-100 text-center pt-1 pb-1 text-primary bg-lightblue">
       If you need help filling out this form or have any questions you
-      can call us on 1300 366 424
+      can call us on 1300 XXX XXX
     </div>
 
     <b-container class="mt-4">
@@ -133,7 +133,8 @@ export default {
 
 <style scoped>
 .top-navbar--container {
-	background-color: white;
+	color: white;
+  background-color: var(--primaryDark);
 	border-bottom: 1px solid var(--grey-200);
 }
 
@@ -148,14 +149,14 @@ export default {
 }
 
 .top-navbar--container .nav-link {
-	color: var(--primary);
+	color: white;
 	padding-left: 1rem;
 	padding-right: 1rem;
 	font-weight: 500;
 }
 
 .top-navbar--container .top-navbar--brand {
-	color: var(--primary);
+	color: white;
 	font-weight: 600;
 	padding: 0;
 }
