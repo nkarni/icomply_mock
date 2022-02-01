@@ -6,15 +6,15 @@
     >
       <div class="container-md">
         <router-link
-          title="Legal Services Commission South Australia"
-          aria-label="Legal Services Commission South Australia"
+          title="Fair Work Commission South Australia"
+          aria-label="Fair Work Commission South Australia"
           target="_self"
           class="navbar-brand top-navbar--brand"
           to="/home"
         >
           <img
             src="~/assets/img/LSC_Logo_cropped.png"
-            alt="Legal Services Commission South Australia"
+            alt="Fair Work Commission South Australia"
             style="height: 50px;"
           >
           

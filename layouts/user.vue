@@ -13,8 +13,8 @@
           to="/home"
         >
           <img
-            src="/LSC_Logo_cropped.png"
-            alt="Legal Services Commission South Australia"
+            src="~/assets/img/fwc_logo.png"
+            alt="Fair Work Commission South Australia"
             style="height: 50px;"
           >
         </router-link>
@@ -127,7 +127,8 @@ export default {
 
 <style scoped>
 .top-navbar--container {
-	background-color: white;
+	color: white;
+  background-color: var(--primaryDark);
 	border-bottom: 1px solid var(--grey-200);
 }
 
@@ -142,14 +143,14 @@ export default {
 }
 
 .top-navbar--container .nav-link {
-	color: var(--primary);
+	color: white;
 	padding-left: 1rem;
 	padding-right: 1rem;
 	font-weight: 500;
 }
 
 .top-navbar--container .top-navbar--brand {
-	color: var(--primary);
+	color: white;
 	font-weight: 600;
 	padding: 0;
 }

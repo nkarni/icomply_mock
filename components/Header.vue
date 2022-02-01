@@ -14,8 +14,8 @@
 					 <b-navbar-brand to="/">
 				
 						<img
-            src="~/assets/img/LSC_Logo_cropped.png"
-            alt="Legal Services Commission South Australia"
+            src="~/assets/img/fwc_logo.png"
+            alt="Fair Work Commission South Australia"
             style="height: 82px;"
 						v-if="this.$route.path"
           >

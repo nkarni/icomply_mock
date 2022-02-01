@@ -7,7 +7,7 @@
         </b-col>
         <b-col>
           <p>
-            Under s31A of the Legal Services Commission Act 1977, the
+            Under s31A of the Fair Work Commission Act 1977, the
             information provided in your application form remains confidential
             in most cases.
           </p>

@@ -27,7 +27,7 @@
               stacked
               v-model="form.problem.preferredLawyerType"
               :options="[
-                'A Legal Services Commission lawyer',
+                'A Fair Work Commission lawyer',
                 'A private lawyer',
                 'I don\'t mind',
               ]"

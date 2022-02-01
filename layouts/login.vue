@@ -5,23 +5,23 @@
         <div class="section">
           <h2 class="text-primary">
             <img
-              src="~/assets/img/LSC_Logo_cropped.png"
-              alt="Legal Services Commission South Australia"
+              src="~/assets/img/fwc_logo.png"
+              alt="Fair Work Commission South Australia"
               style="height: 82px"
             /><br />
-            Legal Services Online Portal
+            Fair Work Commission Online Portal
           </h2>
           <div class="mt-2 divider text-primary" />
           <div class="intro-text">
             <p>
-              Welcome to the Legal Services Commission of South Australia Online
+              Welcome to the Fair Work Commission  Online
               Lodgement Service. You can use this service to submit
               applications, track your cases and file case documentation.
             </p>
 
             <p>
               For any questions or clarifications about the use of this portal
-              or about Legal Services in general, please refer to our website at
+              or about Fair Work Commission in general, please refer to our website at
               <a href=" https://lsc.sa.gov.au">https://lsc.sa.gov.au </a>
               (online chat, phone call and email help available).
             </p>

@@ -11,7 +11,7 @@
           </span>
         </div>
         <h2 class="heading heading-big text-primary">
-          McGirr Online Lodgement Service
+          Fair Work Commission Lodgement Service
         </h2>
       </b-col>
     </b-row>

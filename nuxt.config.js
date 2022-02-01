@@ -6,7 +6,7 @@ export default {
   target: 'static',
 
   router: {
-    base: '/lsc-prototype/'
+    base: '/fwc-prototype/'
   },
 
   server: {
@@ -15,7 +15,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'LSC Prototype',
+    title: 'FWC Prototype',
     htmlAttrs: {
       lang: 'en'
     },

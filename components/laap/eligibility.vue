@@ -152,7 +152,7 @@
                 >
                   <div>
                     <p>
-                      I consent and authorise:<br />the Legal Services
+                      I consent and authorise:<br />the Fair Work Commission
                       Commission (LSC) to use Centrelink Confirmation eServices
                       to perform a Centrelink enquiry of my Centrelink Customer
                       details and concession card status in order to enable LSC
