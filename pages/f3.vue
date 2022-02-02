@@ -90,8 +90,9 @@
         >
           <template #title>
             <h5>Other details</h5>
-            <span>Confirm and submit the application</span>
+            <span>Additional information</span>
           </template>
+          <f-3-other-info :form="form"></f-3-other-info>
         </b-tab>
         <b-tab
           :title-link-class="[
@@ -139,9 +140,9 @@
               (this ensures they don't have to go back and forth to pass
               validation). This mockup doesn't affect validation however the
               rule is that All visible fields are mandatory unless they are
-              marked as optional. 
+              marked as optional.
             </li>
-            
+
             <li>
               The section below shows the data as it exists in the form and is
               updated in real time. The data structure is temporary and may be
@@ -158,7 +159,6 @@
                   of that tab (currently open has blue tag, completed is in
                   green, etc)
                 </li>
-
               </ul>
             </li>
           </ul>
@@ -180,11 +180,12 @@
 <script>
 import f3AboutYou from "../components/laap/f3AboutYou.vue";
 import F3Circumstances from "../components/laap/f3Circumstances.vue";
-import F3Dismissal from '../components/laap/f3Dismissal.vue';
+import F3Dismissal from "../components/laap/f3Dismissal.vue";
 import f3EmployeeDetails from "../components/laap/f3EmployeeDetails.vue";
+import F3OtherInfo from '../components/laap/f3OtherInfo.vue';
 
 export default {
-  components: { f3AboutYou, f3EmployeeDetails, F3Circumstances, F3Dismissal },
+  components: { f3AboutYou, f3EmployeeDetails, F3Circumstances, F3Dismissal, F3OtherInfo },
   layout: "form",
   data() {
     return {
@@ -217,13 +218,14 @@ export default {
               },
             ],
           },
-          numberOfEmployeesIsUnder: 0
+          numberOfEmployeesIsUnder: 0,
         },
         needsInterpreter: null,
         needsInterpreterLanguage: "",
         needsAccessibility: null,
         needsAccessibilityDetails: "",
         researchConsent: null,
+        hasRep: null,
         rep: {
           firstName: "",
           lastName: "",
@@ -247,21 +249,20 @@ export default {
         employeeFirstName: "John",
         employeeLastName: "Smith",
         caseNumber: "ABC123",
-        employeeWeeklyWage: '',
+        employeeWeeklyWage: "",
         employeeHasOtherBenefits: null,
-        employeeHasOtherBenefitsDetails: '',
+        employeeHasOtherBenefitsDetails: "",
         employeeHasAwardAgreement: null,
-        employeeAwardAgreementName: '',
-        employeeAwardAgreementNumber: '',
-        followedCode: '',
-        employeeDescOfWhatHappened: 'Their input will show here....',
-        employerDescOfWhatHappened: '',
+        employeeAwardAgreementName: "",
+        employeeAwardAgreementNumber: "",
+        followedCode: "",
+        employeeDescOfWhatHappened: "Their input will show here....",
+        employerDescOfWhatHappened: "",
         independentContractor: null,
-        employmentStartDate: '',
-        employmentDismissedDate: '',
-        employmentEndDate: ''
-
-
+        employmentStartDate: "",
+        employmentDismissedDate: "",
+        employmentEndDate: "",
+        otherInfo: "",
       },
       formX: {
         agreeToConditions: null,
