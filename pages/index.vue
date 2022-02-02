@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2 class="text-primary">
-      Sign inzzz
+      Sign in
     </h2>
     <span>
       Don't have an account?
