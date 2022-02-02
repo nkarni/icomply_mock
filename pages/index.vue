@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Hello CD</h1>
     <h2 class="text-primary">
       Sign in
     </h2>
