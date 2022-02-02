@@ -77,6 +77,7 @@
             <h5>The dismissal</h5>
             <span>Information about the dismissal</span>
           </template>
+          <f-3-dismissal :form="form"></f-3-dismissal>
         </b-tab>
 
         <b-tab
@@ -138,24 +139,9 @@
               (this ensures they don't have to go back and forth to pass
               validation). This mockup doesn't affect validation however the
               rule is that All visible fields are mandatory unless they are
-              marked as optional. However, the following specific rules should
-              be mentioned:
+              marked as optional. 
             </li>
-            <ul>
-              <li>
-                At least one contact method is required (email, phone or
-                address) (applies to the Applicant's address only, or to all?)
-              </li>
-              <li>
-                All number fields will be validated as integers, except when it
-                is currency field (it will allow a decimal)
-              </li>
-              <li>
-                CRN number validated as 9 digits and 1 letter, DVA number is 8
-                digits. Either a CRN number or DVA number is mandatory (if
-                showing)
-              </li>
-            </ul>
+            
             <li>
               The section below shows the data as it exists in the form and is
               updated in real time. The data structure is temporary and may be
@@ -163,7 +149,7 @@
               help you in seeing what data exists in the form as you test it.
             </li>
             <li>
-              With regards to tabs navigation, the following two items will be
+              With regards to tabs navigation, the following items will be
               completed when we build the site and do not work in the prototype
               because they depend on validation:
               <ul>
@@ -172,10 +158,7 @@
                   of that tab (currently open has blue tag, completed is in
                   green, etc)
                 </li>
-                <li>
-                  The next/previous button don't progress ot the inner tabs
-                  inside Eligibility step
-                </li>
+
               </ul>
             </li>
           </ul>
@@ -197,9 +180,11 @@
 <script>
 import f3AboutYou from "../components/laap/f3AboutYou.vue";
 import F3Circumstances from "../components/laap/f3Circumstances.vue";
+import F3Dismissal from '../components/laap/f3Dismissal.vue';
 import f3EmployeeDetails from "../components/laap/f3EmployeeDetails.vue";
+
 export default {
-  components: { f3AboutYou, f3EmployeeDetails, F3Circumstances },
+  components: { f3AboutYou, f3EmployeeDetails, F3Circumstances, F3Dismissal },
   layout: "form",
   data() {
     return {
@@ -232,7 +217,7 @@ export default {
               },
             ],
           },
-          numberOfEmployeesIsUnder: null
+          numberOfEmployeesIsUnder: 0
         },
         needsInterpreter: null,
         needsInterpreterLanguage: "",
@@ -267,7 +252,14 @@ export default {
         employeeHasOtherBenefitsDetails: '',
         employeeHasAwardAgreement: null,
         employeeAwardAgreementName: '',
-        employeeAwardAgreementNumber: ''
+        employeeAwardAgreementNumber: '',
+        followedCode: '',
+        employeeDescOfWhatHappened: 'Their input will show here....',
+        employerDescOfWhatHappened: '',
+        independentContractor: null,
+        employmentStartDate: '',
+        employmentDismissedDate: '',
+        employmentEndDate: ''
 
 
       },

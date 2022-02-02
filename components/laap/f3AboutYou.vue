@@ -5,8 +5,9 @@
         <b-row>
           <b-col cols="4">
             <h6>Business details</h6>
-            The following details were provided by the employee in their
-            Application. Please check the details and correct if required.
+            <p>The following details were provided by the employee in their
+            Application. Please check the details and correct if required.</p>
+            <p>Through this form - all fields are mandatory unless specifically marked as optional.</p>
           </b-col>
           <b-col>
             <label>Business name and ABN:</label><br />

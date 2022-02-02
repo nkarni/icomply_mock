@@ -1,97 +1,118 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary mb-4 pb-4">
+      <section class="border-bottom border-secondary mb-4 pb-4" v-if="form.businessDetails.numberOfEmployeesIsUnder < 15">
         <b-row>
           <b-col cols="4">
-            <h6>Your business</h6>
+            <h6>Dismissal information</h6>
           </b-col>
           <b-col>
+            
             <b-form-group
-              :label="'How many employees did your business have when the employee was dismissed?'"
+              label="Did you follow the Small Business Fair Dismissal Code when you dismissed the employee?"
             >
               <b-form-radio-group
                 stacked
-                v-model="form.businessDetails.numberOfEmployeesIsUnder"
-                :options="numberOfEmployeesOptionsUnder"
+                v-model="form.followedCode"
+                :options="['Yes', 'No', 'They were not dismissed']"
               ></b-form-radio-group>
             </b-form-group>
+            <b-form-group
+              v-if="form.followedCode === 'Yes'"
+              label="If you completed the Small Business Fair Dismissal checklist attach a copy"
+            >
+              <b-form-file
+                placeholder="Choose a file or drop it here..."
+                drop-placeholder="Drop file here..."
+              ></b-form-file>
+            </b-form-group>
+       
 
+
+          </b-col>
+        </b-row>
+      </section>
+
+      <section class="border-bottom border-secondary mb-4 pb-4">
+        <b-row>
+          <b-col cols="4">
+            <h6>What happened?</h6>
+            <p>
+              Read what your former employee wrote in their application form.
+              <br /><br />Write a response to what they’ve written.
+              <br /><br />Attach a copy of the dismissal letter if there was
+              one.
+            </p>
+          </b-col>
+          <b-col>
+            <label>The employee wrote the following:</label>
+            <div
+              style="
+                font-style: italic;
+                border-left: 2px solid gray;
+                padding-left: 8px;
+              "
+              class="ml-2 mb-4"
+            >
+              {{ form.employeeDescOfWhatHappened }}
+            </div>
+
+            <b-form-group label="Write a response to what they’ve written">
+              <b-form-textarea
+                v-model="form.employerDescOfWhatHappened"
+                rows="12"
+                max-rows="18"
+              ></b-form-textarea>
+            </b-form-group>
             <notice
-              message="Count all full-time, part-time and casual employees. Include the employee who was dismissed. <br><br>
-If the employee wasn’t dismissed, count the employees you had on 12/12/22 (the date the employee said they were dismissed)."
+              class="mb-2"
+              message="Your former employee will see the answers you give in this form. This is so they can understand your side of the case. 
+<br>If you are worried about particular information being passed on, don’t include it yet. Submit your completed form without it and then contact us to discuss whether you should send the information to us.
+"
             ></notice>
           </b-col>
         </b-row>
       </section>
+
       <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
-            <h6>The employee's employment</h6>
+            <h6>Employment type and dates</h6>
           </b-col>
           <b-col>
-            <b-form-group label="What was their weekly wage (gross)?" >
-              <b-input-group  prepend="$" >
-              <b-form-input v-model="form.employeeWeeklyWage"></b-form-input>
-              </b-input-group>
-            </b-form-group>
-            <notice
-              class="mb-4"
-              message="If they were casual, write the hourly rate and describe their average weekly hours. "
-            ></notice>
-
-            <b-form-group
-              :label="'Did they get any other benefits, such as a work car or mobile phone?'"
+             <b-form-group
+              label="Were they engaged as an independent contractor?"
             >
               <b-form-radio-group
-                v-model="form.employeeHasOtherBenefits"
+                stacked
+                v-model="form.independentContractor"
                 :options="boolOptions"
               ></b-form-radio-group>
             </b-form-group>
             <b-form-group
-              v-if="form.employeeHasOtherBenefits === true"
-              label="Describe them here, including their value"
+              :label="startDateLabel"
             >
-              <b-form-textarea
-                v-model="form.employeeOtherBenefitsDetails"
-              ></b-form-textarea>
+              <b-form-datepicker
+                v-model="form.employmentStartDate"
+                class="mb-2"
+              ></b-form-datepicker>
             </b-form-group>
-
-             <b-form-group
-              :label="'Were they covered by an award or enterprise agreement?'"
-            >
-              <b-form-radio-group
-                v-model="form.employeeHasAwardAgreement"
-                :options="boolOptions"
-              ></b-form-radio-group>
-            </b-form-group>
-
-           
-
             <b-form-group
-              v-if="form.employeeHasAwardAgreement === true"
-              label="Name of award or agreement "
+              :label="'What date were they told they were being dismissed?'"
             >
-              <b-form-input
-                v-model="form.employeeAwardAgreementName"
-              ></b-form-input>
+              <b-form-datepicker
+                v-model="form.employmentDismissedDate"
+                class="mb-2"
+              ></b-form-datepicker>
             </b-form-group>
-             <b-form-group
-              v-if="form.employeeHasAwardAgreement === true"
-              label="Award or agreement number "
+            <b-form-group
+              :label="'What date did their employment end?'"
             >
-              <b-form-input
-                v-model="form.employeeAwardAgreementNumber"
-              ></b-form-input>
+              <b-form-datepicker
+                v-model="form.employmentEndDate"
+                class="mb-2"
+              ></b-form-datepicker>
             </b-form-group>
-             <notice
-            v-if="form.employeeHasAwardAgreement === true"
-              class="mb-4"
-              message="If you don’t have these details handy, use our <a href=''>agreement search</a> or <a href=''>awards list</a> to find the correct name and number"
-            ></notice>
-
-
-
           </b-col>
         </b-row>
       </section>
@@ -100,12 +121,13 @@ If the employee wasn’t dismissed, count the employees you had on 12/12/22 (the
 </template>
 
 <script>
+import Laap from "../../pages/laap.vue";
 import entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
 export default {
-  components: { entity, Notice, EntityAddress },
-  name: "f3circumstances",
+  components: { entity, Notice, EntityAddress, Laap },
+  name: "dismissal",
   props: {
     form: {
       type: Object,
@@ -117,44 +139,6 @@ export default {
       boolOptions: [
         { text: "Yes", value: true },
         { text: "No", value: false },
-      ],
-      numberOfEmployeesOptionsUnder: [
-        {
-          text: "1 to 4 employees ",
-          value: "4",
-        },
-        {
-          text: "5 to 9  employees ",
-          value: "10",
-        },
-        {
-          text: "10 to 14  employees ",
-          value: "15",
-        },
-        {
-          text: "15 to 19 employees ",
-          value: "20",
-        },
-        {
-          text: "20 to 49 employees",
-          value: "50",
-        },
-        {
-          text: "50 to 99 employees",
-          value: "100",
-        },
-        {
-          text: "100 to 199 employees",
-          value: "200",
-        },
-        {
-          text: "200 to 999 employees",
-          value: "1000",
-        },
-        {
-          text: "over 1000 employees",
-          value: "999999999",
-        },
       ],
     };
   },
@@ -183,6 +167,13 @@ export default {
     AreYouString: function () {
       return this.form.repType === "self" ? "are you" : "the Applicant is";
     },
+    startDateLabel() {
+      if(this.form.independentContractor !== true){
+        return 'What date did the employee start working for your business?'
+      }else{
+        return 'What date did their contract start?'
+      }
+    }
   },
   methods: {
     onSelectedNewAbn() {

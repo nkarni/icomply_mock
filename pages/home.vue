@@ -26,7 +26,7 @@
         <div
           tabindex="0"
           class="menu-item menu-item--shadow"
-          @click="$router.push('/laap')"
+          @click="$router.push('/f3')"
         >
           <div class="menu-item--icon">
             <b-icon icon="file-earmark-text" />
