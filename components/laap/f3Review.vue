@@ -3,7 +3,7 @@
     <b-form>
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
-          <b-col cols="4">
+          <b-col >
             <h6>Review your submission</h6>
             <p>
               Please check the information you provided. You can go back and
@@ -13,8 +13,47 @@
               the form.
             </p>
           </b-col>
+        </b-row>
+        <b-row>
           <b-col> 
 
+
+      <div
+        v-for="(section, index) of sections"
+        :key="index"
+        v-bind:id="index"
+         class="mb-4"
+      >
+      <b-row>
+        <b-col>
+          <h6>{{section.label}}</h6>
+          </b-col>
+          <b-col class="text-right">
+            <b-button
+                          variant="link"
+                          class="p-0"
+                          @click.prevent=""
+                          v-b-tooltip.hover
+                          title="Edit this section (coming soon)"
+                          ><b-icon icon="pencil"
+                        /></b-button>
+          </b-col>
+          </b-row>
+        <b-row
+        v-for="(item, n) of section.data"
+        :key="n"
+        v-bind:id="n"
+       class="mb-2"
+        >
+          <b-col cols="4">
+          {{item.label}}
+          </b-col>
+          <b-col cols="8" v-html="item.value">
+          </b-col>
+          
+        </b-row>
+      
+      </div>
             
 
 
@@ -46,7 +85,7 @@ export default {
         { text: "No", value: false },
       ],
 
-      t : [
+      sections : [
         {
           label: 'About you',
           data: [
@@ -62,29 +101,21 @@ export default {
                label: 'Industry',
                value: (this.form.businessDetails.industry !== '' ? this.form.businessDetails.industry : this.form.businessDetails.industryDetails)
             },
-            {
-               label: 'Contact person name',
-               value: this.form.businessDetails.contactPerson.firstName + ' ' + this.form.businessDetails.contactPerson.firstName
-            },
-            {
-               label: 'Contact person email',
-               value: this.form.businessDetails.contactPerson.email
-            },
-            {
-               label: 'Contact person phone',
-               value: (this.form.businessDetails.contactPerson.phones.length > 0 ? this.form.businessDetails.contactPerson.phones[0].phone + ' (' + this.form.businessDetails.contactPerson.phones[0].type + ')' : '')
+             {
+               label: 'Contact person (HC)',
+               value: 'Sam Smith<br>email: sam@smith.com<br>mobile: 0402 123 123, landline: 02 6677 5544'
             },
             {
                label: 'Will you need an interpreter?',
-               value: this.form.needsInterpreter + (form.needsInterpreterLanguage.length > 0? '(' + form.needsInterpreterLanguage + ')' : '')
+               value: this.boolToString(this.form.needsInterpreter) + (this.form.needsInterpreterLanguage.length > 0? ' (' + this.form.needsInterpreterLanguage + ')' : '')
             },
             {
                label: 'Do you have any accessibility requirements?',
-               value: this.form.needsAccessibility + (form.needsAccessibilityDetails.length > 0? '(' + form.needsAccessibilityDetails + ')' : '')
+               value: this.boolToString(this.form.needsAccessibility) + (this.form.needsAccessibilityDetails.length > 0? ' (' + this.form.needsAccessibilityDetails + ')' : '')
             },
              {
-               label: 'Do you have a representative?',
-               value: boolToString(this.form.hasRep)
+               label: 'Representative (HC)',
+               value: 'John Lane, AArdvark Law Firm<br>email: john@aardvark.com.au<br> mobile: 0432 123 123 <br>Postal Address: 45 Main Street, Sydney 2000 NSW Australia'
             }
           ]
         },
@@ -220,13 +251,41 @@ export default {
       return this.form.repType === "self" ? "are you" : "the Applicant is";
     },
 
+    contactPersonName: function () {
+        return this.personToString(this.form.businessDetails.contactPerson) 
+    }
+
   },
   methods: {
-    boolToString(){
-       if(val){
+    boolToString(val){
+       if(val === true){
          return 'Yes' 
        }
         return 'No'
+    },
+    personToString(person){
+      var str 
+      // let personName = 'sdfsdfsdf'
+      str = person.firstName + ' ' + person.lastName + ',jhglkjg'
+      // console.log('str', str)
+
+      str += ' ' + person.email
+      
+      if(person.email.length > 0){
+        str =+ ' ' + person.email
+      }
+       if(person.phones.length > 0){
+         person.phones.forEach(phone => {
+           if(phone.phone !== ''){
+             str += ' ' + phone.phone + ' (' + phone.type + ')'
+           }
+        })
+        str += ' ' + person.email
+      }
+       console.log('person', person)
+      console.log('str', str)
+      return str
+
     },
     onNumDepnedantsChange() {
       if (this.form.entities.applicant.details.numOfDependants < 0) return;

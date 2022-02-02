@@ -106,6 +106,7 @@
             <h5>Review and submit</h5>
             <span>Confirm details and submit the form</span>
           </template>
+          <f-3-review :form="form"></f-3-review>
         </b-tab>
       </b-tabs>
     </b-row>
@@ -183,9 +184,9 @@ import F3Circumstances from "../components/laap/f3Circumstances.vue";
 import F3Dismissal from "../components/laap/f3Dismissal.vue";
 import f3EmployeeDetails from "../components/laap/f3EmployeeDetails.vue";
 import F3OtherInfo from '../components/laap/f3OtherInfo.vue';
-
+import F3Review from '../components/laap/f3Review.vue';
 export default {
-  components: { f3AboutYou, f3EmployeeDetails, F3Circumstances, F3Dismissal, F3OtherInfo },
+  components: { f3AboutYou, f3EmployeeDetails, F3Circumstances, F3Dismissal, F3OtherInfo, F3Review },
   layout: "form",
   data() {
     return {
