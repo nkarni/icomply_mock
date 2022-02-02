@@ -106,6 +106,10 @@ export default {
       type: String,
       default: "Start typing your address and select one of the options",
     },
+     addressString: {
+      type: String,
+      default: "",
+    },
     
     address: {
       type: Object,
@@ -128,9 +132,7 @@ export default {
     };
   },
   computed: {
-    addressString: function(){
-      this.address.line1 + '' + this.address.line2 + '' +this.address.suburb + '' +this.address.postcode + '' +this.address.state + '' +this.address.country
-    }
+   
   },
   methods: {},
 };

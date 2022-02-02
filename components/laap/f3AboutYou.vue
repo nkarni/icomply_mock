@@ -87,12 +87,30 @@
               :addressLabel="'Postal address'"
               :address="form.businessDetails.postalAddress"
               :addressHelp="'You can select another address - start typing the correct address and select one of the options'"
+              :addressString = form.businessDetails.postalAddressString
             ></entity-address>
+
+            <b-form-group :label="'Industry'" v-if="form.businessDetailsCorrect === true">
+                <b-form-select
+                  v-model="form.businessDetails.industry"
+                  :options="[
+                   'Industry A', 'Industry B', 'Other']"
+                ></b-form-select>
+              </b-form-group>
+              <b-form-group
+                v-if="form.businessDetails.industry === 'Other'"
+                label="Please provide details"
+              >
+                <b-form-textarea
+                  v-model="form.businessDetails.industryDetails"
+                ></b-form-textarea>
+              </b-form-group>
+
           </b-col>
         </b-row>
       </section>
       <section
-        class="border-bottom border-secondary mb-4 pb-2"
+        class="border-bottom border-secondary mb-4 pb-4"
         v-if="form.businessDetailsCorrect === true"
       >
         <b-row>
@@ -114,7 +132,7 @@
         </b-row>
       </section>
       <section
-        class="border-bottom border-secondary mb-4 pb-2"
+        class="border-bottom border-secondary mb-4 pb-4"
         v-if="form.businessDetailsCorrect === true"
       >
         <b-row>
@@ -145,7 +163,7 @@
       </section>
 
       <section
-        class="border-bottom border-secondary mb-4 pb-2"
+        class="border-bottom border-secondary mb-4 pb-4"
         v-if="form.businessDetailsCorrect === true"
       >
         <b-row>
@@ -172,7 +190,7 @@
         </b-row>
       </section>
 <section
-        class="border-bottom border-secondary mb-4 pb-2"
+        class="border-bottom border-secondary mb-4 pb-4"
         v-if="form.businessDetailsCorrect === true"
       >
         <b-row>

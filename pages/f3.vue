@@ -47,6 +47,7 @@
             <h5>About the employee</h5>
             <span>Their details</span>
           </template>
+          <f-3-employee-details :form="form"></f-3-employee-details>
         </b-tab>
 
         <b-tab
@@ -61,6 +62,7 @@
             <h5>Circumstances</h5>
             <span>Information about your business' circumstances</span>
           </template>
+          <f-3-circumstances :form="form"></f-3-circumstances>
         </b-tab>
 
         <b-tab
@@ -90,7 +92,7 @@
             <span>Confirm and submit the application</span>
           </template>
         </b-tab>
-         <b-tab
+        <b-tab
           :title-link-class="[
             'laap-title-link',
             'mb-2',
@@ -194,8 +196,10 @@
 
 <script>
 import f3AboutYou from "../components/laap/f3AboutYou.vue";
+import F3Circumstances from "../components/laap/f3Circumstances.vue";
+import f3EmployeeDetails from "../components/laap/f3EmployeeDetails.vue";
 export default {
-  components: { f3AboutYou },
+  components: { f3AboutYou, f3EmployeeDetails, F3Circumstances },
   layout: "form",
   data() {
     return {
@@ -206,13 +210,16 @@ export default {
           name: "",
           abn: "",
           postalAddress: {
-              line1: "",
-              line2: "",
-              suburb: "",
-              postcode: "",
-              state: "",
-              country: "",
-            },
+            line1: "",
+            line2: "",
+            suburb: "",
+            postcode: "",
+            state: "",
+            country: "",
+          },
+          postalAddressString: "22 Main street, Sydney NSW 2000",
+          industryDetails: "",
+          industry: "",
           contactPerson: {
             firstName: "",
             lastName: "",
@@ -225,33 +232,44 @@ export default {
               },
             ],
           },
-         
+          numberOfEmployeesIsUnder: null
         },
-         needsInterpreter: null,
-          needsInterpreterLanguage: '',
+        needsInterpreter: null,
+        needsInterpreterLanguage: "",
         needsAccessibility: null,
-        needsAccessibilityDetails: '',
+        needsAccessibilityDetails: "",
         researchConsent: null,
-          rep: {
-            firstName: "",
-            lastName: "",
-            email: "",
-            phones: [
-              {
-                type: "",
-                number: "",
-                isSafe: null,
-              },
-            ],
-            postalAddress: {
-              line1: "",
-              line2: "",
-              suburb: "",
-              postcode: "",
-              state: "",
-              country: "",
+        rep: {
+          firstName: "",
+          lastName: "",
+          email: "",
+          phones: [
+            {
+              type: "",
+              number: "",
+              isSafe: null,
             },
+          ],
+          postalAddress: {
+            line1: "",
+            line2: "",
+            suburb: "",
+            postcode: "",
+            state: "",
+            country: "",
           },
+        },
+        employeeFirstName: "John",
+        employeeLastName: "Smith",
+        caseNumber: "ABC123",
+        employeeWeeklyWage: '',
+        employeeHasOtherBenefits: null,
+        employeeHasOtherBenefitsDetails: '',
+        employeeHasAwardAgreement: null,
+        employeeAwardAgreementName: '',
+        employeeAwardAgreementNumber: ''
+
+
       },
       formX: {
         agreeToConditions: null,
