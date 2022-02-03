@@ -127,6 +127,7 @@
               showFirstName
               showLastName
               showEmail
+              showTitle
             >
             </entity>
           </b-col>
@@ -218,6 +219,7 @@
               showLastName
               showEmail
               showPostalAddress
+              showTitle
             >
             </entity>
 

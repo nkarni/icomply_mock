@@ -14,6 +14,17 @@
       :address="entity.orgAddress"
     ></entity-address>
 
+    <b-form-group :label="titleLabel" v-if="showTitle">
+      <b-form-select  
+      v-model="entity.title"
+      :options="['Mr.', 'Mrs.', 'Ms.', 'Other']">
+      </b-form-select>
+    </b-form-group>
+     <b-form-group v-if="entity.title === 'Other'" label="Please specify">
+      <b-form-input
+        v-model="entity.titleDetails"
+      ></b-form-input>
+    </b-form-group>
     <b-form-group :label="firstNameLabel" v-if="showFirstName">
       <b-form-input
         :id="idPrefix + '-firstName'"
@@ -279,6 +290,14 @@ export default {
       default: "Postal address is the same as home address",
     },
     showPostalAddessSame: {
+      type: Boolean,
+      default: false,
+    },
+    titleLabel: {
+      type: String,
+      default: "Title",
+    },
+    showTitle: {
       type: Boolean,
       default: false,
     },

@@ -57,7 +57,7 @@
       >
         <b-row>
           <b-col cols="4">
-            <h6>Confirm</h6>
+            <h6>Confirm & Submit</h6>
           </b-col>
           <b-col>
            
@@ -77,7 +77,7 @@
 
       <b-row>
         <b-col class="text-center mt-3">
-          <b-button variant="primary">Lodge the Application</b-button>
+          <b-button variant="primary">Submit the form</b-button>
         </b-col>
       </b-row>
     </b-form>
@@ -103,80 +103,6 @@ export default {
         { text: "Yes", value: true },
         { text: "No", value: false },
       ],
-
-      en: {
-        businessDetails: {
-          businessDetailsString: "ABC pty ltd Trading as MY ABC, ABN: 12345678",
-          name: "",
-          abn: "",
-          postalAddress: {
-            line1: "",
-            line2: "",
-            suburb: "",
-            postcode: "",
-            state: "",
-            country: "",
-          },
-          postalAddressString: "22 Main street, Sydney NSW 2000",
-          industryDetails: "",
-          industry: "",
-          contactPerson: {
-            firstName: "",
-            lastName: "",
-            email: "",
-            phones: [
-              {
-                type: "",
-                number: "",
-                isSafe: null,
-              },
-            ],
-          },
-          numberOfEmployeesIsUnder: 0,
-        },
-        needsInterpreter: null,
-        needsInterpreterLanguage: "",
-        needsAccessibility: null,
-        needsAccessibilityDetails: "",
-        researchConsent: null,
-        rep: {
-          firstName: "",
-          lastName: "",
-          email: "",
-          phones: [
-            {
-              type: "",
-              number: "",
-              isSafe: null,
-            },
-          ],
-          postalAddress: {
-            line1: "",
-            line2: "",
-            suburb: "",
-            postcode: "",
-            state: "",
-            country: "",
-          },
-        },
-        employeeFirstName: "John",
-        employeeLastName: "Smith",
-        caseNumber: "ABC123",
-        employeeWeeklyWage: "",
-        employeeHasOtherBenefits: null,
-        employeeHasOtherBenefitsDetails: "",
-        employeeHasAwardAgreement: null,
-        employeeAwardAgreementName: "",
-        employeeAwardAgreementNumber: "",
-        followedCode: "",
-        employeeDescOfWhatHappened: "Their input will show here....",
-        employerDescOfWhatHappened: "",
-        independentContractor: null,
-        employmentStartDate: "",
-        employmentDismissedDate: "",
-        employmentEndDate: "",
-        otherInfo: "",
-      },
     };
   },
   computed: {

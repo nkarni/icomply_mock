@@ -208,6 +208,8 @@ export default {
           industryDetails: "",
           industry: "",
           contactPerson: {
+             title:"",
+          titleDetails: "",
             firstName: "",
             lastName: "",
             email: "",
@@ -228,6 +230,8 @@ export default {
         researchConsent: null,
         hasRep: null,
         rep: {
+          title:"",
+          titleDetails: "",
           firstName: "",
           lastName: "",
           email: "",
