@@ -3,8 +3,8 @@
     <b-form>
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
-          <b-col >
-            <h6>Review your submission</h6>
+          <b-col>
+            <h5>Review your submission</h5>
             <p>
               Please check the information you provided. You can go back and
               edit information as required by clicking on the pencil icon, or by
@@ -15,52 +15,71 @@
           </b-col>
         </b-row>
         <b-row>
-          <b-col> 
-
-
-      <div
-        v-for="(section, index) of sections"
-        :key="index"
-        v-bind:id="index"
-         class="mb-4"
-      >
-      <b-row>
-        <b-col>
-          <h6>{{section.label}}</h6>
-          </b-col>
-          <b-col class="text-right">
-            <b-button
-                          variant="link"
-                          class="p-0"
-                          @click.prevent=""
-                          v-b-tooltip.hover
-                          title="Edit this section (coming soon)"
-                          ><b-icon icon="pencil"
-                        /></b-button>
-          </b-col>
-          </b-row>
-        <b-row
-        v-for="(item, n) of section.data"
-        :key="n"
-        v-bind:id="n"
-       class="mb-2"
-        >
-          <b-col cols="4">
-          {{item.label}}
-          </b-col>
-          <b-col cols="8" v-html="item.value">
-          </b-col>
-          
-        </b-row>
-      
-      </div>
-            
-
-
-
+          <b-col>
+            <div
+              v-for="(section, index) of sections"
+              :key="index"
+              v-bind:id="index"
+              :class="'mb-4  pb-4 ' + (index < 4 ? 'border-bottom border-secondary' : '')"
+            >
+              <b-row >
+                <b-col>
+                  <h6>{{ section.label }}</h6>
+                </b-col>
+                <b-col class="text-right">
+                  <b-button
+                    variant="link"
+                    class="p-0"
+                    @click.prevent=""
+                    v-b-tooltip.hover
+                    title="Edit this section (coming soon)"
+                    ><b-icon icon="pencil"
+                  /></b-button>
+                </b-col>
+              </b-row>
+              <b-row
+                v-for="(item, n) of section.data"
+                :key="n"
+                v-bind:id="n"
+                class="mb-2"
+              >
+                <b-col cols="4">
+                  {{ item.label }}
+                </b-col>
+                <b-col cols="8" v-html="item.value"> </b-col>
+              </b-row>
+            </div>
           </b-col>
         </b-row>
       </section>
+      <section
+        class=" mb-4 pb-2"
+      >
+        <b-row>
+          <b-col cols="4">
+            <h6>Confirm</h6>
+          </b-col>
+          <b-col>
+           
+            <b-form-group>
+              <b-form-checkbox
+                v-model="form.agreeToTerms"
+                :value="true"
+                :unchecked-value="false"
+              >
+                I have read the confidentiality statement and conditions of
+                Legal Aid. All the information I have given is true and correct.
+              </b-form-checkbox>
+            </b-form-group>
+          </b-col>
+        </b-row>
+      </section>
+
+      <b-row>
+        <b-col class="text-center mt-3">
+          <b-button variant="primary">Lodge the Application</b-button>
+        </b-col>
+      </b-row>
     </b-form>
   </div>
 </template>
@@ -83,71 +102,6 @@ export default {
       boolOptions: [
         { text: "Yes", value: true },
         { text: "No", value: false },
-      ],
-
-      sections : [
-        {
-          label: 'About you',
-          data: [
-            {
-               label: 'Business name and ABN',
-               value: this.form.businessDetails.businessDetailsString
-            },
-            {
-               label: 'Business postal address',
-               value: this.form.businessDetails.postalAddressString
-            },
-            {
-               label: 'Industry',
-               value: (this.form.businessDetails.industry !== '' ? this.form.businessDetails.industry : this.form.businessDetails.industryDetails)
-            },
-             {
-               label: 'Contact person (HC)',
-               value: 'Sam Smith<br>email: sam@smith.com<br>mobile: 0402 123 123, landline: 02 6677 5544'
-            },
-            {
-               label: 'Will you need an interpreter?',
-               value: this.boolToString(this.form.needsInterpreter) + (this.form.needsInterpreterLanguage.length > 0? ' (' + this.form.needsInterpreterLanguage + ')' : '')
-            },
-            {
-               label: 'Do you have any accessibility requirements?',
-               value: this.boolToString(this.form.needsAccessibility) + (this.form.needsAccessibilityDetails.length > 0? ' (' + this.form.needsAccessibilityDetails + ')' : '')
-            },
-             {
-               label: 'Representative (HC)',
-               value: 'John Lane, AArdvark Law Firm<br>email: john@aardvark.com.au<br> mobile: 0432 123 123 <br>Postal Address: 45 Main Street, Sydney 2000 NSW Australia'
-            }
-          ]
-        },
-         {
-          label: 'About you',
-          data: [
-            {
-               label: 'Business name and ABN',
-               value: this.form.businessDetails.businessDetailsString
-            },
-            {
-               label: 'Business postal address',
-               value: this.form.businessDetails.postalAddressString
-            },
-            {
-               label: 'Industry',
-               value: (this.form.businessDetails.industry !== '' ? this.form.businessDetails.industry : this.form.businessDetails.industryDetails)
-            },
-            {
-               label: 'Contact person name',
-               value: this.form.businessDetails.contactPerson.firstName + ' ' + this.form.businessDetails.contactPerson.firstName
-            },
-            {
-               label: 'Contact person email',
-               value: this.form.businessDetails.contactPerson.email
-            },
-            {
-               label: 'Contact person phone',
-               value: (this.form.businessDetails.contactPerson.phones.length > 0 ? this.form.businessDetails.contactPerson.phones[0].phone + ' (' + this.form.businessDetails.contactPerson.phones[0].type + ')' : '')
-            }
-          ]
-        }
       ],
 
       en: {
@@ -252,40 +206,182 @@ export default {
     },
 
     contactPersonName: function () {
-        return this.personToString(this.form.businessDetails.contactPerson) 
-    }
+      return this.personToString(this.form.businessDetails.contactPerson);
+    },
 
+    sections: function () {
+      return [
+        {
+          label: "About you",
+          data: [
+            {
+              label: "Business name and ABN",
+              value: this.form.businessDetails.businessDetailsString,
+            },
+            {
+              label: "Business postal address",
+              value: this.form.businessDetails.postalAddressString,
+            },
+            {
+              label: "Industry",
+              value:
+                this.form.businessDetails.industry +
+                (this.form.businessDetails.industryDetails !== ""
+                  ? ": " + this.form.businessDetails.industryDetails
+                  : ""),
+            },
+            {
+              label: "Contact person (HC)",
+              value:
+                "Sam Smith<br>email: sam@smith.com<br>mobile: 0402 123 123, landline: 02 6677 5544",
+            },
+            {
+              label: "Will you need an interpreter?",
+              value:
+                this.boolToString(this.form.needsInterpreter) +
+                (this.form.needsInterpreterLanguage.length > 0
+                  ? " (" + this.form.needsInterpreterLanguage + ")"
+                  : ""),
+            },
+            {
+              label: "Do you have any accessibility requirements?",
+              value:
+                this.boolToString(this.form.needsAccessibility) +
+                (this.form.needsAccessibilityDetails.length > 0
+                  ? " (" + this.form.needsAccessibilityDetails + ")"
+                  : ""),
+            },
+            {
+              label: "Representative (HC)",
+              value:
+                "John Lane, AArdvark Law Firm<br>email: john@aardvark.com.au<br> mobile: 0432 123 123 <br>Postal Address: 45 Main Street, Sydney 2000 NSW Australia",
+            },
+            {
+              label:
+                "Can we pass on your contact details to an external provider so they can invite you to take part in research?",
+              value: this.boolToString(this.form.researchConsent),
+            },
+          ],
+        },
+        {
+          label: "About the employee",
+          data: [
+            {
+              label: "Name",
+              value:
+                this.form.employeeFirstName + " " + this.form.employeeLastName,
+            },
+            {
+              label: "Case number:",
+              value: this.form.caseNumber,
+            },
+          ],
+        },
+        {
+          label: "Circumstances",
+          data: [
+            {
+              label:
+                "How many employees did your business have when the employee was dismissed? (HC)",
+              value: "10 to 14 employees",
+            },
+            {
+              label: "What was the employee's weekly wage?",
+              value: this.form.employeeWeeklyWage,
+            },
+            {
+              label: "Did they get any other benefits?",
+              value:
+                this.boolToString(this.form.employeeHasOtherBenefits) +
+                (this.form.employeeHasOtherBenefitsDetails.length > 0
+                  ? " (" + this.form.employeeHasOtherBenefitsDetails + ")"
+                  : ""),
+            },
+            {
+              label: "Were they covered by an award or enterprise agreement?",
+              value:
+                this.boolToString(this.form.employeeHasAwardAgreement) +
+                (this.form.employeeHasAwardAgreement === true
+                  ? " (Award name: " +
+                    this.form.employeeAwardAgreementName +
+                    ", Award number: " +
+                    this.form.employeeAwardAgreementNumber +
+                    ")"
+                  : ""),
+            },
+          ],
+        },
+        {
+          label: "The dismissal",
+          data: [
+            {
+              label:
+                "Did you follow the Small Business Fair Dismissal Code when you dismissed the employee?",
+              value: this.form.followedCode,
+            },
+            {
+              label: "What happened?",
+              value: this.form.employerDescOfWhatHappened,
+            },
+            {
+              label: "Were they engaged as an independent contractor?",
+              value: this.boolToString(this.form.independentContractor),
+            },
+            {
+              label: "What date did they start? (HC)",
+              value: "22 February 2020",
+            },
+            {
+              label: "What date were they told they were being dismissed? (HC)",
+              value: "22 December 2021",
+            },
+            {
+              label: "What date did their employment end? (HC)",
+              value: "22 January 2022",
+            },
+          ],
+        },
+        {
+          label: "Other Details",
+          data: [
+            {
+              label: "Is there anything else you need to tell us??",
+              value: this.form.otherInfo,
+            },
+          ],
+        },
+      ];
+    },
   },
   methods: {
-    boolToString(val){
-       if(val === true){
-         return 'Yes' 
-       }
-        return 'No'
+    boolToString(val) {
+      if (val === true) {
+        return "Yes";
+      }
+      return "No";
     },
-    personToString(person){
-      var str 
+    personToString(person) {
+      var str;
       // let personName = 'sdfsdfsdf'
-      str = person.firstName + ' ' + person.lastName + ',jhglkjg'
+      str = person.firstName + " " + person.lastName + ",jhglkjg";
       // console.log('str', str)
 
-      str += ' ' + person.email
-      
-      if(person.email.length > 0){
-        str =+ ' ' + person.email
-      }
-       if(person.phones.length > 0){
-         person.phones.forEach(phone => {
-           if(phone.phone !== ''){
-             str += ' ' + phone.phone + ' (' + phone.type + ')'
-           }
-        })
-        str += ' ' + person.email
-      }
-       console.log('person', person)
-      console.log('str', str)
-      return str
+      str += " " + person.email;
 
+      if (person.email.length > 0) {
+        str = +" " + person.email;
+      }
+      if (person.phones.length > 0) {
+        person.phones.forEach((phone) => {
+          if (phone.phone !== "") {
+            str += " " + phone.phone + " (" + phone.type + ")";
+          }
+        });
+        str += " " + person.email;
+      }
+      console.log("person", person);
+      console.log("str", str);
+      return str;
     },
     onNumDepnedantsChange() {
       if (this.form.entities.applicant.details.numOfDependants < 0) return;

@@ -99,7 +99,7 @@
                 ></b-form-select>
               </b-form-group>
               <b-form-group
-                v-if="form.businessDetails.industry === 'Other'"
+                v-if="form.businessDetails.industry === 'Other' && form.businessDetailsCorrect === true"
                 label="Please provide details"
               >
                 <b-form-textarea
