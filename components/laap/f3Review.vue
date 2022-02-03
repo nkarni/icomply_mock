@@ -51,6 +51,7 @@
             </div>
           </b-col>
         </b-row>
+        <notice :message="'mockup notice: HC means hard coded, it will be dynamic and show provided info in the final build. Similarly, the link to the relevant tab for editing will be activated in the final build.'"></notice>
       </section>
       <section
         class=" mb-4 pb-2"
