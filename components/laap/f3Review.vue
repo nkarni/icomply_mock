@@ -8,9 +8,7 @@
             <p>
               Please check the information you provided. You can go back and
               edit information as required by clicking on the pencil icon, or by
-              navigation back to the relevant section. <br /><br />When you are
-              confident the information is correct proceed to confirm and submit
-              the form.
+              navigation back to the relevant section. 
             </p>
           </b-col>
         </b-row>
