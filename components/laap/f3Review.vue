@@ -159,7 +159,7 @@ export default {
             {
               label: "Contact person (HC)",
               value:
-                "Sam Smith<br>email: sam@smith.com<br>mobile: 0402 123 123, landline: 02 6677 5544",
+                "Mr. Sam Smith<br>email: sam@smith.com<br>mobile: 0402 123 123, landline: 02 6677 5544",
             },
             {
               label: "Will you need an interpreter?",
@@ -180,7 +180,7 @@ export default {
             {
               label: "Representative (HC)",
               value:
-                "John Lane, AArdvark Law Firm<br>email: john@aardvark.com.au<br> mobile: 0432 123 123 <br>Postal Address: 45 Main Street, Sydney 2000 NSW Australia",
+                "Mrs Jane Lane, AArdvark Law Firm<br>email: john@aardvark.com.au<br> mobile: 0432 123 123 <br>Postal Address: 45 Main Street, Sydney 2000 NSW Australia",
             },
             {
               label:
