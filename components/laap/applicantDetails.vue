@@ -459,14 +459,14 @@
               ></b-form-input>
             </b-form-group>
 
-            <b-form-group :label="AreYouString + ' under 18?'">
+            <!-- <b-form-group :label="AreYouString + ' under 18?'">
               <b-form-radio-group
                 id="under18"
                 v-model="form.entities.applicant.details.under18"
                 :options="boolOptions"
                 name="under18"
               ></b-form-radio-group>
-            </b-form-group>
+            </b-form-group> -->
 
             <b-form-group label="Relationship status">
               <b-form-select
