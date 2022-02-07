@@ -92,6 +92,8 @@
             <h5>Attachments</h5>
             <span>Upload documents</span>
           </template>
+
+          <f-2-attachments :form="form"></f-2-attachments>
          
         </b-tab>
 
@@ -109,20 +111,7 @@
           </template>
         
         </b-tab>
-        <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-4',
-            { 'laap-nav-item-complete': false },
-          ]"
-        >
-          <template #title>
-            <h5>XXXXXXX</h5>
-            <span>Confirm details and submit the form</span>
-          </template>
-         
-        </b-tab>
+        
       </b-tabs>
     </b-row>
 
@@ -198,9 +187,11 @@ import F2AboutYou from '../components/laap/f2AboutYou.vue';
 import f2ContactDetails from '../components/laap/f2ContactDetails.vue';
 import f2EmployerDetails from '../components/laap/f2EmployerDetails.vue';
 import f2Dismissal from '../components/laap/f2Dismissal.vue';
+import f2Attachments from '../components/laap/f2Attachments.vue';
+
 export default {
   components: {
-    F2AboutYou, f2ContactDetails, f2EmployerDetails, f2Dismissal
+    F2AboutYou, f2ContactDetails, f2EmployerDetails, f2Dismissal, f2Attachments
 
   },
   layout: "form",

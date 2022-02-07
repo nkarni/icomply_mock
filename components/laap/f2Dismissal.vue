@@ -25,7 +25,7 @@
               class="mb-4"
             ></vague-date>
             <notice
-              message="Are you sure you have selected the correct date? Please check the minimum employment period. If it is less than min period you may not be covered by unfair dismissal laws.<br><small>This message will only show if an exact end date was enetered and it is less than 6 months ago.</small>"
+              message="Are you sure you have selected the correct date? Please check the minimum employment period. If it is less than min period you may not be covered by unfair dismissal laws.<br><small>This message will only show if an exact end date was entered and it is less than 6 months from today.</small>"
             ></notice>
 
             <br />
@@ -34,7 +34,7 @@
               :date="form.employmentEnd"
               dateLabel="When did your employment end?"
             ></vague-date>
-
+<br />
             <vague-date
               :date="form.dismissalTold"
               dateLabel="When were you told you were being dismissed?"
@@ -165,7 +165,7 @@
         </b-row>
       </section>
 
-           <section class="border-bottom border-secondary mb-4 pb-2">
+           <section class="mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Desired outcome</h6>

@@ -93,7 +93,7 @@
       </section>
 
       <section
-        class="border-bottom border-secondary mb-4 pb-4"
+        class=" mb-4 pb-4"
       >
         <b-row>
           <b-col cols="4">

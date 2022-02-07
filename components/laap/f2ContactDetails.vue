@@ -48,7 +48,7 @@
       </section>
 
       <section
-        class="border-bottom border-secondary mb-4 pb-4"
+        class="mb-4 pb-4"
         v-if="form.applicant.hasRep === true"
       >
         <b-row>

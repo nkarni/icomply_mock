@@ -125,8 +125,8 @@
       </section>
 
       <section
-        class="border-bottom border-secondary mb-4 pb-2"
-        v-if="form.businessDetailsCorrect === true"
+        class="mb-4 pb-2"
+       
       >
         <b-row>
           <b-col cols="4">
