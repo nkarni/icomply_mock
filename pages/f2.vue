@@ -30,9 +30,10 @@
         >
           <template #title>
             <h5>About you</h5>
-            <span>Contact and other details</span>
+            <span>Some details we need know</span>
           </template>
-          <f-3-about-you :form="form"></f-3-about-you>
+          <f-2-about-you :form="form"></f-2-about-you>
+        
         </b-tab>
 
         <b-tab
@@ -44,10 +45,10 @@
           ]"
         >
           <template #title>
-            <h5>About the employee</h5>
-            <span>Their details</span>
+            <h5>Contact details</h5>
+            <span>Your contact details</span>
           </template>
-          <f-3-employee-details :form="form"></f-3-employee-details>
+         <f-2-contact-details :form="form"></f-2-contact-details>
         </b-tab>
 
         <b-tab
@@ -59,13 +60,13 @@
           ]"
         >
           <template #title>
-            <h5>Circumstances</h5>
-            <span>Information about your business' circumstances</span>
+            <h5>Former employer</h5>
+            <span>Details about the employer</span>
           </template>
-          <f-3-circumstances :form="form"></f-3-circumstances>
+         <f-2-employer-details :form="form"></f-2-employer-details>
         </b-tab>
 
-        <b-tab
+   <b-tab
           :title-link-class="[
             'laap-title-link',
             'mb-2',
@@ -75,25 +76,25 @@
         >
           <template #title>
             <h5>The dismissal</h5>
-            <span>Information about the dismissal</span>
+            <span>Details about your employment and the dismissal</span>
           </template>
-          <f-3-dismissal :form="form"></f-3-dismissal>
+         <f-2-dismissal :form="form"></f-2-dismissal>
         </b-tab>
-
         <b-tab
           :title-link-class="[
             'laap-title-link',
             'mb-2',
-            'p-4',
+            'p-3',
             { 'laap-nav-item-complete': false },
           ]"
         >
           <template #title>
-            <h5>Other details</h5>
-            <span>Additional information</span>
+            <h5>Attachments</h5>
+            <span>Upload documents</span>
           </template>
-          <f-3-other-info :form="form"></f-3-other-info>
+         
         </b-tab>
+
         <b-tab
           :title-link-class="[
             'laap-title-link',
@@ -104,9 +105,23 @@
         >
           <template #title>
             <h5>Review and submit</h5>
+            <span>Review your information and lodge the form</span>
+          </template>
+        
+        </b-tab>
+        <b-tab
+          :title-link-class="[
+            'laap-title-link',
+            'mb-2',
+            'p-4',
+            { 'laap-nav-item-complete': false },
+          ]"
+        >
+          <template #title>
+            <h5>XXXXXXX</h5>
             <span>Confirm details and submit the form</span>
           </template>
-          <f-3-review :form="form"></f-3-review>
+         
         </b-tab>
       </b-tabs>
     </b-row>
@@ -179,58 +194,23 @@
 </template>
 
 <script>
-import f3AboutYou from "../components/laap/f3AboutYou.vue";
-import F3Circumstances from "../components/laap/f3Circumstances.vue";
-import F3Dismissal from "../components/laap/f3Dismissal.vue";
-import f3EmployeeDetails from "../components/laap/f3EmployeeDetails.vue";
-import F3OtherInfo from '../components/laap/f3OtherInfo.vue';
-import F3Review from '../components/laap/f3Review.vue';
+import F2AboutYou from '../components/laap/f2AboutYou.vue';
+import f2ContactDetails from '../components/laap/f2ContactDetails.vue';
+import f2EmployerDetails from '../components/laap/f2EmployerDetails.vue';
+import f2Dismissal from '../components/laap/f2Dismissal.vue';
 export default {
-  components: { f3AboutYou, f3EmployeeDetails, F3Circumstances, F3Dismissal, F3OtherInfo, F3Review },
+  components: {
+    F2AboutYou, f2ContactDetails, f2EmployerDetails, f2Dismissal
+
+  },
   layout: "form",
   data() {
     return {
       form: {
-        businessDetailsCorrect: null,
-        businessDetails: {
-          businessDetailsString: "ABC pty ltd Trading as MY ABC, ABN: 12345678",
-          name: "",
-          abn: "",
-          postalAddress: {
-            line1: "",
-            line2: "",
-            suburb: "",
-            postcode: "",
-            state: "",
-            country: "",
-          },
-          postalAddressString: "22 Main street, Sydney NSW 2000",
-          industryDetails: "",
-          industry: "",
-          contactPerson: {
-             title:"",
-          titleDetails: "",
-            firstName: "",
-            lastName: "",
-            email: "",
-            phones: [
-              {
-                type: "",
-                number: "",
-                isSafe: null,
-              },
-            ],
-          },
-          numberOfEmployeesIsUnder: 0,
-        },
-        needsInterpreter: null,
-        needsInterpreterLanguage: "",
-        needsAccessibility: null,
-        needsAccessibilityDetails: "",
-        researchConsent: null,
-        hasRep: null,
+        applyingForSelf: null,
+        relationshipToApplicant: null,
         rep: {
-          title:"",
+          title: "",
           titleDetails: "",
           firstName: "",
           lastName: "",
@@ -250,35 +230,80 @@ export default {
             state: "",
             country: "",
           },
+          orgName: '',
+          
         },
-        employeeFirstName: "John",
-        employeeLastName: "Smith",
-        caseNumber: "ABC123",
-        employeeWeeklyWage: "",
-        employeeHasOtherBenefits: null,
-        employeeHasOtherBenefitsDetails: "",
-        employeeHasAwardAgreement: null,
-        employeeAwardAgreementName: "",
-        employeeAwardAgreementNumber: "",
-        followedCode: "",
-        employeeDescOfWhatHappened: "Their input will show here....",
-        employerDescOfWhatHappened: "",
-        independentContractor: null,
-        employmentStartDate: "",
-        employmentDismissedDate: "",
-        employmentEndDate: "",
-        otherInfo: "",
-      },
-      formX: {
-        agreeToConditions: null,
-        repType: "",
-        isLscPanelMember: null,
-        prevRepresented: null,
-        repSolicitorOrgName: "",
-        entities: {
-          repSolicitor: {
-            orgName: "",
-            orgAddress: "",
+        formFiller: {
+          title: "",
+          titleDetails: "",
+          firstName: "",
+          lastName: "",
+          email: "",
+          phones: [
+            {
+              type: "",
+              number: "",
+              isSafe: null,
+            },
+          ],
+          postalAddress: {
+            line1: "",
+            line2: "",
+            suburb: "",
+            postcode: "",
+            state: "",
+            country: "",
+          },
+          orgName: '',
+          isLawyerUnionOrPaidAgent: null,
+        },
+        applicant: {
+          title: "",
+          titleDetails: "",
+          firstName: "",
+          lastName: "",
+          email: "",
+          phones: [
+            {
+              type: "",
+              number: "",
+              isSafe: null,
+            },
+          ],
+          postalAddress: {
+            line1: "",
+            line2: "",
+            suburb: "",
+            postcode: "",
+            state: "",
+            country: "",
+          },
+          over18: null,
+          needsInterpreter: null,
+          needsInterpreterLanguage: "",
+          needsAccessibility: null,
+          needsAccessibilityDetails: "",
+          researchConsent: null,
+          doesNotHaveAnAddress: null,
+          hasRep: null,
+        },
+        employerBusinessDetails: {
+          businessDetailsString: "ABC pty ltd Trading as MY ABC, ABN: 12345678",
+          name: "",
+          abn: "",
+          postalAddress: {
+            line1: "",
+            line2: "",
+            suburb: "",
+            postcode: "",
+            state: "",
+            country: "",
+          },
+          postalAddressString: "22 Main street, Sydney NSW 2000",
+          contactPerson: {
+            role: '',
+            title: "",
+            titleDetails: "",
             firstName: "",
             lastName: "",
             email: "",
@@ -289,610 +314,57 @@ export default {
                 isSafe: null,
               },
             ],
-            address: {
-              line1: "",
-              line2: "",
-              suburb: "",
-              postcode: "",
-              state: "",
-              country: "",
-            },
-            postalAddress: {
-              line1: "",
-              line2: "",
-              suburb: "",
-              postcode: "",
-              state: "",
-              country: "",
-            },
           },
-          applicant: {
-            orgName: "",
-            firstName: "",
-            lastName: "",
-            email: "",
-            phones: [
-              {
-                type: "",
-                number: "",
-                isSafe: null,
-              },
-            ],
-            address: {
-              line1: "",
-              line2: "",
-              suburb: "",
-              postcode: "",
-              state: "",
-              country: "",
-            },
-            postalAddress: {
-              line1: "",
-              line2: "",
-              suburb: "",
-              postcode: "",
-              state: "",
-              country: "",
-            },
-            isAddressSafeToMail: null,
-            isEmailSafeToMail: null,
-            isPostalAddressSafeToMail: null,
-            postalAddressSame: null,
-            incomeAssets: {
-              employmentType: null,
-              isPrimaryProducer: null,
-              netWeeklyEarning: "",
-              usualJob: "",
-              lasWorked: "",
-              noIncomeExplanation: "",
-              incomePayments: [
-                {
-                  type: "Child support",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Rent received",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Workess compensation",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Superannuation",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Income from Trusts",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Spousal maintenance",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Other",
-                  frequency: "",
-                  amount: "",
-                },
-              ],
-              expensePayments: [
-                {
-                  type: "Rent/Board",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Mortgage",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Rates",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Childcare fees",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Child support",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Spousal maintenance",
-                  frequency: "",
-                  amount: "",
-                },
-              ],
-              hasVehicles: null,
-              vehicles: [
-                {
-                  make: "",
-                  model: "",
-                  year: "",
-                  value: "",
-                  owing: "",
-                },
-              ],
-              bankBalance: "",
-              hasInvestments: null,
-              investmentsValue: "",
-              hasLegalFeesBeenPaid: null,
-              hasLegalFeesBeenPaidDetails: "",
-              gaveAwayMoneyOrProperty: null,
-              gaveAwayMoneyOrPropertyDetails: "",
-            },
-            details: {
-              dob: "",
-              hasOtherNames: null,
-              lscFileNumber: "",
-              otherGivenName: "",
-              otherFamilyName: "",
-              homeless: null,
-              apyLands: null,
-              aboriginality: "",
-              inPrison: null,
-              prisonName: "",
-              prisonSection: "",
-              prisonId: "",
-              gender: "",
-              bornOs: null,
-              bornWhere: "",
-              homeLanguage: "",
-              requireInterpreter: null,
-              language: "",
-              disability: "",
-              disabilityDetail: "",
-              requireExtraHelp: null,
-              extraHelpDetail: "",
-              under18: null,
-              relationshipStatus: "",
-              relationshipStatusDetail: "",
-              riskOfViolence: null,
-              familyViolenceAllegation: null,
-              riskOfElderAbuse: null,
-              dependants: [],
-              numOfDependants: "",
-              hasFap: null,
-            },
-            benefits: {
-              receivesBenefit: null,
-              crnNumber: "",
-              dvaNumber: "",
-              benefitsPaymentTypes: [],
-              benefitsPaymentTypesDetails: "",
-              maxPayment: null,
-              consentToCentrelink: null,
-              authoriseCentrelink: null,
-              benefitsAmounts: [],
-            },
-            property: {
-              ownsAHome: null,
-              ownsAdditionalHome: null,
-              fapOwnsHome: null,
-              properties: [
-                {
-                  homeCurrentValue: "",
-                  homeMortgageOwing: "",
-                  homeSoleOwner: null,
-                  homeOwnershipShare: "",
-                  homeCoOwners: "",
-                  homeCoOwnersRelationship: "",
-                  homeCoOwnersRelationshipDetail: "",
-                  propertyAddress: {
-                    line1: "",
-                    line2: "",
-                    suburb: "",
-                    postcode: "",
-                    state: "",
-                    country: "",
-                  },
-                },
-                {
-                  homeCurrentValue: "",
-                  homeMortgageOwing: "",
-                  homeSoleOwner: null,
-                  homeOwnershipShare: "",
-                  homeCoOwners: "",
-                  homeCoOwnersRelationship: "",
-                  homeCoOwnersRelationshipDetail: "",
-                  propertyAddress: {
-                    line1: "",
-                    line2: "",
-                    suburb: "",
-                    postcode: "",
-                    state: "",
-                    country: "",
-                  },
-                },
-              ],
-            },
+          businessAddressIsEmploymentAddress: null,
+          employmentAddress: {
+            line1: "",
+            line2: "",
+            suburb: "",
+            postcode: "",
+            state: "",
+            country: "",
           },
-          fap: {
-            firstName: "",
-            lastName: "",
-            crn: "",
-            relationshipToApplicant: "",
-            benefitsPaymentTypes: [],
-            receivesMaxBenefits: null,
-            property: {
-              homeCurrentValue: "",
-              homeMortgageOwing: "",
-              homeSoleOwner: null,
-              homeOwnershipShare: "",
-              homeCoOwners: "",
-              homeCoOwnersRelationship: "",
-              homeCoOwnersRelationshipDetail: "",
-              propertyAddress: {
-                line1: "",
-                line2: "",
-                suburb: "",
-                postcode: "",
-                state: "",
-                country: "",
-              },
-            },
-            incomeAssets: {
-              employmentType: null,
-              isPrimaryProducer: null,
-              netWeeklyEarning: "",
-              usualJob: "",
-              lasWorked: "",
-              noIncomeExplanation: "",
-              incomePayments: [
-                {
-                  type: "Child support",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Rent received",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Workess compensation",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Superannuation",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Income from Trusts",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Spousal maintenance",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Other",
-                  frequency: "",
-                  amount: "",
-                },
-              ],
-              expensePayments: [
-                {
-                  type: "Rent/Board",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Mortgage",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Rates",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Childcare fees",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Child support",
-                  frequency: "",
-                  amount: "",
-                },
-                {
-                  type: "Spousal maintenance",
-                  frequency: "",
-                  amount: "",
-                },
-              ],
-              hasVehicles: null,
-              vehicles: [
-                {
-                  make: "",
-                  model: "",
-                  year: "",
-                  value: "",
-                  owing: "",
-                },
-              ],
-              bankBalance: "",
-              hasInvestments: null,
-              investmentsValue: "",
-              hasLegalFeesBeenPaid: null,
-              hasLegalFeesBeenPaidDetails: "",
-              gaveAwayMoneyOrProperty: null,
-              gaveAwayMoneyOrPropertyDetails: "",
-            },
-          },
-          otherParty: {
-            firstName: "",
-            lastName: "",
-            crn: "",
-            relationshipToApplicant: "",
-            lawyerFirstName: "",
-            lawyerLastName: "",
-            hasLawyer: null,
-            lawyerFirm: "",
-            lawyerAddress: {
-              line1: "",
-              line2: "",
-              suburb: "",
-              postcode: "",
-              state: "",
-              country: "",
-            },
-          },
-          incomeAssets: {
-            employmentType: null,
-            isPrimaryProducer: null,
-            netWeeklyEarning: "",
-            usualJob: "",
-            lasWorked: "",
-            noIncomeExplanation: "",
-            incomePayments: [
-              {
-                type: "Child support",
-                frequency: "",
-                amount: "",
-              },
-              {
-                type: "Rent received",
-                frequency: "",
-                amount: "",
-              },
-              {
-                type: "Workess compensation",
-                frequency: "",
-                amount: "",
-              },
-              {
-                type: "Superannuation",
-                frequency: "",
-                amount: "",
-              },
-              {
-                type: "Income from Trusts",
-                frequency: "",
-                amount: "",
-              },
-              {
-                type: "Spousal maintenance",
-                frequency: "",
-                amount: "",
-              },
-              {
-                type: "Other",
-                frequency: "",
-                amount: "",
-              },
-            ],
-            expensePayments: [
-              {
-                type: "Rent/Board",
-                frequency: "",
-                amount: "",
-              },
-              {
-                type: "Mortgage",
-                frequency: "",
-                amount: "",
-              },
-              {
-                type: "Rates",
-                frequency: "",
-                amount: "",
-              },
-              {
-                type: "Childcare fees",
-                frequency: "",
-                amount: "",
-              },
-              {
-                type: "Child support",
-                frequency: "",
-                amount: "",
-              },
-              {
-                type: "Spousal maintenance",
-                frequency: "",
-                amount: "",
-              },
-            ],
-            hasVehicles: null,
-            vehicles: [
-              {
-                make: "",
-                model: "",
-                year: "",
-                value: "",
-                owing: "",
-              },
-            ],
-            bankBalance: "",
-            hasInvestments: null,
-            investmentsValue: "",
-            hasLegalFeesBeenPaid: null,
-            hasLegalFeesBeenPaidDetails: "",
-            gaveAwayMoneyOrProperty: null,
-            gaveAwayMoneyOrPropertyDetails: "",
-          },
+        },
+        employmentStart: {
+          date: "",
+          dateDay: '',
+          dateMonth: '',
+          dateYear: '',
+          unknownDate: false,
+        },
+         employmentEnd: {
+          date: "",
+          dateDay: '',
+          dateMonth: '',
+          dateYear: '',
+          unknownDate: false,
+        },
+         effectiveDismissalDate: {
+          date: "",
+          dateDay: '',
+          dateMonth: '',
+          dateYear: '',
+          unknownDate: false,
         },
 
-        repRelation: "",
-        repRelationDetail: "",
-        authToDisclose: null,
-        authToDiscloseRelationship: "",
-        authToDiscloseGivenName: "",
-        authToDiscloseLastName: "",
-        authToDiscloseContactDetail: "",
-        problem: {
-          preferredLawyerType: "",
-          preferredLawyerDetails: "",
-          preferredLawyer: {
-            orgName: "",
-            firstName: "",
-            lastName: "",
-            email: "",
-            phones: [
-              {
-                type: "",
-                number: "",
-                isSafe: null,
-              },
-            ],
-          },
-          lawyerOrgName: "",
-          problemType: [],
-          criminalLaw: {
-            haveToGoCourt: null,
-            courts: [
-              {
-                courtType: null,
-                courtTown: null,
-                nextDate: "",
-                nextDateReason: "",
-                nextDateReasonDetails: "",
-                offenses: "",
-                offenceDetails: "",
-                victims: [
-                  {
-                    firstName: "",
-                    lastName: "",
-                  },
-                ],
-                hasOtherCharged: null,
-                othersCharged: [{ firstName: "", lastName: "" }],
-              },
-            ],
-            hasParoleBoard: null,
-            paroleBoards: [
-              {
-                date: "",
-                details: "",
-              },
-            ],
-            appealingAgainst: [],
-            appealCourts: [
-              {
-                courtType: null,
-                courtTown: null,
-                nextDate: "",
-                nextDateReason: "",
-                offenses: "",
-                offenceDetails: "",
-                victims: [
-                  {
-                    firstName: "",
-                    lastName: "",
-                  },
-                ],
-                hasOtherCharged: null,
-                othersCharged: [{ firstName: "", lastName: "" }],
-              },
-            ],
-            hasCriminalRecord: "",
-            policeTakenBelonging: null,
-          },
-          familyLaw: {
-            haveToGoto: null,
-            courtType: null,
-            courtTown: null,
-            nextDate: "",
-            nextDateReason: "",
-            nextDateReasonDetails: "",
-            courtFileNumber: "",
-            conferenceDate: "",
-            otherPartyFirstName: "",
-            otherPartyLastName: "",
-            isClcInvolved: null,
-            whichClc: "",
-            wantsToAppeal: null,
-            appealDetails: "",
-            appealCourtType: "",
-            appealCourtTown: "",
-            appealCourtDate: "",
-            problemType: [],
-            policeAppliedForIntervention: null,
-            policeInterventionDetails: "",
-            problemDetails: "",
-            beenToCounseling: null,
-            marriedToOtherParty: null,
-            marriageDate: "",
-            SeparationDate: "",
-            DivorceDate: "",
-            inDefacto: null,
-            relationshipStartDate: "",
-          },
-          civilLaw: {
-            haveToGoto: null,
-            courts: [
-              {
-                courtType: null,
-                courtTown: null,
-                nextDate: "",
-                nextDateReason: "",
-                courtFileNumber: "",
-              },
-            ],
-            tribunals: [
-              {
-                details: "",
-              },
-            ],
-            wantsToAppeal: null,
-            appealDetails: "",
-            appealCourtType: "",
-            appealCourtTown: "",
-            appealCourtDate: "",
-            problemType: [],
-
-            problemDetails: "",
-          },
-          dcp: {
-            relationshipToChildren: "",
-            courtType: null,
-            courtTown: null,
-            nextDate: "",
-            courtFileNumber: "",
-            hasDcpDocuments: null,
-          },
+        dismissalTold: {
+          date: "",
+          dateDay: '',
+          dateMonth: '',
+          dateYear: '',
+          unknownDate: false,
         },
-        coverLetterDetails: "",
-        agreeToTerms: null,
-        objectToConfidentiality: null,
+
+        lodgingWithin21DaysLimit: null,
+        lodgingWithin21DaysLimitDetails: '',
+        startedOtherClaims:null,
+        startedOtherClaimsDetails: '',
+        employeeDescOfWhatHappened: '',
+        employeeDesiredOutcomes: '',
+        signatureConfirm: null,
+        requireFeeWaiver: null,
+        feePaidBy: '',
+        paymentMethod: '',
       },
       tabIndex: 0,
     };

@@ -20,7 +20,7 @@
 
     <b-modal :id="`manual-address-${modalId}`" title="BootstrapVue">
       <template #modal-header="{ close }">
-        <h6>Address {{ modalId }}</h6>
+        <h6>Address </h6>
         <!-- Emulate built in modal header close button action -->
         <i
           @click="close()"
