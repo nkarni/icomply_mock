@@ -156,9 +156,10 @@
               v-if="form.needsInterpreter === true"
               label="What language?"
             >
-              <b-form-input
+             <b-form-select
+              :options="['LOV from caseHq']"
                 v-model="form.needsInterpreterLanguage"
-              ></b-form-input>
+              ></b-form-select>
             </b-form-group>
           </b-col>
         </b-row>
