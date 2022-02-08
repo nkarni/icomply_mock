@@ -6,12 +6,12 @@
           <b-col cols="4">
             <h6>Employer business details</h6>
             <p>
-              We need to contact your former employer to tell them you have started a case against them. We will send them a copy of this form with all your answers in it. 
+              We need to contact {{yourString}} former employer to tell them {{youString}} have started a case against them. We will send them a copy of this form with all your answers in it. 
             </p>
             <p>
-              During the case, we will call your former employer <strong>the Respondent</strong>. This is because they are responding to your unfair dismissal case.
+              During the case, we will call {{yourString}} former employer <strong>the Respondent</strong>. This is because they are responding to {{yoursString}} unfair dismissal case.
             </p>
-            <p>We need the legal name of your former employer. This may be different from their trading or business name. You can normally find it on your pay slips, PAYG payment summary, appointment letter or employment contract.  </p>
+            <p>We need the legal name of {{yourString}} former employer. This may be different from their trading or business name. You can normally find it on your pay slips, PAYG payment summary, appointment letter or employment contract.  </p>
           </b-col>
           <b-col>
             
@@ -72,7 +72,7 @@
             ></entity-address>
 
             <b-form-group
-              label="Is this the address you worked at?"
+              :label="'Is this the address ' + youString + ' worked at?'"
             >
               <b-form-radio-group
                 v-model="form.employerBusinessDetails.businessAddressIsEmploymentAddress"
@@ -82,7 +82,7 @@
 
              <entity-address
              v-if="form.employerBusinessDetails.businessAddressIsEmploymentAddress === false"
-              :addressLabel="'What was the address you worked at?'"
+              :addressLabel="'What was the address ' + youString + ' worked at?'"
               :address="form.employerBusinessDetails.employmentAddress"
               :addressHelp="'You can select another address - start typing the correct address and select one of the options'"
               :addressString = form.employerBusinessDetails.postalAddressString
@@ -98,7 +98,7 @@
         <b-row>
           <b-col cols="4">
             <h6>Contact Person</h6>
-           <p>Please provide details of a contact person at your former employer.</p>
+           <p>Please provide details of a contact person at {{yourString}} former employer.</p>
           </b-col>
           <b-col>
 
@@ -166,28 +166,28 @@ export default {
   },
   computed: {
     youString: function () {
-      return this.form.repType === "self" ? "you" : "the Applicant";
+      return this.form.applyingForSelf ? "you" : "the Applicant";
     },
     yourString: function () {
-      return this.form.repType === "self" ? "your" : "the Applicant's";
+      return this.form.applyingForSelf ? "your" : "the Applicant's";
     },
     AreYouString: function () {
-      return this.form.repType === "self" ? "are you" : "is the Applicant";
+      return this.form.applyingForSelf ? "are you" : "is the Applicant";
     },
     DoYouString: function () {
-      return this.form.repType === "self" ? "do you" : "is the Applicant";
+      return this.form.applyingForSelf ? "do you" : "is the Applicant";
     },
     DoYouStringCont: function () {
-      return this.form.repType === "self" ? "do you" : "does the Applicant";
+      return this.form.applyingForSelf ? "do you" : "does the Applicant";
     },
     youAreString: function () {
-      return this.form.repType === "self" ? "you are" : "the Applicant is";
+      return this.form.applyingForSelf ? "you are" : "the Applicant is";
     },
     wereYouString: function () {
-      return this.form.repType === "self" ? "were you" : "was the Applicant";
+      return this.form.applyingForSelf ? "were you" : "was the Applicant";
     },
     AreYouString: function () {
-      return this.form.repType === "self" ? "are you" : "the Applicant is";
+      return this.form.applyingForSelf ? "are you" : "the Applicant is";
     },
   },
   methods: {

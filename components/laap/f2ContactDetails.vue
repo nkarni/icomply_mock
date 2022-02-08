@@ -6,11 +6,11 @@
           <b-col cols="4">
             <h6>Contact details</h6>
             <p>
-              We need to be able to send you information about your case. Your
-              former employer will also need to send you information about their
+              We need to be able to send {{youString}} information about {{yourString}} case. The
+              former employer will also need to send {{youString}} information about their
               side of the case.
             </p>
-            <p>
+            <p v-if="form.applyingForSelf === true">
               During the case, we will call you the Applicant. This is because
               you are the person making this application about your dismissal.
             </p>
@@ -32,11 +32,11 @@
                 :value="true"
                 :unchecked-value="false"
               >
-                Check this box if you don't have an address.
+                Check this box if <span v-if="form.applyingForSelf === true">you don't</span><span v-else>the Applicant doesn't</span> have an address.
               </b-form-checkbox>
             </b-form-group>
             <b-form-group
-              label="Do you have a representative (lawyer/union rep etc)?"
+              :label=" DoYouStringCont +  ' have a representative (lawyer/union rep etc)?'"
             >
               <b-form-radio-group
                 v-model="form.applicant.hasRep"
@@ -122,28 +122,28 @@ export default {
   },
   computed: {
     youString: function () {
-      return this.form.repType === "self" ? "you" : "the Applicant";
+      return this.form.applyingForSelf ? "you" : "the Applicant";
     },
     yourString: function () {
-      return this.form.repType === "self" ? "your" : "the Applicant's";
+      return this.form.applyingForSelf ? "your" : "the Applicant's";
     },
     AreYouString: function () {
-      return this.form.repType === "self" ? "are you" : "is the Applicant";
+      return this.form.applyingForSelf ? "are you" : "is the Applicant";
     },
     DoYouString: function () {
-      return this.form.repType === "self" ? "do you" : "is the Applicant";
+      return this.form.applyingForSelf ? "do you" : "is the Applicant";
     },
     DoYouStringCont: function () {
-      return this.form.repType === "self" ? "do you" : "does the Applicant";
+      return this.form.applyingForSelf ? "do you" : "does the Applicant";
     },
     youAreString: function () {
-      return this.form.repType === "self" ? "you are" : "the Applicant is";
+      return this.form.applyingForSelf ? "you are" : "the Applicant is";
     },
     wereYouString: function () {
-      return this.form.repType === "self" ? "were you" : "was the Applicant";
+      return this.form.applyingForSelf ? "were you" : "was the Applicant";
     },
     AreYouString: function () {
-      return this.form.repType === "self" ? "are you" : "the Applicant is";
+      return this.form.applyingForSelf ? "are you" : "the Applicant is";
     },
   },
   methods: {

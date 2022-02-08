@@ -106,28 +106,28 @@ export default {
   },
   computed: {
     youString: function () {
-      return this.form.repType === "self" ? "you" : "the Applicant";
+      return this.form.applyingForSelf ? "you" : "the Applicant";
     },
     yourString: function () {
-      return this.form.repType === "self" ? "your" : "the Applicant's";
+      return this.form.applyingForSelf ? "your" : "the Applicant's";
     },
     AreYouString: function () {
-      return this.form.repType === "self" ? "are you" : "is the Applicant";
+      return this.form.applyingForSelf ? "are you" : "is the Applicant";
     },
     DoYouString: function () {
-      return this.form.repType === "self" ? "do you" : "is the Applicant";
+      return this.form.applyingForSelf ? "do you" : "is the Applicant";
     },
     DoYouStringCont: function () {
-      return this.form.repType === "self" ? "do you" : "does the Applicant";
+      return this.form.applyingForSelf ? "do you" : "does the Applicant";
     },
     youAreString: function () {
-      return this.form.repType === "self" ? "you are" : "the Applicant is";
+      return this.form.applyingForSelf ? "you are" : "the Applicant is";
     },
     wereYouString: function () {
-      return this.form.repType === "self" ? "were you" : "was the Applicant";
+      return this.form.applyingForSelf ? "were you" : "was the Applicant";
     },
     AreYouString: function () {
-      return this.form.repType === "self" ? "are you" : "the Applicant is";
+      return this.form.applyingForSelf ? "are you" : "the Applicant is";
     },
 
     contactPersonName: function () {

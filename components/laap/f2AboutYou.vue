@@ -52,11 +52,11 @@
       >
         <b-row>
           <b-col cols="4">
-            <h6>Your age</h6>
-          <p>If you are under 18 you must have a guardian (WHAT DOES THAT MEAN? WHAT DO THEY NEED TO DO ABOUT IT?)</p> 
+            <h6>{{ yourString }} age</h6>
+          <p>If {{ youAreString }} under 18 {{youString}} must have a guardian.</p> 
           </b-col>
           <b-col>
-            <b-form-group label="Are you over 18?">
+            <b-form-group :label="AreYouStringReverse + ' over 18?'">
               <b-form-radio-group
                 v-model="form.applicant.over18"
                 :options="over18Options"
@@ -79,7 +79,7 @@
             information about help for non-English speakers on our website.
           </b-col>
           <b-col>
-            <b-form-group label="Will you need an interpreter?">
+            <b-form-group :label="'Will ' + youString + ' need an interpreter?'">
               <b-form-radio-group
                 v-model="form.needsInterpreter"
                 :options="boolOptions"
@@ -107,7 +107,7 @@
             It’s important that everyone has access to our services. If you have access needs, we can make arrangements so that you can participate fully in your case. You can read more about accessibility on our website.
           </b-col>
           <b-col>
-            <b-form-group label="Do you have any accessibility requirements?">
+            <b-form-group :label=" DoYouStringCont + ' have any accessibility requirements?'">
               <b-form-radio-group
                 v-model="form.needsAccessibility"
                 :options="boolOptions"
@@ -137,7 +137,7 @@
           </b-col>
           <b-col>
             <b-form-group
-              label="Can we pass on your contact details to an external provider so they can invite you to take part in research?"
+              :label="'Can we pass on ' + yourString + ' contact details to an external provider so they can invite you to take part in research?'"
             >
               <b-form-radio-group
                 v-model="form.researchConsent"
@@ -192,28 +192,31 @@ export default {
   },
   computed: {
     youString: function () {
-      return this.form.repType === "self" ? "you" : "the Applicant";
+      return this.form.applyingForSelf ? "you" : "the Applicant";
     },
     yourString: function () {
-      return this.form.repType === "self" ? "your" : "the Applicant's";
+      return this.form.applyingForSelf ? "your" : "the Applicant's";
     },
     AreYouString: function () {
-      return this.form.repType === "self" ? "are you" : "is the Applicant";
+      return this.form.applyingForSelf ? "are you" : "is the Applicant";
     },
     DoYouString: function () {
-      return this.form.repType === "self" ? "do you" : "is the Applicant";
+      return this.form.applyingForSelf ? "do you" : "is the Applicant";
     },
     DoYouStringCont: function () {
-      return this.form.repType === "self" ? "do you" : "does the Applicant";
+      return this.form.applyingForSelf ? "do you" : "does the Applicant";
     },
     youAreString: function () {
-      return this.form.repType === "self" ? "you are" : "the Applicant is";
+      return this.form.applyingForSelf ? "you are" : "the Applicant is";
     },
     wereYouString: function () {
-      return this.form.repType === "self" ? "were you" : "was the Applicant";
+      return this.form.applyingForSelf ? "were you" : "was the Applicant";
     },
     AreYouString: function () {
-      return this.form.repType === "self" ? "are you" : "the Applicant is";
+      return this.form.applyingForSelf ? "are you" : "the Applicant is";
+    },
+      AreYouStringReverse: function () {
+      return this.form.applyingForSelf ? "are you" : "is the Applicant";
     },
   },
   methods: {
