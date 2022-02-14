@@ -1,13 +1,15 @@
 <template>
   <b-container>
     <b-row>
-      <b-col cols="12" md="6">
+      <b-col cols="8">
         <h3 class="text-primary">Unfair dismissal claim</h3>
       </b-col>
-      <b-col cols="12" md="6" class="text-right">
-        <NuxtLink to="/home" class="text-right pr-0">
+      <b-col cols="4"  class="text-right">
+        <!-- <NuxtLink to="/home" class="text-right pr-0">
           Back to dashboard
-        </NuxtLink>
+        </NuxtLink> -->
+         <b-button>Reference: YCFRU</b-button>
+         <b-button variant="primary">Save for later</b-button>
       </b-col>
     </b-row>
     <b-row class="mt-4">
@@ -117,8 +119,8 @@
 
     <b-row class="mt-4" v-if="tabIndex !== 2">
       <b-col cols="12" class="text-right">
-        <b-button v-if="tabIndex > 0" @click="tabIndex--">Save & Prev</b-button>
-        <b-button v-if="tabIndex < 5" @click="tabIndex++">Save & Next</b-button>
+        <b-button variant="primary" v-if="tabIndex > 0" @click="tabIndex--" class="mr-2">Save & Prev</b-button>
+        <b-button variant="primary" v-if="tabIndex < 5" @click="tabIndex++">Save & Next</b-button>
       </b-col>
     </b-row>
 
