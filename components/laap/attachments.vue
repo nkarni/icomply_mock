@@ -35,7 +35,7 @@
                     <b-row>
                       <b-col class="col-9">
                         <b-form-group
-                          description="Click on the chat icon to add comments about this file (optional)"
+                          description="Click on the pencil icon to add comments about this file (optional)"
                         >
                           <b-form-file
                             placeholder="Choose a file or drop it here..."

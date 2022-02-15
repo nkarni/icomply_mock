@@ -271,6 +271,9 @@
         <b-row>
           <b-col cols="4">
             <h6>Payment</h6>
+            <p>It costs $74.90 to start an unfair dismissal case.</p> 
+
+<p>If you can’t afford to pay the fee, you can ask us to waive it. Download and complete the Fee waiver form. Send it to us at the same time as you send us your unfair dismissal form.</p>
           </b-col>
           <b-col>
             <b-form-group :label="DoYouStringCont + ' require a fee waiver?'">
