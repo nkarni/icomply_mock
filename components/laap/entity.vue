@@ -14,7 +14,7 @@
       :address="entity.orgAddress"
     ></entity-address>
 
-    <b-form-group :label="titleLabel" v-if="showTitle">
+    <b-form-group :label="titleLabel" v-if="showTitle" style="max-width:150px">
       <b-form-select  
       v-model="entity.title"
       :options="['Mr.', 'Mrs.', 'Ms.', 'Other']">

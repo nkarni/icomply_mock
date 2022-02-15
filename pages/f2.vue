@@ -110,8 +110,9 @@
           <template #title>
             <h5>Review and submit</h5>
             <span>Review your information and lodge the form</span>
+           
           </template>
-        
+         <f-2-review :form="form"></f-2-review>
         </b-tab>
         
       </b-tabs>
@@ -190,10 +191,11 @@ import f2ContactDetails from '../components/laap/f2ContactDetails.vue';
 import f2EmployerDetails from '../components/laap/f2EmployerDetails.vue';
 import f2Dismissal from '../components/laap/f2Dismissal.vue';
 import f2Attachments from '../components/laap/f2Attachments.vue';
+import f2Review from '../components/laap/f2Review.vue';
 
 export default {
   components: {
-    F2AboutYou, f2ContactDetails, f2EmployerDetails, f2Dismissal, f2Attachments
+    F2AboutYou, f2ContactDetails, f2EmployerDetails, f2Dismissal, f2Attachments,f2Review
 
   },
   layout: "form",
@@ -201,7 +203,6 @@ export default {
     return {
       form: {
         applyingForSelf: null,
-        relationshipToApplicant: null,
         rep: {
           title: "",
           titleDetails: "",
@@ -358,6 +359,11 @@ export default {
         requireFeeWaiver: null,
         feePaidBy: '',
         paymentMethod: '',
+        cardName: '',
+        cardNumber: '',
+        cardExpiry: '',
+        cardCvv: ''
+
       },
       tabIndex: 0,
     };
