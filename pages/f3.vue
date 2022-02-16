@@ -61,21 +61,6 @@
           ]"
         >
           <template #title>
-            <h5>Circumstances</h5>
-            <span>Information about your business' circumstances</span>
-          </template>
-          <f-3-circumstances :form="form"></f-3-circumstances>
-        </b-tab>
-
-        <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-3',
-            { 'laap-nav-item-complete': false },
-          ]"
-        >
-          <template #title>
             <h5>The dismissal</h5>
             <span>Information about the dismissal</span>
           </template>
@@ -96,6 +81,20 @@
           </template>
           <f-3-other-info :form="form"></f-3-other-info>
         </b-tab>
+         <b-tab
+          :title-link-class="[
+            'laap-title-link',
+            'mb-2',
+            'p-3',
+            { 'laap-nav-item-complete': false },
+          ]"
+        >
+          <template #title>
+            <h5>Attachments</h5>
+            <span>Upload relevant documents</span>
+          </template>
+         <f-3-files :form="form"></f-3-files>
+        </b-tab>
         <b-tab
           :title-link-class="[
             'laap-title-link',
@@ -104,6 +103,7 @@
             { 'laap-nav-item-complete': false },
           ]"
         >
+          
           <template #title>
             <h5>Review and submit</h5>
             <span>Confirm details and submit the form</span>
@@ -187,8 +187,10 @@ import F3Dismissal from "../components/laap/f3Dismissal.vue";
 import f3EmployeeDetails from "../components/laap/f3EmployeeDetails.vue";
 import F3OtherInfo from '../components/laap/f3OtherInfo.vue';
 import F3Review from '../components/laap/f3Review.vue';
+import f3Files from '../components/laap/f3Files'
+import F3files from '../components/laap/f3files.vue';
 export default {
-  components: { f3AboutYou, f3EmployeeDetails, F3Circumstances, F3Dismissal, F3OtherInfo, F3Review },
+  components: { f3AboutYou, f3EmployeeDetails, F3Circumstances, F3Dismissal, F3OtherInfo, F3Review, f3Files, F3files },
   layout: "form",
   data() {
     return {

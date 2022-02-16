@@ -66,8 +66,8 @@
                 :value="true"
                 :unchecked-value="false"
               >
-                I have read the confidentiality statement and conditions of
-                Legal Aid. All the information I have given is true and correct.
+                I confirm that this form was filled by me {form filler's firstname and lastname}
+                and that the information provided is true.
               </b-form-checkbox>
             </b-form-group>
           </b-col>
@@ -203,7 +203,7 @@ export default {
           ],
         },
         {
-          label: "Circumstances",
+          label: "About the business",
           data: [
             {
               label:

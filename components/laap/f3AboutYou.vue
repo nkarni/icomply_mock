@@ -67,21 +67,7 @@
               :addressString = form.businessDetails.postalAddressString
             ></entity-address>
 
-            <b-form-group :label="'Industry'" v-if="form.businessDetailsCorrect === true">
-                <b-form-select
-                  v-model="form.businessDetails.industry"
-                  :options="[
-                   'Industry A', 'Industry B', 'Other']"
-                ></b-form-select>
-              </b-form-group>
-              <b-form-group
-                v-if="form.businessDetails.industry === 'Other' && form.businessDetailsCorrect === true"
-                label="Please provide details"
-              >
-                <b-form-textarea
-                  v-model="form.businessDetails.industryDetails"
-                ></b-form-textarea>
-              </b-form-group>
+            
 
           </b-col>
         </b-row>
@@ -106,6 +92,79 @@
               showTitle
             >
             </entity>
+          </b-col>
+        </b-row>
+      </section>
+          <section class="border-bottom border-secondary mb-4 pb-4"  v-if="form.businessDetailsCorrect === true">
+        <b-row>
+          <b-col cols="4">
+            <h6>The Business</h6>
+          </b-col>
+          <b-col>
+            <b-form-group :label="'Industry'" v-if="form.businessDetailsCorrect === true">
+                <b-form-select
+                  v-model="form.businessDetails.industry"
+                  :options="[
+                   'Industry A', 'Industry B', 'Other']"
+                ></b-form-select>
+              </b-form-group>
+              <b-form-group
+                v-if="form.businessDetails.industry === 'Other' && form.businessDetailsCorrect === true"
+                label="Please provide details"
+              >
+                <b-form-textarea
+                  v-model="form.businessDetails.industryDetails"
+                ></b-form-textarea>
+              </b-form-group>
+            <b-form-group
+              :label="'How many employees did your business have when the employee was dismissed?'"
+            >
+              <b-form-radio-group
+                stacked
+                v-model="form.businessDetails.numberOfEmployeesIsUnder"
+                :options="numberOfEmployeesOptionsUnder"
+              ></b-form-radio-group>
+            </b-form-group>
+
+            <notice
+              message="Count all full-time, part-time and casual employees. Include the employee who was dismissed. <br><br>
+If the employee wasn’t dismissed, count the employees you had on 12/12/22 (the date the employee said they were dismissed)."
+            ></notice>
+          </b-col>
+        </b-row>
+      </section>
+      <section
+        class="border-bottom border-secondary mb-4 pb-4"
+        v-if="form.businessDetailsCorrect === true"
+      >
+        <b-row>
+          <b-col cols="4">
+            <h6>Representative</h6>
+            A representative is a person who acts for you in the case but who isn’t an employee of your business. They could be a lawyer, paid agent, employer organisation or chamber of commerce. You don’t need to have a representative. <a href="">Click here </a>to read more about whether or not to have a representative on our website.
+          </b-col>
+          <b-col>
+            <b-form-group
+              label="Do you have a representative?"
+            >
+              <b-form-radio-group
+                v-model="form.hasRep"
+                :options="boolOptions"
+              ></b-form-radio-group>
+               
+            </b-form-group>
+ <entity
+ v-if="form.hasRep === true"
+              :entity="form.rep"
+              showOrgName
+              showPhones
+              showFirstName
+              showLastName
+              showEmail
+              showPostalAddress
+              showTitle
+            >
+            </entity>
+
           </b-col>
         </b-row>
       </section>
@@ -168,41 +227,7 @@
           </b-col>
         </b-row>
       </section>
-<section
-        class="border-bottom border-secondary mb-4 pb-4"
-        v-if="form.businessDetailsCorrect === true"
-      >
-        <b-row>
-          <b-col cols="4">
-            <h6>Representative</h6>
-            A representative is a person who acts for you in the case but who isn’t an employee of your business. They could be a lawyer, paid agent, employer organisation or chamber of commerce. You don’t need to have a representative. <a href="">Click here </a>to read more about whether or not to have a representative on our website.
-          </b-col>
-          <b-col>
-            <b-form-group
-              label="Do you have a representative?"
-            >
-              <b-form-radio-group
-                v-model="form.hasRep"
-                :options="boolOptions"
-              ></b-form-radio-group>
-               
-            </b-form-group>
- <entity
- v-if="form.hasRep === true"
-              :entity="form.rep"
-              showOrgName
-              showPhones
-              showFirstName
-              showLastName
-              showEmail
-              showPostalAddress
-              showTitle
-            >
-            </entity>
 
-          </b-col>
-        </b-row>
-      </section>
 
       <section
         class="border-bottom border-secondary mb-4 pb-2"
@@ -246,6 +271,44 @@ export default {
   },
   data() {
     return {
+      numberOfEmployeesOptionsUnder: [
+        {
+          text: "1 to 4 employees ",
+          value: "4",
+        },
+        {
+          text: "5 to 9  employees ",
+          value: "10",
+        },
+        {
+          text: "10 to 14  employees ",
+          value: "15",
+        },
+        {
+          text: "15 to 19 employees ",
+          value: "20",
+        },
+        {
+          text: "20 to 49 employees",
+          value: "50",
+        },
+        {
+          text: "50 to 99 employees",
+          value: "100",
+        },
+        {
+          text: "100 to 199 employees",
+          value: "200",
+        },
+        {
+          text: "200 to 999 employees",
+          value: "1000",
+        },
+        {
+          text: "over 1000 employees",
+          value: "999999999",
+        },
+      ],
       businessDetailsWereWrong: false,
       repTypeOptions: [
         { text: "I am the Applicant (submitting for myself)", value: "self" },
