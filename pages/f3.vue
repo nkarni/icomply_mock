@@ -189,7 +189,7 @@ import F3OtherInfo from '../components/laap/f3OtherInfo.vue';
 import F3Review from '../components/laap/f3Review.vue';
 import F3files from '../components/laap/f3files.vue';
 export default {
-  components: { f3AboutYou, f3EmployeeDetails, F3Circumstances, F3Dismissal, F3OtherInfo, F3Review, f3Files, F3files },
+  components: { f3AboutYou, f3EmployeeDetails, F3Circumstances, F3Dismissal, F3OtherInfo, F3Review, F3files },
   layout: "form",
   data() {
     return {
