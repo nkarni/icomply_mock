@@ -1,110 +1,75 @@
 <template>
   <div>
+    <b-form-group label="Please enter business name or ABN and click Search" v-if="showSearch">
+      <b-form-input
+        
+      ></b-form-input>
+      <b-button
+        variant="primary"
+        style="float: right"
+        class="mt-2"
+        @click="showSelectOne = true"
+        >Search</b-button
+      >
+    </b-form-group>
+
+      <!-- found a some matches -->
+      <div v-if="showSelectOne">
+        <b-form-group
+          label="We've found a few matches, please select the correct one."
+          class="mt-4"
+        >
+          <b-form-radio-group
   
-            <b-form-group
-              label="Please enter an ABN or business name and click Search"
-            >
-              <b-form-input
-                v-model="form.employerBusinessDetails.businessNameString"
-              ></b-form-input>
-              <b-button
-                variant="primary"
-                style="float: right"
-                class="mt-2"
-                v-b-modal="`select-abn`"
-                >Search</b-button
-              >
-            </b-form-group>
-             <div class="text-right">
-            <b-button variant="link" class="p-0 mb-4" v-b-modal="`manual-abn-${modalId}`">
-              Click here if you cannot find the right business
-            </b-button>
-    </div>
-            <b-modal :id="`select-abn`" title="ABN Lookup">
-              <template #modal-header="{ close }">
-                <h6>Business Lookup</h6>
-                <!-- Emulate built in modal header close button action -->
-                <i
-                  @click="close()"
-                  v-b-tooltip.hover
-                  title="Close"
-                  class="bi bi-x fs-3 removeIcon"
-                ></i>
-              </template>
+            @change="onBusinessSelected"
+            :options="[
+            { text: 'XYZ trading, ABN 98989898', value: {name: 'XYZ Trading', tradingName: '', abn: '98989898' } },
+            { text: 'Comfy Beds trading as Best Beds, ABN 45454545', value: {name: 'Comfy Beds', tradingName: 'Best Beds', abn: '45454545' } }
+            ]"
+          ></b-form-radio-group>
+        </b-form-group>
+        <div >
+          Can't find the right business? Search again or
+          <b-button
+          @click="showSearch = false;showAddManually = true;showSelectOne = false"
+            variant="link"
+            class="p-0 mb-1"
+          >
+            click here to add it manually
+          </b-button>
+        </div>
+      </div>
 
-              <b-row>
-                <b-col>
-                  <b-form-group
-                    label="We've found a few matches, please select the correct one."
-                    class="mt-4"
-                  >
-                    <b-form-radio-group
-                      v-model="
-                        form.employerBusinessDetails.businessDetailsString
-                      "
-                      :options="[
-                        'XYZ trading, ABN 98989898',
-                        'Comfy Beds trading as Best Beds, ABN 45454545',
-                      ]"
-                      @change="onSelectedNewAbn"
-                    ></b-form-radio-group>
-                  </b-form-group>
-                  <notice
-                    message="Dev notice:<br>When the user selects a new business, the modal closes, provided business address is updated, and a toast (a floating message at the top right of the screen) will inform the user that it was updated."
-                  ></notice>
-                </b-col>
-              </b-row>
-            </b-modal>
-
-
-             <b-modal :id="`manual-abn-${modalId}`" title="ABN Lookup" >
-              <template #modal-header="{ close }">
-                <h6>Business details</h6>
-                <!-- Emulate built in modal header close button action -->
-                <i
-                  @click="close()"
-                  v-b-tooltip.hover
-                  title="Close"
-                  class="bi bi-x fs-3 removeIcon"
-                ></i>
-              </template>
-
-              <b-row>
-                <b-col>
-                  <b-form-group
-                    label="Business Name"
-                    class="mt-4"
-                  >
-                    <b-form-input></b-form-input>
-                  </b-form-group>
-                   <b-form-group
-                    label="Business Trading name (optional)"
-                    class="mt-4"
-                  >
-                    <b-form-input></b-form-input>
-                  </b-form-group>
-                   <b-form-group
-                    label="Business ABN (optional)"
-                    class="mt-4"
-                  >
-                    <b-form-input></b-form-input>
-                  </b-form-group>
-                 
-                </b-col>
-              </b-row>
-            </b-modal>
+      <!-- add manually-->
+      <div v-if="showAddManually">
+      <b-row>
+        <b-col>
+          <b-form-group label="Business Name" class="mt-4" >
+            <b-form-input v-model="businessDetails.name"></b-form-input>
+          </b-form-group>
+          <b-form-group label="Business Trading name (optional)" class="mt-4">
+            <b-form-input v-model="businessDetails.tradingName"></b-form-input>
+          </b-form-group>
+          <b-form-group label="Business ABN (optional)" class="mt-4">
+            <b-form-input v-model="businessDetails.abn"></b-form-input>
+          </b-form-group>
+        </b-col>
+      </b-row>
+      </div>
   </div>
 </template>
 
 <script>
+import laap from '../../pages/laap.vue';
 export default {
+  components: { laap },
   name: "abnLookup",
 
   props: {
-     form: {
+    businessDetails: {
       type: Object,
-      default: () => ({})
-     },
+      default: () => ({}),
+    },
     addressLabel: {
       type: String,
       default: "Address",
@@ -113,7 +78,7 @@ export default {
       type: Boolean,
       default: true,
     },
-     idPrefix: {
+    idPrefix: {
       type: String,
       default: "entity-form",
     },
@@ -121,11 +86,11 @@ export default {
       type: String,
       default: "Start typing your address and select one of the options",
     },
-     addressString: {
+    addressString: {
       type: String,
       default: "",
     },
-    
+
     address: {
       type: Object,
       default: () => ({
@@ -140,17 +105,32 @@ export default {
   },
   data() {
     return {
+      showSelectOne: false,
+      showAddManually: false,
+      showSearch: true,
       // random id for the modal
-      modalId: Math.random()
-        .toString(36)
-        .substring(7),
+      modalId: Math.random().toString(36).substring(7),
+      selectedBusiness: {}
     };
   },
-  computed: {
-   
-  },
+  computed: {},
   methods: {
-
+    onBusinessSelected(newBus){
+      this.showSearch = false;
+      this.showSelectOne = false;
+      this.showAddManually = true;
+      this.businessDetails.name = newBus.name;
+      this.businessDetails.tradingName = newBus.tradingName;
+      this.businessDetails.abn = newBus.abn;
+      this.businessDetails.businessNameString = newBus.name
+      if(this.businessDetails.tradingName !== ''){
+        this.businessDetails.businessNameString += ' trading as ' + this.businessDetails.businessNameString
+      } 
+       if(this.businessDetails.abn !== ''){
+        this.businessDetails.businessNameString += ' ABN: ' + this.businessDetails.abn
+      } 
+    }
+   
   },
 };
 </script>

@@ -194,10 +194,12 @@ export default {
     return {
       form: {
         businessDetailsCorrect: null,
+        employeeProvidedBusinessNameString: "Sydney Bins ABN 12345678",
         businessDetails: {
           businessDetailsString: "ABC pty ltd Trading as MY ABC, ABN: 12345678",
           name: "",
           abn: "",
+          tradingName: "",
           postalAddress: {
             line1: "",
             line2: "",

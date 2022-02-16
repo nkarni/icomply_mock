@@ -23,55 +23,9 @@
             </p>
           </b-col>
           <b-col>
-            <b-form-group
-              label="Please enter an ABN or business name and click Search"
-            >
-              <b-form-input
-                v-model="form.employerBusinessDetails.businessNameString"
-              ></b-form-input>
-              <b-button
-                variant="primary"
-                style="float: right"
-                class="mt-2"
-                v-b-modal="`manual-abn`"
-                >Search</b-button
-              >
-            </b-form-group>
-            <b-modal :id="`manual-abn`" title="ABN Lookup">
-              <template #modal-header="{ close }">
-                <h6>ABN Lookup</h6>
-                <!-- Emulate built in modal header close button action -->
-                <i
-                  @click="close()"
-                  v-b-tooltip.hover
-                  title="Close"
-                  class="bi bi-x fs-3 removeIcon"
-                ></i>
-              </template>
-
-              <b-row>
-                <b-col>
-                  <b-form-group
-                    label="We've found a few matches, please select the correct one."
-                    class="mt-4"
-                  >
-                    <b-form-radio-group
-                      v-model="
-                        form.employerBusinessDetails.businessDetailsString
-                      "
-                      :options="[
-                        'XYZ trading, ABN 98989898',
-                        'Comfy Beds trading as Best Beds, ABN 45454545',
-                      ]"
-                      @change="onSelectedNewAbn"
-                    ></b-form-radio-group>
-                  </b-form-group>
-                  <notice
-                    message="Dev notice:<br>When the user selects a new business, the modal closes, provided business address is updated, and a toast (a floating message at the top right of the screen) will inform the user that it was updated."
-                  ></notice>
-                </b-col>
-              </b-row>
-            </b-modal>
+         
+         <abn-lookup :businessDetails="form.employerBusinessDetails"></abn-lookup>
+        
             <entity-address
               :addressLabel="'Postal address'"
               :address="form.employerBusinessDetails.postalAddress"
@@ -140,11 +94,12 @@
 </template>
 
 <script>
+import AbnLookup from './abnLookup.vue';
 import entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
 export default {
-  components: { entity, Notice, EntityAddress },
+  components: { entity, Notice, EntityAddress, AbnLookup },
   name: "f2EmployerDetails",
   props: {
     form: {
@@ -205,6 +160,18 @@ export default {
     },
     AreYouString: function () {
       return this.form.applyingForSelf ? "are you" : "the Applicant is";
+    },
+     AreYouStringReverse: function () {
+      return this.form.applyingForSelf ? "are you" : "is the Applicant";
+    },
+    additionalS: function () {
+      return this.form.applyingForSelf ? "" : "s";
+    },
+    yoursString: function () {
+      return this.form.applyingForSelf ? "yours" : "the Applicant/'s";
+    },
+    haveYouString: function () {
+      return this.form.applyingForSelf ? "have you" : "has the Applicant";
     },
   },
   methods: {

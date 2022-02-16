@@ -116,3 +116,7 @@ form .btn {
 .navbar-light .navbar-nav .nav-link {
     color: white;
 }
+
+.capFirst::first-letter {
+  text-transform: uppercase;
+}

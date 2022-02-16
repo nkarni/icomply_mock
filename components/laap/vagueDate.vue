@@ -6,7 +6,7 @@
           
               <b-form-datepicker
                v-if="date.unknownDate !== true"
-                v-model="date"
+              
                 class="mb-2"
               ></b-form-datepicker>
             </b-form-group>

@@ -121,7 +121,7 @@
           <b-col cols="4">
             <h6>Other claims</h6>
             <p>
-              Tell us about any other claims that were started about {{your}}
+              Tell us about any other claims that were started about {{yourString}}
               dismissal at the Fair Work Commission or somewhere else (e.g. the
               Human Rights Commission)
             </p>
@@ -275,6 +275,18 @@ export default {
     },
     AreYouString: function () {
       return this.form.applyingForSelf ? "are you" : "the Applicant is";
+    },
+         AreYouStringReverse: function () {
+      return this.form.applyingForSelf ? "are you" : "is the Applicant";
+    },
+    additionalS: function () {
+      return this.form.applyingForSelf ? "" : "s";
+    },
+    yoursString: function () {
+      return this.form.applyingForSelf ? "yours" : "the Applicant/'s";
+    },
+    haveYouString: function () {
+      return this.form.applyingForSelf ? "have you" : "has the Applicant";
     },
   },
   methods: {

@@ -10,8 +10,28 @@
             <p>Through this form - all fields are mandatory unless specifically marked as optional.</p>
           </b-col>
           <b-col>
-            <label>Business name and ABN:</label><br />
-            {{ form.businessDetails.businessDetailsString }}
+            <b-form-group label="The employee provided the following business details:" class="mt-3">
+              
+              {{ form.employeeProvidedBusinessNameString }}
+            </b-form-group>
+            
+             <b-form-group label="Are those details correct?" class="mt-3">
+              <b-form-radio-group
+                v-model="form.businessDetailsCorrect"
+                :options="boolOptions"
+                @click="onWrongBusinessNameClick"
+              ></b-form-radio-group>
+            </b-form-group>
+
+  
+            <div  v-if="form.businessDetailsCorrect === false">
+              <abn-lookup :businessDetails="form.businessDetails"></abn-lookup>
+              <!-- Correct business: {{ form.businessDetails.businessDetailsString }} -->
+            </div>
+            
+
+            
+            
             <!-- <b-row>
               <b-col cols="4">
                 Business legal name:
@@ -29,59 +49,15 @@
               </b-col>
             </b-row> -->
 
-            <b-form-group label="Are those details correct?" class="mt-3">
-              <b-form-radio-group
-                v-model="form.businessDetailsCorrect"
-                :options="boolOptions"
-              ></b-form-radio-group>
-            </b-form-group>
+           
 
-            <b-form-group
-              v-if="form.businessDetailsCorrect === false"
-              label="Please enter the correct ABN or business name and click Search"
-            >
-              <b-form-input v-model="form.businessNameString"></b-form-input>
-              <b-button
-                variant="primary"
-                style="float: right"
-                class="mt-2"
-                v-b-modal="`manual-abn`"
-                >Search</b-button
-              >
-            </b-form-group>
-            <b-modal :id="`manual-abn`" title="ABN Lookup">
-              <template #modal-header="{ close }">
-                <h6>ABN Lookup</h6>
-                <!-- Emulate built in modal header close button action -->
-                <i
-                  @click="close()"
-                  v-b-tooltip.hover
-                  title="Close"
-                  class="bi bi-x fs-3 removeIcon"
-                ></i>
-              </template>
+           
+            
+          
 
-              <b-row>
-                <b-col>
-                  <b-form-group
-                    label="We've found a few matches, please select the correct one."
-                    class="mt-4"
-                  >
-                    <b-form-radio-group
-                      v-model="form.businessDetails.businessDetailsString"
-                      :options="[
-                        'XYZ trading, ABN 98989898',
-                        'Comfy Beds trading as Best Beds, ABN 45454545',
-                      ]"
-                      @change="onSelectedNewAbn"
-                    ></b-form-radio-group>
-                  </b-form-group>
-                  <notice
-                    message="Dev notice:<br>When the user selects a new business, the modal closes, provided business address is updated, and a toast (a floating message at the top right of the screen) will inform the user that it was updated."
-                  ></notice>
-                </b-col>
-              </b-row>
-            </b-modal>
+            <!-- <b-form-group v-if="businessDetailsWereWrong">
+             {{ form.businessDetailsString }}
+            </b-form-group>  -->
 
             <entity-address
               v-if="form.businessDetailsCorrect === true"
@@ -255,11 +231,12 @@
 </template>
 
 <script>
+import AbnLookup from './abnLookup.vue';
 import entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
 export default {
-  components: { entity, Notice, EntityAddress },
+  components: { entity, Notice, EntityAddress, AbnLookup },
   name: "applicantDetails",
   props: {
     form: {
@@ -269,6 +246,7 @@ export default {
   },
   data() {
     return {
+      businessDetailsWereWrong: false,
       repTypeOptions: [
         { text: "I am the Applicant (submitting for myself)", value: "self" },
         { text: "I am the Applicant's solicitor", value: "solicitor" },
@@ -316,6 +294,11 @@ export default {
     },
   },
   methods: {
+    onWrongBusinessNameClick(){
+      if(form.businessDetailsCorrect === false){
+        this.businessDetailsWereWrong = true
+      }
+    },
     onSelectedNewAbn() {
       this.form.businessDetailsCorrect = true;
       this.$bvModal.hide("manual-abn");

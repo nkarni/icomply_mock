@@ -284,6 +284,7 @@ export default {
         employerBusinessDetails: {
           businessDetailsString: "ABC pty ltd Trading as MY ABC, ABN: 12345678",
           name: "",
+          tradingName:"",
           abn: "",
           postalAddress: {
             line1: "",
@@ -293,7 +294,7 @@ export default {
             state: "",
             country: "",
           },
-          postalAddressString: "22 Main street, Sydney NSW 2000",
+          postalAddressString: "",
           contactPerson: {
             role: '',
             title: "",
