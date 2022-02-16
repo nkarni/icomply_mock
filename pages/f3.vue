@@ -187,7 +187,6 @@ import F3Dismissal from "../components/laap/f3Dismissal.vue";
 import f3EmployeeDetails from "../components/laap/f3EmployeeDetails.vue";
 import F3OtherInfo from '../components/laap/f3OtherInfo.vue';
 import F3Review from '../components/laap/f3Review.vue';
-import f3Files from '../components/laap/f3Files'
 import F3files from '../components/laap/f3files.vue';
 export default {
   components: { f3AboutYou, f3EmployeeDetails, F3Circumstances, F3Dismissal, F3OtherInfo, F3Review, f3Files, F3files },
