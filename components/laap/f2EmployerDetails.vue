@@ -6,23 +6,29 @@
           <b-col cols="4">
             <h6>Employer business details</h6>
             <p>
-              We need to contact {{yourString}} former employer to tell them {{youString}} have started a case against them. We will send them a copy of this form with all your answers in it. 
+              We need to contact {{ yourString }} former employer to tell them
+              {{ youString }} have started a case against them. We will send
+              them a copy of this form with all your answers in it.
             </p>
             <p>
-              During the case, we will call {{yourString}} former employer <strong>the Respondent</strong>. This is because they are responding to {{yoursString}} unfair dismissal case.
+              During the case, we will call {{ yourString }} former employer
+              <strong>the Respondent</strong>. This is because they are
+              responding to {{ yoursString }} unfair dismissal case.
             </p>
-            <p>We need the legal name of {{yourString}} former employer. This may be different from their trading or business name. You can normally find it on your pay slips, PAYG payment summary, appointment letter or employment contract.  </p>
+            <p>
+              We need the legal name of {{ yourString }} former employer. This
+              may be different from their trading or business name. You can
+              normally find it on your pay slips, PAYG payment summary,
+              appointment letter or employment contract.
+            </p>
           </b-col>
           <b-col>
-            
-       
-          
-
-                 <b-form-group
-             
+            <b-form-group
               label="Please enter an ABN or business name and click Search"
             >
-              <b-form-input v-model="form.employerBusinessDetails.businessNameString"></b-form-input>
+              <b-form-input
+                v-model="form.employerBusinessDetails.businessNameString"
+              ></b-form-input>
               <b-button
                 variant="primary"
                 style="float: right"
@@ -50,7 +56,9 @@
                     class="mt-4"
                   >
                     <b-form-radio-group
-                      v-model="form.employerBusinessDetails.businessDetailsString"
+                      v-model="
+                        form.employerBusinessDetails.businessDetailsString
+                      "
                       :options="[
                         'XYZ trading, ABN 98989898',
                         'Comfy Beds trading as Best Beds, ABN 45454545',
@@ -68,44 +76,53 @@
               :addressLabel="'Postal address'"
               :address="form.employerBusinessDetails.postalAddress"
               :addressHelp="'You can select another address - start typing the correct address and select one of the options'"
-              :addressString = form.employerBusinessDetails.postalAddressString
+              :addressString="form.employerBusinessDetails.postalAddressString"
             ></entity-address>
 
             <b-form-group
               :label="'Is this the address ' + youString + ' worked at?'"
             >
               <b-form-radio-group
-                v-model="form.employerBusinessDetails.businessAddressIsEmploymentAddress"
+                v-model="
+                  form.employerBusinessDetails
+                    .businessAddressIsEmploymentAddress
+                "
                 :options="boolOptions"
               ></b-form-radio-group>
             </b-form-group>
 
-             <entity-address
-             v-if="form.employerBusinessDetails.businessAddressIsEmploymentAddress === false"
-              :addressLabel="'What was the address ' + youString + ' worked at?'"
+            <entity-address
+              v-if="
+                form.employerBusinessDetails
+                  .businessAddressIsEmploymentAddress === false
+              "
+              :addressLabel="
+                'What was the address ' + youString + ' worked at?'
+              "
               :address="form.employerBusinessDetails.employmentAddress"
               :addressHelp="'You can select another address - start typing the correct address and select one of the options'"
-              :addressString = form.employerBusinessDetails.postalAddressString
+              :addressString="form.employerBusinessDetails.postalAddressString"
             ></entity-address>
-
           </b-col>
         </b-row>
       </section>
 
-      <section
-        class=" mb-4 pb-4"
-      >
+      <section class="mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>Contact Person</h6>
-           <p>Please provide details of a contact person at {{yourString}} former employer.</p>
+            <p>
+              Please provide details of a contact person at
+              {{ yourString }} former employer.
+            </p>
           </b-col>
           <b-col>
-
             <b-form-group label="What is their role?">
-              <b-form-input :v-model="form.employerBusinessDetails.contactPerson.role"></b-form-input>
+              <b-form-input
+                :v-model="form.employerBusinessDetails.contactPerson.role"
+              ></b-form-input>
             </b-form-group>
-            
+
             <entity
               :entity="form.employerBusinessDetails.contactPerson"
               showPhones

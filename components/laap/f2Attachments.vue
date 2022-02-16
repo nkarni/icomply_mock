@@ -15,7 +15,7 @@
       <b-row>
         <b-col>
           <b-form-group>
-            <table class="table table-bordered">
+            <!-- <table class="table table-bordered">
               <thead>
                 <tr>
                   <th scope="col">Document Type</th>
@@ -86,7 +86,7 @@
                   </td>
                 </tr>
               </tbody>
-            </table>
+            </table> -->
           </b-form-group>
           <b-form-group class="text-center">
             <b-button variant="primary" v-b-modal="`file-modal`"

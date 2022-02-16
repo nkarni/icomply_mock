@@ -22,12 +22,13 @@
               label="What is your relationship to the applicant?"
             >
              <b-form-radio-group
-                v-model="form.formFiller.isLawyerUnionOrPaidAgent"
+             stacked
+                v-model="form.formFiller.relationshipToApplicant"
                 :options="repTypeOptions"
               ></b-form-radio-group>
             </b-form-group>
             <entity
-            v-if="form.applyingForSelf === false && form.formFiller.isLawyerUnionOrPaidAgent === true"
+            v-if="form.formFiller.relationshipToApplicant && form.formFiller.relationshipToApplicant !== 'Family or friend'"
             showTitle
             showFirstName
             showLastName
@@ -41,7 +42,7 @@
             >
             </entity>
 
-            <notice v-if="form.applyingForSelf === false && form.formFiller.isLawyerUnionOrPaidAgent === false" class="mb-2" :message="'We will contact you about this case in the future'"></notice>
+            <notice v-if="form.applyingForSelf === false && form.formFiller.relationshipToApplicant === 'Family or friend'" class="mb-2" :message="'We will contact you about this case in the future'"></notice>
 
           </b-col>
         </b-row>
@@ -167,8 +168,9 @@ export default {
   data() {
     return {
       repTypeOptions: [
-        { text: "I am their lawyer or paid agent", value: true },
-        { text: "Family or friend", value: false },
+        "I am their lawyer or paid agent" ,
+        "Union representative",
+        "Family or friend",
       ],
        applyingForSelfOptions: [
         { text: "I am the applicant (submitting for myself)", value: true },

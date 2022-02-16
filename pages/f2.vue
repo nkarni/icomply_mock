@@ -249,7 +249,7 @@ export default {
             country: "",
           },
           orgName: '',
-          isLawyerUnionOrPaidAgent: null,
+          relationshipToApplicant: ''
         },
         applicant: {
           title: "",
@@ -326,13 +326,6 @@ export default {
           dateYear: '',
           unknownDate: false,
         },
-         employmentEnd: {
-          date: "",
-          dateDay: '',
-          dateMonth: '',
-          dateYear: '',
-          unknownDate: false,
-        },
          effectiveDismissalDate: {
           date: "",
           dateDay: '',
@@ -340,7 +333,7 @@ export default {
           dateYear: '',
           unknownDate: false,
         },
-
+        wasToldAboutDismissal: null,
         dismissalTold: {
           date: "",
           dateDay: '',

@@ -6,11 +6,10 @@
           <b-col cols="4">
             <h6>Employment dates</h6>
             <p>
-              <strong
-                >There is a minimum employment period for unfair dismissal
+              <strong >There is a minimum employment period for unfair dismissal
                 cases:</strong
               ><br />
-              {{youString}} must have been working for your employer for at least 6 months
+              <span class="cap-first">{{youString}}</span> must have been working for the employer for at least 6 months
               to qualify for unfair dismissal. If {{youString}} worked for a business with
               less than 15 employees, {{youString}} must have worked there for at least 12
               months. This is called the minimum employment period for unfair
@@ -30,12 +29,22 @@
 
             <br />
 
-            <vague-date
+            <!-- <vague-date
               :date="form.employmentEnd"
               :dateLabel="'When did ' + yourString + ' employment end?'"
             ></vague-date>
-<br />
+<br /> -->
+
+ <b-form-group
+              :label="wereYouString + ' told about being dismissed?'"
+            >
+              <b-form-radio-group
+                v-model="form.wasToldAboutDismissal"
+                :options="boolOptions"
+              ></b-form-radio-group>
+            </b-form-group>
             <vague-date
+              v-if="form.wasToldAboutDismissal"
               :date="form.dismissalTold"
               :dateLabel="'When ' + wereYouString + ' told about being dismissed?'"
             ></vague-date>

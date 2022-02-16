@@ -45,15 +45,11 @@
 
               <review-item
                 label="What is your relationship to the applicant?"
-                :value="
-                  form.formFiller.isLawyerUnionOrPaidAgent === true
-                    ? 'I am their lawyer or paid agent'
-                    : 'Family or friend'
-                "
+                :value="form.formFiller.relationshipToApplicant"
               ></review-item>
 
               <review-item
-                v-if="form.formFiller.isLawyerUnionOrPaidAgent === true"
+                v-if="form.formFiller.relationshipToApplicant && form.formFiller.relationshipToApplicant !== 'Family or friend'"
                 label="Your details (HC)"
                 value="Mrs Jane Lane, AArdvark Law Firm<br>Email: john@aardvark.com.au<br> Mobile: 0432 123 123 <br>Postal Address: 45 Main Street, Sydney 2000 NSW Australia"
               ></review-item>
@@ -61,7 +57,7 @@
 
             <review-item
               :label="AreYouStringReverse + ' over 18?'"
-              :value="form.applicant.over18"
+              :value="boolToString(form.applicant.over18)"
             ></review-item>
 
             <review-item
@@ -238,7 +234,7 @@
               :value="form.employeeDescOfWhatHappened"
             ></review-item>
             <review-item
-              :label="'What outcome ' + DoYouString + ' want from this case?'"
+              :label="'What outcome ' + DoYouStringCont + ' want from this case?'"
               :value="form.employeeDesiredOutcomes"
             ></review-item>
           </div>
@@ -259,7 +255,7 @@
                 :value="true"
                 :unchecked-value="false"
               >
-                I confirm that this form was filled by me {firstname} {lastname}
+                I confirm that this form was filled by me {form filler's firstname and lastname}
                 and that the information provided is true.
               </b-form-checkbox>
             </b-form-group>
@@ -286,11 +282,11 @@
 
             <div v-if="form.requireFeeWaiver === true">
               <label
-                >Step 1: <a href="">click here</a> to Download the fee waiver
+                >Step 1: <a href="">Click here</a> to Download the fee waiver
                 request form</label
               >
-              <label>Step 2: sign the form you have downloaded</label>
-              <label>Step 3: upload the signed fee waiver request form:</label>
+              <label>Step 2: {{ youString }} must complete and sign the form you have downloaded</label>
+              <label>Step 3: Upload the signed fee waiver request form:</label>
               <b-form-file> </b-form-file>
             </div>
             <div v-else>
