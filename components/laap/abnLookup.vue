@@ -31,7 +31,7 @@
         <div >
           Can't find the right business? Search again or
           <b-button
-          @click="showSearch = false;showAddManually = true;showSelectOne = false"
+          @click="onManualBusiness"
             variant="link"
             class="p-0 mb-1"
           >
@@ -115,6 +115,12 @@ export default {
   },
   computed: {},
   methods: {
+    onManualBusiness(){
+      this.showSearch = false;
+      this.showAddManually = true;
+      this.showSelectOne = false;
+      this.$emit("businessSelected");
+    },
     onBusinessSelected(newBus){
       this.showSearch = false;
       this.showSelectOne = false;
@@ -123,12 +129,15 @@ export default {
       this.businessDetails.tradingName = newBus.tradingName;
       this.businessDetails.abn = newBus.abn;
       this.businessDetails.businessNameString = newBus.name
+
       if(this.businessDetails.tradingName !== ''){
         this.businessDetails.businessNameString += ' trading as ' + this.businessDetails.businessNameString
       } 
        if(this.businessDetails.abn !== ''){
         this.businessDetails.businessNameString += ' ABN: ' + this.businessDetails.abn
       } 
+
+       this.$emit("businessSelected");
     }
    
   },

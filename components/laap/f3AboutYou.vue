@@ -15,7 +15,7 @@
               {{ form.employeeProvidedBusinessNameString }}
             </b-form-group>
             
-             <b-form-group label="Are those details correct?" class="mt-3">
+             <b-form-group label="Are those details correct?" v-if="showIsBusinessDetailsCorrect" class="mt-3">
               <b-form-radio-group
                 v-model="form.businessDetailsCorrect"
                 :options="boolOptions"
@@ -25,7 +25,7 @@
 
   
             <div  v-if="form.businessDetailsCorrect === false">
-              <abn-lookup :businessDetails="form.businessDetails"></abn-lookup>
+              <abn-lookup :businessDetails="form.businessDetails" @businessSelected="showIsBusinessDetailsCorrect=false"></abn-lookup>
               <!-- Correct business: {{ form.businessDetails.businessDetailsString }} -->
             </div>
             
@@ -310,6 +310,7 @@ export default {
         },
       ],
       businessDetailsWereWrong: false,
+      showIsBusinessDetailsCorrect: true,
       repTypeOptions: [
         { text: "I am the Applicant (submitting for myself)", value: "self" },
         { text: "I am the Applicant's solicitor", value: "solicitor" },
