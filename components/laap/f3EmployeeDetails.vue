@@ -40,7 +40,7 @@
           <b-col>
             <b-row>
               <b-col cols="6">
-                <b-form-group label="Their normal pay (gross, before tax):" >
+                <b-form-group label="Normal pay (gross, before tax):" >
                   <b-input-group  prepend="$" >
                   <b-form-input v-model="form.employeeWage"></b-form-input>
                   </b-input-group>
