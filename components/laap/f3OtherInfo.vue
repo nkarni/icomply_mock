@@ -4,9 +4,26 @@
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
+            <h6>Jurisdictional objections</h6>
+            <p>Please provide relevant explanatory text</p>
+          </b-col>
+          <b-col>
+           <b-form-group label="Check any jurisdictional objections that are relevant to this matter (optional)">
+              <b-form-checkbox-group
+              stacked
+                v-model="form.jurisdictionalObjections"
+                :options="['Item 1','Item 2', 'Item 3']"
+              ></b-form-checkbox-group>
+            </b-form-group>
+          
+          </b-col>
+        </b-row>
+      </section>
+      <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
             <h6>Other information</h6>
-            <p>If there is anything else that might be important for us to know you can mention it here. <br><br>For example, information about a jurisdictional or other objection that hasn’t already been included in the questions throughout the form.  
-<br><br>Leave this blank if you have nothing to add. 
+            <p>If there is anything else that might be important for us to know you can mention it here.<br><br>Leave this blank if you have nothing to add. 
 </p>
           </b-col>
           <b-col>

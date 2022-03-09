@@ -295,7 +295,7 @@ export default {
     },
     titleLabel: {
       type: String,
-      default: "Title",
+      default: "Title (optional)",
     },
     showTitle: {
       type: Boolean,

@@ -38,11 +38,34 @@
             <h6>The employee's employment</h6>
           </b-col>
           <b-col>
-            <b-form-group label="What was their weekly wage (gross)?" >
-              <b-input-group  prepend="$" >
-              <b-form-input v-model="form.employeeWeeklyWage"></b-form-input>
-              </b-input-group>
+            <b-row>
+              <b-col cols="6">
+                <b-form-group label="Their normal pay (gross, before tax):" >
+                  <b-input-group  prepend="$" >
+                  <b-form-input v-model="form.employeeWage"></b-form-input>
+                  </b-input-group>
+               </b-form-group> 
+              </b-col>
+              <b-col>
+                 <b-form-group
+              :label="'Frequency:'"
+            >
+              <b-form-select
+                v-model="form.employeeWeeklyWageFrequency"
+                :options="['Hourly', 'Weekly', 'Fortnightly', 'Monthly', 'Yearly']"
+              ></b-form-select>
             </b-form-group>
+
+              </b-col>
+            </b-row>
+
+               <b-form-group
+              label="Average weekly hours:"
+              v-if="form.employeeWeeklyWageFrequency === 'Hourly'"
+            >
+              <b-form-input v-model="form.averageWeeklyHours"></b-form-input>
+               </b-form-group>
+            
             <notice
               class="mb-4"
               message="If they were casual, write the hourly rate and describe their average weekly hours. "

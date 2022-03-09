@@ -79,8 +79,7 @@
         <b-row>
           <b-col cols="4">
             <h6>Contact person</h6>
-            The following contact details were provided by the employee in their
-            Application. Please check the details and correct if required.
+           The Applicant gave us this information so we can contact you. <br><br>If this is not the best person for us to talk to you can correct or add any information that is missing. <br><br>You can nominate a different person if there is someone else who should be the main contact person. Just add their details so we can add them to our records.
           </b-col>
           <b-col>
             <entity

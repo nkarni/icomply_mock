@@ -93,7 +93,7 @@
             <h5>Attachments</h5>
             <span>Upload relevant documents</span>
           </template>
-         <f-3-files :form="form"></f-3-files>
+        
         </b-tab>
         <b-tab
           :title-link-class="[
@@ -259,7 +259,11 @@ export default {
         employeeFirstName: "John",
         employeeLastName: "Smith",
         caseNumber: "ABC123",
-        employeeWeeklyWage: "",
+        jurisdictionalObjections: [],
+        employeeWage: "",
+        employeeWeeklyWageFrequency: "",
+        averageWeeklyHours:"",
+        wasDismissed: null,
         employeeHasOtherBenefits: null,
         employeeHasOtherBenefitsDetails: "",
         employeeHasAwardAgreement: null,

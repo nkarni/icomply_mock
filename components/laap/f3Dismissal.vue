@@ -1,37 +1,7 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary mb-4 pb-4" v-if="form.businessDetails.numberOfEmployeesIsUnder < 15">
-        <b-row>
-          <b-col cols="4">
-            <h6>Dismissal information</h6>
-          </b-col>
-          <b-col>
-            
-            <b-form-group
-              label="Did you follow the Small Business Fair Dismissal Code when you dismissed the employee?"
-            >
-              <b-form-radio-group
-                stacked
-                v-model="form.followedCode"
-                :options="['Yes', 'No', 'They were not dismissed']"
-              ></b-form-radio-group>
-            </b-form-group>
-            <b-form-group
-              v-if="form.followedCode === 'Yes'"
-              label="If you completed the Small Business Fair Dismissal checklist attach a copy"
-            >
-              <b-form-file
-                placeholder="Choose a file or drop it here..."
-                drop-placeholder="Drop file here..."
-              ></b-form-file>
-            </b-form-group>
-       
-
-
-          </b-col>
-        </b-row>
-      </section>
+     
 
       <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
@@ -97,14 +67,7 @@
                 class="mb-2"
               ></b-form-datepicker>
             </b-form-group>
-            <b-form-group
-              :label="'What date were they told they were being dismissed?'"
-            >
-              <b-form-datepicker
-                v-model="form.employmentDismissedDate"
-                class="mb-2"
-              ></b-form-datepicker>
-            </b-form-group>
+            
             <b-form-group
               :label="'What date did their employment end?'"
             >
@@ -112,7 +75,62 @@
                 v-model="form.employmentEndDate"
                 class="mb-2"
               ></b-form-datepicker>
+              <notice :message="'If you are not sure how to answer this enter the last day they attended work'"></notice>
             </b-form-group>
+            
+          </b-col>
+        </b-row>
+      </section>
+       <section class="border-bottom border-secondary mb-4 pb-4" >
+        <b-row>
+          <b-col cols="4">
+            <h6>Dismissal information</h6>
+          </b-col>
+          <b-col>
+             <b-form-group
+              label="Were they dismissed?"
+            >
+              <b-form-radio-group
+                stacked
+                v-model="form.wasDismissed"
+                :options="boolOptions"
+              ></b-form-radio-group>
+            </b-form-group>
+
+
+            <b-form-group
+              :label="'What date were they told they were being dismissed?'"
+              v-if="form.wasDismissed === true"
+            >
+              <b-form-datepicker
+                v-model="form.employmentDismissedDate"
+                class="mb-2"
+              ></b-form-datepicker>
+            </b-form-group>
+            <div  v-if="form.businessDetails.numberOfEmployeesIsUnder < 15 && form.wasDismissed === true" >
+            
+            <b-form-group
+              label="Did you follow the Small Business Fair Dismissal Code when you dismissed the employee?"
+             
+            >
+              <b-form-radio-group
+                stacked
+                v-model="form.followedCode"
+                :options="boolOptions"
+              ></b-form-radio-group>
+            </b-form-group>
+            <b-form-group
+              v-if="form.followedCode === 'Yes'"
+              label="If you completed the Small Business Fair Dismissal checklist attach a copy"
+            >
+              <b-form-file
+                placeholder="Choose a file or drop it here..."
+                drop-placeholder="Drop file here..."
+              ></b-form-file>
+            </b-form-group>
+       
+            </div>
+
           </b-col>
         </b-row>
       </section>
