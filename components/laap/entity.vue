@@ -39,7 +39,7 @@
         v-model="entity.lastName"
       ></b-form-input>
     </b-form-group>
-    <b-form-group :label="emailLabel" v-if="showEmail">
+    <b-form-group :label="emailLabel" v-if="showEmail" :description="emailDesc">
       <b-form-input
         :id="idPrefix + '-email'"
         :name="idPrefix + '-email'"
@@ -119,6 +119,13 @@
         >
       </div>
     </div>
+
+    <b-form-group :label="mobilePhoneLabel" v-if="showMobilePhone" :description="mobilePhoneDesc">
+      <b-form-input
+        v-model="entity.mobilePhone"
+      ></b-form-input>
+    </b-form-group>
+   
 
     <entity-address
       v-if="showAddress"
@@ -225,6 +232,10 @@ export default {
       type: String,
       default: "Email",
     },
+     emailDesc: {
+      type: String,
+      default: '',
+    },
     showEmail: {
       type: Boolean,
       default: false,
@@ -309,6 +320,18 @@ preferredContactLabel: {
       type: Boolean,
       default: false,
     },
+    showMobilePhone: {
+ type: Boolean,
+      default: false,
+    },
+    mobilePhoneLabel: {
+      type: String,
+      default: "Mobile Phone",  
+    },
+     mobilePhoneDesc: {
+      type: String,
+      default: "",  
+    }
 
   },
   data() {

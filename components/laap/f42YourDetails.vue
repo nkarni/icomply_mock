@@ -58,6 +58,7 @@
         <b-row>
           <b-col cols="4">
             <h6>Your details</h6>
+            <p> We hav epre-populated your details from our records. Please check and correct if required.</p>
             <p>Is here a better place to put the 'why we need it' rather than in the intro page? </p>
           </b-col>
           <b-col>
@@ -73,7 +74,7 @@
           </b-col>
         </b-row>
       </section>
-       <section class="border-bottom border-secondary mb-4 pb-2">
+       <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Your declaration</h6>
@@ -104,7 +105,7 @@ import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
 export default {
   components: { entity, Notice, EntityAddress, AbnLookup },
-  name: "applicantDetails",
+  name: "yourDetails",
   props: {
     form: {
       type: Object,

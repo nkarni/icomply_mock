@@ -15,8 +15,9 @@
     </b-row>
      <b-row class="mt-4">
       <b-col  >
-        <h5 class="text-primary">Current status: Started</h5>
-        <small>Status progression is Started >> Awaiting Entry Holder confirmation >> Awaiting Member of Committee of Management confirmation >> Ready for submission >> Submitted</small>
+        <f-42-progress-bar :form="form"></f-42-progress-bar>
+        <!-- <h5 class="text-primary">Current status: Started</h5> -->
+        <!-- <small>Status progression is Started >> Awaiting Entry Holder confirmation >> Awaiting Member of Committee of Management confirmation >> Ready for submission >> Submitted</small> -->
       </b-col>
      
     </b-row>
@@ -72,7 +73,7 @@
             <h5>The proposed Entry Permit holder</h5>
             <!-- <span>Their details</span> -->
           </template>
-          <f-3-dismissal :form="form"></f-3-dismissal>
+          <f-42-holder-details :form="form"></f-42-holder-details>
         </b-tab>
 
         <b-tab
@@ -220,6 +221,8 @@
 </template>
 
 <script>
+import f42ProgressBar from "../components/laap/f42/f42ProgressBar.vue";
+import f42HolderDetails from "../components/laap/f42HolderDetails.vue";
 import f42ProcessAdmin from "../components/laap/f42ProcessAdmin.vue";
 import f42YourDetails from "../components/laap/f42YourDetails.vue";
 import F3Circumstances from "../components/laap/f3Circumstances.vue";
@@ -229,7 +232,7 @@ import F3OtherInfo from '../components/laap/f3OtherInfo.vue';
 import F3Review from '../components/laap/f3Review.vue';
 import F3files from '../components/laap/f3files.vue';
 export default {
-  components: { f42ProcessAdmin, f42YourDetails, f3EmployeeDetails, F3Circumstances, F3Dismissal, F3OtherInfo, F3Review, F3files },
+  components: { f42ProgressBar, f42ProcessAdmin, f42YourDetails, f42HolderDetails, f3EmployeeDetails, F3Circumstances, F3Dismissal, F3OtherInfo, F3Review, F3files },
   layout: "form",
   data() {
     return {
@@ -250,8 +253,28 @@ export default {
             state: "",
             country: "",
           },
+          hasHolderTrainingInfo: null,
+          hasHolderPhoto: null
         },
         permitHolder: {
+          firstName: '',
+          lastName: '',
+          email: '',
+          mobilePhone: '',
+          employeeOrOfficeHolder: null,
+          positionOrOfficeHeld: '',
+          previouslyHeldAnEntryPermit: null,
+          photoFile: null,
+          trainings: [
+            {
+              trainingName: '',
+            trainingMethod: '',
+            trainingCompletionDate: '',
+            trainingFile: ''
+            }
+            
+           
+          ],
 
         },
         committeeMember: {
