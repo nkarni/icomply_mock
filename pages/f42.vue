@@ -118,23 +118,23 @@
             </b-tab>
           </b-tabs>
         </b-row>
-        <b-row class="mt-4" v-if="tabIndex !== 2">
+        <b-row class="mt-4" >
           <b-col cols="12" class="text-right">
             <b-button
               variant="primary"
-              v-if="tabIndex > 0"
+              v-if="tabIndex > 0 && tabIndex< 4"
               @click="tabIndex--"
               class="mr-2"
               >Save & Prev</b-button
             >
-            <b-button variant="primary" v-if="tabIndex < 5" @click="tabIndex++"
+            <b-button variant="primary" v-if="tabIndex < 4" @click="tabIndex++"
               >Save & Next</b-button
             >
           </b-col>
         </b-row>
       </div>
 
-       <!-- permitHolder START VIEW -->
+       <!-- permitHolder  VIEW -->
       <div v-if="form.userRole === 'permitHolder'">
         <b-row class="mt-4">
           <b-tabs
@@ -240,12 +240,103 @@
           <b-col cols="12" class="text-right">
             <b-button
               variant="primary"
-              v-if="tabIndex > 0"
+              v-if="tabIndex > 0 && tabIndex < 5"
               @click="tabIndex--"
               class="mr-2"
               >Save & Prev</b-button
             >
             <b-button variant="primary" v-if="tabIndex < 5" @click="tabIndex++"
+              >Save & Next</b-button
+            >
+          </b-col>
+        </b-row>
+      </div>
+
+       <!-- committeeMember  VIEW -->
+      <div v-if="form.userRole === 'committeeMember'">
+        <b-row class="mt-4">
+          <b-tabs
+            v-model="tabIndex"
+            vertical
+            nav-wrapper-class="w-30"
+            class="w-100"
+            active-nav-item-class="text-primary laap-nav-item-active"
+            nav-class="laap-nav"
+            content-class="card p-3"
+          >
+            <b-tab
+              :title-link-class="[
+                'laap-title-link',
+                'mb-2',
+                'p-3',
+                { 'laap-nav-item-complete': false },
+              ]"
+            >
+              <template #title>
+                <h5>The process</h5>
+                <!-- <span>How it works and what is expected of you</span> -->
+              </template>
+              <f-42-member-view-process :form="form"></f-42-member-view-process>
+            </b-tab>
+
+            <b-tab
+              :title-link-class="[
+                'laap-title-link',
+                'mb-2',
+                'p-3',
+                { 'laap-nav-item-complete': false },
+              ]"
+            >
+              <template #title>
+                <h5>Your details</h5>
+                <!-- <span>Union organisation and administrator details</span> -->
+              </template>
+              <f-42-member-view-details :form="form"></f-42-member-view-details>
+            </b-tab>
+
+            <b-tab
+              :title-link-class="[
+                'laap-title-link',
+                'mb-2',
+                'p-3',
+                { 'laap-nav-item-complete': false },
+              ]"
+            >
+              <template #title>
+                <h5>The proposed Entry Permit holder</h5>
+                <!-- <span>Their details</span> -->
+              </template>
+              <f-42-member-view-pph :form="form"></f-42-member-view-pph>
+            </b-tab>
+
+          
+          
+            <b-tab
+              :title-link-class="[
+                'laap-title-link',
+                'mb-2',
+                'p-3',
+                { 'laap-nav-item-complete': false },
+              ]"
+            >
+              <template #title>
+                <h5>Declaration</h5>
+                <!-- <span>Confirm details and submit the form</span> -->
+              </template>
+              <f-42-member-view-submit :form="form"></f-42-member-view-submit>
+            </b-tab>
+          </b-tabs>
+        </b-row>
+        <b-row class="mt-4" >
+          <b-col cols="12" class="text-right">
+            <b-button
+              variant="primary"
+              v-if="tabIndex > 0 && tabIndex < 3"
+              @click="tabIndex--"
+              class="mr-2"
+              >Save & Prev</b-button
+            >
+            <b-button variant="primary" v-if="tabIndex < 3" @click="tabIndex++"
               >Save & Next</b-button
             >
           </b-col>
@@ -284,7 +375,7 @@
         <b-col cols="4">
           <b-button
             variant="outline-primary"
-            @click.prevent="form.userRole = 'management'"
+            @click.prevent="form.userRole = 'committeeMember'"
           >
             <h4>Member of Committee of Management view</h4>
             Join an application
@@ -356,6 +447,12 @@
 </template>
 
 <script>
+
+
+import f42MemberViewSubmit from "../components/laap/f42MemberViewSubmit.vue";
+import f42MemberViewPph from "../components/laap/f42MemberViewPph.vue";
+import f42MemberViewDetails from "../components/laap/f42MemberViewDetails.vue";
+import f42MemberViewProcess from "../components/laap/f42MemberViewProcess.vue";
 import f42HolderViewSubmit from "../components/laap/f42HolderViewSubmit.vue";
 import f42HolderViewId from "../components/laap/f42HolderViewId.vue";
 import f42HolderViewPhoto from "../components/laap/f42HolderViewPhoto.vue";
@@ -376,6 +473,10 @@ import F3Review from "../components/laap/f3Review.vue";
 import F3files from "../components/laap/f3files.vue";
 export default {
   components: {
+    f42MemberViewSubmit,
+    f42MemberViewPph,
+    f42MemberViewDetails,
+    f42MemberViewProcess,
     f42HolderViewSubmit,
     f42HolderViewId,
     f42HolderViewPhoto,
@@ -440,6 +541,11 @@ export default {
         committeeMember: {
           selectedName: "",
           email: "",
+          firstName: "",
+          lastName: "",
+          email: "",
+          inquiries: '',
+          confirmedPphId: false
         },
 
         businessDetailsCorrect: null,
