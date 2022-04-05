@@ -1,15 +1,15 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary mb-4 pb-2">
+      <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>The Proposed Permit Holder</h6>
+            <h6>Member of Committee of Management details</h6>
 
-            <p>Provide details of the Proposed Permit Holder.</p>
+            <p>Provide details of the Member of Committee of Management.</p>
             <p>
               This information will be reviewed and can be edited by the
-              Proposed Permit Holder if incorrect.
+              Member of Committee of Management if incorrect.
             </p>
             <p>
               Throughout this form - all fields are mandatory unless
@@ -17,110 +17,39 @@
             </p>
           </b-col>
           <b-col>
-             <notice
+             <!-- <notice
              class="mb-3"
             :message="'Legal name must match drivers license or name on an official ID document.'"
-          ></notice>
+          ></notice> -->
+           <b-form-group label="Select a Member of Committee of Management:">
+                      <b-form-select
+                        v-model="
+                          form.committeeMember.selectedName
+                        "
+                        :options="['Jessica Jones']"
+                      ></b-form-select>
+                    </b-form-group>
+
+                    <!-- NOTICE TO DEVS, WHEN SELECTED IT SHOULD POPULATE THE FORMDATA WITH THE FULL DETAILS OF THIS PERSON  -->
+
+                   
+
             <entity
-              :entity="form.permitHolder"
-              showFirstName
-              showLastName
+            v-if="form.committeeMember.selectedName !== ''"
+              :entity="form.committeeMember"
+             
               showEmail
-              :firstNameLabel="'Legal given name(s)'"
-              :lastNameLabel="'Legal surname'"
-              showMobilePhone
-              :emailDesc="'The email address will be used to notify the Proposed Permit holder'"
-              :mobilePhoneDesc="'The mobile number will be used to notify the Proposed Permit holder'"
-              :mobilePhoneLabel="'Mobile phone (optional)'"
+             
+              :emailLabel="''"
+              :emailDesc="'You may update the email address or add it if it missing'"
             >
             </entity>
 
-            <b-form-group label="The Proposed Permit Holder is:">
-              <b-form-radio-group
-                stacked
-                v-model="form.permitHolder.employeeOrOfficeHolder"
-                :options="['an Office Holder', 'an Employee']"
-              ></b-form-radio-group>
-            </b-form-group>
-
-            <b-form-group label="What is the office or position held?">
-              <b-form-input v-model="form.permitHolder.positionOrOfficeHeld">
-              </b-form-input>
-            </b-form-group>
-
-            <b-form-group
-              label="Has this person previously held an entry permit?"
-            >
-              <b-form-radio-group
-                v-model="form.permitHolder.previouslyHeldAnEntryPermit"
-                :options="boolOptions"
-              ></b-form-radio-group>
-            </b-form-group>
+           
           </b-col>
         </b-row>
       </section>
 
-      <section class="border-bottom border-secondary mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>Permit training (optional)</h6>
-            <p>
-              You can provide further information on behalf of the Proposed
-              Permit Holder.
-            </p>
-            <p>
-              Although this is optional, it will help to improve the process and
-              make it faster and more efficient (temporary text!)
-            </p>
-          </b-col>
-          <b-col>
-            <b-form-group
-              label="Do you have access to their training information (including a digital copy of the training document)?"
-            >
-              <b-form-radio-group
-                :options="boolOptions"
-                v-model="form.admin.hasHolderTrainingInfo"
-              ></b-form-radio-group>
-            </b-form-group>
-            <div v-if="form.admin.hasHolderTrainingInfo === true">
-              <f-42-training :form="form"></f-42-training>
-            </div>
-          </b-col>
-        </b-row>
-      </section>
-      <section class=" mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>Passport photograph (optional)</h6>
-            <p>
-              Provide Passport photograph of the Proposed Permit Holder that
-              follows the FWC requirements. (LINK TO REQUIREMENTS HERE?)
-            </p>
-          </b-col>
-          <b-col>
-            <b-form-group
-              label="Do you have access to a recent passport photo of the Proposed Permit Holder?"
-            >
-              <b-form-radio-group
-                :options="boolOptions"
-                v-model="form.admin.hasHolderPhoto"
-              ></b-form-radio-group>
-            </b-form-group>
-            <div v-if="form.admin.hasHolderPhoto === true">
-              <b-form-group
-                label="Attach a passport photograph"
-                description="Short explanation about how the file will be used."
-              >
-                <b-form-file
-                  v-model="form.permitHolder.photoFile"
-                  placeholder="Choose a file or drop it here..."
-                  drop-placeholder="Drop file here..."
-                ></b-form-file>
-              </b-form-group>
-            </div>
-          </b-col>
-        </b-row>
-      </section>
     </b-form>
   </div>
 </template>
@@ -130,9 +59,8 @@ import AbnLookup from "./abnLookup.vue";
 import entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
-import f42Training from "./f42/f42Training.vue";
 export default {
-  components: { entity, Notice, EntityAddress, AbnLookup, f42Training },
+  components: { entity, Notice, EntityAddress, AbnLookup },
   name: "holderDetails",
   props: {
     form: {

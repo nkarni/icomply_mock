@@ -1,112 +1,35 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary mb-4 pb-2">
+    <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>The Proposed Permit Holder</h6>
-
-            <p>Provide details of the Proposed Permit Holder.</p>
+            <h6>Passport photograph</h6>
             <p>
-              This information will be reviewed and can be edited by the
-              Proposed Permit Holder if incorrect.
+              You union administrator may have uploaded a passport of photo of you. The following details were provided by the union administrator. If they have, 
+              please check that this photo is current, correct and comply with the FWC requirements.
             </p>
             <p>
-              Throughout this form - all fields are mandatory unless
-              specifically marked as optional.
+              If they administrator has not uploaded your photo, please provide a Passport photograph of yourself that
+              follows the FWC requirements.
             </p>
           </b-col>
           <b-col>
-             <notice
-             class="mb-3"
-            :message="'Legal name must match drivers license or name on an official ID document.'"
-          ></notice>
-            <entity
-              :entity="form.permitHolder"
-              showFirstName
-              showLastName
-              showEmail
-              :firstNameLabel="'Legal given name(s)'"
-              :lastNameLabel="'Legal surname'"
-              showMobilePhone
-              :emailDesc="'The email address will be used to notify the Proposed Permit holder'"
-              :mobilePhoneDesc="'The mobile number will be used to notify the Proposed Permit holder'"
-              :mobilePhoneLabel="'Mobile phone (optional)'"
-            >
-            </entity>
+            <b-form-group label="The photo uploaded by the administrator:">
 
-            <b-form-group label="The Proposed Permit Holder is:">
-              <b-form-radio-group
-                stacked
-                v-model="form.permitHolder.employeeOrOfficeHolder"
-                :options="['an Office Holder', 'an Employee']"
-              ></b-form-radio-group>
+              IMAGE HERE
+
             </b-form-group>
-
-            <b-form-group label="What is the office or position held?">
-              <b-form-input v-model="form.permitHolder.positionOrOfficeHeld">
-              </b-form-input>
-            </b-form-group>
-
+            
             <b-form-group
-              label="Has this person previously held an entry permit?"
-            >
-              <b-form-radio-group
-                v-model="form.permitHolder.previouslyHeldAnEntryPermit"
-                :options="boolOptions"
-              ></b-form-radio-group>
-            </b-form-group>
-          </b-col>
-        </b-row>
-      </section>
-
-      <section class="border-bottom border-secondary mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>Permit training (optional)</h6>
-            <p>
-              You can provide further information on behalf of the Proposed
-              Permit Holder.
-            </p>
-            <p>
-              Although this is optional, it will help to improve the process and
-              make it faster and more efficient (temporary text!)
-            </p>
-          </b-col>
-          <b-col>
-            <b-form-group
-              label="Do you have access to their training information (including a digital copy of the training document)?"
+              label="Do you confirm this photo is current and accurate?"
             >
               <b-form-radio-group
                 :options="boolOptions"
-                v-model="form.admin.hasHolderTrainingInfo"
+                v-model="form.permitHolder.adminPhotoIsCorrect"
               ></b-form-radio-group>
             </b-form-group>
-            <div v-if="form.admin.hasHolderTrainingInfo === true">
-              <f-42-training :form="form"></f-42-training>
-            </div>
-          </b-col>
-        </b-row>
-      </section>
-      <section class=" mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>Passport photograph (optional)</h6>
-            <p>
-              Provide Passport photograph of the Proposed Permit Holder that
-              follows the FWC requirements. (LINK TO REQUIREMENTS HERE?)
-            </p>
-          </b-col>
-          <b-col>
-            <b-form-group
-              label="Do you have access to a recent passport photo of the Proposed Permit Holder?"
-            >
-              <b-form-radio-group
-                :options="boolOptions"
-                v-model="form.admin.hasHolderPhoto"
-              ></b-form-radio-group>
-            </b-form-group>
-            <div v-if="form.admin.hasHolderPhoto === true">
+            <div v-if="form.permitHolder.adminPhotoIsCorrect === false">
               <b-form-group
                 label="Attach a passport photograph"
                 description="Short explanation about how the file will be used."
@@ -121,19 +44,19 @@
           </b-col>
         </b-row>
       </section>
+      
     </b-form>
   </div>
 </template>
 
 <script>
-import AbnLookup from "./abnLookup.vue";
+
 import entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
-import f42Training from "./f42/f42Training.vue";
 export default {
-  components: { entity, Notice, EntityAddress, AbnLookup, f42Training },
-  name: "holderDetails",
+  components: { entity, Notice, EntityAddress, },
+  name: "f42HolderViewPhoto",
   props: {
     form: {
       type: Object,
@@ -202,6 +125,12 @@ export default {
       ],
     };
   },
+
+  mounted() {
+		this.form.permitHolder.firstName='Don',
+    this.form.permitHolder.lastName='Burrows'
+    this.form.permitHolder.email='don@burrows.com'
+		},
   computed: {
     youString: function () {
       return this.form.repType === "self" ? "you" : "the Applicant";

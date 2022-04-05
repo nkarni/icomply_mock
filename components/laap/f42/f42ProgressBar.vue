@@ -1,7 +1,7 @@
 <template>
   <div>
-    <span class="active text-primary">Started</span>
-    <span>- Awaiting Proposed Permit Holder Verification</span>
+    <span :class="form.userRole === 'admin' ? 'active text-primary' : ''">Started</span>
+    <span :class="form.userRole === 'permitHolder' ? 'active text-primary' : ''">- Awaiting Proposed Permit Holder Verification</span>
     <span>- Awaiting Committee of Management Member Verification</span>
     <span>- Ready for Submission</span>
 
