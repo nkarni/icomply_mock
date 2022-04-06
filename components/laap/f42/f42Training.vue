@@ -29,7 +29,7 @@
               ></b-form-datepicker>
             </b-form-group>
             <b-form-group
-              label="Attach a copy of permit training"
+              label="Attach evidence of training"
               description="Short explanation about how the file will be used."
             >
               <b-form-file

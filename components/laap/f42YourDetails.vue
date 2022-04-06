@@ -58,7 +58,7 @@
         <b-row>
           <b-col cols="4">
             <h6>Your details</h6>
-            <p> We hav epre-populated your details from our records. Please check and correct if required.</p>
+            <p> We have pre-populated your details from our records. Please check and correct if required.</p>
             <p>Is here a better place to put the 'why we need it' rather than in the intro page? </p>
           </b-col>
           <b-col>

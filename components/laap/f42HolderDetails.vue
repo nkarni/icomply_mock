@@ -43,7 +43,7 @@
               ></b-form-radio-group>
             </b-form-group>
 
-            <b-form-group label="What is the office or position held?">
+            <b-form-group label="What is their office or position?">
               <b-form-input v-model="form.permitHolder.positionOrOfficeHeld">
               </b-form-input>
             </b-form-group>
@@ -75,7 +75,7 @@
           </b-col>
           <b-col>
             <b-form-group
-              label="Do you have access to their training information (including a digital copy of the training document)?"
+              label="Do you have access to their training information (including evidence of completion)?"
             >
               <b-form-radio-group
                 :options="boolOptions"
