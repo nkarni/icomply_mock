@@ -38,6 +38,10 @@
             <h6>The employee's employment</h6>
           </b-col>
           <b-col>
+             <notice
+              class="mb-4"
+              message="If they were casual, write the hourly rate and describe their average weekly hours. "
+            ></notice>
             <b-row>
               <b-col cols="6">
                 <b-form-group label="Normal pay (gross, before tax):" >
@@ -66,10 +70,7 @@
               <b-form-input v-model="form.averageWeeklyHours"></b-form-input>
                </b-form-group>
             
-            <notice
-              class="mb-4"
-              message="If they were casual, write the hourly rate and describe their average weekly hours. "
-            ></notice>
+           
 
             <b-form-group
               :label="'Did they get any other benefits, such as a work car or mobile phone?'"

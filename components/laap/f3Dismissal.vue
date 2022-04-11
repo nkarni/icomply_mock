@@ -27,6 +27,7 @@
                 class="mb-2"
               ></b-form-datepicker>
             </b-form-group>
+             <notice class="mb-3" :message="'If you are not sure how to answer this enter the last day they attended work'"></notice>
             
             <b-form-group
               :label="'What date did their employment end?'"
@@ -35,7 +36,7 @@
                 v-model="form.employmentEndDate"
                 class="mb-2"
               ></b-form-datepicker>
-              <notice :message="'If you are not sure how to answer this enter the last day they attended work'"></notice>
+             
             </b-form-group>
 
             <notice :message="'Dev note: validate that dismissal date is after employment start date <br> And notification date must be after contract start date'"></notice>
@@ -66,6 +67,12 @@
             >
               {{ form.employeeDescOfWhatHappened }}
             </div>
+              <notice
+              class="mb-3"
+              message="Your former employee will see the answers you give in this form. This is so they can understand your side of the case. 
+<br>If you are worried about particular information being passed on, don’t include it yet. Submit your completed form without it and then contact us to discuss whether you should send the information to us.
+"
+            ></notice>
 
             <b-form-group label="Write a response to what they’ve written">
               <b-form-textarea
@@ -74,12 +81,7 @@
                 max-rows="18"
               ></b-form-textarea>
             </b-form-group>
-            <notice
-              class="mb-2"
-              message="Your former employee will see the answers you give in this form. This is so they can understand your side of the case. 
-<br>If you are worried about particular information being passed on, don’t include it yet. Submit your completed form without it and then contact us to discuss whether you should send the information to us.
-"
-            ></notice>
+          
           </b-col>
         </b-row>
       </section>

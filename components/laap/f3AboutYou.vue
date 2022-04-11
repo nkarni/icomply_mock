@@ -100,6 +100,10 @@
             <h6>The Business</h6>
           </b-col>
           <b-col>
+                      <notice class="mb-3"
+              message="Count all full-time, part-time and casual employees. Include the employee who was dismissed. <br><br>
+If the employee wasn’t dismissed, count the employees you had on 12/12/22 (the date the employee said they were dismissed)."
+            ></notice>
             <b-form-group :label="'Industry'" v-if="form.businessDetailsCorrect === true">
                 <b-form-select
                   v-model="form.businessDetails.industry"
@@ -125,10 +129,7 @@
               ></b-form-radio-group>
             </b-form-group>
 
-            <notice
-              message="Count all full-time, part-time and casual employees. Include the employee who was dismissed. <br><br>
-If the employee wasn’t dismissed, count the employees you had on 12/12/22 (the date the employee said they were dismissed)."
-            ></notice>
+  
           </b-col>
         </b-row>
       </section>
