@@ -114,7 +114,7 @@
             
             <b-form-group
               label="Did you follow the Small Business Fair Dismissal Code when you dismissed the employee?"
-             
+             v-if="form.independentContractor !== true"
             >
               <b-form-radio-group
                 stacked
