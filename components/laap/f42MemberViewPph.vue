@@ -16,10 +16,36 @@
             <b-form-group label="Name:">
               <p>Don Burrows</p>
             </b-form-group >
+
+             <b-form-group label="Office/Position:">
+              <p v-if="form.permitHolder.employeeOrOfficeHolder === 'An Office Holder'">An office holder holding the office: {{ form.permitHolder.positionOrOfficeHeld }}</p>
+              <p v-else>An employee holding the position: {{ form.permitHolder.positionOrOfficeHeld }}</p>            
+            </b-form-group >
+
+              <b-form-group label="Previous permit:">
+              <p v-if="form.permitHolder.previouslyHeldAnEntryPermit === true">They have held a permit previously. <br>Permit no. {{form.permitHolder.previousPermitNumber}}<br>
+              <span v-if="form.permitHolder.previousPermitReturned === true">Permit was returned.</span>
+              <span v-if="form.permitHolder.previousPermitReturned === true">Permit was not returned.</span>
+              </p>
+              <p v-else>They have not held a permit previously.</p>            
+            </b-form-group >
              
               <b-form-group label="Entry Permit Holder Training:">
-              <p>Training name 1</p>
+  <div
+        v-for="(training, index) of form.permitHolder.trainings"
+        :key="index"
+        v-bind:id="index"
+        :class="trainingRowClass"
+      >
+      Name: {{training.trainingName}}<br> Method: {{training.trainingName}}<br>Completed on: {{training.trainingCompletionDate}}<br>Evidence: <a target="_blank" href="">Click Here</a>
+
+  </div>
+               
             </b-form-group >
+
+            <b-form-group label="Passport photo:">
+              <p>Image here</p>
+            </b-form-group>
              <b-form-group label="Signature:">
                <img
             src="~/assets/img/pph_signature.png"
@@ -65,6 +91,15 @@
              
             ></b-form-textarea>
           </b-form-group>
+          <b-form-group
+                          label="You may upload supporting documents (optional):"
+                        >
+                          <b-form-file
+                            placeholder="Choose a file or drop it here..."
+                            drop-placeholder="Drop file here..."
+                          ></b-form-file>
+                        </b-form-group>
+                      <notice :message="'The user may upload several files'"
           </b-col>
         </b-row>
  </section>
@@ -151,6 +186,13 @@ export default {
     };
   },
   computed: {
+    trainingRowClass(){
+      if(this.form.permitHolder.trainings.length > 1){
+        return 'training mb-3'
+      }else{
+        return ''
+      }
+    },
     youString: function () {
       return this.form.repType === "self" ? "you" : "the Applicant";
     },
@@ -176,6 +218,22 @@ export default {
       return this.form.repType === "self" ? "are you" : "the Applicant is";
     },
   },
+   mounted() {
+		this.form.permitHolder.trainings= [
+            {
+              trainingName: "Sample training 1",
+              trainingMethod: "Online",
+              trainingCompletionDate: "25 November 2015",
+              trainingFile: null,
+            },
+            {
+              trainingName: "Sample training 2",
+              trainingMethod: "Online",
+              trainingCompletionDate: "25 November 2019",
+              trainingFile: null,
+            },
+          ]
+		},
   methods: {
     onWrongBusinessNameClick() {
       if (form.businessDetailsCorrect === false) {
@@ -224,5 +282,9 @@ export default {
 <style lang="scss" scoped>
 h6::first-letter {
   text-transform: uppercase;
+}
+.training {
+  border-left: 4px solid var(--primaryLighter) !important;
+  padding-left: 10px;
 }
 </style>

@@ -56,6 +56,21 @@
                 :options="boolOptions"
               ></b-form-radio-group>
             </b-form-group>
+
+              <b-form-group label="What is their most recent or current permit number?" v-if="form.permitHolder.previouslyHeldAnEntryPermit === true">
+              <b-form-input v-model="form.permitHolder.previousPermitNumber">
+              </b-form-input>
+            </b-form-group>
+
+             <b-form-group
+              label="Has that permit been returned?"
+              v-if="form.permitHolder.previouslyHeldAnEntryPermit === true"
+            >
+              <b-form-radio-group
+                v-model="form.permitHolder.previousPermitReturned"
+                :options="boolOptions"
+              ></b-form-radio-group>
+            </b-form-group>
           </b-col>
         </b-row>
       </section>
@@ -94,7 +109,7 @@
             <h6>Passport photograph (optional)</h6>
             <p>
               Provide Passport photograph of the Proposed Permit Holder that
-              follows the FWC requirements. (LINK TO REQUIREMENTS HERE?)
+              follows the FWC requirements  <a href="https://asset.fwc.gov.au/documents/documents/forms/form_42c.pdf">click here</a> for more information.
             </p>
           </b-col>
           <b-col>

@@ -1,72 +1,73 @@
 <template>
   <div>
 
-      <div
-        v-for="(training, index) of form.permitHolder.trainings"
-        :key="index"
-        v-bind:id="index"
-      >
-        <b-row :class="trainingRowClass">
-          <b-col>
-             <label style="font-weight:bold">Training {{ index+1 }}</label>
-            <b-form-group label="Name of training completed:">
-              <b-form-select
-                v-model="form.permitHolder.trainings[index].trainingName"
-                :options="['Australian Council of Trade Unions (ACTU)']"
-              ></b-form-select>
-            </b-form-group>
+ 
+             <notice
+             class="mb-3"
+            :message="'Legal name must match drivers license or name on an official ID document.'"
+          ></notice>
+            <entity
+              :entity="form.permitHolder"
+              showFirstName
+              showLastName
+              showEmail
+              :firstNameLabel="'Legal given name(s)'"
+              :lastNameLabel="'Legal surname'"
+              showMobilePhone
+              :emailDesc="emailDesc"
+              :mobilePhoneDesc="'The mobile number may be used for notifications'"
+              :mobilePhoneLabel="'Mobile phone (optional)'"
+            >
+            </entity>
 
-            <b-form-group label="Method of training:">
+            <b-form-group :label="employeeOrOfficeHolderLabel">
               <b-form-radio-group
-                :options="['Online', 'In Person']"
-                v-model="form.permitHolder.trainings[index].trainingMethod"
+                stacked
+                v-model="form.permitHolder.employeeOrOfficeHolder"
+                :options="['An Office Holder', 'An Employee']"
               ></b-form-radio-group>
             </b-form-group>
-            <b-form-group label="Date training completed:">
-              <b-form-datepicker
-                v-model="
-                  form.permitHolder.trainings[index].trainingCompletionDate
-                "
-              ></b-form-datepicker>
+
+            <b-form-group :label="positionOrOfficeHeldLabel">
+              <b-form-input v-model="form.permitHolder.positionOrOfficeHeld">
+              </b-form-input>
             </b-form-group>
+
             <b-form-group
-              label="Attach evidence of training"
-              description="Short explanation about how the file will be used."
+              :label="previouslyHeldAnEntryPermitLabel"
             >
-              <b-form-file
-                v-model="form.permitHolder.trainings[index].trainingFile"
-                placeholder="Choose a file or drop it here..."
-                drop-placeholder="Drop file here..."
-              ></b-form-file>
+              <b-form-radio-group
+                v-model="form.permitHolder.previouslyHeldAnEntryPermit"
+                :options="boolOptions"
+              ></b-form-radio-group>
             </b-form-group>
-          </b-col>
-          <b-col cols="1" class="align-middle">
-            <b-button
-                            variant="link"
-                            class="p-0"
-                            @click.prevent="removeTraining(index)"
-                            v-b-tooltip.hover
-                            title="Remove"
-                            v-if="index > 0"
-                            ><b-icon icon="x-circle"
-                          /></b-button>
-          </b-col>
-        </b-row>
-      </div>
-      <div class="text-right">
-        <b-button variant="link" class="p-0 mb-4" @click.prevent="addTraining"
-          >Click here to add another training</b-button
-        >
-      </div>
+
+              <b-form-group :label="previousPermitNumberLabel" v-if="form.permitHolder.previouslyHeldAnEntryPermit === true">
+              <b-form-input v-model="form.permitHolder.previousPermitNumber">
+              </b-form-input>
+            </b-form-group>
+
+             <b-form-group
+              label="Has that permit been returned?"
+              v-if="form.permitHolder.previouslyHeldAnEntryPermit === true"
+            >
+              <b-form-radio-group
+                v-model="form.permitHolder.previousPermitReturned"
+                :options="boolOptions"
+              ></b-form-radio-group>
+            </b-form-group>
+         
     </div>
 
 </template>
 
 <script>
-
+import entity from "../entity.vue";
+import EntityAddress from "../entityAddress.vue";
+import Notice from "../notice.vue";
 export default {
-  
-  name: "f42Training",
+   components: { entity, Notice, EntityAddress },
+  name: "f42HolderDetailsComp",
   props: {
     form: {
       type: Object,
@@ -136,11 +137,39 @@ export default {
     };
   },
   computed: {
-    trainingRowClass(){
-      if(this.form.permitHolder.trainings.length > 1){
-        return 'training mb-3'
+    employeeOrOfficeHolderLabel: function(){
+      if(this.form.userRole === 'permitHolder'){
+        return "What is your role in ths organisation?"
       }else{
-        return ''
+        return "The Proposed Permit Holder is:"
+      }
+    },
+    positionOrOfficeHeldLabel: function() {
+      if(this.form.userRole === 'permitHolder'){
+        return "What is your office or position?"
+      }else{
+        return "What is their office or position?"
+      }
+    },
+    previouslyHeldAnEntryPermitLabel: function() {
+      if(this.form.userRole === 'permitHolder'){
+        return "Have you previously held an entry permit?"
+      }else{
+        return "Has this person previously held an entry permit?"
+      }
+    },
+     previousPermitNumberLabel: function() {
+      if(this.form.userRole === 'permitHolder'){
+        return "What is your most recent or current permit number?"
+      }else{
+        return "What is their most recent or current permit number?"
+      }
+    },
+     emailDesc: function() {
+      if(this.form.userRole === 'permitHolder'){
+        return ""
+      }else{
+        return "The email address will be used to notify the Proposed Permit holder"
       }
     },
     youString: function () {
@@ -167,19 +196,9 @@ export default {
     AreYouString: function () {
       return this.form.repType === "self" ? "are you" : "the Applicant is";
     },
+
   },
   methods: {
-    addTraining() {
-      this.form.permitHolder.trainings.push({
-              trainingName: "",
-              trainingMethod: "",
-              trainingCompletionDate: "",
-              trainingFile: null,
-            });
-    },
-    removeTraining(i) {
-      this.form.permitHolder.trainings.splice(i,1);
-    },
     onWrongBusinessNameClick() {
       if (form.businessDetailsCorrect === false) {
         this.businessDetailsWereWrong = true;
@@ -227,8 +246,5 @@ export default {
 <style lang="scss" scoped>
 h6::first-letter {
   text-transform: uppercase;
-}
-.training {
-  border-left: 4px solid var(--primaryLighter) !important;
 }
 </style>

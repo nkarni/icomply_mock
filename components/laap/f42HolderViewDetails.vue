@@ -17,16 +17,12 @@
             </p>
           </b-col>
           <b-col>
+         
+       
+            <f-42-holder-details-comp :form="form"></f-42-holder-details-comp>
+         
            
-<entity
-              :entity="form.permitHolder"
-              showFirstName
-              showLastName
-              showEmail
-              :firstNameLabel="'Legal given name(s)'"
-              :lastNameLabel="'Legal surname'"
-            >
-            </entity>
+
             <b-form-group >
               <b-form-checkbox
                 v-model="form.permitHolder.confirmDetails"
@@ -47,12 +43,12 @@
 </template>
 
 <script>
-
+import f42HolderDetailsComp from "./f42/f42HolderDetailsComp.vue";
 import entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
 export default {
-  components: { entity, Notice, EntityAddress, },
+  components: { entity, Notice, EntityAddress,f42HolderDetailsComp },
   name: "f42HolderViewDetails",
   props: {
     form: {

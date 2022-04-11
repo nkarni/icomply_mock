@@ -7,7 +7,7 @@
             <h6>Passport photograph</h6>
             <p>
               You union administrator may have uploaded a passport of photo of you. The following details were provided by the union administrator. If they have, 
-              please check that this photo is current, correct and comply with the FWC requirements.
+              please check that this photo is current, correct and comply with the FWC requirements, <a href="https://asset.fwc.gov.au/documents/documents/forms/form_42c.pdf">click here</a> for more information.
             </p>
             <p>
               If they administrator has not uploaded your photo, please provide a Passport photograph of yourself that

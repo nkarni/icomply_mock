@@ -32,18 +32,12 @@
 
                     <!-- NOTICE TO DEVS, WHEN SELECTED IT SHOULD POPULATE THE FORMDATA WITH THE FULL DETAILS OF THIS PERSON  -->
 
-                   
+                   <b-form-group label="Email address:" v-if="form.committeeMember.selectedName !== ''">
+                     <p>jessica@joses.com</p>
+                   </b-form-group>
+                   <notice :message="'Dev note: If the selected member has more than one email address, then the user will see a single select and must select one of those email addresses.'"></notice>
 
-            <entity
-            v-if="form.committeeMember.selectedName !== ''"
-              :entity="form.committeeMember"
-             
-              showEmail
-             
-              :emailLabel="''"
-              :emailDesc="'You may update the email address or add it if it missing'"
-            >
-            </entity>
+           
 
            
           </b-col>

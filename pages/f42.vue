@@ -526,6 +526,8 @@ export default {
           employeeOrOfficeHolder: null,
           positionOrOfficeHeld: "",
           previouslyHeldAnEntryPermit: null,
+          previousPermitReturned: null,
+          previousPermitNumber: '',
           photoFile: null,
           trainings: [
             {

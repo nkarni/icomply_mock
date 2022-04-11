@@ -17,7 +17,7 @@
           <b-col>
            
 <f-42-training :form="form"></f-42-training>
-            
+            <notice :message="'Dev note: as part of the standard upload file component - if a file was uploaded the use can see a preview of it or click on a link to view it.'"></notice>
           </b-col>
         </b-row>
       </section>
