@@ -15,6 +15,10 @@
                 :options="['Item 1','Item 2', 'Item 3']"
               ></b-form-checkbox-group>
             </b-form-group>
+
+            <b-form-group label="Would you like to participate in conciliation?" v-if="form.jurisdictionalObjections.length > 0">
+              <b-form-radio-group v-model="form.wantsConciliation" :options="boolOptions"></b-form-radio-group>
+            </b-form-group>
           
           </b-col>
         </b-row>
