@@ -39,7 +39,7 @@
              
             </b-form-group>
 
-            <notice :message="'Dev note: validate that dismissal date is after employment start date <br> And notification date must be after contract start date'"></notice>
+            <notice :message="'Dev note: <br>1. validate that dismissal date is after employment start date <br>2. notification date must be after contract start date <br>3. validate that dates in the past for dismissal, employment start or employment notification'"></notice>
             
           </b-col>
         </b-row>
