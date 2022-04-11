@@ -37,6 +37,8 @@
               ></b-form-datepicker>
               <notice :message="'If you are not sure how to answer this enter the last day they attended work'"></notice>
             </b-form-group>
+
+            <notice :message="'Dev note: validate that dismissal date is after employment start date'"></notice>
             
           </b-col>
         </b-row>
