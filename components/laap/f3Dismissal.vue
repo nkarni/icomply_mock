@@ -3,7 +3,45 @@
     <b-form>
      
 
+   
       <section class="border-bottom border-secondary mb-4 pb-4">
+        <b-row>
+          <b-col cols="4">
+            <h6>Employment type and dates</h6>
+          </b-col>
+          <b-col>
+             <b-form-group
+              label="Were they engaged as an independent contractor?"
+            >
+              <b-form-radio-group
+                stacked
+                v-model="form.independentContractor"
+                :options="boolOptions"
+              ></b-form-radio-group>
+            </b-form-group>
+            <b-form-group
+              :label="startDateLabel"
+            >
+              <b-form-datepicker
+                v-model="form.employmentStartDate"
+                class="mb-2"
+              ></b-form-datepicker>
+            </b-form-group>
+            
+            <b-form-group
+              :label="'What date did their employment end?'"
+            >
+              <b-form-datepicker
+                v-model="form.employmentEndDate"
+                class="mb-2"
+              ></b-form-datepicker>
+              <notice :message="'If you are not sure how to answer this enter the last day they attended work'"></notice>
+            </b-form-group>
+            
+          </b-col>
+        </b-row>
+      </section>
+         <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>What happened?</h6>
@@ -44,43 +82,6 @@
         </b-row>
       </section>
 
-      <section class="border-bottom border-secondary mb-4 pb-4">
-        <b-row>
-          <b-col cols="4">
-            <h6>Employment type and dates</h6>
-          </b-col>
-          <b-col>
-             <b-form-group
-              label="Were they engaged as an independent contractor?"
-            >
-              <b-form-radio-group
-                stacked
-                v-model="form.independentContractor"
-                :options="boolOptions"
-              ></b-form-radio-group>
-            </b-form-group>
-            <b-form-group
-              :label="startDateLabel"
-            >
-              <b-form-datepicker
-                v-model="form.employmentStartDate"
-                class="mb-2"
-              ></b-form-datepicker>
-            </b-form-group>
-            
-            <b-form-group
-              :label="'What date did their employment end?'"
-            >
-              <b-form-datepicker
-                v-model="form.employmentEndDate"
-                class="mb-2"
-              ></b-form-datepicker>
-              <notice :message="'If you are not sure how to answer this enter the last day they attended work'"></notice>
-            </b-form-group>
-            
-          </b-col>
-        </b-row>
-      </section>
        <section class="border-bottom border-secondary mb-4 pb-4" >
         <b-row>
           <b-col cols="4">
