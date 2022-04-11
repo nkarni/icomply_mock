@@ -99,7 +99,7 @@
                             drop-placeholder="Drop file here..."
                           ></b-form-file>
                         </b-form-group>
-                      <notice :message="'The user may upload several files'"
+                      <notice :message="'The user may upload several files'"></notice>
           </b-col>
         </b-row>
  </section>
