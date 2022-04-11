@@ -91,7 +91,7 @@
           </b-col>
           <b-col>
              <b-form-group
-              label="Were they dismissed?"
+              :label="wereTheyDismissedLabel"
             >
               <b-form-radio-group
                 stacked
@@ -194,6 +194,12 @@ export default {
       }else{
         return 'What date did their contract start?'
       }
+    },
+    wereTheyDismissedLabel() {
+        if(this.form.independentContractor === true){
+          return "when were they told that their contract was ending?"
+        }
+        return "Were they dismissed?"
     }
   },
   methods: {
