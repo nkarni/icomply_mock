@@ -528,6 +528,7 @@ export default {
           previouslyHeldAnEntryPermit: null,
           previousPermitReturned: null,
           previousPermitNumber: '',
+          previousPermitNotReturnedReason: '',
           photoFile: null,
           trainings: [
             {

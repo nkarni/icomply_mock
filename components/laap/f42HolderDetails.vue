@@ -71,6 +71,13 @@
                 :options="boolOptions"
               ></b-form-radio-group>
             </b-form-group>
+              <b-form-group
+      label="Why has it not been returned?"
+      v-if="form.permitHolder.previousPermitReturned === false"
+    >
+      <b-form-input v-model="form.permitHolder.previousPermitNotReturnedReason">
+      </b-form-input>
+    </b-form-group>
           </b-col>
         </b-row>
       </section>

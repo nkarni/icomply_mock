@@ -1,64 +1,69 @@
 <template>
   <div>
+    <notice
+      class="mb-3"
+      :message="'Legal name must match drivers license or name on an official ID document.'"
+    ></notice>
+    <entity
+      :entity="form.permitHolder"
+      showFirstName
+      showLastName
+      showEmail
+      :firstNameLabel="'Legal given name(s)'"
+      :lastNameLabel="'Legal surname'"
+      showMobilePhone
+      :emailDesc="emailDesc"
+      :mobilePhoneDesc="'The mobile number may be used for notifications'"
+      :mobilePhoneLabel="'Mobile phone (optional)'"
+    >
+    </entity>
 
- 
-             <notice
-             class="mb-3"
-            :message="'Legal name must match drivers license or name on an official ID document.'"
-          ></notice>
-            <entity
-              :entity="form.permitHolder"
-              showFirstName
-              showLastName
-              showEmail
-              :firstNameLabel="'Legal given name(s)'"
-              :lastNameLabel="'Legal surname'"
-              showMobilePhone
-              :emailDesc="emailDesc"
-              :mobilePhoneDesc="'The mobile number may be used for notifications'"
-              :mobilePhoneLabel="'Mobile phone (optional)'"
-            >
-            </entity>
+    <b-form-group :label="employeeOrOfficeHolderLabel">
+      <b-form-radio-group
+        stacked
+        v-model="form.permitHolder.employeeOrOfficeHolder"
+        :options="['An Office Holder', 'An Employee']"
+      ></b-form-radio-group>
+    </b-form-group>
 
-            <b-form-group :label="employeeOrOfficeHolderLabel">
-              <b-form-radio-group
-                stacked
-                v-model="form.permitHolder.employeeOrOfficeHolder"
-                :options="['An Office Holder', 'An Employee']"
-              ></b-form-radio-group>
-            </b-form-group>
+    <b-form-group :label="positionOrOfficeHeldLabel">
+      <b-form-input v-model="form.permitHolder.positionOrOfficeHeld">
+      </b-form-input>
+    </b-form-group>
 
-            <b-form-group :label="positionOrOfficeHeldLabel">
-              <b-form-input v-model="form.permitHolder.positionOrOfficeHeld">
-              </b-form-input>
-            </b-form-group>
+    <b-form-group :label="previouslyHeldAnEntryPermitLabel">
+      <b-form-radio-group
+        v-model="form.permitHolder.previouslyHeldAnEntryPermit"
+        :options="boolOptions"
+      ></b-form-radio-group>
+    </b-form-group>
 
-            <b-form-group
-              :label="previouslyHeldAnEntryPermitLabel"
-            >
-              <b-form-radio-group
-                v-model="form.permitHolder.previouslyHeldAnEntryPermit"
-                :options="boolOptions"
-              ></b-form-radio-group>
-            </b-form-group>
+    <b-form-group
+      :label="previousPermitNumberLabel"
+      v-if="form.permitHolder.previouslyHeldAnEntryPermit === true"
+    >
+      <b-form-input v-model="form.permitHolder.previousPermitNumber">
+      </b-form-input>
+    </b-form-group>
 
-              <b-form-group :label="previousPermitNumberLabel" v-if="form.permitHolder.previouslyHeldAnEntryPermit === true">
-              <b-form-input v-model="form.permitHolder.previousPermitNumber">
-              </b-form-input>
-            </b-form-group>
+    <b-form-group
+      label="Has that permit been returned?"
+      v-if="form.permitHolder.previouslyHeldAnEntryPermit === true"
+    >
+      <b-form-radio-group
+        v-model="form.permitHolder.previousPermitReturned"
+        :options="boolOptions"
+      ></b-form-radio-group>
+    </b-form-group>
 
-             <b-form-group
-              label="Has that permit been returned?"
-              v-if="form.permitHolder.previouslyHeldAnEntryPermit === true"
-            >
-              <b-form-radio-group
-                v-model="form.permitHolder.previousPermitReturned"
-                :options="boolOptions"
-              ></b-form-radio-group>
-            </b-form-group>
-         
-    </div>
-
+     <b-form-group
+      label="Why has it not been returned?"
+      v-if="form.permitHolder.previousPermitReturned === false"
+    >
+      <b-form-input v-model="form.permitHolder.previousPermitNotReturnedReason">
+      </b-form-input>
+    </b-form-group>
+  </div>
 </template>
 
 <script>
@@ -66,7 +71,7 @@ import entity from "../entity.vue";
 import EntityAddress from "../entityAddress.vue";
 import Notice from "../notice.vue";
 export default {
-   components: { entity, Notice, EntityAddress },
+  components: { entity, Notice, EntityAddress },
   name: "f42HolderDetailsComp",
   props: {
     form: {
@@ -137,39 +142,39 @@ export default {
     };
   },
   computed: {
-    employeeOrOfficeHolderLabel: function(){
-      if(this.form.userRole === 'permitHolder'){
-        return "What is your role in ths organisation?"
-      }else{
-        return "The Proposed Permit Holder is:"
+    employeeOrOfficeHolderLabel: function () {
+      if (this.form.userRole === "permitHolder") {
+        return "What is your role in ths organisation?";
+      } else {
+        return "The Proposed Permit Holder is:";
       }
     },
-    positionOrOfficeHeldLabel: function() {
-      if(this.form.userRole === 'permitHolder'){
-        return "What is your office or position?"
-      }else{
-        return "What is their office or position?"
+    positionOrOfficeHeldLabel: function () {
+      if (this.form.userRole === "permitHolder") {
+        return "What is your office or position?";
+      } else {
+        return "What is their office or position?";
       }
     },
-    previouslyHeldAnEntryPermitLabel: function() {
-      if(this.form.userRole === 'permitHolder'){
-        return "Have you previously held an entry permit?"
-      }else{
-        return "Has this person previously held an entry permit?"
+    previouslyHeldAnEntryPermitLabel: function () {
+      if (this.form.userRole === "permitHolder") {
+        return "Have you previously held an entry permit?";
+      } else {
+        return "Has this person previously held an entry permit?";
       }
     },
-     previousPermitNumberLabel: function() {
-      if(this.form.userRole === 'permitHolder'){
-        return "What is your most recent or current permit number?"
-      }else{
-        return "What is their most recent or current permit number?"
+    previousPermitNumberLabel: function () {
+      if (this.form.userRole === "permitHolder") {
+        return "What is your most recent or current permit number?";
+      } else {
+        return "What is their most recent or current permit number?";
       }
     },
-     emailDesc: function() {
-      if(this.form.userRole === 'permitHolder'){
-        return ""
-      }else{
-        return "The email address will be used to notify the Proposed Permit holder"
+    emailDesc: function () {
+      if (this.form.userRole === "permitHolder") {
+        return "";
+      } else {
+        return "The email address will be used to notify the Proposed Permit holder";
       }
     },
     youString: function () {
@@ -196,7 +201,6 @@ export default {
     AreYouString: function () {
       return this.form.repType === "self" ? "are you" : "the Applicant is";
     },
-
   },
   methods: {
     onWrongBusinessNameClick() {
