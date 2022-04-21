@@ -30,7 +30,7 @@
              <notice class="mb-3" :message="'If you are not sure how to answer this enter the last day they attended work'"></notice>
             
             <b-form-group
-              :label="'What date did their employment end?'"
+              :label="employmentEndlabel"
             >
               <b-form-datepicker
                 v-model="form.employmentEndDate"
@@ -39,7 +39,7 @@
              
             </b-form-group>
 
-            <notice :message="'Dev note: <br>1. validate that dismissal date is after employment start date <br>2. notification date must be after contract start date <br>3. validate that dates in the past for dismissal, employment start or employment notification'"></notice>
+            <notice :message="'Dev note: <br>1. Validate that dismissal date is on or after employment start date <br>2. notification date must be on or after contract start date <br>3. validate that dates in the past for dismissal, employment start or employment notification'"></notice>
             
           </b-col>
         </b-row>
@@ -166,6 +166,12 @@ export default {
     };
   },
   computed: {
+    employmentEndlabel: function () {
+      if(this.form.independentContractor === true){
+        return 'What date did their contract end?'
+      }
+      return 'What date did their employment end?'
+    },
     youString: function () {
       return this.form.repType === "self" ? "you" : "the Applicant";
     },

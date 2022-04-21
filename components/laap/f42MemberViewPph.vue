@@ -91,15 +91,12 @@
              
             ></b-form-textarea>
           </b-form-group>
-          <b-form-group
-                          label="You may upload supporting documents (optional):"
-                        >
-                          <b-form-file
-                            placeholder="Choose a file or drop it here..."
-                            drop-placeholder="Drop file here..."
-                          ></b-form-file>
-                        </b-form-group>
-                      <notice :message="'Dev note: The user may upload several files'"></notice>
+
+
+<f-42-files :files="form.committeeMember.files"></f-42-files>
+
+
+      
           </b-col>
         </b-row>
  </section>
@@ -114,8 +111,9 @@ import entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
 import f42Training from "./f42/f42Training.vue";
+import f42Files from "./f42/f42Files.vue";
 export default {
-  components: { entity, Notice, EntityAddress, AbnLookup, f42Training },
+  components: { entity, Notice, EntityAddress, AbnLookup, f42Training, f42Files },
   name: "f42MemberViewPph",
   props: {
     form: {

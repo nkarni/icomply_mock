@@ -548,7 +548,11 @@ export default {
           lastName: "",
           email: "",
           inquiries: '',
-          confirmedPphId: false
+          confirmedPphId: false,
+          files: [{
+            docType: '',
+            file: ''
+          }]
         },
 
         businessDetailsCorrect: null,
