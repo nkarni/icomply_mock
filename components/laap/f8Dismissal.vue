@@ -52,7 +52,7 @@
                 <b-form-checkbox
                   value="Nationality, national extraction or social origin (s351)"
                   >Nationality, national extraction or social origin
-                  (s351) <span v-b-tooltip.hover.top="'Tooltip!'" variant="primary"><i class="bi bi-info-circle" ></i>?</span></b-form-checkbox
+                  (s351)</b-form-checkbox
                 >
                 
                 <b-form-checkbox
@@ -69,12 +69,17 @@
                 <b-form-checkbox
                   value="I was dismissed because of my workplace rights (s340)"
                   >I was dismissed because of my workplace rights
-                  (s340)</b-form-checkbox
+                  (s340)
+                  <small class="form-text text-muted"> I was dismissed because I had a workplace right, or because I exercised or proposed to exercise a workplace right. 
+<br>For example, because I asked about being paid for overtime or complained about not getting breaks. </small>
+
+                  </b-form-checkbox
                 >
                 <b-form-checkbox
                   value="I was dismissed because of industrial activities (s346)"
                   >I was dismissed because of industrial activities
-                  (s346)</b-form-checkbox
+                  (s346)
+                  <small class="form-text text-muted">I was dismissed because I engaged in or proposed to engage in industrial activity (such as belonging to a union), or because I refused to participate in any industrial action.</small></b-form-checkbox
                 >
                 <b-form-checkbox
                   value="My employer dismissed me so they could engage me as an independent contractor to do the same job or substantially the same job (s358)"
