@@ -144,6 +144,7 @@ export default {
     };
   },
   computed: {
+    
     employeeOrOfficeHolderLabel: function () {
       if (this.form.userRole === "permitHolder") {
         return "What is your role in ths organisation?";

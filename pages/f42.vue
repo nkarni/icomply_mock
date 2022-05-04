@@ -541,7 +541,22 @@ export default {
             },
           ],
           adminPhotoIsCorrect: null,
-          confirmDetails: null
+          confirmDetails: null,
+          convictedIndustrialLaw: null,
+          convictedIndustrialLawDetails: '',
+          convictedOther: null,
+          convictedOtherDetails: '',
+          orderedToPay: null,
+          orderedToPayDetails: '',
+          hadRevoked: null,
+          hadRevokedDetails: '',
+          hadConditionsImposed: null,
+          hadConditionsImposedDetails: '',
+          beenDisqualified: null,
+          beenDisqualifiedDetails: '',
+          awareOfMatters: null,
+          awareOfMattersDetails: ''
+
         },
         committeeMember: {
           selectedName: "",

@@ -68,7 +68,21 @@
           </b-col>
         </b-row>
       </section>
- <section class="border-bottom border-secondary mb-4 pb-2">
+      <section class=" mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Other details</h6>
+
+           
+            
+           
+          </b-col>
+          <b-col cols="8">
+            <f-42-holder-super-details :form="form"></f-42-holder-super-details>
+          </b-col>
+        </b-row>
+      </section>
+ <!-- <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Proper inquiries</h6>
@@ -99,7 +113,7 @@
       
           </b-col>
         </b-row>
- </section>
+ </section> -->
  
     </b-form>
   </div>
@@ -112,8 +126,9 @@ import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
 import f42Training from "./f42/f42Training.vue";
 import f42Files from "./f42/f42Files.vue";
+import f42HolderSuperDetails from  "./f42/f42HolderSuperDetails.vue";
 export default {
-  components: { entity, Notice, EntityAddress, AbnLookup, f42Training, f42Files },
+  components: { entity, Notice, EntityAddress, AbnLookup, f42Training, f42Files, f42HolderSuperDetails },
   name: "f42MemberViewPph",
   props: {
     form: {

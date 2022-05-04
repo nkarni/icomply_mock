@@ -113,7 +113,7 @@
           </b-col>
         </b-row>
       </section>
-      <section class=" mb-4 pb-2">
+      <section class=" mb-4 pb-2 border-bottom border-secondary">
         <b-row>
           <b-col cols="4">
             <h6>Photograph</h6>
@@ -146,6 +146,22 @@
           </b-col>
         </b-row>
       </section>
+
+  <section class=" mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Other information</h6>
+            
+          </b-col>
+          <b-col>
+            
+            <f-42-holder-super-details :form="form"></f-42-holder-super-details>
+          </b-col>
+        </b-row>
+      </section>
+
+
+
     </b-form>
   </div>
 </template>
@@ -156,8 +172,9 @@ import entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
 import f42Training from "./f42/f42Training.vue";
+import f42HolderSuperDetails from  "./f42/f42HolderSuperDetails.vue";
 export default {
-  components: { entity, Notice, EntityAddress, AbnLookup, f42Training },
+  components: { entity, Notice, EntityAddress, AbnLookup, f42Training , f42HolderSuperDetails},
   name: "holderDetails",
   props: {
     form: {
