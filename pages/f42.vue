@@ -200,7 +200,7 @@
               ]"
             >
               <template #title>
-                <h5>Passport Photo</h5>
+                <h5>Photograph</h5>
                 <!-- <span>Their details</span> -->
               </template>
               <f-42-holder-view-photo :form="form"></f-42-holder-view-photo>
@@ -505,6 +505,7 @@ export default {
           hasDifferentPostalAddress: false,
           confirmAuthorised: false,
           firstName: "",
+          middleName: "",
           lastName: "",
           email: "",
           postalAddress: {
@@ -520,6 +521,7 @@ export default {
         },
         permitHolder: {
           firstName: "",
+          middleName: "",
           lastName: "",
           email: "",
           mobilePhone: "",
@@ -545,6 +547,7 @@ export default {
           selectedName: "",
           email: "",
           firstName: "",
+          middleName: "",
           lastName: "",
           email: "",
           inquiries: '',

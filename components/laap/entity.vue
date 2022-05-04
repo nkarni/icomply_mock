@@ -32,6 +32,11 @@
         v-model="entity.firstName"
       ></b-form-input>
     </b-form-group>
+    <b-form-group :label="middleNameLabel" v-if="showMiddleName">
+      <b-form-input
+        v-model="entity.middleName"
+      ></b-form-input>
+    </b-form-group>
     <b-form-group :label="lastNameLabel" v-if="showLastName">
       <b-form-input
         :id="idPrefix + '-lastName'"
@@ -217,6 +222,14 @@ export default {
       default: "Given name(s)",
     },
     showFirstName: {
+      type: Boolean,
+      default: false,
+    },
+    middleNameLabel: {
+      type: String,
+      default: "Given name(s)",
+    },
+    showMiddleName: {
       type: Boolean,
       default: false,
     },

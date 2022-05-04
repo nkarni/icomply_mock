@@ -60,7 +60,7 @@
                   
                 </b-list-group-item>
                 <b-list-group-item>
-                  <h6>Passport photo of yourself</h6>
+                  <h6>Photograph of yourself</h6>
                 </b-list-group-item>
                 <b-list-group-item>
                   <h6>Two forms of identification</h6>

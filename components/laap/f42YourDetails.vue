@@ -4,7 +4,7 @@
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Union organisation details</h6>
+            <h6>Applicant details</h6>
             <p>
               The following details are your Union organisation as recorded in
               our system.
@@ -67,8 +67,10 @@
               showFirstName
               showLastName
               showEmail
-              :firstNameLabel="'Legal given name(s)'"
+              :showMiddleName="true"
+              :firstNameLabel="'Legal first name'"
               :lastNameLabel="'Legal surname'"
+              :middleNameLabel="'Middle name (optional)'"
             >
             </entity>
           </b-col>

@@ -25,9 +25,11 @@
               :entity="form.permitHolder"
               showFirstName
               showLastName
+              showMiddleName
               showEmail
               :firstNameLabel="'Legal given name(s)'"
               :lastNameLabel="'Legal surname'"
+              :middleNameLabel="'Middle name (optional)'"
               showMobilePhone
               :emailDesc="'The email address will be used to notify the Proposed Permit holder'"
               :mobilePhoneDesc="'The mobile number will be used to notify the Proposed Permit holder'"
@@ -85,26 +87,27 @@
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Permit training (optional)</h6>
-            <p>
+            <h6>Permit training</h6>
+            <p>List all relevant trainings.</p>
+            <!-- <p>
               You can provide further information on behalf of the Proposed
               Permit Holder.
             </p>
             <p>
               Although this is optional, it will help to improve the process and
               make it faster and more efficient (temporary text!)
-            </p>
+            </p> -->
           </b-col>
           <b-col>
-            <b-form-group
+            <!-- <b-form-group
               label="Do you have access to their training information (including evidence of completion)?"
             >
               <b-form-radio-group
                 :options="boolOptions"
                 v-model="form.admin.hasHolderTrainingInfo"
               ></b-form-radio-group>
-            </b-form-group>
-            <div v-if="form.admin.hasHolderTrainingInfo === true">
+            </b-form-group> -->
+            <div >
               <f-42-training :form="form"></f-42-training>
             </div>
           </b-col>
@@ -113,24 +116,24 @@
       <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Passport photograph (optional)</h6>
+            <h6>Photograph</h6>
             <p>
-              Provide Passport photograph of the Proposed Permit Holder that
-              follows the FWC requirements  <a href="https://asset.fwc.gov.au/documents/documents/forms/form_42c.pdf">click here</a> for more information.
+              Provide a photograph of the Proposed Permit Holder that
+              follows the FWC requirements <a href="https://asset.fwc.gov.au/documents/documents/forms/form_42c.pdf">click here</a> for more information.
             </p>
           </b-col>
           <b-col>
-            <b-form-group
+            <!-- <b-form-group
               label="Do you have access to a recent passport photo of the Proposed Permit Holder?"
             >
               <b-form-radio-group
                 :options="boolOptions"
                 v-model="form.admin.hasHolderPhoto"
               ></b-form-radio-group>
-            </b-form-group>
-            <div v-if="form.admin.hasHolderPhoto === true">
+            </b-form-group> -->
+            <div >
               <b-form-group
-                label="Attach a passport photograph"
+                label="Attach a photograph"
                 description="Short explanation about how the file will be used."
               >
                 <b-form-file

@@ -4,15 +4,15 @@
     <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Passport photograph</h6>
+            <h6>Photograph</h6>
             <p>
-              You union administrator may have uploaded a passport of photo of you. The following details were provided by the union administrator. If they have, 
+              You union administrator may have uploaded a photograph of you. The following details were provided by the union administrator. If they have, 
               please check that this photo is current, correct and comply with the FWC requirements, <a href="https://asset.fwc.gov.au/documents/documents/forms/form_42c.pdf">click here</a> for more information.
             </p>
-            <p>
-              If they administrator has not uploaded your photo, please provide a Passport photograph of yourself that
+            <!-- <p>
+              If they administrator has not uploaded your photo, please provide a Photograph of yourself that
               follows the FWC requirements.
-            </p>
+            </p> -->
           </b-col>
           <b-col>
             <b-form-group label="The photo uploaded by the administrator:">
@@ -31,7 +31,7 @@
             </b-form-group>
             <div v-if="form.permitHolder.adminPhotoIsCorrect === false">
               <b-form-group
-                label="Attach a passport photograph"
+                label="Attach a photograph"
                 description="Short explanation about how the file will be used."
               >
                 <b-form-file

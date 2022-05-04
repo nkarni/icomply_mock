@@ -9,8 +9,10 @@
       showFirstName
       showLastName
       showEmail
-      :firstNameLabel="'Legal given name(s)'"
-      :lastNameLabel="'Legal surname'"
+      :showMiddleName="true"
+              :firstNameLabel="'Legal first name'"
+              :lastNameLabel="'Legal surname'"
+              :middleNameLabel="'Middle name (optional)'"
       showMobilePhone
       :emailDesc="emailDesc"
       :mobilePhoneDesc="'The mobile number may be used for notifications'"

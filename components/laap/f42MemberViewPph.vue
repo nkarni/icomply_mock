@@ -43,7 +43,7 @@
                
             </b-form-group >
 
-            <b-form-group label="Passport photo:">
+            <b-form-group label="Photograph:">
               <p>Image here</p>
             </b-form-group>
              <b-form-group label="Signature:">

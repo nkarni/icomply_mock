@@ -23,8 +23,11 @@
               showFirstName
               showLastName
               showEmail
-              :firstNameLabel="'Legal given name(s)'"
+
+              :showMiddleName="true"
+              :firstNameLabel="'Legal first name'"
               :lastNameLabel="'Legal surname'"
+              :middleNameLabel="'Middle name (optional)'"
             >
             </entity>
             <b-form-group >
