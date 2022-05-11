@@ -21,21 +21,26 @@
              class="mb-3"
             :message="'Legal name must match drivers license or name on an official ID document.'"
           ></notice> -->
+
+          
            <b-form-group label="Select a Member of Committee of Management:">
-                      <b-form-select
-                        v-model="
-                          form.committeeMember.selectedName
-                        "
-                        :options="['Jessica Jones']"
-                      ></b-form-select>
+                      <entity
+              :entity="form.committeeMember"
+              showFirstName
+              showLastName
+              
+              showEmail
+              
+            >
+            </entity>
                     </b-form-group>
 
                     <!-- NOTICE TO DEVS, WHEN SELECTED IT SHOULD POPULATE THE FORMDATA WITH THE FULL DETAILS OF THIS PERSON  -->
 
-                   <b-form-group label="Email address:" v-if="form.committeeMember.selectedName !== ''">
+                   <!-- <b-form-group label="Email address:" v-if="form.committeeMember.selectedName !== ''">
                      <p>jessica@joses.com</p>
                    </b-form-group>
-                   <notice :message="'Dev note: If the selected member has more than one email address, then the user will see a single select and must select one of those email addresses.'"></notice>
+                   <notice :message="'Dev note: If the selected member has more than one email address, then the user will see a single select and must select one of those email addresses.'"></notice> -->
 
            
 
