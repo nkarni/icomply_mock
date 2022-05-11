@@ -13,6 +13,7 @@
               :firstNameLabel="'Legal first name'"
               :lastNameLabel="'Legal surname'"
               :middleNameLabel="'Middle name (optional)'"
+              :showPreferredName="true"
       showMobilePhone
       :emailDesc="emailDesc"
       :mobilePhoneDesc="'The mobile number may be used for notifications'"

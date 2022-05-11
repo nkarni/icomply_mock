@@ -44,6 +44,11 @@
         v-model="entity.lastName"
       ></b-form-input>
     </b-form-group>
+      <b-form-group :label="preferredNameLabel" v-if="showPreferredName">
+      <b-form-input
+        v-model="entity.preferredName"
+      ></b-form-input>
+    </b-form-group>
     <b-form-group :label="emailLabel" v-if="showEmail" :description="emailDesc">
       <b-form-input
         :id="idPrefix + '-email'"
@@ -322,6 +327,14 @@ export default {
       default: "Title (optional)",
     },
     showTitle: {
+      type: Boolean,
+      default: false,
+    },
+    preferredNameLabel: {
+      type: String,
+      default: "Preferred name",
+    },
+    showPreferredName: {
       type: Boolean,
       default: false,
     },

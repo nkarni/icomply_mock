@@ -14,7 +14,7 @@
           </b-col>
           <b-col cols="8">
             <b-form-group label="Name:">
-              <p>Don Burrows</p>
+              <p>Don Middle Burrows</p>
             </b-form-group >
 
              <b-form-group label="Office/Position:">

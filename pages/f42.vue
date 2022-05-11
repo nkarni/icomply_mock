@@ -523,6 +523,7 @@ export default {
           firstName: "",
           middleName: "",
           lastName: "",
+          preferredName: '',
           email: "",
           mobilePhone: "",
           employeeOrOfficeHolder: null,

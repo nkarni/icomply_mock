@@ -67,10 +67,9 @@
               showFirstName
               showLastName
               showEmail
-              :showMiddleName="true"
-              :firstNameLabel="'Legal first name'"
-              :lastNameLabel="'Legal surname'"
-              :middleNameLabel="'Middle name (optional)'"
+              
+              :firstNameLabel="'First name'"
+              :lastNameLabel="'Surname'"
             >
             </entity>
           </b-col>

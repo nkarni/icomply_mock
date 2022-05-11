@@ -24,10 +24,7 @@
               showLastName
               showEmail
 
-              :showMiddleName="true"
-              :firstNameLabel="'Legal first name'"
-              :lastNameLabel="'Legal surname'"
-              :middleNameLabel="'Middle name (optional)'"
+              
             >
             </entity>
             <b-form-group >

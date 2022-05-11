@@ -30,6 +30,7 @@
               :firstNameLabel="'Legal given name(s)'"
               :lastNameLabel="'Legal surname'"
               :middleNameLabel="'Middle name (optional)'"
+              :showPreferredName="true"
               showMobilePhone
               :emailDesc="'The email address will be used to notify the Proposed Permit holder'"
               :mobilePhoneDesc="'The mobile number will be used to notify the Proposed Permit holder'"
