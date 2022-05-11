@@ -89,7 +89,13 @@
         <b-row>
           <b-col cols="4">
             <h6>Permit training</h6>
-            <p>List all relevant trainings.</p>
+            <p>Give details of the training completed and the date it was completed.</p><p>
+Attach evidence showing the proposed permit holder has successfully completed the relevant training. 
+</p> <p>See Rule 51 of the Fair Work Commission Rules 2013. </p>
+<p> You can find information about right of entry training on our website.
+            </p>
+
+
             <!-- <p>
               You can provide further information on behalf of the Proposed
               Permit Holder.
