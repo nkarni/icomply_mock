@@ -3,20 +3,17 @@
     <b-form>
   
 
-      <section class="border-bottom border-secondary mb-4 pb-2">
+        <section class=" mb-4 pb-2">
         <b-row>
+          <b-col cols="4">
+            <h6>Disclosures</h6>
+            
+          </b-col>
           <b-col>
-            <h5>Declaration</h5>
-    
+            
+            <f-42-holder-super-details :form="form"></f-42-holder-super-details>
           </b-col>
         </b-row>
-        <b-row>
-          <b-col>
-           <p>Declaration text here.... <br></p>
-           <p>Followed by a signature mechanism (TBD)</p>
-          </b-col>
-        </b-row>
-        <!-- <notice :message="'mockup notice: HC means hard coded, it will be dynamic and show provided info in the final build. Similarly, the link to the relevant tab for editing will be activated in the final build.'"></notice> -->
       </section>
       
       <section
@@ -44,8 +41,9 @@
 import entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
+import f42HolderSuperDetails from  "./f42/f42HolderSuperDetails.vue";
 export default {
-  components: { entity, Notice, EntityAddress },
+  components: { entity, Notice, EntityAddress, f42HolderSuperDetails },
   name: "f42HolderViewSubmit",
   props: {
     form: {
