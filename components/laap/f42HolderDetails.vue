@@ -19,7 +19,7 @@
           <b-col>
              <notice
              class="mb-3"
-            :message="'Legal name must match drivers license or name on an official ID document.'"
+            :message="'Tell us the proposed permit holder’s full legal name, including their middle name(s). If they don\’t have a middle name, write \'N/A\'.<br><br>Legal name must match drivers license or name on an official ID document.'"
           ></notice>
             <entity
               :entity="form.permitHolder"
