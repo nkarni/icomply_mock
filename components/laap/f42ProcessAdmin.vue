@@ -41,33 +41,84 @@
                   >
                 </b-list-group-item>
                 <b-list-group-item>
-                  <h6>4.  Invite the Proposed Permit Holder to confirm their details</h6>
+                  <h6>
+                    4. Invite the Proposed Permit Holder to confirm their
+                    details
+                  </h6>
                   <span class="ml-3"
                     >Explanation text about why you need to do this</span
                   >
                 </b-list-group-item>
-                
               </b-list-group>
             </b-form-group>
           </b-col>
         </b-row>
       </section>
-         <section class="mb-4 pb-4">
+      <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col>
             <h5>What will happen next</h5>
 
             <b-form-group>
-           <div class="mt-4">
-             <p>The Proposed Permit Holder will be invited to complete their part of the application. They will review their details, verify their identity, provide additional supporting documents and sign their statuary declarations.</p>
-           </div>
-            <div class="mt-4">
-             <p>Then the Member of Committee of Management will be invited to review the Proposed Permit Holder details, approve them for the entry and sign their statuary declarations.</p>
-           </div>
-            <div class="mt-4">
-             <p>You will then be invited to submit the application to FWC for review.</p>
-           </div>
+              <div class="mt-4">
+                <p>
+                  The Proposed Permit Holder will be invited to complete their
+                  part of the application. They will review their details,
+                  verify their identity, provide additional supporting documents
+                  and sign their statuary declarations.
+                </p>
+              </div>
+              <div class="mt-4">
+                <p>
+                  Then the Member of Committee of Management will be invited to
+                  review the Proposed Permit Holder details, approve them for
+                  the entry and sign their statuary declarations.
+                </p>
+              </div>
+              <div class="mt-4">
+                <p>
+                  You will then be invited to submit the application to FWC for
+                  review.
+                </p>
+              </div>
             </b-form-group>
+          </b-col>
+        </b-row>
+      </section>
+      <section class="mb-4 pb-4">
+        <b-row>
+          <b-col>
+            <h5>Privacy</h5>
+            <p>
+              Read the
+              <a
+                href="https://www.fwc.gov.au/documents/documents/forms/form_f42-privacy.pdf"
+                >Privacy notice</a
+              >
+              to find out what personal information we collect, why we collect
+              it, and what we do with it.
+            </p>
+            <p>The Commission may publish on its website:</p>
+            <ul>
+              <li>
+                the names of the applicant organisation and the proposed permit
+                holder; and
+              </li>
+              <li>
+                that the organisation has applied for an entry permit to be
+                issued to the proposed permit holder; and
+              </li>
+              <li>
+                that third parties may make submissions to the Commission as to
+                whether the proposed permit holder is a fit and proper person to
+                be issued with an entry permit.
+              </li>
+            </ul>
+            <p>
+              If the Commission decides to issue an entry permit, the Commission
+              will publish on its website the names of the applicant
+              organisation and the permit holder, and the permit details.
+            </p>
           </b-col>
         </b-row>
       </section>

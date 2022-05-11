@@ -23,7 +23,7 @@
           ></notice> -->
 
           
-           <b-form-group label="Select a Member of Committee of Management:">
+          
                       <entity
               :entity="form.committeeMember"
               showFirstName
@@ -32,8 +32,12 @@
               showEmail
               
             >
+            
             </entity>
-                    </b-form-group>
+                   
+                    <b-form-group label="Office held">
+              <b-form-input v-model="form.committeeMember.officeHeld"></b-form-input>
+            </b-form-group>
 
                     <!-- NOTICE TO DEVS, WHEN SELECTED IT SHOULD POPULATE THE FORMDATA WITH THE FULL DETAILS OF THIS PERSON  -->
 

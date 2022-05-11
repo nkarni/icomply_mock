@@ -500,12 +500,14 @@ export default {
   data() {
     return {
       form: {
+       
         userRole: "",
         admin: {
           hasDifferentPostalAddress: false,
           confirmAuthorised: false,
           firstName: "",
           middleName: "",
+          hasMiddleName: null,
           lastName: "",
           email: "",
           postalAddress: {
@@ -542,24 +544,29 @@ export default {
             },
           ],
           adminPhotoIsCorrect: null,
+          correctPhoto2: null,
           confirmDetails: null,
-          convictedIndustrialLaw: null,
-          convictedIndustrialLawDetails: '',
-          convictedOther: null,
-          convictedOtherDetails: '',
-          orderedToPay: null,
-          orderedToPayDetails: '',
-          hadRevoked: null,
-          hadRevokedDetails: '',
-          hadConditionsImposed: null,
-          hadConditionsImposedDetails: '',
-          beenDisqualified: null,
-          beenDisqualifiedDetails: '',
-          awareOfMatters: null,
-          awareOfMattersDetails: ''
+          dec: {
+            convictedIndustrialLaw: null,
+            convictedIndustrialLawDetails: '',
+            convictedOther: null,
+            convictedOtherDetails: '',
+            orderedToPay: null,
+            orderedToPayDetails: '',
+            hadRevoked: null,
+            hadRevokedDetails: '',
+            hadConditionsImposed: null,
+            hadConditionsImposedDetails: '',
+            beenDisqualified: null,
+            beenDisqualifiedDetails: '',
+            awareOfMatters: null,
+            awareOfMattersDetails: ''
+          }
+          
 
         },
         committeeMember: {
+          officeHeld: '',
           selectedName: "",
           email: "",
           firstName: "",
@@ -571,7 +578,23 @@ export default {
           files: [{
             docType: '',
             file: ''
-          }]
+          }],
+          dec: {
+            convictedIndustrialLaw: null,
+            convictedIndustrialLawDetails: '',
+            convictedOther: null,
+            convictedOtherDetails: '',
+            orderedToPay: null,
+            orderedToPayDetails: '',
+            hadRevoked: null,
+            hadRevokedDetails: '',
+            hadConditionsImposed: null,
+            hadConditionsImposedDetails: '',
+            beenDisqualified: null,
+            beenDisqualifiedDetails: '',
+            awareOfMatters: null,
+            awareOfMattersDetails: ''
+          }
         },
 
         businessDetailsCorrect: null,

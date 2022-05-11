@@ -1,28 +1,32 @@
 <template>
   <div>
     <b-form>
-  
-
-      <section class="border-bottom border-secondary mb-4 pb-2">
+       <section class="border-bottom border-secondary  mb-4 pb-2">
         <b-row>
+          <b-col cols="4">
+            <h6>Declaration</h6>
+            <p>Answer each question in the declaration below. Section 513(2) of the Fair Work Act 2009 has the effect that certain offences do not need to be disclosed.</p>
+            <p>Giving false or misleading information is a serious offence. A person who: · knowingly or recklessly makes a false or misleading statement in an application for an entry permit; or · knowingly gives false or misleading information in an application for an entry permit is guilty of an offence, the punishment for which is imprisonment for up to 12 months if the statement is made or information is provided knowingly, or up to 6 months if the statement is made recklessly – see Part 7.4, s.136 and s.137.1 of the Criminal Code.</p>
+          <p>This is a declaration by the proposed permit holder in support of an application to the Fair Work Commission under s.512 of the Fair Work Act 2009 for an entry permit.</p>
+          </b-col>
           <b-col>
-            <h5>Declaration</h5>
-
-            <b-form-group :label="'Are you aware of any other matters that may be relevant to whether the permit holder is a fit and proper person to hold a permit?'"
+            
+            <f-42-holder-super-details :form="form" :dec="form.committeeMember.dec"></f-42-holder-super-details>
+             <b-form-group :label="'Are you aware of any other matters that may be relevant to whether the permit holder is a fit and proper person to hold a permit?'"
     >
     <notice class="mb-2" :message="'The Commission can take into account any other matter that it considers relevant to whether the proposed permit holder is a fit and proper person to hold a permit. This may include adverse comments made about the proposed permit holder in a Commission or court decision, regardless of whether the proposed permit holder was a party to the proceeding.'" /></notice>
       <b-form-radio-group
-        v-model="form.permitHolder.awareOfMatters"
+        v-model="form.committeeMember.dec.awareOfMatters"
         :options="boolOptions"
       ></b-form-radio-group>
     </b-form-group>
 
     <b-form-group
       label="Please provide details"
-      v-if="form.permitHolder.awareOfMatters === true"
+      v-if="form.committeeMember.dec.awareOfMatters === true"
     >
       <b-form-textarea
-        v-model="form.permitHolder.awareOfMattersDetails"
+        v-model="form.committeeMember.dec.awareOfMattersDetails"
       ></b-form-textarea>
     </b-form-group>
 
@@ -40,13 +44,19 @@
     
           </b-col>
         </b-row>
+      </section>
+  
+
+     <section class="border-bottom border-secondary  mb-4 pb-2">
         <b-row>
+          <b-col cols="4">
+            <h6>Signature</h6>
+          </b-col>
           <b-col>
-           <p>A signature mechanism (TBD)</p>
+            TBD
           </b-col>
         </b-row>
-        <!-- <notice :message="'mockup notice: HC means hard coded, it will be dynamic and show provided info in the final build. Similarly, the link to the relevant tab for editing will be activated in the final build.'"></notice> -->
-      </section>
+     </section>
       
       <section
         class=" mb-4 pb-2"
@@ -73,8 +83,9 @@
 import entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
+import f42HolderSuperDetails from  "./f42/f42HolderSuperDetails.vue";
 export default {
-  components: { entity, Notice, EntityAddress },
+  components: { entity, Notice, EntityAddress, f42HolderSuperDetails },
   name: "f42MemberViewSubmit",
   props: {
     form: {

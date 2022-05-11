@@ -7,17 +7,19 @@
       "
     >
       <b-form-radio-group
-        v-model="form.permitHolder.convictedIndustrialLaw"
+        :disabled="readOnly"
+        v-model="dec.convictedIndustrialLaw"
         :options="boolOptions"
       ></b-form-radio-group>
     </b-form-group>
 
     <b-form-group
       label="Please provide details"
-      v-if="form.permitHolder.convictedIndustrialLaw === true"
+      v-if="dec.convictedIndustrialLaw === true"
     >
       <b-form-textarea
-        v-model="form.permitHolder.convictedIndustrialLawDetails"
+      :disabled="readOnly"
+        v-model="dec.convictedIndustrialLawDetails"
       ></b-form-textarea>
     </b-form-group>
 
@@ -31,38 +33,43 @@
       </label>
 
       <b-form-radio-group
-        v-model="form.permitHolder.convictedOther"
+      :disabled="readOnly"
+        v-model="dec.convictedOther"
         :options="boolOptions"
       ></b-form-radio-group>
     </b-form-group>
 
     <b-form-group
       label="Please provide details"
-      v-if="form.permitHolder.convictedOther === true"
+      v-if="dec.convictedOther === true"
     >
       <b-form-textarea
-        v-model="form.permitHolder.convictedOtherDetails"
+      :disabled="readOnly"
+        v-model="dec.convictedOtherDetails"
       ></b-form-textarea>
     </b-form-group>
 
     <b-form-group
+    
       :label="
         haveYouStr +
         ', or any other person (which includes a union), ever been ordered to pay a penalty under the Fair Work Act 2009 or any other industrial law in relation to action taken by ' + youStr  + '?'
       "
     >
       <b-form-radio-group
-        v-model="form.permitHolder.orderedToPay"
+      :disabled="readOnly"
+        v-model="dec.orderedToPay"
         :options="boolOptions"
       ></b-form-radio-group>
     </b-form-group>
 
     <b-form-group
       label="Please provide details"
-      v-if="form.permitHolder.orderedToPay === true"
+      v-if="dec.orderedToPay === true"
     >
       <b-form-textarea
-        v-model="form.permitHolder.orderedToPayDetails"
+      :disabled="readOnly"
+        v-model="dec.orderedToPayDetails"
       ></b-form-textarea>
     </b-form-group>
 
@@ -73,17 +80,19 @@
       "
     >
       <b-form-radio-group
-        v-model="form.permitHolder.hadRevoked"
+      :disabled="readOnly"
+        v-model="dec.hadRevoked"
         :options="boolOptions"
       ></b-form-radio-group>
     </b-form-group>
 
     <b-form-group
       label="Please provide details"
-      v-if="form.permitHolder.hadRevoked === true"
+      v-if="dec.hadRevoked === true"
     >
       <b-form-textarea
-        v-model="form.permitHolder.hadRevokedDetails"
+      :disabled="readOnly"
+        v-model="dec.hadRevokedDetails"
       ></b-form-textarea>
     </b-form-group>
 
@@ -94,17 +103,19 @@
       "
     >
       <b-form-radio-group
-        v-model="form.permitHolder.hadConditionsImposed"
+      :disabled="readOnly"
+        v-model="dec.hadConditionsImposed"
         :options="boolOptions"
       ></b-form-radio-group>
     </b-form-group>
 
     <b-form-group
       label="Please provide details"
-      v-if="form.permitHolder.hadConditionsImposed === true"
+      v-if="dec.hadConditionsImposed === true"
     >
       <b-form-textarea
-        v-model="form.permitHolder.hadConditionsImposedDetails"
+      :disabled="readOnly"
+        v-model="dec.hadConditionsImposedDetails"
       ></b-form-textarea>
     </b-form-group>
 
@@ -115,17 +126,19 @@
       "
     >
       <b-form-radio-group
-        v-model="form.permitHolder.beenDisqualified"
+      :disabled="readOnly"
+        v-model="dec.beenDisqualified"
         :options="boolOptions"
       ></b-form-radio-group>
     </b-form-group>
 
     <b-form-group
       label="Please provide details"
-      v-if="form.permitHolder.beenDisqualified === true"
+      v-if="dec.beenDisqualified === true"
     >
       <b-form-textarea
-        v-model="form.permitHolder.beenDisqualifiedDetails"
+      :disabled="readOnly"
+        v-model="dec.beenDisqualifiedDetails"
       ></b-form-textarea>
     </b-form-group>
 
@@ -142,6 +155,14 @@ export default {
   name: "f42HolderSuperDetails",
   props: {
     form: {
+      type: Object,
+      default: () => ({}),
+    },
+    readOnly: {
+      type: Boolean,
+      default: false,
+    },
+    dec: {
       type: Object,
       default: () => ({}),
     },

@@ -14,16 +14,15 @@
       :address="entity.orgAddress"
     ></entity-address>
 
-    <b-form-group :label="titleLabel" v-if="showTitle" style="max-width:150px">
-      <b-form-select  
-      v-model="entity.title"
-      :options="['Mr.', 'Mrs.', 'Ms.', 'Other']">
+    <b-form-group :label="titleLabel" v-if="showTitle" style="max-width: 150px">
+      <b-form-select
+        v-model="entity.title"
+        :options="['Mr.', 'Mrs.', 'Ms.', 'Other']"
+      >
       </b-form-select>
     </b-form-group>
-     <b-form-group v-if="entity.title === 'Other'" label="Please specify">
-      <b-form-input
-        v-model="entity.titleDetails"
-      ></b-form-input>
+    <b-form-group v-if="entity.title === 'Other'" label="Please specify">
+      <b-form-input v-model="entity.titleDetails"></b-form-input>
     </b-form-group>
     <b-form-group :label="firstNameLabel" v-if="showFirstName">
       <b-form-input
@@ -32,11 +31,16 @@
         v-model="entity.firstName"
       ></b-form-input>
     </b-form-group>
-    <b-form-group :label="middleNameLabel" v-if="showMiddleName">
-      <b-form-input
-        v-model="entity.middleName"
-      ></b-form-input>
-    </b-form-group>
+
+    <div v-if="showMiddleName">
+      <b-form-group label="Do you have a middle name?">
+        <b-form-radio-group v-model="entity.hasMiddleName" :options="boolOptions"></b-form-radio-group>
+      </b-form-group>
+      <b-form-group :label="middleNameLabel" v-if="showMiddleName && entity.hasMiddleName === true">
+        <b-form-input v-model="entity.middleName"></b-form-input>
+      </b-form-group>
+    </div>
+
     <b-form-group :label="lastNameLabel" v-if="showLastName">
       <b-form-input
         :id="idPrefix + '-lastName'"
@@ -44,10 +48,8 @@
         v-model="entity.lastName"
       ></b-form-input>
     </b-form-group>
-      <b-form-group :label="preferredNameLabel" v-if="showPreferredName">
-      <b-form-input
-        v-model="entity.preferredName"
-      ></b-form-input>
+    <b-form-group :label="preferredNameLabel" v-if="showPreferredName">
+      <b-form-input v-model="entity.preferredName"></b-form-input>
     </b-form-group>
     <b-form-group :label="emailLabel" v-if="showEmail" :description="emailDesc">
       <b-form-input
@@ -73,8 +75,7 @@
         :key="index"
         v-bind:id="index"
       >
-        <b-row
-        >
+        <b-row>
           <b-col cols="4">
             <b-form-group>
               <b-form-select
@@ -98,25 +99,28 @@
             </b-form-group>
           </b-col>
           <b-col cols="1" class="align-middle">
-             <b-button
-                        variant="link"
-                        class="p-0 "
-                        @click.prevent="removePhone(index)"
-                        v-b-tooltip.hover
-                        title="Remove"
-                      ><b-icon icon="x-circle"/></b-button>
-            
+            <b-button
+              variant="link"
+              class="p-0"
+              @click.prevent="removePhone(index)"
+              v-b-tooltip.hover
+              title="Remove"
+              ><b-icon icon="x-circle"
+            /></b-button>
           </b-col>
         </b-row>
         <b-row>
           <b-col>
-            <b-form-group v-if="showIsSafePhone" :label="safePhoneLabel" class="mb-0">
+            <b-form-group
+              v-if="showIsSafePhone"
+              :label="safePhoneLabel"
+              class="mb-0"
+            >
               <b-form-radio-group
                 :id="idPrefix + '-isSafe' + index"
                 :name="idPrefix + '-isSafe' + index"
                 v-model="entity.phones[index].isSafe"
                 :options="boolOptions"
-
               ></b-form-radio-group>
             </b-form-group>
           </b-col>
@@ -130,12 +134,13 @@
       </div>
     </div>
 
-    <b-form-group :label="mobilePhoneLabel" v-if="showMobilePhone" :description="mobilePhoneDesc">
-      <b-form-input
-        v-model="entity.mobilePhone"
-      ></b-form-input>
+    <b-form-group
+      :label="mobilePhoneLabel"
+      v-if="showMobilePhone"
+      :description="mobilePhoneDesc"
+    >
+      <b-form-input v-model="entity.mobilePhone"></b-form-input>
     </b-form-group>
-   
 
     <entity-address
       v-if="showAddress"
@@ -144,27 +149,23 @@
       showOrgName
     ></entity-address>
 
-     <b-form-group v-if="showPostalAddessSame">
-              <b-form-checkbox
-                id="postalAddressSame"
-                v-model="entity.postalAddressSame"
-                name="postalAddressSame"
-                :value="true"
-                :unchecked-value="false"
-              >
-                {{ postalAddessSameLabel}}
-              </b-form-checkbox>
-            </b-form-group>
-
+    <b-form-group v-if="showPostalAddessSame">
+      <b-form-checkbox
+        id="postalAddressSame"
+        v-model="entity.postalAddressSame"
+        name="postalAddressSame"
+        :value="true"
+        :unchecked-value="false"
+      >
+        {{ postalAddessSameLabel }}
+      </b-form-checkbox>
+    </b-form-group>
 
     <entity-address
       v-if="showPostalAddress && !entity.postalAddressSame"
       :addressLabel="postalAddressLabel"
       :address="entity.postalAddress"
     ></entity-address>
-
-
-
 
     <b-form-group
       v-if="showIsSafePostalAddress"
@@ -178,17 +179,16 @@
       ></b-form-radio-group>
     </b-form-group>
 
-      <b-form-group v-if="showPreferredContact" :label="preferredContactLabel">
-              <b-form-select
-                v-model="entity.preferredContact"
-                id="preferredContact"
-                name="preferredContact"
-                :options="preferredContactOptions"
-              ></b-form-select>
-            </b-form-group>
+    <b-form-group v-if="showPreferredContact" :label="preferredContactLabel">
+      <b-form-select
+        v-model="entity.preferredContact"
+        id="preferredContact"
+        name="preferredContact"
+        :options="preferredContactOptions"
+      ></b-form-select>
+    </b-form-group>
 
-            <slot name="additionalFields"></slot>
-
+    <slot name="additionalFields"></slot>
   </div>
 </template>
 
@@ -250,9 +250,9 @@ export default {
       type: String,
       default: "Email",
     },
-     emailDesc: {
+    emailDesc: {
       type: String,
-      default: '',
+      default: "",
     },
     showEmail: {
       type: Boolean,
@@ -314,7 +314,7 @@ export default {
       type: Boolean,
       default: false,
     },
-     postalAddessSameLabel: {
+    postalAddessSameLabel: {
       type: String,
       default: "Postal address is the same as home address",
     },
@@ -338,7 +338,7 @@ export default {
       type: Boolean,
       default: false,
     },
-preferredContactLabel: {
+    preferredContactLabel: {
       type: String,
       default: "Preferred Contact",
     },
@@ -347,18 +347,17 @@ preferredContactLabel: {
       default: false,
     },
     showMobilePhone: {
- type: Boolean,
+      type: Boolean,
       default: false,
     },
     mobilePhoneLabel: {
       type: String,
-      default: "Mobile Phone",  
+      default: "Mobile Phone",
     },
-     mobilePhoneDesc: {
+    mobilePhoneDesc: {
       type: String,
-      default: "",  
-    }
-
+      default: "",
+    },
   },
   data() {
     return {
@@ -374,31 +373,25 @@ preferredContactLabel: {
   computed: {
     preferredContactOptions: function () {
       // `this` points to the vm instance
-      let options = []
-      if(this.entity.email.length){
-        options.push(
-          { value: 'email', text: 'Email' }
-        )
+      let options = [];
+      if (this.entity.email.length) {
+        options.push({ value: "email", text: "Email" });
       }
-      if(this.entity.phones.length){
-        options.push(
-          { value: 'phone', text: 'Phone' }
-        )
+      if (this.entity.phones.length) {
+        options.push({ value: "phone", text: "Phone" });
       }
-      if(this.entity.postalAddress){
-        options.push(
-          { value: 'mail', text: 'Mail' }
-        )
+      if (this.entity.postalAddress) {
+        options.push({ value: "mail", text: "Mail" });
       }
-      return options
-    }
+      return options;
+    },
   },
   methods: {
     addPhone() {
       this.entity.phones.push({ type: "", number: "", isSafe: null });
     },
     removePhone(i) {
-      this.entity.phones.splice(i,1);
+      this.entity.phones.splice(i, 1);
     },
     onAddressModalClose() {
       this.addressString = this.entity.addresses[0].join;

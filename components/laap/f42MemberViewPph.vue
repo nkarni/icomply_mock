@@ -71,14 +71,14 @@
       <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Other details</h6>
+            <h6>PPH declaration</h6>
 
            
             
            
           </b-col>
           <b-col cols="8">
-            <f-42-holder-super-details :form="form"></f-42-holder-super-details>
+            <f-42-holder-super-details :form="form" :readOnly="true"></f-42-holder-super-details>
           </b-col>
         </b-row>
       </section>

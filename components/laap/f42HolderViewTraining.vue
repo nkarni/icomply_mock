@@ -9,9 +9,11 @@
               You union administrator may have entered information about your training. The following details were provided by the union administrator. If they have, 
               Please check that they are accurate and correct.
             </p>
+           
             <p>
-              Throughout this form - all fields are mandatory unless
-              specifically marked as optional.
+Attach evidence showing the proposed permit holder has successfully completed the relevant training. 
+</p> <p>See Rule 51 of the Fair Work Commission Rules 2013. </p>
+<p> You can find information about right of entry training on <a href="https://www.fwc.gov.au/registered-organisations/entry-permits/training-permit-holders-must-complete" target="_blank">our website</a>.
             </p>
           </b-col>
           <b-col>

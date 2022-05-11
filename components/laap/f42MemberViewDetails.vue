@@ -27,6 +27,9 @@
               
             >
             </entity>
+             <b-form-group label="Office held">
+              <b-form-input v-model="form.committeeMember.officeHeld"></b-form-input>
+            </b-form-group>
             <b-form-group >
               <b-form-checkbox
                 v-model="form.permitHolder.confirmDetails"

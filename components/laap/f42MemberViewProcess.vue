@@ -59,6 +59,43 @@
           </b-col>
         </b-row>
       </section>
+          <section class="mb-4 pb-4">
+        <b-row>
+          <b-col>
+            <h5>Privacy</h5>
+            <p>
+              Read the
+              <a
+                href="https://www.fwc.gov.au/documents/documents/forms/form_f42-privacy.pdf"
+                >Privacy notice</a
+              >
+              to find out what personal information we collect, why we collect
+              it, and what we do with it.
+            </p>
+            <p>The Commission may publish on its website:</p>
+            <ul>
+              <li>
+                the names of the applicant organisation and the proposed permit
+                holder; and
+              </li>
+              <li>
+                that the organisation has applied for an entry permit to be
+                issued to the proposed permit holder; and
+              </li>
+              <li>
+                that third parties may make submissions to the Commission as to
+                whether the proposed permit holder is a fit and proper person to
+                be issued with an entry permit.
+              </li>
+            </ul>
+            <p>
+              If the Commission decides to issue an entry permit, the Commission
+              will publish on its website the names of the applicant
+              organisation and the permit holder, and the permit details.
+            </p>
+          </b-col>
+        </b-row>
+      </section>
     </b-form>
   </div>
 </template>

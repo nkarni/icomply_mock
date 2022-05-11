@@ -40,6 +40,12 @@
                   drop-placeholder="Drop file here..."
                 ></b-form-file>
               </b-form-group>
+
+              <b-form-group label="Do you confirm the photograph meets the Fair Work Commission’s requirements for entry permit photographs?">
+                <b-form-radio-group v-model="correctPhoto2" :options="boolOptions">
+
+                </b-form-radio-group>
+              </b-form-group>
             </div>
           </b-col>
         </b-row>

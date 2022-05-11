@@ -5,7 +5,9 @@
         <b-row>
           <b-col cols="4">
             <h6>Digital ID</h6>
-            <p>Some explanation here...</p>
+            <p>You need to prove their identity to the Commission before their permit can be issued. </p>
+            <p>   You can do this with a Digital iD™ obtained from Australia Post. </p>
+            <p> You should have this before you lodge the application, or there may be a delay in issuing the permit.</p>
           </b-col>
 
           <b-col class="text-center mt-3">

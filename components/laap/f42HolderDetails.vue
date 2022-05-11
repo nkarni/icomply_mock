@@ -65,6 +65,8 @@
               </b-form-input>
             </b-form-group>
 
+            <notice v-if="form.permitHolder.previouslyHeldAnEntryPermit === true" class="mt-2 mb-2" :message="'If a permit is returned more than 7 days after expiry or cannot be returned because it is lost, the proposed permit holder may be asked to provide a statutory declaration explaining the failure to comply with s.517 of the Fair Work Act 2009.'"></notice>
+
              <b-form-group
               label="Has that permit been returned?"
               v-if="form.permitHolder.previouslyHeldAnEntryPermit === true"
