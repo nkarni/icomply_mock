@@ -92,7 +92,7 @@
             <p>Give details of the training completed and the date it was completed.</p><p>
 Attach evidence showing the proposed permit holder has successfully completed the relevant training. 
 </p> <p>See Rule 51 of the Fair Work Commission Rules 2013. </p>
-<p> You can find information about right of entry training on our website.
+<p> You can find information about right of entry training on <a href="https://www.fwc.gov.au/registered-organisations/entry-permits/training-permit-holders-must-complete" target="_blank">our website</a>.
             </p>
 
 
@@ -126,7 +126,7 @@ Attach evidence showing the proposed permit holder has successfully completed th
             <h6>Photograph</h6>
             <p>
               Provide a photograph of the Proposed Permit Holder that
-              follows the FWC requirements <a href="https://asset.fwc.gov.au/documents/documents/forms/form_42c.pdf">click here</a> for more information.
+              follows the FWC requirements <a target="_blank" href="https://www.fwc.gov.au/registered-organisations/entry-permits/about-fair-work-entry-permits/how-we-process-fair-work-entry">click here</a> for more information.
             </p>
           </b-col>
           <b-col>
@@ -156,7 +156,7 @@ Attach evidence showing the proposed permit holder has successfully completed th
         </b-row>
       </section>
 
-  <section class=" mb-4 pb-2">
+  <!-- <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Other information</h6>
@@ -167,7 +167,7 @@ Attach evidence showing the proposed permit holder has successfully completed th
             <f-42-holder-super-details :form="form"></f-42-holder-super-details>
           </b-col>
         </b-row>
-      </section>
+      </section> -->
 
 
 
