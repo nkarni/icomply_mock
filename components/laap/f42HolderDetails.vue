@@ -133,6 +133,8 @@
               ></b-form-radio-group>
             </b-form-group> -->
             <div >
+                            <notice class="mb-2" message="Only .jpg and .jpeg files are accepted, file size limit is 5MB"></notice>
+
               <b-form-group
                 label="Attach a photograph"
                 description="Short explanation about how the file will be used."
