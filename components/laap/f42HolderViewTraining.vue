@@ -4,21 +4,33 @@
       <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Details of your entry permit training</h6>
+            <h6>Information provided about you by the administrator</h6>
             <p>
-              You union administrator may have entered information about your training. The following details were provided by the union administrator. If they have, 
+             The following details were provided by the union administrator. 
               Please check that they are accurate and correct.
             </p>
            
-            <p>
-Attach evidence showing the proposed permit holder has successfully completed the relevant training. 
-</p> <p>See Rule 51 of the Fair Work Commission Rules 2013. </p>
-<p> You can find information about right of entry training on <a href="https://www.fwc.gov.au/registered-organisations/entry-permits/training-permit-holders-must-complete" target="_blank">our website</a>.
-            </p>
+           
           </b-col>
           <b-col>
            
-<f-42-training :form="form"></f-42-training>
+<f-42-holder-details-read-only :form="form"></f-42-holder-details-read-only>
+
+<b-form-group label="Are the details above correct?">
+             <b-form-radio-group v-model="form.permitHolder.confirmInfo" :options="boolOptions" >
+
+             </b-form-radio-group>
+            </b-form-group>
+
+            <b-form-group label="Please provide detailed explanation" v-if="form.permitHolder.confirmInfo === false">
+              <b-form-textarea v-model="form.permitHolder.infoCorrection">
+
+              </b-form-textarea>
+            </b-form-group>
+
+            <notice class="mb-4" v-if="form.permitHolder.confirmInfo === false" :message="'Please proceed to complete and submit the form. When you submit it, the union administrator will be notified.'"></notice>
+
+
             <notice :message="'Dev note: as part of the standard upload file component - if a file was uploaded the use can see a preview of it or click on a link to view it.'"></notice>
           </b-col>
         </b-row>
@@ -34,8 +46,10 @@ import entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
 import f42Training from "./f42/f42Training.vue";
+import f42HolderDetailsReadOnly from "./f42/f42HolderDetailsReadOnly.vue";
+
 export default {
-  components: { entity, Notice, EntityAddress,f42Training },
+  components: { entity, Notice, EntityAddress,f42Training, f42HolderDetailsReadOnly },
   name: "f42HolderViewTraining",
   props: {
     form: {

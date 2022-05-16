@@ -6,83 +6,39 @@
           <b-col cols="4">
             <h6>The Proposed Permit Holder Identity</h6>
 
-           
-            <p>
-              Explanation about how to verify it...
-            </p>
-           
+            <p>Explanation about how to verify it...</p>
           </b-col>
           <b-col cols="8">
-            <b-form-group label="Name:">
-              <p>Don Middle Burrows</p>
-            </b-form-group >
+           <f-42-holder-details-read-only :form="form"></f-42-holder-details-read-only>
 
-             <b-form-group label="Office/Position:">
-              <p v-if="form.permitHolder.employeeOrOfficeHolder === 'An Office Holder'">An office holder holding the office: {{ form.permitHolder.positionOrOfficeHeld }}</p>
-              <p v-else>An employee holding the position: {{ form.permitHolder.positionOrOfficeHeld }}</p>            
-            </b-form-group >
-
-              <b-form-group label="Previous permit:">
-              <p v-if="form.permitHolder.previouslyHeldAnEntryPermit === true">They have held a permit previously. <br>Permit no. {{form.permitHolder.previousPermitNumber}}<br>
-              <span v-if="form.permitHolder.previousPermitReturned === true">Permit was returned.</span>
-              <span v-if="form.permitHolder.previousPermitReturned === true">Permit was not returned.</span>
-              </p>
-              <p v-else>They have not held a permit previously.</p>            
-            </b-form-group >
-             
-              <b-form-group label="Entry Permit Holder Training:">
-  <div
-        v-for="(training, index) of form.permitHolder.trainings"
-        :key="index"
-        v-bind:id="index"
-        :class="trainingRowClass"
-      >
-      Name: {{training.trainingName}}<br> Method: {{training.trainingName}}<br>Completed on: {{training.trainingCompletionDate}}<br>Evidence: <a target="_blank" href="">Click Here</a>
-
-  </div>
-               
-            </b-form-group >
-
-            <b-form-group label="Photograph:">
-              <p>Image here</p>
-            </b-form-group>
-             <b-form-group label="Signature:">
-               <img
-            src="~/assets/img/pph_signature.png"
-          style="max-width: 100%"
-          >
-            </b-form-group >
-
-             <b-form-group >
+            <b-form-group>
               <b-form-checkbox
                 v-model="form.committeeMember.confirmedPphId"
                 :value="true"
                 :unchecked-value="false"
               >
-                I confirm that the Proposed Permit Holder details are correct and I have seen the identity and signature of the Proposed Permit Holder.
+                I confirm that the Proposed Permit Holder details are correct
+                and I have seen the identity and signature of the Proposed
+                Permit Holder.
               </b-form-checkbox>
             </b-form-group>
-            
-
-           
           </b-col>
         </b-row>
       </section>
-      <section class=" mb-4 pb-2">
+      <section class="mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>PPH declaration</h6>
-
-           
-            
-           
           </b-col>
           <b-col cols="8">
-            <f-42-holder-super-details :form="form" :readOnly="true"></f-42-holder-super-details>
+            <f-42-holder-super-details
+              :form="form"
+              :readOnly="true"
+            ></f-42-holder-super-details>
           </b-col>
         </b-row>
       </section>
- <!-- <section class="border-bottom border-secondary mb-4 pb-2">
+      <!-- <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Proper inquiries</h6>
@@ -114,7 +70,6 @@
           </b-col>
         </b-row>
  </section> -->
- 
     </b-form>
   </div>
 </template>
@@ -126,9 +81,20 @@ import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
 import f42Training from "./f42/f42Training.vue";
 import f42Files from "./f42/f42Files.vue";
-import f42HolderSuperDetails from  "./f42/f42HolderSuperDetails.vue";
+import f42HolderSuperDetails from "./f42/f42HolderSuperDetails.vue";
+import f42HolderDetailsReadOnly from "./f42/f42HolderDetailsReadOnly.vue";
+
 export default {
-  components: { entity, Notice, EntityAddress, AbnLookup, f42Training, f42Files, f42HolderSuperDetails },
+  components: {
+    entity,
+    Notice,
+    EntityAddress,
+    AbnLookup,
+    f42Training,
+    f42Files,
+    f42HolderSuperDetails,
+    f42HolderDetailsReadOnly
+  },
   name: "f42MemberViewPph",
   props: {
     form: {
@@ -199,11 +165,11 @@ export default {
     };
   },
   computed: {
-    trainingRowClass(){
-      if(this.form.permitHolder.trainings.length > 1){
-        return 'training mb-3'
-      }else{
-        return ''
+    trainingRowClass() {
+      if (this.form.permitHolder.trainings.length > 1) {
+        return "training mb-3";
+      } else {
+        return "";
       }
     },
     youString: function () {
@@ -231,22 +197,22 @@ export default {
       return this.form.repType === "self" ? "are you" : "the Applicant is";
     },
   },
-   mounted() {
-		this.form.permitHolder.trainings= [
-            {
-              trainingName: "Sample training 1",
-              trainingMethod: "Online",
-              trainingCompletionDate: "25 November 2015",
-              trainingFile: null,
-            },
-            {
-              trainingName: "Sample training 2",
-              trainingMethod: "Online",
-              trainingCompletionDate: "25 November 2019",
-              trainingFile: null,
-            },
-          ]
-		},
+  mounted() {
+    this.form.permitHolder.trainings = [
+      {
+        trainingName: "Sample training 1",
+        trainingMethod: "Online",
+        trainingCompletionDate: "25 November 2015",
+        trainingFile: null,
+      },
+      {
+        trainingName: "Sample training 2",
+        trainingMethod: "Online",
+        trainingCompletionDate: "25 November 2019",
+        trainingFile: null,
+      },
+    ];
+  },
   methods: {
     onWrongBusinessNameClick() {
       if (form.businessDetailsCorrect === false) {

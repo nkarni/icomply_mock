@@ -14,6 +14,7 @@
               :lastNameLabel="'Legal surname'"
               :middleNameLabel="'Middle name (optional)'"
               :showPreferredName="true"
+              showOtherNames
       showMobilePhone
       :emailDesc="emailDesc"
       :mobilePhoneDesc="'The mobile number may be used for notifications'"

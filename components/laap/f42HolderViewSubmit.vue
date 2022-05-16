@@ -24,8 +24,10 @@
           <b-col>
          
             <h5>Submit</h5>
-            <p>The form will be submitted for verification by a member of Committee of Management and passed on to FWC for review.</p>
+            <p></p>
         
+        <p v-if="form.permitHolder.confirmInfo === false">The form will be sent to the administrator for review and correction.</p>
+        <p v-else>The form will be submitted for verification by a member of Committee of Management and passed on to FWC for review.</p>
            <b-col class="text-center mt-3">
           <b-button variant="primary">Submit the form</b-button>
         </b-col>

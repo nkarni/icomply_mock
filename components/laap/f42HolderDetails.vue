@@ -27,14 +27,15 @@
               showLastName
               showMiddleName
               showEmail
-              :firstNameLabel="'Legal given name(s)'"
-              :lastNameLabel="'Legal surname'"
-              :middleNameLabel="'Middle name'"
+              :firstNameLabel="'Legal first name'"
+              :lastNameLabel="'Surname'"
+              :middleNameLabel="'Middle name(s)'"
               :showPreferredName="true"
               showMobilePhone
               :emailDesc="'The email address will be used to notify the Proposed Permit holder'"
               :mobilePhoneDesc="'The mobile number will be used to notify the Proposed Permit holder'"
-              :mobilePhoneLabel="'Mobile phone (optional)'"
+              :mobilePhoneLabel="'Phone number'"
+              :showOtherNames="true"
             >
             </entity>
 

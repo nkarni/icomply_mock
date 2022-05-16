@@ -48,9 +48,66 @@
         v-model="entity.lastName"
       ></b-form-input>
     </b-form-group>
-    <b-form-group :label="preferredNameLabel" v-if="showPreferredName">
-      <b-form-input v-model="entity.preferredName"></b-form-input>
-    </b-form-group>
+
+     <div v-if="showPreferredName">
+      <b-form-group label="Do you have a preferred name?">
+        <b-form-radio-group v-model="entity.hasPreferredName" :options="boolOptions"></b-form-radio-group>
+      </b-form-group>
+      <b-form-group :label="preferredNameLabel" v-if="entity.hasPreferredName === true">
+        <b-form-input v-model="entity.preferredName"></b-form-input>
+      </b-form-group>
+    </div>
+
+    <div v-if="showOtherNames">
+      <b-form-group label="have you been known by any other names?">
+        <b-form-radio-group v-model="entity.hasOtherNames" :options="boolOptions"></b-form-radio-group>
+      </b-form-group>
+      <div  v-if="entity.hasOtherNames === true">
+        
+
+<div 
+              v-for="(otherName, index) of entity.otherNames"
+              :key="index"
+              v-bind:id="index"
+              class="mb-2 courts pl-3"
+            >
+              <b-form-group
+                label="Other first name"
+              >
+                <b-form-input
+                  v-model="
+                    entity.otherNames[index].firstName
+                  "
+                ></b-form-input>
+              </b-form-group>
+              <b-form-group
+                label="Other surname"
+              >
+                <b-form-input
+                  v-model="
+                    entity.otherNames[index].lastName
+                  "
+                ></b-form-input>
+              </b-form-group>
+
+              <div class="text-right">
+                <b-button
+                  variant="link"
+                  class="p-0 mb-4"
+                  @click.prevent="addOtherName"
+                  v-if="
+                    index < 3 && entity.hasOtherNames
+                  "
+                  >Click here to add another previous name</b-button
+                >
+              </div>
+            </div>
+
+
+      </div>
+    </div>
+
+
     <b-form-group :label="emailLabel" v-if="showEmail" :description="emailDesc">
       <b-form-input
         :id="idPrefix + '-email'"
@@ -238,6 +295,10 @@ export default {
       type: Boolean,
       default: false,
     },
+     showOtherNames: {
+      type: Boolean,
+      default: false,
+    },
     lastNameLabel: {
       type: String,
       default: "Family name(s)",
@@ -396,6 +457,12 @@ export default {
     onAddressModalClose() {
       this.addressString = this.entity.addresses[0].join;
       // @todo use this to show in address field?
+    },
+     addOtherName() {
+      this.entity.otherNames.push({
+        firstName: "",
+        lastName: "",
+      });
     },
   },
 };

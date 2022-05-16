@@ -185,13 +185,13 @@
               ]"
             >
               <template #title>
-                <h5>Your training</h5>
+                <h5>Information</h5>
                 <!-- <span>Their details</span> -->
               </template>
               <f-42-holder-view-training :form="form"></f-42-holder-view-training>
             </b-tab>
 
-            <b-tab
+            <!-- <b-tab
               :title-link-class="[
                 'laap-title-link',
                 'mb-2',
@@ -201,10 +201,10 @@
             >
               <template #title>
                 <h5>Photograph</h5>
-                <!-- <span>Their details</span> -->
+                <span>Their details</span>
               </template>
               <f-42-holder-view-photo :form="form"></f-42-holder-view-photo>
-            </b-tab>
+            </b-tab> -->
              <b-tab
               :title-link-class="[
                 'laap-title-link',
@@ -522,10 +522,21 @@ export default {
           hasHolderPhoto: null,
         },
         permitHolder: {
+          infoCorrection: '',
+          confirmInfo: null,
           firstName: "",
           middleName: "",
           lastName: "",
           preferredName: '',
+          hasOtherNames: null,
+          hasPreferredName: null,
+          otherNames: [
+            {
+              firstName: '',
+              lastName: ''
+            }
+          ],
+hasOtherNames: null,
           email: "",
           mobilePhone: "",
           employeeOrOfficeHolder: null,
