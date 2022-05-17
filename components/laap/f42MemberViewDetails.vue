@@ -23,7 +23,7 @@
               showFirstName
               showLastName
               showEmail
-:firstNameLabel="'First name'"
+:firstNameLabel="'Legal first name'"
 :lastNameLabel="'Surname'"
               
             >
