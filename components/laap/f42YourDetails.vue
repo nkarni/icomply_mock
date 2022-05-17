@@ -62,7 +62,19 @@
             <p>Is here a better place to put the 'why we need it' rather than in the intro page? </p>
           </b-col>
           <b-col>
+            <b-form-group>
+              <b-form-checkbox
+                v-model="form.permitHolder.isSameAsAdmin"
+                :value="true"
+                :unchecked-value="false"
+              >
+                Check this box if you are also the Proposed Permit Holder.
+              </b-form-checkbox>
+            </b-form-group>
+            <notice  v-if="form.permitHolder.isSameAsAdmin" :message="'Enter your full details in the next step.'"></notice>
+
           <entity
+          v-if="!form.permitHolder.isSameAsAdmin"
               :entity="form.admin"
               showFirstName
               showLastName

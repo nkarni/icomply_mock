@@ -4,6 +4,7 @@
       class="mb-3"
       :message="'Legal name must match drivers license or name on an official ID document.'"
     ></notice>
+  
     <entity
       :entity="form.permitHolder"
       showFirstName
@@ -175,60 +176,64 @@ export default {
     };
   },
   computed: {
+    firstPerson: function(){
+      return this.form.userRole === "permitHolder" || (this.form.userRole === "admin" && this.form.permitHolder.isSameAsAdmin)
+    },
     
     employeeOrOfficeHolderLabel: function () {
-      if (this.form.userRole === "permitHolder") {
+      if (this.firstPerson) {
         return "What is your role in ths organisation?";
       } else {
         return "The Proposed Permit Holder is:";
       }
     },
     positionOrOfficeHeldLabel: function () {
-      if (this.form.userRole === "permitHolder") {
+      if (this.firstPerson) {
         return "What is your office or position?";
       } else {
         return "What is their office or position?";
       }
     },
     previouslyHeldAnEntryPermitLabel: function () {
-      if (this.form.userRole === "permitHolder") {
+      if (this.firstPerson) {
         return "Have you previously held an entry permit?";
       } else {
         return "Has this person previously held an entry permit?";
       }
     },
     previousPermitNumberLabel: function () {
-      if (this.form.userRole === "permitHolder") {
+      if (this.firstPerson) {
         return "What is your most recent or current permit number?";
       } else {
         return "What is their most recent or current permit number?";
       }
     },
     emailDesc: function () {
-      if (this.form.userRole === "permitHolder") {
+      if (this.firstPerson) {
         return "";
       } else {
         return "The email address will be used to notify the Proposed Permit holder";
       }
     },
+   
     youString: function () {
-      return this.form.userRole === "permitHolder" ? "you" : "they";
+      return this.firstPerson ? "you" : "they";
     },
     yourString: function () {
-      return this.form.userRole === "permitHolder" ? "your" : "their";
+      return this.firstPerson ? "your" : "their";
     },
     AreYouString: function () {
-      return this.form.userRole === "permitHolder" ? "are you" : "are they";
+      return this.firstPerson ? "are you" : "are they";
     },
     DoYouString: function () {
-      return this.form.userRole === "permitHolder" ? "do you" : "do they";
+      return this.firstPerson ? "do you" : "do they";
     },
    
     youAreString: function () {
-      return this.form.userRole === "permitHolder" ? "you are" : "they are";
+      return this.firstPerson ? "you are" : "they are";
     },
     wereYouString: function () {
-      return this.form.userRole === "permitHolder" ? "were you" : "were they";
+      return this.firstPerson ? "were you" : "were they";
     },
     
  HaveYouString: function () {

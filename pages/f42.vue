@@ -3,20 +3,25 @@
     <b-container v-if="form.userRole !== ''">
       <b-row>
         <b-col cols="8">
-          <h3 class="text-primary">Application for an entry permit <span v-if="form.permitHolder.firstName !== ''"> for {{ form.permitHolder.firstName }} {{ form.permitHolder.lastName }}<br></span> <small style="font-size:16px">({{ form.userRole }} view)</small></h3>
+          <h3 class="text-primary">
+            Application for an entry permit
+            <span v-if="form.permitHolder.firstName !== ''">
+              for {{ form.permitHolder.firstName }}
+              {{ form.permitHolder.lastName }}<br
+            /></span>
+            <small style="font-size: 16px">({{ form.userRole }} view)</small>
+          </h3>
         </b-col>
         <b-col cols="4" class="text-right">
           <b-button>Reference: YCFRU</b-button>
           <b-button variant="primary">Save for later</b-button>
         </b-col>
       </b-row>
-      <b-row class="mt-4">
+      <!-- <b-row class="mt-4">
         <b-col>
           <f-42-progress-bar :form="form"></f-42-progress-bar>
-          <!-- <h5 class="text-primary">Current status: Started</h5> -->
-          <!-- <small>Status progression is Started >> Awaiting Entry Holder confirmation >> Awaiting Member of Committee of Management confirmation >> Ready for submission >> Submitted</small> -->
-        </b-col>
-      </b-row>
+                 </b-col>
+      </b-row> -->
       <!-- ADMIN START VIEW -->
       <div v-if="form.userRole === 'admin'">
         <b-row class="mt-4">
@@ -118,11 +123,11 @@
             </b-tab>
           </b-tabs>
         </b-row>
-        <b-row class="mt-4" >
+        <b-row class="mt-4">
           <b-col cols="12" class="text-right">
             <b-button
               variant="primary"
-              v-if="tabIndex > 0 && tabIndex< 4"
+              v-if="tabIndex > 0 && tabIndex < 4"
               @click="tabIndex--"
               class="mr-2"
               >Save & Prev</b-button
@@ -134,7 +139,7 @@
         </b-row>
       </div>
 
-       <!-- permitHolder  VIEW -->
+      <!-- permitHolder  VIEW -->
       <div v-if="form.userRole === 'permitHolder'">
         <b-row class="mt-4">
           <b-tabs
@@ -188,7 +193,9 @@
                 <h5>Information</h5>
                 <!-- <span>Their details</span> -->
               </template>
-              <f-42-holder-view-training :form="form"></f-42-holder-view-training>
+              <f-42-holder-view-training
+                :form="form"
+              ></f-42-holder-view-training>
             </b-tab>
 
             <!-- <b-tab
@@ -205,7 +212,7 @@
               </template>
               <f-42-holder-view-photo :form="form"></f-42-holder-view-photo>
             </b-tab> -->
-             <b-tab
+            <b-tab
               :title-link-class="[
                 'laap-title-link',
                 'mb-2',
@@ -219,7 +226,7 @@
               </template>
               <f-42-holder-view-id :form="form"></f-42-holder-view-id>
             </b-tab>
-          
+
             <b-tab
               :title-link-class="[
                 'laap-title-link',
@@ -252,7 +259,7 @@
         </b-row>
       </div>
 
-       <!-- committeeMember  VIEW -->
+      <!-- committeeMember  VIEW -->
       <div v-if="form.userRole === 'committeeMember'">
         <b-row class="mt-4">
           <b-tabs
@@ -309,8 +316,6 @@
               <f-42-member-view-pph :form="form"></f-42-member-view-pph>
             </b-tab>
 
-          
-          
             <b-tab
               :title-link-class="[
                 'laap-title-link',
@@ -327,22 +332,21 @@
             </b-tab>
           </b-tabs>
         </b-row>
-        <b-row class="mt-4" >
+        <b-row class="mt-4">
           <b-col cols="12" class="text-right">
             <b-button
               variant="primary"
-              v-if="tabIndex > 0 "
+              v-if="tabIndex > 0"
               @click="tabIndex--"
               class="mr-2"
               >Save & Prev</b-button
             >
-            <b-button variant="primary" v-if="tabIndex < 3"  @click="tabIndex++"
+            <b-button variant="primary" v-if="tabIndex < 3" @click="tabIndex++"
               >Save & Next</b-button
             >
           </b-col>
         </b-row>
       </div>
-
     </b-container>
     <b-container>
       <b-row class="mt-4">
@@ -447,8 +451,6 @@
 </template>
 
 <script>
-
-
 import f42MemberViewSubmit from "../components/laap/f42MemberViewSubmit.vue";
 import f42MemberViewPph from "../components/laap/f42MemberViewPph.vue";
 import f42MemberViewDetails from "../components/laap/f42MemberViewDetails.vue";
@@ -500,7 +502,6 @@ export default {
   data() {
     return {
       form: {
-       
         userRole: "",
         admin: {
           hasDifferentPostalAddress: false,
@@ -522,30 +523,30 @@ export default {
           hasHolderPhoto: null,
         },
         permitHolder: {
-          
-          infoCorrection: '',
+          isSameAsAdmin: false,
+          infoCorrection: "",
           confirmInfo: null,
           firstName: "",
           middleName: "",
           lastName: "",
-          preferredName: '',
+          preferredName: "",
           hasOtherNames: null,
           hasPreferredName: null,
           otherNames: [
             {
-              firstName: '',
-              lastName: ''
-            }
+              firstName: "",
+              lastName: "",
+            },
           ],
-hasOtherNames: null,
+          hasOtherNames: null,
           email: "",
           mobilePhone: "",
           employeeOrOfficeHolder: null,
           positionOrOfficeHeld: "",
           previouslyHeldAnEntryPermit: null,
           previousPermitReturned: null,
-          previousPermitNumber: '',
-          previousPermitNotReturnedReason: '',
+          previousPermitNumber: "",
+          previousPermitNotReturnedReason: "",
           previousPermitReturnedOnTime: null,
           photoFile: null,
           trainings: [
@@ -561,53 +562,53 @@ hasOtherNames: null,
           confirmDetails: null,
           dec: {
             convictedIndustrialLaw: null,
-            convictedIndustrialLawDetails: '',
+            convictedIndustrialLawDetails: "",
             convictedOther: null,
-            convictedOtherDetails: '',
+            convictedOtherDetails: "",
             orderedToPay: null,
-            orderedToPayDetails: '',
+            orderedToPayDetails: "",
             hadRevoked: null,
-            hadRevokedDetails: '',
+            hadRevokedDetails: "",
             hadConditionsImposed: null,
-            hadConditionsImposedDetails: '',
+            hadConditionsImposedDetails: "",
             beenDisqualified: null,
-            beenDisqualifiedDetails: '',
+            beenDisqualifiedDetails: "",
             awareOfMatters: null,
-            awareOfMattersDetails: ''
-          }
-          
-
+            awareOfMattersDetails: "",
+          },
         },
         committeeMember: {
-          officeHeld: '',
+          officeHeld: "",
           selectedName: "",
           email: "",
           firstName: "",
           middleName: "",
           lastName: "",
           email: "",
-          inquiries: '',
+          inquiries: "",
           confirmedPphId: false,
-          files: [{
-            docType: '',
-            file: ''
-          }],
+          files: [
+            {
+              docType: "",
+              file: "",
+            },
+          ],
           dec: {
             convictedIndustrialLaw: null,
-            convictedIndustrialLawDetails: '',
+            convictedIndustrialLawDetails: "",
             convictedOther: null,
-            convictedOtherDetails: '',
+            convictedOtherDetails: "",
             orderedToPay: null,
-            orderedToPayDetails: '',
+            orderedToPayDetails: "",
             hadRevoked: null,
-            hadRevokedDetails: '',
+            hadRevokedDetails: "",
             hadConditionsImposed: null,
-            hadConditionsImposedDetails: '',
+            hadConditionsImposedDetails: "",
             beenDisqualified: null,
-            beenDisqualifiedDetails: '',
+            beenDisqualifiedDetails: "",
             awareOfMatters: null,
-            awareOfMattersDetails: ''
-          }
+            awareOfMattersDetails: "",
+          },
         },
 
         businessDetailsCorrect: null,

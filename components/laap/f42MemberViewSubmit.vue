@@ -11,6 +11,11 @@
           </b-col> -->
           </b-col>
           <b-col>
+            <notice class="mb-2" message="Answer each question in the declaration below. Section 513(2) of the Fair Work Act 2009 has the effect that certain offences do not need to be disclosed.
+
+Giving false or misleading information is a serious offence. A person who: <ol><li>knowingly or recklessly makes a false or misleading statement in an application for an entry permit; or</li><li>knowingly gives false or misleading information in an application for an entry permit</li></ol>is guilty of an offence, the punishment for which is imprisonment for up to 12 months if the statement is made or information is provided knowingly, or up to 6 months if the statement is made recklessly – see Part 7.4, s.136 and s.137.1 of the Criminal Code."></notice>
+            
+           
 
             <p>
               This is a declaration in support of an application to the Fair Work Commission under s.512 of the Fair Work Act 2009 for an entry permit, for the following proposed permit holder:
@@ -26,10 +31,25 @@
                 Declare that:
                 <ol>
                   <li>Having made proper inquiries, I believe that the proposed permit holder is a fit and proper person to hold an entry permit.</li>
-<li>     Each answer I give at paragraphs (a) to (g) below is true and correct to the best of my knowledge:
+<li>     Each answer I give below is true and correct to the best of my knowledge:
 </li>
                 </ol>
+                All questions here
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </p>
+              <f-42-member-dec :form="form"></f-42-member-dec>
                 <notice class="mb-2" :message="'The Commission can take into account any other matter that it considers relevant to whether the proposed permit holder is a fit and proper person to hold a permit. This may include adverse comments made about the proposed permit holder in a Commission or court decision, regardless of whether the proposed permit holder was a party to the proceeding.'" /></notice>
 
             <!-- <f-42-holder-super-details :form="form" :dec="form.committeeMember.dec"></f-42-holder-super-details> -->
@@ -103,9 +123,9 @@
 import entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
-import f42HolderSuperDetails from  "./f42/f42HolderSuperDetails.vue";
+import f42MemberDec from  "./f42/f42MemberDec.vue";
 export default {
-  components: { entity, Notice, EntityAddress, f42HolderSuperDetails },
+  components: { entity, Notice, EntityAddress, f42MemberDec },
   name: "f42MemberViewSubmit",
   props: {
     form: {

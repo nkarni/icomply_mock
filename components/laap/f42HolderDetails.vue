@@ -17,8 +17,9 @@
             </p>
           </b-col>
           <b-col>
+            
 
-<f-42-holder-details-comp :form="form"></f-42-holder-details-comp>
+<f-42-holder-details-comp  :form="form"></f-42-holder-details-comp>
             
           </b-col>
         </b-row>
