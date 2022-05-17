@@ -12,7 +12,7 @@ export default {
     },
      borderClass: {
       type: String,
-      default: 'green'
+      default: 'yellow'
     },
   },
   data() {
@@ -34,6 +34,9 @@ export default {
 }
 .blue{
 border-left: 4px solid var(--primary) !important;
+}
+.yellow{
+  border-left: 4px solid var(--yellow) !important;
 }
   
 </style>
