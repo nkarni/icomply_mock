@@ -1,17 +1,20 @@
 <template>
   <div>
     <b-form>
-  
-
         <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="">
             <h6>Declaration</h6>
-            <p>Answer each question in the declaration below. Section 513(2) of the Fair Work Act 2009 has the effect that certain offences do not need to be disclosed.</p>
-            <p>Giving false or misleading information is a serious offence. A person who: · knowingly or recklessly makes a false or misleading statement in an application for an entry permit; or · knowingly gives false or misleading information in an application for an entry permit is guilty of an offence, the punishment for which is imprisonment for up to 12 months if the statement is made or information is provided knowingly, or up to 6 months if the statement is made recklessly – see Part 7.4, s.136 and s.137.1 of the Criminal Code.</p>
+            <notice class="mb-2" message="Answer each question in the declaration below. Section 513(2) of the Fair Work Act 2009 has the effect that certain offences do not need to be disclosed.
+
+Giving false or misleading information is a serious offence. A person who: · knowingly or recklessly makes a false or misleading statement in an application for an entry permit; or · knowingly gives false or misleading information in an application for an entry permit is guilty of an offence, the punishment for which is imprisonment for up to 12 months if the statement is made or information is provided knowingly, or up to 6 months if the statement is made recklessly – see Part 7.4, s.136 and s.137.1 of the Criminal Code."></notice>
+            
           <p>This is a declaration by the proposed permit holder in support of an application to the Fair Work Commission under s.512 of the Fair Work Act 2009 for an entry permit.</p>
           
-            
+             <p>
+                I, James Paul Roberts 
+                Of orgName, branch, full streetAddress
+              declare that each answer I give below is true and correct:</p>
             <f-42-holder-super-details :form="form" :dec="form.permitHolder.dec"></f-42-holder-super-details>
           </b-col>
         </b-row>
