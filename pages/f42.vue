@@ -522,6 +522,7 @@ export default {
           hasHolderPhoto: null,
         },
         permitHolder: {
+          
           infoCorrection: '',
           confirmInfo: null,
           firstName: "",
@@ -545,6 +546,7 @@ hasOtherNames: null,
           previousPermitReturned: null,
           previousPermitNumber: '',
           previousPermitNotReturnedReason: '',
+          previousPermitReturnedOnTime: null,
           photoFile: null,
           trainings: [
             {

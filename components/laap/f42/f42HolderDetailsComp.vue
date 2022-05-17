@@ -69,8 +69,32 @@
       label="Why has it not been returned?"
       v-if="form.permitHolder.previousPermitReturned === false"
     >
-      <b-form-input v-model="form.permitHolder.previousPermitNotReturnedReason">
-      </b-form-input>
+      <b-form-textarea v-model="form.permitHolder.previousPermitNotReturnedReason">
+      </b-form-textarea>
+    </b-form-group>
+
+      <b-form-group
+      label="Please provide a Statuary Declaration (optional)"
+      v-if="form.permitHolder.previousPermitReturned === false"
+    >
+     <b-form-file></b-form-file>
+     
+    </b-form-group>
+     <b-form-group
+      label="Has that permit been returned on time?"
+      v-if="form.permitHolder.previousPermitReturned === true"
+    >
+      <b-form-radio-group
+        v-model="form.permitHolder.previousPermitReturnedOnTime"
+        :options="boolOptions"
+      ></b-form-radio-group>
+    </b-form-group>
+     <b-form-group
+      label="Please provide a Statuary Declaration (optional)"
+      v-if="form.permitHolder.previousPermitReturnedOnTime === false"
+    >
+     <b-form-file></b-form-file>
+     
     </b-form-group>
   </div>
 </template>
