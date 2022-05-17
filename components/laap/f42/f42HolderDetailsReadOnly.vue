@@ -43,7 +43,7 @@
                 v-for="(training, index) of form.permitHolder.trainings"
                 :key="index"
                 v-bind:id="index"
-               
+               class="mb-2"
               >
                 Name: {{ training.trainingName }}<br />
                 Method: {{ training.trainingName }}<br />Completed on:

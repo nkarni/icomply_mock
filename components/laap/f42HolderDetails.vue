@@ -17,73 +17,9 @@
             </p>
           </b-col>
           <b-col>
-             <notice
-             class="mb-3"
-            :message="'Tell us the proposed permit holder’s full legal name, including their middle name(s). If they don\’t have a middle name, write \'N/A\'.<br><br>Legal name must match drivers license or name on an official ID document.'"
-          ></notice>
-            <entity
-              :entity="form.permitHolder"
-              showFirstName
-              showLastName
-              showMiddleName
-              showEmail
-              :firstNameLabel="'Legal first name'"
-              :lastNameLabel="'Surname'"
-              :middleNameLabel="'Middle name(s)'"
-              :showPreferredName="true"
-              showMobilePhone
-              :emailDesc="'The email address will be used to notify the Proposed Permit holder'"
-              :mobilePhoneDesc="'The mobile number will be used to notify the Proposed Permit holder'"
-              :mobilePhoneLabel="'Phone number'"
-              :showOtherNames="true"
-            >
-            </entity>
 
-            <b-form-group label="The Proposed Permit Holder is:">
-              <b-form-radio-group
-                stacked
-                v-model="form.permitHolder.employeeOrOfficeHolder"
-                :options="['an Office Holder', 'an Employee']"
-              ></b-form-radio-group>
-            </b-form-group>
-
-            <b-form-group label="What is their office or position?">
-              <b-form-input v-model="form.permitHolder.positionOrOfficeHeld">
-              </b-form-input>
-            </b-form-group>
-
-            <b-form-group
-              label="Has this person previously held an entry permit?"
-            >
-              <b-form-radio-group
-                v-model="form.permitHolder.previouslyHeldAnEntryPermit"
-                :options="boolOptions"
-              ></b-form-radio-group>
-            </b-form-group>
-
-              <b-form-group label="What is their most recent or current permit number?" v-if="form.permitHolder.previouslyHeldAnEntryPermit === true">
-              <b-form-input v-model="form.permitHolder.previousPermitNumber">
-              </b-form-input>
-            </b-form-group>
-
-            <notice v-if="form.permitHolder.previouslyHeldAnEntryPermit === true" class="mt-2 mb-2" :message="'If a permit is returned more than 7 days after expiry or cannot be returned because it is lost, the proposed permit holder may be asked to provide a statutory declaration explaining the failure to comply with s.517 of the Fair Work Act 2009.'"></notice>
-
-             <b-form-group
-              label="Has that permit been returned?"
-              v-if="form.permitHolder.previouslyHeldAnEntryPermit === true"
-            >
-              <b-form-radio-group
-                v-model="form.permitHolder.previousPermitReturned"
-                :options="boolOptions"
-              ></b-form-radio-group>
-            </b-form-group>
-              <b-form-group
-      label="Why has it not been returned?"
-      v-if="form.permitHolder.previousPermitReturned === false"
-    >
-      <b-form-input v-model="form.permitHolder.previousPermitNotReturnedReason">
-      </b-form-input>
-    </b-form-group>
+<f-42-holder-details-comp :form="form"></f-42-holder-details-comp>
+            
           </b-col>
         </b-row>
       </section>
@@ -185,8 +121,9 @@ import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
 import f42Training from "./f42/f42Training.vue";
 import f42HolderSuperDetails from  "./f42/f42HolderSuperDetails.vue";
+import f42HolderDetailsComp from  "./f42/f42HolderDetailsComp.vue";
 export default {
-  components: { entity, Notice, EntityAddress, AbnLookup, f42Training , f42HolderSuperDetails},
+  components: { entity, Notice, EntityAddress, AbnLookup, f42Training , f42HolderSuperDetails, f42HolderDetailsComp},
   name: "holderDetails",
   props: {
     form: {

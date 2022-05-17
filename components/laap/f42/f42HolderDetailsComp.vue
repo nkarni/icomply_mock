@@ -19,6 +19,9 @@
       :emailDesc="emailDesc"
       :mobilePhoneDesc="'The mobile number may be used for notifications'"
       :mobilePhoneLabel="'Mobile phone (optional)'"
+      :haveMiddleNameLabel="DoYouString + ' have a middle name?'"
+      :havePreferredNameLabel="DoYouString + ' have a preferred name?'"
+      :haveOtherNamesLabel="HaveYouString + ' known by any other names?'"
     >
     </entity>
 
@@ -185,28 +188,27 @@ export default {
       }
     },
     youString: function () {
-      return this.form.repType === "self" ? "you" : "the Applicant";
+      return this.form.userRole === "permitHolder" ? "you" : "they";
     },
     yourString: function () {
-      return this.form.repType === "self" ? "your" : "the Applicant's";
+      return this.form.userRole === "permitHolder" ? "your" : "their";
     },
     AreYouString: function () {
-      return this.form.repType === "self" ? "are you" : "is the Applicant";
+      return this.form.userRole === "permitHolder" ? "are you" : "are they";
     },
     DoYouString: function () {
-      return this.form.repType === "self" ? "do you" : "is the Applicant";
+      return this.form.userRole === "permitHolder" ? "do you" : "do they";
     },
-    DoYouStringCont: function () {
-      return this.form.repType === "self" ? "do you" : "does the Applicant";
-    },
+   
     youAreString: function () {
-      return this.form.repType === "self" ? "you are" : "the Applicant is";
+      return this.form.userRole === "permitHolder" ? "you are" : "they are";
     },
     wereYouString: function () {
-      return this.form.repType === "self" ? "were you" : "was the Applicant";
+      return this.form.userRole === "permitHolder" ? "were you" : "were they";
     },
-    AreYouString: function () {
-      return this.form.repType === "self" ? "are you" : "the Applicant is";
+    
+ HaveYouString: function () {
+      return this.form.userRole === "permitHolder" ? "have you been" : "have they been";
     },
   },
   methods: {

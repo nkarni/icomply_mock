@@ -33,7 +33,7 @@
     </b-form-group>
 
     <div v-if="showMiddleName">
-      <b-form-group label="Do you have a middle name?">
+      <b-form-group :label="haveMiddleNameLabel">
         <b-form-radio-group v-model="entity.hasMiddleName" :options="boolOptions"></b-form-radio-group>
       </b-form-group>
       <b-form-group :label="middleNameLabel" v-if="showMiddleName && entity.hasMiddleName === true">
@@ -50,7 +50,7 @@
     </b-form-group>
 
      <div v-if="showPreferredName">
-      <b-form-group label="Do you have a preferred name?">
+      <b-form-group :label="havePreferredNameLabel">
         <b-form-radio-group v-model="entity.hasPreferredName" :options="boolOptions"></b-form-radio-group>
       </b-form-group>
       <b-form-group :label="preferredNameLabel" v-if="entity.hasPreferredName === true">
@@ -59,7 +59,7 @@
     </div>
 
     <div v-if="showOtherNames">
-      <b-form-group label="have you been known by any other names?">
+      <b-form-group :label="haveOtherNamesLabel" >
         <b-form-radio-group v-model="entity.hasOtherNames" :options="boolOptions"></b-form-radio-group>
       </b-form-group>
       <div  v-if="entity.hasOtherNames === true">
@@ -289,7 +289,11 @@ export default {
     },
     middleNameLabel: {
       type: String,
-      default: "Given name(s)",
+      default: "Middle name(s) (optional)?",
+    },
+     haveMiddleNameLabel: {
+      type: String,
+      default: "Do you have a middle name?",
     },
     showMiddleName: {
       type: Boolean,
@@ -298,6 +302,14 @@ export default {
      showOtherNames: {
       type: Boolean,
       default: false,
+    },
+    haveOtherNamesLabel: {
+      type: String,
+      default: "Do you have a other names?",
+    },
+    havePreferredNameLabel: {
+      type: String,
+      default: "Do you have a preferred name?",
     },
     lastNameLabel: {
       type: String,
