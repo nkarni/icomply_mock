@@ -23,7 +23,8 @@
               showFirstName
               showLastName
               showEmail
-
+:firstNameLabel="'First name'"
+:lastNameLabel="'Surname'"
               
             >
             </entity>

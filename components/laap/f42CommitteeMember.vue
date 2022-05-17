@@ -28,8 +28,9 @@
               :entity="form.committeeMember"
               showFirstName
               showLastName
-              
+              :firstNameLabel="'First name'"
               showEmail
+:lastNameLabel="'Surname'"
               
             >
             
