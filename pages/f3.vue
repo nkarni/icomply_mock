@@ -1,7 +1,7 @@
 <template>
   <b-container>
     <b-row>
-      <b-col cols="8" >
+      <b-col cols="8">
         <h3 class="text-primary">Respond to an unfair dismissal claim</h3>
       </b-col>
       <b-col cols="4" class="text-right">
@@ -9,7 +9,7 @@
           Back to dashboard
         </NuxtLink> -->
         <b-button>Reference: YCFRU</b-button>
-          <b-button variant="primary">Save for later</b-button>
+        <b-button variant="primary">Save for later</b-button>
       </b-col>
     </b-row>
     <b-row class="mt-4">
@@ -81,7 +81,7 @@
           </template>
           <f-3-other-info :form="form"></f-3-other-info>
         </b-tab>
-         <b-tab
+        <b-tab
           :title-link-class="[
             'laap-title-link',
             'mb-2',
@@ -93,7 +93,6 @@
             <h5>Attachments</h5>
             <span>Upload relevant documents</span>
           </template>
-        
         </b-tab>
         <b-tab
           :title-link-class="[
@@ -103,7 +102,6 @@
             { 'laap-nav-item-complete': false },
           ]"
         >
-          
           <template #title>
             <h5>Review and submit</h5>
             <span>Confirm details and submit the form</span>
@@ -115,8 +113,16 @@
 
     <b-row class="mt-4" v-if="tabIndex !== 2">
       <b-col cols="12" class="text-right">
-        <b-button variant="primary" v-if="tabIndex > 0" @click="tabIndex--" class="mr-2">Save & Prev</b-button>
-        <b-button variant="primary" v-if="tabIndex < 5" @click="tabIndex++">Save & Next</b-button>
+        <b-button
+          variant="primary"
+          v-if="tabIndex > 0"
+          @click="tabIndex--"
+          class="mr-2"
+          >Save & Prev</b-button
+        >
+        <b-button variant="primary" v-if="tabIndex < 5" @click="tabIndex++"
+          >Save & Next</b-button
+        >
       </b-col>
     </b-row>
 
@@ -181,15 +187,23 @@
 </template>
 
 <script>
-import f3AboutYou from "../components/laap/f3AboutYou.vue";
-import F3Circumstances from "../components/laap/f3Circumstances.vue";
-import F3Dismissal from "../components/laap/f3Dismissal.vue";
-import f3EmployeeDetails from "../components/laap/f3EmployeeDetails.vue";
-import F3OtherInfo from '../components/laap/f3OtherInfo.vue';
-import F3Review from '../components/laap/f3Review.vue';
-import F3files from '../components/laap/f3files.vue';
+import f3AboutYou from "../components/f3/f3AboutYou.vue";
+import F3Circumstances from "../components/f3/f3Circumstances.vue";
+import F3Dismissal from "../components/f3/f3Dismissal.vue";
+import f3EmployeeDetails from "../components/f3/f3EmployeeDetails.vue";
+import F3OtherInfo from "../components/f3/f3OtherInfo.vue";
+import F3Review from "../components/f3/f3Review.vue";
+import F3files from "../components/f3/f3files.vue";
 export default {
-  components: { f3AboutYou, f3EmployeeDetails, F3Circumstances, F3Dismissal, F3OtherInfo, F3Review, F3files },
+  components: {
+    f3AboutYou,
+    f3EmployeeDetails,
+    F3Circumstances,
+    F3Dismissal,
+    F3OtherInfo,
+    F3Review,
+    F3files,
+  },
   layout: "form",
   data() {
     return {
@@ -213,8 +227,8 @@ export default {
           industryDetails: "",
           industry: "",
           contactPerson: {
-             title:"",
-          titleDetails: "",
+            title: "",
+            titleDetails: "",
             firstName: "",
             lastName: "",
             email: "",
@@ -235,7 +249,7 @@ export default {
         researchConsent: null,
         hasRep: null,
         rep: {
-          title:"",
+          title: "",
           titleDetails: "",
           firstName: "",
           lastName: "",
@@ -262,7 +276,7 @@ export default {
         jurisdictionalObjections: [],
         employeeWage: "",
         employeeWeeklyWageFrequency: "",
-        averageWeeklyHours:"",
+        averageWeeklyHours: "",
         wasDismissed: null,
         employeeHasOtherBenefits: null,
         employeeHasOtherBenefitsDetails: "",
@@ -277,9 +291,9 @@ export default {
         employmentDismissedDate: "",
         employmentEndDate: "",
         otherInfo: "",
-        wantsConciliation: null
+        wantsConciliation: null,
       },
-   
+
       tabIndex: 0,
     };
   },

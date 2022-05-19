@@ -8,39 +8,26 @@
             <p>
               Please check the information you provided. You can go back and
               edit information as required by clicking on the pencil icon, or by
-              navigation back to the relevant section. 
+              navigation back to the relevant section.
             </p>
           </b-col>
         </b-row>
         <b-row>
           <b-col>
-            <div
-              v-for="(section, index) of sections"
-              :key="index"
-              v-bind:id="index"
-              :class="'mb-4  pb-4 ' + (index < 4 ? 'border-bottom border-secondary' : '')"
-            >
-              <b-row >
+            <div v-for="(section, index) of sections" :key="index" v-bind:id="index"
+              :class="'mb-4  pb-4 ' + (index < 4 ? 'border-bottom border-secondary' : '')">
+              <b-row>
                 <b-col>
                   <h6>{{ section.label }}</h6>
                 </b-col>
                 <b-col class="text-right">
-                  <b-button
-                    variant="link"
-                    class="p-0"
-                    @click.prevent=""
-                    v-b-tooltip.hover
-                    title="Edit this section (coming soon)"
-                    ><b-icon icon="pencil"
-                  /></b-button>
+                  <b-button variant="link" class="p-0" @click.prevent="" v-b-tooltip.hover
+                    title="Edit this section (coming soon)">
+                    <b-icon icon="pencil" />
+                  </b-button>
                 </b-col>
               </b-row>
-              <b-row
-                v-for="(item, n) of section.data"
-                :key="n"
-                v-bind:id="n"
-                class="mb-2"
-              >
+              <b-row v-for="(item, n) of section.data" :key="n" v-bind:id="n" class="mb-2">
                 <b-col cols="4">
                   {{ item.label }}
                 </b-col>
@@ -49,23 +36,19 @@
             </div>
           </b-col>
         </b-row>
-        <notice :message="'mockup notice: HC means hard coded, it will be dynamic and show provided info in the final build. Similarly, the link to the relevant tab for editing will be activated in the final build.'"></notice>
+        <notice
+          :message="'mockup notice: HC means hard coded, it will be dynamic and show provided info in the final build. Similarly, the link to the relevant tab for editing will be activated in the final build.'">
+        </notice>
       </section>
-      <section
-        class=" mb-4 pb-2"
-      >
+      <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Confirm & Submit</h6>
           </b-col>
           <b-col>
-           
+
             <b-form-group>
-              <b-form-checkbox
-                v-model="form.agreeToTerms"
-                :value="true"
-                :unchecked-value="false"
-              >
+              <b-form-checkbox v-model="form.agreeToTerms" :value="true" :unchecked-value="false">
                 I confirm that this form was filled by me {form filler's firstname and lastname}
                 and that the information provided is true.
               </b-form-checkbox>
@@ -84,9 +67,9 @@
 </template>
 
 <script>
-import entity from "./entity.vue";
-import EntityAddress from "./entityAddress.vue";
-import Notice from "./notice.vue";
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
 export default {
   components: { entity, Notice, EntityAddress },
   name: "review",
@@ -228,10 +211,10 @@ export default {
                 this.boolToString(this.form.employeeHasAwardAgreement) +
                 (this.form.employeeHasAwardAgreement === true
                   ? " (Award name: " +
-                    this.form.employeeAwardAgreementName +
-                    ", Award number: " +
-                    this.form.employeeAwardAgreementNumber +
-                    ")"
+                  this.form.employeeAwardAgreementName +
+                  ", Award number: " +
+                  this.form.employeeAwardAgreementNumber +
+                  ")"
                   : ""),
             },
           ],

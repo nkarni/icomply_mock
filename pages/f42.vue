@@ -467,12 +467,12 @@ import f42ProgressBar from "../components/laap/f42/f42ProgressBar.vue";
 import f42HolderDetails from "../components/laap/f42HolderDetails.vue";
 import f42ProcessAdmin from "../components/laap/f42ProcessAdmin.vue";
 import f42YourDetails from "../components/laap/f42YourDetails.vue";
-import F3Circumstances from "../components/laap/f3Circumstances.vue";
-import F3Dismissal from "../components/laap/f3Dismissal.vue";
-import f3EmployeeDetails from "../components/laap/f3EmployeeDetails.vue";
-import F3OtherInfo from "../components/laap/f3OtherInfo.vue";
-import F3Review from "../components/laap/f3Review.vue";
-import F3files from "../components/laap/f3files.vue";
+import F3Circumstances from "../components/f3/f3Circumstances.vue";
+import F3Dismissal from "../components/f3/f3Dismissal.vue";
+import f3EmployeeDetails from "../components/f3/f3EmployeeDetails.vue";
+import F3OtherInfo from "../components/f3/f3OtherInfo.vue";
+import F3Review from "../components/f3/f3Review.vue";
+import F3files from "../components/f3/f3files.vue";
 export default {
   components: {
     f42MemberViewSubmit,

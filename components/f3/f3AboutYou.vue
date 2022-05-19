@@ -5,17 +5,28 @@
         <b-row>
           <b-col cols="4">
             <h6>Business details</h6>
-            <p>The following details were provided by the employee in their
-            Application. Please check the details and correct if required.</p>
-            <p>Through this form - all fields are mandatory unless specifically marked as optional.</p>
+            <p>
+              The following details were provided by the employee in their
+              Application. Please check the details and correct if required.
+            </p>
+            <p>
+              Through this form - all fields are mandatory unless specifically
+              marked as optional.
+            </p>
           </b-col>
           <b-col>
-            <b-form-group label="The employee provided the following business details:" class="mt-3">
-              
+            <b-form-group
+              label="The employee provided the following business details:"
+              class="mt-3"
+            >
               {{ form.employeeProvidedBusinessNameString }}
             </b-form-group>
-            
-             <b-form-group label="Are those details correct?" v-if="showIsBusinessDetailsCorrect" class="mt-3">
+
+            <b-form-group
+              label="Are those details correct?"
+              v-if="showIsBusinessDetailsCorrect"
+              class="mt-3"
+            >
               <b-form-radio-group
                 v-model="form.businessDetailsCorrect"
                 :options="boolOptions"
@@ -23,15 +34,14 @@
               ></b-form-radio-group>
             </b-form-group>
 
-  
-            <div  v-if="form.businessDetailsCorrect === false">
-              <abn-lookup :businessDetails="form.businessDetails" @businessSelected="showIsBusinessDetailsCorrect=false"></abn-lookup>
+            <div v-if="form.businessDetailsCorrect === false">
+              <abn-lookup
+                :businessDetails="form.businessDetails"
+                @businessSelected="showIsBusinessDetailsCorrect = false"
+              ></abn-lookup>
               <!-- Correct business: {{ form.businessDetails.businessDetailsString }} -->
             </div>
-            
 
-            
-            
             <!-- <b-row>
               <b-col cols="4">
                 Business legal name:
@@ -49,12 +59,6 @@
               </b-col>
             </b-row> -->
 
-           
-
-           
-            
-          
-
             <!-- <b-form-group v-if="businessDetailsWereWrong">
              {{ form.businessDetailsString }}
             </b-form-group>  -->
@@ -64,11 +68,8 @@
               :addressLabel="'Postal address'"
               :address="form.businessDetails.postalAddress"
               :addressHelp="'You can select another address - start typing the correct address and select one of the options'"
-              :addressString = form.businessDetails.postalAddressString
+              :addressString="form.businessDetails.postalAddressString"
             ></entity-address>
-
-            
-
           </b-col>
         </b-row>
       </section>
@@ -79,7 +80,12 @@
         <b-row>
           <b-col cols="4">
             <h6>Contact person</h6>
-           The Applicant gave us this information so we can contact you. <br><br>If this is not the best person for us to talk to you can correct or add any information that is missing. <br><br>You can nominate a different person if there is someone else who should be the main contact person. Just add their details so we can add them to our records.
+            The Applicant gave us this information so we can contact you.
+            <br /><br />If this is not the best person for us to talk to you can
+            correct or add any information that is missing. <br /><br />You can
+            nominate a different person if there is someone else who should be
+            the main contact person. Just add their details so we can add them
+            to our records.
           </b-col>
           <b-col>
             <entity
@@ -94,31 +100,40 @@
           </b-col>
         </b-row>
       </section>
-          <section class="border-bottom border-secondary mb-4 pb-4"  v-if="form.businessDetailsCorrect === true">
+      <section
+        class="border-bottom border-secondary mb-4 pb-4"
+        v-if="form.businessDetailsCorrect === true"
+      >
         <b-row>
           <b-col cols="4">
             <h6>The Business</h6>
           </b-col>
           <b-col>
-                      <notice class="mb-3"
+            <notice
+              class="mb-3"
               message="Count all full-time, part-time and casual employees. Include the employee who was dismissed. <br><br>
 If the employee wasn’t dismissed, count the employees you had on 12/12/22 (the date the employee said they were dismissed)."
             ></notice>
-            <b-form-group :label="'Industry'" v-if="form.businessDetailsCorrect === true">
-                <b-form-select
-                  v-model="form.businessDetails.industry"
-                  :options="[
-                   'Industry A', 'Industry B', 'Other']"
-                ></b-form-select>
-              </b-form-group>
-              <b-form-group
-                v-if="form.businessDetails.industry === 'Other' && form.businessDetailsCorrect === true"
-                label="Please provide details"
-              >
-                <b-form-textarea
-                  v-model="form.businessDetails.industryDetails"
-                ></b-form-textarea>
-              </b-form-group>
+            <b-form-group
+              :label="'Industry'"
+              v-if="form.businessDetailsCorrect === true"
+            >
+              <b-form-select
+                v-model="form.businessDetails.industry"
+                :options="['Industry A', 'Industry B', 'Other']"
+              ></b-form-select>
+            </b-form-group>
+            <b-form-group
+              v-if="
+                form.businessDetails.industry === 'Other' &&
+                form.businessDetailsCorrect === true
+              "
+              label="Please provide details"
+            >
+              <b-form-textarea
+                v-model="form.businessDetails.industryDetails"
+              ></b-form-textarea>
+            </b-form-group>
             <b-form-group
               :label="'How many employees did your business have when the employee was dismissed?'"
             >
@@ -128,8 +143,6 @@ If the employee wasn’t dismissed, count the employees you had on 12/12/22 (the
                 :options="numberOfEmployeesOptionsUnder"
               ></b-form-radio-group>
             </b-form-group>
-
-  
           </b-col>
         </b-row>
       </section>
@@ -140,20 +153,21 @@ If the employee wasn’t dismissed, count the employees you had on 12/12/22 (the
         <b-row>
           <b-col cols="4">
             <h6>Representative</h6>
-            A representative is a person who acts for you in the case but who isn’t an employee of your business. They could be a lawyer, paid agent, employer organisation or chamber of commerce. You don’t need to have a representative. <a href="">Click here </a>to read more about whether or not to have a representative on our website.
+            A representative is a person who acts for you in the case but who
+            isn’t an employee of your business. They could be a lawyer, paid
+            agent, employer organisation or chamber of commerce. You don’t need
+            to have a representative. <a href="">Click here </a>to read more
+            about whether or not to have a representative on our website.
           </b-col>
           <b-col>
-            <b-form-group
-              label="Do you have a representative?"
-            >
+            <b-form-group label="Do you have a representative?">
               <b-form-radio-group
                 v-model="form.hasRep"
                 :options="boolOptions"
               ></b-form-radio-group>
-               
             </b-form-group>
- <entity
- v-if="form.hasRep === true"
+            <entity
+              v-if="form.hasRep === true"
               :entity="form.rep"
               showOrgName
               showPhones
@@ -164,7 +178,6 @@ If the employee wasn’t dismissed, count the employees you had on 12/12/22 (the
               showTitle
             >
             </entity>
-
           </b-col>
         </b-row>
       </section>
@@ -191,8 +204,8 @@ If the employee wasn’t dismissed, count the employees you had on 12/12/22 (the
               v-if="form.needsInterpreter === true"
               label="What language?"
             >
-             <b-form-select
-              :options="['LOV from caseHq']"
+              <b-form-select
+                :options="['LOV from caseHq']"
                 v-model="form.needsInterpreterLanguage"
               ></b-form-select>
             </b-form-group>
@@ -207,7 +220,10 @@ If the employee wasn’t dismissed, count the employees you had on 12/12/22 (the
         <b-row>
           <b-col cols="4">
             <h6>Accessibility</h6>
-            It’s important that everyone has access to our services. If you have access needs, we can make arrangements so that you can participate fully in your case. You can read more about accessibility on our website.
+            It’s important that everyone has access to our services. If you have
+            access needs, we can make arrangements so that you can participate
+            fully in your case. You can read more about accessibility on our
+            website.
           </b-col>
           <b-col>
             <b-form-group label="Do you have any accessibility requirements?">
@@ -227,7 +243,6 @@ If the employee wasn’t dismissed, count the employees you had on 12/12/22 (the
           </b-col>
         </b-row>
       </section>
-
 
       <section
         class="border-bottom border-secondary mb-4 pb-2"
@@ -256,10 +271,10 @@ If the employee wasn’t dismissed, count the employees you had on 12/12/22 (the
 </template>
 
 <script>
-import AbnLookup from '../common/abnLookup.vue';
-import entity from "./entity.vue";
-import EntityAddress from "./entityAddress.vue";
-import Notice from "./notice.vue";
+import AbnLookup from "../common/abnLookup.vue";
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
 export default {
   components: { entity, Notice, EntityAddress, AbnLookup },
   name: "applicantDetails",
@@ -358,9 +373,9 @@ export default {
     },
   },
   methods: {
-    onWrongBusinessNameClick(){
-      if(form.businessDetailsCorrect === false){
-        this.businessDetailsWereWrong = true
+    onWrongBusinessNameClick() {
+      if (form.businessDetailsCorrect === false) {
+        this.businessDetailsWereWrong = true;
       }
     },
     onSelectedNewAbn() {

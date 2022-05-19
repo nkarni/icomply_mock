@@ -4,73 +4,69 @@
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6> Former employee details</h6>
-            
+            <h6>Former employee details</h6>
           </b-col>
           <b-col>
-             <b-form-group
-              label="Former employee's given name:"
-            >
-              <b-form-input v-model="form.employeeFirstName" disabled></b-form-input>
-              
+            <b-form-group label="Former employee's given name:">
+              <b-form-input
+                v-model="form.employeeFirstName"
+                disabled
+              ></b-form-input>
             </b-form-group>
 
-             <b-form-group
-              label="Former employee's family name:"
-            >
-              <b-form-input v-model="form.employeeLastName" disabled></b-form-input>
-              
+            <b-form-group label="Former employee's family name:">
+              <b-form-input
+                v-model="form.employeeLastName"
+                disabled
+              ></b-form-input>
             </b-form-group>
 
-              <b-form-group
-              label="Case number:"
-            >
+            <b-form-group label="Case number:">
               <b-form-input v-model="form.caseNumber" disabled></b-form-input>
-              
             </b-form-group>
-          
           </b-col>
         </b-row>
       </section>
-        <section class="border-bottom border-secondary mb-4 pb-4">
+      <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>The employee's employment</h6>
           </b-col>
           <b-col>
-             <notice
+            <notice
               class="mb-4"
               message="If they were casual, write the hourly rate and describe their average weekly hours. "
             ></notice>
             <b-row>
               <b-col cols="6">
-                <b-form-group label="Normal pay (gross, before tax):" >
-                  <b-input-group  prepend="$" >
-                  <b-form-input v-model="form.employeeWage"></b-form-input>
+                <b-form-group label="Normal pay (gross, before tax):">
+                  <b-input-group prepend="$">
+                    <b-form-input v-model="form.employeeWage"></b-form-input>
                   </b-input-group>
-               </b-form-group> 
+                </b-form-group>
               </b-col>
               <b-col>
-                 <b-form-group
-              :label="'Frequency:'"
-            >
-              <b-form-select
-                v-model="form.employeeWeeklyWageFrequency"
-                :options="['Hourly', 'Weekly', 'Fortnightly', 'Monthly', 'Yearly']"
-              ></b-form-select>
-            </b-form-group>
-
+                <b-form-group :label="'Frequency:'">
+                  <b-form-select
+                    v-model="form.employeeWeeklyWageFrequency"
+                    :options="[
+                      'Hourly',
+                      'Weekly',
+                      'Fortnightly',
+                      'Monthly',
+                      'Yearly',
+                    ]"
+                  ></b-form-select>
+                </b-form-group>
               </b-col>
             </b-row>
 
-               <b-form-group
+            <b-form-group
               label="Average weekly hours:"
               v-if="form.employeeWeeklyWageFrequency === 'Hourly'"
             >
               <b-form-input v-model="form.averageWeeklyHours"></b-form-input>
-               </b-form-group>
-            
-           
+            </b-form-group>
 
             <b-form-group
               :label="'Did they get any other benefits, such as a work car or mobile phone?'"
@@ -89,7 +85,7 @@
               ></b-form-textarea>
             </b-form-group>
 
-             <b-form-group
+            <b-form-group
               :label="'Were they covered by an award or enterprise agreement?'"
             >
               <b-form-radio-group
@@ -97,8 +93,6 @@
                 :options="boolOptions"
               ></b-form-radio-group>
             </b-form-group>
-
-           
 
             <b-form-group
               v-if="form.employeeHasAwardAgreement === true"
@@ -108,7 +102,7 @@
                 v-model="form.employeeAwardAgreementName"
               ></b-form-input>
             </b-form-group>
-             <b-form-group
+            <b-form-group
               v-if="form.employeeHasAwardAgreement === true"
               label="Award or agreement number "
             >
@@ -116,14 +110,12 @@
                 v-model="form.employeeAwardAgreementNumber"
               ></b-form-input>
             </b-form-group>
-             <notice
-            v-if="form.employeeHasAwardAgreement === true"
+            <notice
+              v-if="form.employeeHasAwardAgreement === true"
               class="mb-4"
               message="If you don’t have these details handy, use our <a href=''>agreement search</a> or <a href=''>awards list</a> to find the correct name and number"
-            ></notice>
-
-
-
+            >
+            </notice>
           </b-col>
         </b-row>
       </section>
@@ -132,9 +124,9 @@
 </template>
 
 <script>
-import entity from "./entity.vue";
-import EntityAddress from "./entityAddress.vue";
-import Notice from "./notice.vue";
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
 export default {
   components: { entity, Notice, EntityAddress },
   name: "employeeDetails",
@@ -146,12 +138,10 @@ export default {
   },
   data() {
     return {
-     
       boolOptions: [
         { text: "Yes", value: true },
         { text: "No", value: false },
       ],
-      
     };
   },
   computed: {
@@ -180,43 +170,7 @@ export default {
       return this.form.repType === "self" ? "are you" : "the Applicant is";
     },
   },
-  methods: {
-    onSelectedNewAbn() {
-      this.form.businessDetailsCorrect = true;
-      this.$bvModal.hide("manual-abn");
-    },
-    onNumDepnedantsChange() {
-      if (this.form.entities.applicant.details.numOfDependants < 0) return;
-      if (
-        this.form.entities.applicant.details.numOfDependants <
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants <
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.pop();
-        }
-      } else if (
-        this.form.entities.applicant.details.numOfDependants >
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants >
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.push({
-            firstName: "",
-            lastName: "",
-            dob: "",
-            relationship: "",
-            stayOvernight: null,
-            involvedInLegalIssue: null,
-          });
-        }
-      }
-    },
-  },
+  methods: {},
 };
 </script>
 

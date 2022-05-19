@@ -159,78 +159,78 @@ Clicking on the x will remove the file. If it i sa mandatory file, it will reset
 </template>
 
 <script>
-  import Notice from "../common/notice.vue";
-  import uploadFiles from "../common/uploadFiles.vue";
-  export default {
-    components: { uploadFiles, Notice },
-    name: "f3Files",
-    props: {
-      form: {
-        type: Object,
-        default: () => ({}),
-      },
+import Notice from "../common/notice.vue";
+import uploadFiles from "../common/uploadFiles.vue";
+export default {
+  components: { uploadFiles, Notice },
+  name: "f3Files",
+  props: {
+    form: {
+      type: Object,
+      default: () => ({}),
     },
-    data() {
-      return {};
-    },
-    computed: {
-      files: function () {
-        let docs = [
-          {
-            type: "Mockup sample with comments",
-            comments:
-              "This will not be part of the form, only added so it shows how comments will appear.",
-            multi: true
-          },
-          {
-            type: "Dismissal letter",
-          },
-          {
-            type: "Employment contract",
-          },
-        ];
+  },
+  data() {
+    return {};
+  },
+  computed: {
+    files: function () {
+      let docs = [
+        {
+          type: "Mockup sample with comments",
+          comments:
+            "This will not be part of the form, only added so it shows how comments will appear.",
+          multi: true
+        },
+        {
+          type: "Dismissal letter",
+        },
+        {
+          type: "Employment contract",
+        },
+      ];
 
-        return docs;
-      },
-      youString: function () {
-        return this.form.applyingForSelf ? "you" : "the Applicant";
-      },
-      yourString: function () {
-        return this.form.applyingForSelf ? "your" : "the Applicant's";
-      },
-      AreYouString: function () {
-        return this.form.applyingForSelf ? "are you" : "is the Applicant";
-      },
-      DoYouString: function () {
-        return this.form.applyingForSelf ? "do you" : "is the Applicant";
-      },
-      DoYouStringCont: function () {
-        return this.form.applyingForSelf ? "do you" : "does the Applicant";
-      },
-      youAreString: function () {
-        return this.form.applyingForSelf ? "you are" : "the Applicant is";
-      },
-      wereYouString: function () {
-        return this.form.applyingForSelf ? "were you" : "was the Applicant";
-      },
-      AreYouString: function () {
-        return this.form.applyingForSelf ? "are you" : "the Applicant is";
-      },
-      AreYouStringReverse: function () {
-        return this.form.applyingForSelf ? "are you" : "is the Applicant";
-      },
-      additionalS: function () {
-        return this.form.applyingForSelf ? "" : "s";
-      },
-      yoursString: function () {
-        return this.form.applyingForSelf ? "yours" : "the Applicant/'s";
-      },
-      haveYouString: function () {
-        return this.form.applyingForSelf ? "have you" : "has the Applicant";
-      },
+      return docs;
     },
-    methods: {},
-  };
+    youString: function () {
+      return this.form.applyingForSelf ? "you" : "the Applicant";
+    },
+    yourString: function () {
+      return this.form.applyingForSelf ? "your" : "the Applicant's";
+    },
+    AreYouString: function () {
+      return this.form.applyingForSelf ? "are you" : "is the Applicant";
+    },
+    DoYouString: function () {
+      return this.form.applyingForSelf ? "do you" : "is the Applicant";
+    },
+    DoYouStringCont: function () {
+      return this.form.applyingForSelf ? "do you" : "does the Applicant";
+    },
+    youAreString: function () {
+      return this.form.applyingForSelf ? "you are" : "the Applicant is";
+    },
+    wereYouString: function () {
+      return this.form.applyingForSelf ? "were you" : "was the Applicant";
+    },
+    AreYouString: function () {
+      return this.form.applyingForSelf ? "are you" : "the Applicant is";
+    },
+    AreYouStringReverse: function () {
+      return this.form.applyingForSelf ? "are you" : "is the Applicant";
+    },
+    additionalS: function () {
+      return this.form.applyingForSelf ? "" : "s";
+    },
+    yoursString: function () {
+      return this.form.applyingForSelf ? "yours" : "the Applicant/'s";
+    },
+    haveYouString: function () {
+      return this.form.applyingForSelf ? "have you" : "has the Applicant";
+    },
+  },
+  methods: {},
+};
 </script>
 
 <style lang="scss" scoped>
