@@ -54,7 +54,7 @@
                   >Nationality, national extraction or social origin
                   (s351)</b-form-checkbox
                 >
-                
+
                 <b-form-checkbox
                   value="I was dismissed because I had a temporary absence from work due to an illness or injury (s352)"
                   >I was dismissed because I had a temporary absence from work
@@ -68,18 +68,23 @@
                 >
                 <b-form-checkbox
                   value="I was dismissed because of my workplace rights (s340)"
-                  >I was dismissed because of my workplace rights
-                  (s340)
-                  <small class="form-text text-muted"> I was dismissed because I had a workplace right, or because I exercised or proposed to exercise a workplace right. 
-<br>For example, because I asked about being paid for overtime or complained about not getting breaks. </small>
-
-                  </b-form-checkbox
-                >
+                  >I was dismissed because of my workplace rights (s340)
+                  <small class="form-text text-muted">
+                    I was dismissed because I had a workplace right, or because
+                    I exercised or proposed to exercise a workplace right.
+                    <br />For example, because I asked about being paid for
+                    overtime or complained about not getting breaks.
+                  </small>
+                </b-form-checkbox>
                 <b-form-checkbox
                   value="I was dismissed because of industrial activities (s346)"
-                  >I was dismissed because of industrial activities
-                  (s346)
-                  <small class="form-text text-muted">I was dismissed because I engaged in or proposed to engage in industrial activity (such as belonging to a union), or because I refused to participate in any industrial action.</small></b-form-checkbox
+                  >I was dismissed because of industrial activities (s346)
+                  <small class="form-text text-muted"
+                    >I was dismissed because I engaged in or proposed to engage
+                    in industrial activity (such as belonging to a union), or
+                    because I refused to participate in any industrial
+                    action.</small
+                  ></b-form-checkbox
                 >
                 <b-form-checkbox
                   value="My employer dismissed me so they could engage me as an independent contractor to do the same job or substantially the same job (s358)"
@@ -143,9 +148,9 @@
 </template>
 
 <script>
-import entity from "./entity.vue";
-import EntityAddress from "./entityAddress.vue";
-import Notice from "./notice.vue";
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
 import vagueDate from "../common/vagueDate.vue";
 export default {
   components: { entity, Notice, EntityAddress, vagueDate },
@@ -160,7 +165,7 @@ export default {
     return {
       disOptions: [
         { text: "Race", value: "Race" },
-        { text: "Family or <strong>sdfsdfsfd</strong>friend", value: "abc" },
+        { text: "Family or friend", value: "abc" },
       ],
       applyingForSelfOptions: [
         { text: "I am the applicant (submitting for myself)", value: true },
@@ -169,19 +174,9 @@ export default {
           value: false,
         },
       ],
-      over18Options: [
-        { text: "yes, I am over 18", value: true },
-        { text: "no, I am under 18", value: false },
-      ],
       boolOptions: [
         { text: "Yes", value: true },
         { text: "No", value: false },
-      ],
-      aboriginalityOptions: [
-        { text: "Yes, Aboriginal", value: "aboriginal" },
-        { text: "Yes, Torres Strait Islander", value: "islander" },
-        { text: "Both Aboriginal and Torres Strait Islander", value: "both" },
-        { text: "No", value: "no" },
       ],
     };
   },
@@ -223,43 +218,7 @@ export default {
       return this.form.applyingForSelf ? "have you" : "has the Applicant";
     },
   },
-  methods: {
-    onSelectedNewAbn() {
-      this.form.businessDetailsCorrect = true;
-      this.$bvModal.hide("manual-abn");
-    },
-    onNumDepnedantsChange() {
-      if (this.form.entities.applicant.details.numOfDependants < 0) return;
-      if (
-        this.form.entities.applicant.details.numOfDependants <
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants <
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.pop();
-        }
-      } else if (
-        this.form.entities.applicant.details.numOfDependants >
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants >
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.push({
-            firstName: "",
-            lastName: "",
-            dob: "",
-            relationship: "",
-            stayOvernight: null,
-            involvedInLegalIssue: null,
-          });
-        }
-      }
-    },
-  },
+  methods: {},
 };
 </script>
 

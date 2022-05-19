@@ -6,9 +6,9 @@
           <b-col cols="4">
             <h6>Contact details</h6>
             <p>
-              We need to be able to send {{youString}} information about {{yourString}} case. The
-              former employer will also need to send {{youString}} information about their
-              side of the case.
+              We need to be able to send {{ youString }} information about
+              {{ yourString }} case. The former employer will also need to send
+              {{ youString }} information about their side of the case.
             </p>
             <p v-if="form.applyingForSelf === true">
               During the case, we will call you the Applicant. This is because
@@ -32,11 +32,16 @@
                 :value="true"
                 :unchecked-value="false"
               >
-                Check this box if <span v-if="form.applyingForSelf === true">you don't</span><span v-else>the Applicant doesn't</span> have an address.
+                Check this box if
+                <span v-if="form.applyingForSelf === true">you don't</span
+                ><span v-else>the Applicant doesn't</span> have an address.
               </b-form-checkbox>
             </b-form-group>
             <b-form-group
-              :label=" DoYouStringCont +  ' have a representative (lawyer/union rep etc)?'"
+              :label="
+                DoYouStringCont +
+                ' have a representative (lawyer/union rep etc)?'
+              "
             >
               <b-form-radio-group
                 v-model="form.applicant.hasRep"
@@ -54,10 +59,11 @@
         <b-row>
           <b-col cols="4">
             <h6>Representative</h6>
-           <p>Please provide details about this representative if you know them.</p>
+            <p>
+              Please provide details about this representative if you know them.
+            </p>
           </b-col>
           <b-col>
-            
             <entity
               v-if="form.applicant.hasRep === true"
               :entity="form.rep"
@@ -75,13 +81,14 @@
         </b-row>
       </section>
 
-          <section
-        class="border-bottom border-secondary mb-4 pb-4"
-      >
+      <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>{{ yourString }} age</h6>
-          <p>If {{ youAreString }} under 18 {{youString}} must have a guardian.</p> 
+            <p>
+              If {{ youAreString }} under 18 {{ youString }} must have a
+              guardian.
+            </p>
           </b-col>
           <b-col>
             <b-form-group :label="AreYouStringReverse + ' over 18?'">
@@ -90,14 +97,11 @@
                 :options="over18Options"
               ></b-form-radio-group>
             </b-form-group>
-           
           </b-col>
         </b-row>
       </section>
-     
-      <section
-        class="border-bottom border-secondary mb-4 pb-4"
-      >
+
+      <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>Interpreter service</h6>
@@ -107,7 +111,9 @@
             information about help for non-English speakers on our website.
           </b-col>
           <b-col>
-            <b-form-group :label="'Will ' + youString + ' need an interpreter?'">
+            <b-form-group
+              :label="'Will ' + youString + ' need an interpreter?'"
+            >
               <b-form-radio-group
                 v-model="form.needsInterpreter"
                 :options="boolOptions"
@@ -118,7 +124,7 @@
               label="What language?"
             >
               <b-form-select
-              :options="['LOV from caseHq']"
+                :options="['LOV from caseHq']"
                 v-model="form.needsInterpreterLanguage"
               ></b-form-select>
             </b-form-group>
@@ -126,16 +132,19 @@
         </b-row>
       </section>
 
-      <section
-        class="border-bottom border-secondary mb-4 pb-4"
-      >
+      <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>Accessibility</h6>
-            It’s important that everyone has access to our services. If you have access needs, we can make arrangements so that you can participate fully in your case. You can read more about accessibility on our website.
+            It’s important that everyone has access to our services. If you have
+            access needs, we can make arrangements so that you can participate
+            fully in your case. You can read more about accessibility on our
+            website.
           </b-col>
           <b-col>
-            <b-form-group :label=" DoYouStringCont + ' have any accessibility requirements?'">
+            <b-form-group
+              :label="DoYouStringCont + ' have any accessibility requirements?'"
+            >
               <b-form-radio-group
                 v-model="form.needsAccessibility"
                 :options="boolOptions"
@@ -153,10 +162,7 @@
         </b-row>
       </section>
 
-      <section
-        class="mb-4 pb-2"
-       
-      >
+      <section class="mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Research Consent</h6>
@@ -165,7 +171,11 @@
           </b-col>
           <b-col>
             <b-form-group
-              :label="'Can we pass on ' + yourString + ' contact details to an external provider so they can invite you to take part in research?'"
+              :label="
+                'Can we pass on ' +
+                yourString +
+                ' contact details to an external provider so they can invite you to take part in research?'
+              "
             >
               <b-form-radio-group
                 v-model="form.researchConsent"
@@ -180,9 +190,9 @@
 </template>
 
 <script>
-import entity from "./entity.vue";
-import EntityAddress from "./entityAddress.vue";
-import Notice from "./notice.vue";
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
 export default {
   components: { entity, Notice, EntityAddress },
   name: "f8AboutYou",
@@ -195,15 +205,18 @@ export default {
   data() {
     return {
       repTypeOptions: [
-        "I am their lawyer or paid agent" ,
+        "I am their lawyer or paid agent",
         "Union representative",
         "Family or friend",
       ],
-       applyingForSelfOptions: [
+      applyingForSelfOptions: [
         { text: "I am the applicant (submitting for myself)", value: true },
-        { text: "I am submitting this form on behalf of someone else", value: false },
+        {
+          text: "I am submitting this form on behalf of someone else",
+          value: false,
+        },
       ],
-       over18Options: [
+      over18Options: [
         { text: "yes, I am over 18", value: true },
         { text: "no, I am under 18", value: false },
       ],
@@ -244,47 +257,11 @@ export default {
     AreYouString: function () {
       return this.form.applyingForSelf ? "are you" : "the Applicant is";
     },
-      AreYouStringReverse: function () {
+    AreYouStringReverse: function () {
       return this.form.applyingForSelf ? "are you" : "is the Applicant";
     },
   },
-  methods: {
-    onSelectedNewAbn() {
-      this.form.businessDetailsCorrect = true;
-      this.$bvModal.hide("manual-abn");
-    },
-    onNumDepnedantsChange() {
-      if (this.form.entities.applicant.details.numOfDependants < 0) return;
-      if (
-        this.form.entities.applicant.details.numOfDependants <
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants <
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.pop();
-        }
-      } else if (
-        this.form.entities.applicant.details.numOfDependants >
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants >
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.push({
-            firstName: "",
-            lastName: "",
-            dob: "",
-            relationship: "",
-            stayOvernight: null,
-            involvedInLegalIssue: null,
-          });
-        }
-      }
-    },
-  },
+  methods: {},
 };
 </script>
 
