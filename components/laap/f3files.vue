@@ -159,8 +159,8 @@ Clicking on the x will remove the file. If it i sa mandatory file, it will reset
 </template>
 
 <script>
-  import Notice from "./notice.vue";
-  import uploadFiles from "./uploadFiles.vue";
+  import Notice from "../common/notice.vue";
+  import uploadFiles from "../common/uploadFiles.vue";
   export default {
     components: { uploadFiles, Notice },
     name: "f3Files",

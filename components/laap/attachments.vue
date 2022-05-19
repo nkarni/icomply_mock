@@ -9,8 +9,9 @@
             a file, click on the pencil icon.
           </p>
           <notice
-            :message="'Prototype notes: <br>Not all functionality is enabled in the prototype.<br>Clicking on the comment icon will open a popup with a text area. When submitted a comment - it will be displayed below the file upload field (see example below).<br>Clicking on Add another {{ docType }} will add another file input in the same doc type row.'"
-          ></notice>
+            :message="'Prototype notes: <br>Not all functionality is enabled in the prototype.<br>Clicking on the comment icon will open a popup with a text area. When submitted a comment - it will be displayed below the file upload field (see example below).<br>Clicking on Add another ' + docType + ' will add another file input in the same doc type row.'">
+          </notice>
+
           <small></small>
         </b-col>
       </b-row>
@@ -25,62 +26,40 @@
                 </tr>
               </thead>
               <tbody>
-                <tr
-                  v-for="(file, index) of files"
-                  :key="index"
-                  v-bind:id="index"
-                >
+                <tr v-for="(file, index) of files" :key="index" v-bind:id="index">
                   <td>{{ file.type }}</td>
                   <td>
                     <b-row>
                       <b-col class="col-9">
-                        <b-form-group
-                          description="Click on the pencil icon to add comments about this file (optional)"
-                        >
-                          <b-form-file
-                            placeholder="Choose a file or drop it here..."
-                            drop-placeholder="Drop file here..."
-                          ></b-form-file>
+                        <b-form-group description="Click on the pencil icon to add comments about this file (optional)">
+                          <b-form-file placeholder="Choose a file or drop it here..."
+                            drop-placeholder="Drop file here..."></b-form-file>
                         </b-form-group>
                       </b-col>
                       <b-col class="text-right" col1>
-                        <b-button
-                          variant="link"
-                          class="p-0"
-                          @click.prevent=""
-                          v-b-tooltip.hover
-                          title="Add/Edit a Comment"
-                          ><b-icon icon="pencil"
-                        /></b-button>
+                        <b-button variant="link" class="p-0" @click.prevent="" v-b-tooltip.hover
+                          title="Add/Edit a Comment">
+                          <b-icon icon="pencil" />
+                        </b-button>
                       </b-col>
                       <b-col class="text-right" col1>
-                        <b-button
-                          variant="link"
-                          class="p-0"
-                          @click.prevent=""
-                          v-b-tooltip.hover
-                          title="Remove"
-                          ><b-icon icon="x-circle"
-                        /></b-button>
+                        <b-button variant="link" class="p-0" @click.prevent="" v-b-tooltip.hover title="Remove">
+                          <b-icon icon="x-circle" />
+                        </b-button>
                       </b-col>
                     </b-row>
 
                     <b-row v-if="file.comments">
-                    <b-col >
-                      <notice :message="'Your comments: ' +  file.comments" :borderClass="'blue'"></notice>
-                      
-                    </b-col>
+                      <b-col>
+                        <notice :message="'Your comments: ' + file.comments" :borderClass="'blue'"></notice>
+
+                      </b-col>
 
                     </b-row>
                     <b-row>
                       <b-col class="text-right">
-                        <b-button
-                          variant="link"
-                          class="p-0 mt-3"
-                          v-if="file.multi"
-                          @click.prevent=""
-                          >Click here to add another {{ file.type }}</b-button
-                        >
+                        <b-button variant="link" class="p-0 mt-3" v-if="file.multi" @click.prevent="">Click here to add
+                          another {{ file.type }}</b-button>
                       </b-col>
                     </b-row>
                   </td>
@@ -96,7 +75,7 @@
 
 <script>
 import Notice from "./notice.vue";
-import uploadFiles from "./uploadFiles.vue";
+import uploadFiles from "../common/uploadFiles.vue";
 export default {
   components: { uploadFiles, Notice },
   name: "attachments",
@@ -119,7 +98,7 @@ export default {
         }
       ];
       if (
-          this.form.authToDisclose === true
+        this.form.authToDisclose === true
       ) {
         docs.push({
           type: 'Authority to disclose form'
@@ -127,18 +106,18 @@ export default {
       }
       if (
         this.form.entities.applicant.incomeAssets.employmentType ===
-          "Employed" ||
+        "Employed" ||
         this.form.entities.applicant.incomeAssets.employmentType ===
-          "Self employed"
+        "Self employed"
       ) {
         docs.push({ type: this.yourString + " Pay Slips (last 4)" });
       }
 
       if (
         this.form.entities.fap.incomeAssets.employmentType ===
-          "Employed" ||
+        "Employed" ||
         this.form.entities.fap.incomeAssets.employmentType ===
-          "Self employed"
+        "Self employed"
       ) {
         docs.push({
           type:
@@ -150,7 +129,7 @@ export default {
         });
       }
 
-       if (
+      if (
         this.form.entities.applicant.benefits.receivesBenefit === true && this.form.entities.applicant.benefits.maxPayment === true
       ) {
         docs.push({
@@ -159,7 +138,7 @@ export default {
         });
       }
 
-       if (
+      if (
         this.form.entities.applicant.benefits.receivesBenefit === true && this.form.entities.applicant.benefits.maxPayment === true
       ) {
         docs.push({
@@ -168,7 +147,7 @@ export default {
             " " +
             this.form.entities.fap.lastName +
             "'s Bank Statement",
-            multi: true
+          multi: true
         });
       }
 
@@ -192,21 +171,21 @@ export default {
         });
       }
 
-       if (
+      if (
         this.form.entities.applicant.incomeAssets.employmentType ===
-          "Self employed"
+        "Self employed"
       ) {
         docs.push({
           type: this.yourString + ' Profit & Loss Statement'
         });
       }
 
-       if (
+      if (
         this.form.entities.fap.incomeAssets.employmentType ===
-          "Self employed"
+        "Self employed"
       ) {
         docs.push({
-          type:  this.form.entities.fap.firstName +
+          type: this.form.entities.fap.firstName +
             " " +
             this.form.entities.fap.lastName + '/s Profit & Loss Statement'
         });
@@ -214,9 +193,9 @@ export default {
 
       if (
         this.form.entities.applicant.incomeAssets.employmentType ===
-          "Self employed"
-          ||
-          this.form.entities.applicant.incomeAssets.isPrimaryProducer === true
+        "Self employed"
+        ||
+        this.form.entities.applicant.incomeAssets.isPrimaryProducer === true
       ) {
         docs.push({
           type: this.yourString + ' Tax Return'
@@ -225,9 +204,9 @@ export default {
 
       if (
         this.form.entities.fap.incomeAssets.employmentType ===
-          "Self employed"
-          ||
-          this.form.entities.fap.incomeAssets.isPrimaryProducer === true
+        "Self employed"
+        ||
+        this.form.entities.fap.incomeAssets.isPrimaryProducer === true
       ) {
         docs.push({
           type: this.form.entities.fap.firstName +
@@ -237,7 +216,7 @@ export default {
       }
 
       if (
-          this.form.entities.applicant.incomeAssets.hasLegalFeesBeenPaid === true
+        this.form.entities.applicant.incomeAssets.hasLegalFeesBeenPaid === true
       ) {
         docs.push({
           type: 'Paid legal fees Receipts',
@@ -246,8 +225,8 @@ export default {
       }
 
       if (
-        
-          this.form.problem.dcp.hasDcpDocuments === true
+
+        this.form.problem.dcp.hasDcpDocuments === true
       ) {
         docs.push({
           type: 'Court Order',
@@ -258,9 +237,9 @@ export default {
           multi: true
         });
       }
-      
+
       if (
-          this.form.problem.problemType.includes('Family Law problem')
+        this.form.problem.problemType.includes('Family Law problem')
       ) {
         docs.push({
           type: 'Family Documents',
@@ -269,18 +248,18 @@ export default {
       }
 
       if (
-          this.form.problem.familyLaw.beenToCounseling === true
+        this.form.problem.familyLaw.beenToCounseling === true
       ) {
         docs.push({
           type: 'Family Dispute Resolution Certificate'
         });
-         docs.push({
+        docs.push({
           type: 'Heads of Agreement'
         });
       }
 
       if (
-          this.form.problem.problemType.includes('Criminal Law problem')
+        this.form.problem.problemType.includes('Criminal Law problem')
       ) {
         docs.push({
           type: 'Criminal Documents',
@@ -289,7 +268,7 @@ export default {
       }
 
       if (
-          this.form.problem.problemType.includes('Civil/General Law problem')
+        this.form.problem.problemType.includes('Civil/General Law problem')
       ) {
         docs.push({
           type: 'Civil/General Documents',
@@ -298,7 +277,7 @@ export default {
       }
 
       if (
-          this.form.prevRepresented === true && this.form.coverLetterDetails === ''
+        this.form.prevRepresented === true && this.form.coverLetterDetails === ''
       ) {
         docs.push({
           type: 'Covering Letter'
@@ -308,7 +287,7 @@ export default {
 
       return docs;
     },
-     youString: function () {
+    youString: function () {
       return this.form.repType === "self" ? "you" : "the Applicant";
     },
     yourString: function () {

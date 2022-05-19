@@ -348,12 +348,12 @@
 </template>
 
 <script>
-import entity from "./entity.vue";
-import EntityAddress from "./entityAddress.vue";
-import Notice from "./notice.vue";
-import ReviewItem from "./reviewItem.vue";
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
+import reviewItem from "../common/reviewItem.vue";
 export default {
-  components: { entity, Notice, EntityAddress, ReviewItem },
+  components: { entity, Notice, EntityAddress, reviewItem },
   name: "f2Rev",
   props: {
     form: {

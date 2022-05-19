@@ -6,8 +6,8 @@
           <b-col cols="4">
             <h6>Contact details</h6>
             <p>
-              We need to be able to send {{youString}} information about {{yourString}} case. The
-              former employer will also need to send {{youString}} information about their
+              We need to be able to send {{ youString }} information about {{ yourString }} case. The
+              former employer will also need to send {{ youString }} information about their
               side of the case.
             </p>
             <p v-if="form.applyingForSelf === true">
@@ -16,60 +16,32 @@
             </p>
           </b-col>
           <b-col>
-            <entity
-              showTitle
-              showFirstName
-              showLastName
-              showPhones
-              showEmail
-              showPostalAddress
-              :entity="form.applicant"
-            >
+            <entity showTitle showFirstName showLastName showPhones showEmail showPostalAddress
+              :entity="form.applicant">
             </entity>
             <b-form-group>
-              <b-form-checkbox
-                v-model="form.doesNotHaveAnAddress"
-                :value="true"
-                :unchecked-value="false"
-              >
-                Check this box if <span v-if="form.applyingForSelf === true">you don't</span><span v-else>the Applicant doesn't</span> have an address.
+              <b-form-checkbox v-model="form.doesNotHaveAnAddress" :value="true" :unchecked-value="false">
+                Check this box if <span v-if="form.applyingForSelf === true">you don't</span><span v-else>the Applicant
+                  doesn't</span> have an address.
               </b-form-checkbox>
             </b-form-group>
-            <b-form-group
-              :label=" DoYouStringCont +  ' have a representative (lawyer/union rep etc)?'"
-            >
-              <b-form-radio-group
-                v-model="form.applicant.hasRep"
-                :options="boolOptions"
-              ></b-form-radio-group>
+            <b-form-group :label="DoYouStringCont + ' have a representative (lawyer/union rep etc)?'">
+              <b-form-radio-group v-model="form.applicant.hasRep" :options="boolOptions"></b-form-radio-group>
             </b-form-group>
           </b-col>
         </b-row>
       </section>
 
-      <section
-        class="mb-4 pb-4"
-        v-if="form.applicant.hasRep === true"
-      >
+      <section class="mb-4 pb-4" v-if="form.applicant.hasRep === true">
         <b-row>
           <b-col cols="4">
             <h6>Representative</h6>
-           <p>Please provide details about this representative if you know them.</p>
+            <p>Please provide details about this representative if you know them.</p>
           </b-col>
           <b-col>
-            
-            <entity
-              v-if="form.applicant.hasRep === true"
-              :entity="form.rep"
-              showOrgName
-              showPhones
-              showFirstName
-              showLastName
-              showEmail
-              showPostalAddress
-              showTitle
-              :orgNameLabel="'Firm or Organisation name'"
-            >
+
+            <entity v-if="form.applicant.hasRep === true" :entity="form.rep" showOrgName showPhones showFirstName
+              showLastName showEmail showPostalAddress showTitle :orgNameLabel="'Firm or Organisation name'">
             </entity>
           </b-col>
         </b-row>
@@ -79,9 +51,9 @@
 </template>
 
 <script>
-import entity from "./entity.vue";
-import EntityAddress from "./entityAddress.vue";
-import Notice from "./notice.vue";
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
 export default {
   components: { entity, Notice, EntityAddress },
   name: "f2ContactDetails",
@@ -93,31 +65,11 @@ export default {
   },
   data() {
     return {
-      repTypeOptions: [
-        { text: "I am their lawyer or paid agent", value: true },
-        { text: "Family or friend", value: false },
-      ],
-      applyingForSelfOptions: [
-        { text: "I am the applicant (submitting for myself)", value: true },
-        {
-          text: "I am submitting this form on behalf of someone else",
-          value: false,
-        },
-      ],
-      over18Options: [
-        { text: "yes, I am over 18", value: true },
-        { text: "no, I am under 18", value: false },
-      ],
       boolOptions: [
         { text: "Yes", value: true },
         { text: "No", value: false },
       ],
-      aboriginalityOptions: [
-        { text: "Yes, Aboriginal", value: "aboriginal" },
-        { text: "Yes, Torres Strait Islander", value: "islander" },
-        { text: "Both Aboriginal and Torres Strait Islander", value: "both" },
-        { text: "No", value: "no" },
-      ],
+     
     };
   },
   computed: {

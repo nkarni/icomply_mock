@@ -23,40 +23,28 @@
             </p>
           </b-col>
           <b-col>
-         
-         <abn-lookup :businessDetails="form.employerBusinessDetails"></abn-lookup>
-        
-            <entity-address
-              :addressLabel="'Postal address'"
-              :address="form.employerBusinessDetails.postalAddress"
-              :addressHelp="'You can select another address - start typing the correct address and select one of the options'"
-              :addressString="form.employerBusinessDetails.postalAddressString"
-            ></entity-address>
 
-            <b-form-group
-              :label="'Is this the address ' + youString + ' worked at?'"
-            >
-              <b-form-radio-group
-                v-model="
-                  form.employerBusinessDetails
-                    .businessAddressIsEmploymentAddress
-                "
-                :options="boolOptions"
-              ></b-form-radio-group>
+            <abn-lookup :businessDetails="form.employerBusinessDetails"></abn-lookup>
+
+            <entity-address :addressLabel="'Postal address'" :address="form.employerBusinessDetails.postalAddress"
+              :addressHelp="'You can select another address - start typing the correct address and select one of the options'"
+              :addressString="form.employerBusinessDetails.postalAddressString"></entity-address>
+
+            <b-form-group :label="'Is this the address ' + youString + ' worked at?'">
+              <b-form-radio-group v-model="
+                form.employerBusinessDetails
+                  .businessAddressIsEmploymentAddress
+              " :options="boolOptions"></b-form-radio-group>
             </b-form-group>
 
-            <entity-address
-              v-if="
-                form.employerBusinessDetails
-                  .businessAddressIsEmploymentAddress === false
-              "
-              :addressLabel="
-                'What was the address ' + youString + ' worked at?'
-              "
-              :address="form.employerBusinessDetails.employmentAddress"
+            <entity-address v-if="
+              form.employerBusinessDetails
+                .businessAddressIsEmploymentAddress === false
+            " :addressLabel="
+  'What was the address ' + youString + ' worked at?'
+" :address="form.employerBusinessDetails.employmentAddress"
               :addressHelp="'You can select another address - start typing the correct address and select one of the options'"
-              :addressString="form.employerBusinessDetails.postalAddressString"
-            ></entity-address>
+              :addressString="form.employerBusinessDetails.postalAddressString"></entity-address>
           </b-col>
         </b-row>
       </section>
@@ -72,19 +60,11 @@
           </b-col>
           <b-col>
             <b-form-group label="What is their role?">
-              <b-form-input
-                :v-model="form.employerBusinessDetails.contactPerson.role"
-              ></b-form-input>
+              <b-form-input :v-model="form.employerBusinessDetails.contactPerson.role"></b-form-input>
             </b-form-group>
 
-            <entity
-              :entity="form.employerBusinessDetails.contactPerson"
-              showPhones
-              showFirstName
-              showLastName
-              showEmail
-              showTitle
-            >
+            <entity :entity="form.employerBusinessDetails.contactPerson" showPhones showFirstName showLastName showEmail
+              showTitle>
             </entity>
           </b-col>
         </b-row>
@@ -94,10 +74,10 @@
 </template>
 
 <script>
-import AbnLookup from './abnLookup.vue';
-import entity from "./entity.vue";
-import EntityAddress from "./entityAddress.vue";
-import Notice from "./notice.vue";
+import AbnLookup from '../common/abnLookup.vue';
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
 export default {
   components: { entity, Notice, EntityAddress, AbnLookup },
   name: "f2EmployerDetails",
@@ -161,7 +141,7 @@ export default {
     AreYouString: function () {
       return this.form.applyingForSelf ? "are you" : "the Applicant is";
     },
-     AreYouStringReverse: function () {
+    AreYouStringReverse: function () {
       return this.form.applyingForSelf ? "are you" : "is the Applicant";
     },
     additionalS: function () {

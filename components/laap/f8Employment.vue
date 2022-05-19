@@ -157,7 +157,7 @@
 import entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
-import vagueDate from "./vagueDate.vue";
+import vagueDate from "../common/vagueDate.vue";
 export default {
   components: { entity, Notice, EntityAddress, vagueDate },
   name: "f8Employment",

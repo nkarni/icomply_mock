@@ -75,7 +75,6 @@
 </template>
 
 <script>
-import AbnLookup from "./abnLookup.vue";
 import entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
@@ -89,7 +88,6 @@ export default {
     entity,
     Notice,
     EntityAddress,
-    AbnLookup,
     f42Training,
     f42Files,
     f42HolderSuperDetails,

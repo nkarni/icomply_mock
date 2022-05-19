@@ -116,7 +116,7 @@ Attach evidence showing the proposed permit holder has successfully completed th
 </template>
 
 <script>
-import AbnLookup from "./abnLookup.vue";
+
 import entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
@@ -124,7 +124,7 @@ import f42Training from "./f42/f42Training.vue";
 import f42HolderSuperDetails from  "./f42/f42HolderSuperDetails.vue";
 import f42HolderDetailsComp from  "./f42/f42HolderDetailsComp.vue";
 export default {
-  components: { entity, Notice, EntityAddress, AbnLookup, f42Training , f42HolderSuperDetails, f42HolderDetailsComp},
+  components: { entity, Notice, EntityAddress, f42Training , f42HolderSuperDetails, f42HolderDetailsComp},
   name: "holderDetails",
   props: {
     form: {

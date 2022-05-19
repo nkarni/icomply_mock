@@ -193,11 +193,11 @@
 <script>
 import f8AboutYou from "../components/laap/f8AboutYou.vue";
 import f8Employment from "../components/laap/f8Employment.vue";
-import f2ContactDetails from "../components/laap/f2ContactDetails.vue";
-import f2EmployerDetails from "../components/laap/f2EmployerDetails.vue";
+import f2ContactDetails from "../components/f2/f2ContactDetails.vue";
+import f2EmployerDetails from "../components/f2/f2EmployerDetails.vue";
 import f8Dismissal from "../components/laap/f8Dismissal.vue";
-import f2Attachments from "../components/laap/f2Attachments.vue";
-import f2Rev from "../components/laap/f2Rev.vue";
+import f2Attachments from "../components/f2/f2Attachments.vue";
+import f2Rev from "../components/f2/f2Rev.vue";
 
 export default {
   components: {

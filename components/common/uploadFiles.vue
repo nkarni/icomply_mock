@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: "notice",
+  name: "uploadFiles",
   props: {
     form: {
       type: Object,

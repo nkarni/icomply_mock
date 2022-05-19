@@ -4,117 +4,95 @@
       <b-col cols="8">
         <h3 class="text-primary">Unfair dismissal claim</h3>
       </b-col>
-      <b-col cols="4"  class="text-right">
-        <!-- <NuxtLink to="/home" class="text-right pr-0">
-          Back to dashboard
-        </NuxtLink> -->
-         <b-button>Reference: YCFRU</b-button>
-         <b-button variant="primary">Save for later</b-button>
+      <b-col cols="4" class="text-right">
+        <b-button>Reference: YCFRU</b-button>
+        <b-button variant="primary">Save for later</b-button>
       </b-col>
     </b-row>
     <b-row class="mt-4">
-      <b-tabs
-        v-model="tabIndex"
-        vertical
-        nav-wrapper-class="w-30"
-        class="w-100"
-        active-nav-item-class="text-primary laap-nav-item-active"
-        nav-class="laap-nav"
-        content-class="card p-3"
-      >
-        <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-3',
-            { 'laap-nav-item-complete': true },
-          ]"
-        >
+      <b-tabs v-model="tabIndex" vertical nav-wrapper-class="w-30" class="w-100"
+        active-nav-item-class="text-primary laap-nav-item-active" nav-class="laap-nav" content-class="card p-3">
+        <b-tab :title-link-class="[
+          'laap-title-link',
+          'mb-2',
+          'p-3',
+          { 'laap-nav-item-complete': true },
+        ]">
           <template #title>
             <h5>About you</h5>
             <span>Some details we need know</span>
           </template>
           <f-2-about-you :form="form"></f-2-about-you>
-        
+
         </b-tab>
 
-        <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-3',
-            { 'laap-nav-item-complete': false },
-          ]"
-        >
+        <b-tab :title-link-class="[
+          'laap-title-link',
+          'mb-2',
+          'p-3',
+          { 'laap-nav-item-complete': false },
+        ]">
           <template #title>
             <h5>Contact details</h5>
             <span>Your contact details</span>
           </template>
-         <f-2-contact-details :form="form"></f-2-contact-details>
+          <f-2-contact-details :form="form"></f-2-contact-details>
         </b-tab>
 
-        <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-3',
-            { 'laap-nav-item-complete': false },
-          ]"
-        >
+        <b-tab :title-link-class="[
+          'laap-title-link',
+          'mb-2',
+          'p-3',
+          { 'laap-nav-item-complete': false },
+        ]">
           <template #title>
             <h5>Former employer</h5>
             <span>Details about the employer</span>
           </template>
-         <f-2-employer-details :form="form"></f-2-employer-details>
+          <f-2-employer-details :form="form"></f-2-employer-details>
         </b-tab>
 
-   <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-3',
-            { 'laap-nav-item-complete': false },
-          ]"
-        >
+        <b-tab :title-link-class="[
+          'laap-title-link',
+          'mb-2',
+          'p-3',
+          { 'laap-nav-item-complete': false },
+        ]">
           <template #title>
             <h5>The dismissal</h5>
             <span>Details about your employment and the dismissal</span>
           </template>
-         <f-2-dismissal :form="form"></f-2-dismissal>
+          <f-2-dismissal :form="form"></f-2-dismissal>
         </b-tab>
-        <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-3',
-            { 'laap-nav-item-complete': false },
-          ]"
-        >
+        <b-tab :title-link-class="[
+          'laap-title-link',
+          'mb-2',
+          'p-3',
+          { 'laap-nav-item-complete': false },
+        ]">
           <template #title>
             <h5>Attachments</h5>
             <span>Upload documents</span>
           </template>
 
           <f-2-attachments :form="form"></f-2-attachments>
-         
+
         </b-tab>
 
-        <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-4',
-            { 'laap-nav-item-complete': false },
-          ]"
-        >
+        <b-tab :title-link-class="[
+          'laap-title-link',
+          'mb-2',
+          'p-4',
+          { 'laap-nav-item-complete': false },
+        ]">
           <template #title>
             <h5>Review and submit</h5>
             <span>Review your information and lodge the form</span>
-           
+
           </template>
-       <f-2-rev :form="form"></f-2-rev>
+          <f-2-rev :form="form"></f-2-rev>
         </b-tab>
-        
+
       </b-tabs>
     </b-row>
 
@@ -186,12 +164,12 @@
 </template>
 
 <script>
-import F2AboutYou from '../components/laap/f2AboutYou.vue';
-import f2ContactDetails from '../components/laap/f2ContactDetails.vue';
-import f2EmployerDetails from '../components/laap/f2EmployerDetails.vue';
-import f2Dismissal from '../components/laap/f2Dismissal.vue';
-import f2Attachments from '../components/laap/f2Attachments.vue';
-import f2Rev from '../components/laap/f2Rev.vue';
+import F2AboutYou from '../components/f2/f2AboutYou.vue';
+import f2ContactDetails from '../components/f2/f2ContactDetails.vue';
+import f2EmployerDetails from '../components/f2/f2EmployerDetails.vue';
+import f2Dismissal from '../components/f2/f2Dismissal.vue';
+import f2Attachments from '../components/f2/f2Attachments.vue';
+import f2Rev from '../components/f2/f2Rev.vue';
 
 export default {
   components: {
@@ -225,7 +203,7 @@ export default {
             country: "",
           },
           orgName: '',
-          
+
         },
         formFiller: {
           title: "",
@@ -284,7 +262,7 @@ export default {
         employerBusinessDetails: {
           businessDetailsString: "ABC pty ltd Trading as MY ABC, ABN: 12345678",
           name: "",
-          tradingName:"",
+          tradingName: "",
           abn: "",
           postalAddress: {
             line1: "",
@@ -327,7 +305,7 @@ export default {
           dateYear: '',
           unknownDate: false,
         },
-         effectiveDismissalDate: {
+        effectiveDismissalDate: {
           date: "",
           dateDay: '',
           dateMonth: '',
@@ -345,7 +323,7 @@ export default {
 
         lodgingWithin21DaysLimit: null,
         lodgingWithin21DaysLimitDetails: '',
-        startedOtherClaims:null,
+        startedOtherClaims: null,
         startedOtherClaimsDetails: '',
         employeeDescOfWhatHappened: '',
         employeeDesiredOutcomes: '',
@@ -362,7 +340,7 @@ export default {
       tabIndex: 0,
     };
   },
-  mounted: function () {},
+  mounted: function () { },
   methods: {
     changeTabIndex(index) {
       this.tabIndex = index;

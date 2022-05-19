@@ -256,7 +256,7 @@ If the employee wasn’t dismissed, count the employees you had on 12/12/22 (the
 </template>
 
 <script>
-import AbnLookup from './abnLookup.vue';
+import AbnLookup from '../common/abnLookup.vue';
 import entity from "./entity.vue";
 import EntityAddress from "./entityAddress.vue";
 import Notice from "./notice.vue";
