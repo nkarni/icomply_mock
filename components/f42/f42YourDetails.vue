@@ -4,12 +4,14 @@
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>The Proposed Permit Holder</h6>
-
-            <p>Provide details of the Proposed Permit Holder.</p>
+            <h6>Applicant details</h6>
             <p>
-              This information will be reviewed and can be edited by the
-              Proposed Permit Holder if incorrect.
+              The following details are your Union organisation as recorded in
+              our system.
+            </p>
+            <p>
+              If you have a different postal address than the Union, please
+              provide it.
             </p>
             <p>
               Throughout this form - all fields are mandatory unless
@@ -17,10 +19,37 @@
             </p>
           </b-col>
           <b-col>
-            
+            <b-form-group>
+              <p>Australian manufacturing Workers' Union, Carlton Branch
+                </p>
+            <p>
+              251 Queensberry Street, Carlton Victoria 3053
+               
+            </p>
+              <p>
+                The organisation is registered under the Fair Work (Registered Organisation) Act 2009 (the RC Act)
+              </p>
+              
+            </b-form-group>
 
-<f-42-holder-details-comp  :form="form"></f-42-holder-details-comp>
-            
+            <b-form-group >
+              <b-form-checkbox
+                v-model="form.admin.hasDifferentPostalAddress"
+                :value="true"
+                :unchecked-value="false"
+              >
+                I have a different postal address to union organisation address.
+              </b-form-checkbox>
+            </b-form-group>
+
+            <div v-if="form.admin.hasDifferentPostalAddress === true">
+             <entity
+              :entity="form.admin"
+              showPostalAddress
+              :postalAddressLabel="'Your postal address'"
+            >
+            </entity>
+            </div>
           </b-col>
         </b-row>
       </section>
@@ -28,104 +57,67 @@
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Permit training</h6>
-            <p>Give details of the training completed and the date it was completed.</p><p>
-Attach evidence showing the proposed permit holder has successfully completed the relevant training. 
-</p> <p>See Rule 51 of the Fair Work Commission Rules 2013. </p>
-<p> You can find information about right of entry training on <a href="https://www.fwc.gov.au/registered-organisations/entry-permits/training-permit-holders-must-complete" target="_blank">our website</a>.
-            </p>
-
-
-            <!-- <p>
-              You can provide further information on behalf of the Proposed
-              Permit Holder.
-            </p>
-            <p>
-              Although this is optional, it will help to improve the process and
-              make it faster and more efficient (temporary text!)
-            </p> -->
+            <h6>Your details</h6>
+            <p> We have pre-populated your details from our records. Please check and correct if required.</p>
+            <p>Is here a better place to put the 'why we need it' rather than in the intro page? </p>
           </b-col>
           <b-col>
-            <!-- <b-form-group
-              label="Do you have access to their training information (including evidence of completion)?"
-            >
-              <b-form-radio-group
-                :options="boolOptions"
-                v-model="form.admin.hasHolderTrainingInfo"
-              ></b-form-radio-group>
-            </b-form-group> -->
-            <div >
-              <f-42-training :form="form"></f-42-training>
-            </div>
-          </b-col>
-        </b-row>
-      </section>
-      <section class=" mb-4 pb-2 border-bottom border-secondary">
-        <b-row>
-          <b-col cols="4">
-            <h6>Photograph</h6>
-            <p>
-              Provide a photograph of the Proposed Permit Holder that
-              follows the FWC requirements <a target="_blank" href="https://www.fwc.gov.au/registered-organisations/entry-permits/about-fair-work-entry-permits/how-we-process-fair-work-entry">click here</a> for more information.
-            </p>
-          </b-col>
-          <b-col>
-            <!-- <b-form-group
-              label="Do you have access to a recent passport photo of the Proposed Permit Holder?"
-            >
-              <b-form-radio-group
-                :options="boolOptions"
-                v-model="form.admin.hasHolderPhoto"
-              ></b-form-radio-group>
-            </b-form-group> -->
-            <div >
-                            <notice class="mb-2" message="Only .jpg and .jpeg files are accepted, file size limit is 5MB"></notice>
-
-              <b-form-group
-                label="Attach a photograph"
-                description="Short explanation about how the file will be used."
+            <b-form-group>
+              <b-form-checkbox
+                v-model="form.permitHolder.isSameAsAdmin"
+                :value="true"
+                :unchecked-value="false"
               >
-                <b-form-file
-                  v-model="form.permitHolder.photoFile"
-                  placeholder="Choose a file or drop it here..."
-                  drop-placeholder="Drop file here..."
-                ></b-form-file>
-              </b-form-group>
-            </div>
+                Check this box if you are also the Proposed Permit Holder.
+              </b-form-checkbox>
+            </b-form-group>
+            <notice  v-if="form.permitHolder.isSameAsAdmin" :message="'Enter your full details in the next step.'"></notice>
+
+          <entity
+          v-if="!form.permitHolder.isSameAsAdmin"
+              :entity="form.admin"
+              showFirstName
+              showLastName
+              showEmail
+              
+              :firstNameLabel="'First name'"
+              :lastNameLabel="'Surname'"
+            >
+            </entity>
           </b-col>
         </b-row>
       </section>
-
-  <!-- <section class=" mb-4 pb-2">
+       <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Other information</h6>
+            <h6>Your declaration</h6>
             
           </b-col>
           <b-col>
-            
-            <f-42-holder-super-details :form="form"></f-42-holder-super-details>
+          <b-form-group >
+              <b-form-checkbox
+                v-model="form.admin.confirmAuthorised"
+                :value="true"
+                :unchecked-value="false"
+              >
+                I am authorised to lodge this application on behalf of the above named Organisation or Branch.
+              </b-form-checkbox>
+            </b-form-group>
           </b-col>
         </b-row>
-      </section> -->
-
-
-
+      </section>
+      
     </b-form>
   </div>
 </template>
 
 <script>
-
-import entity from "./entity.vue";
-import EntityAddress from "./entityAddress.vue";
-import Notice from "./notice.vue";
-import f42Training from "./f42/f42Training.vue";
-import f42HolderSuperDetails from  "./f42/f42HolderSuperDetails.vue";
-import f42HolderDetailsComp from  "./f42/f42HolderDetailsComp.vue";
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
 export default {
-  components: { entity, Notice, EntityAddress, f42Training , f42HolderSuperDetails, f42HolderDetailsComp},
-  name: "holderDetails",
+  components: { entity, Notice, EntityAddress },
+  name: "yourDetails",
   props: {
     form: {
       type: Object,

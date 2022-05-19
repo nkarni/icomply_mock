@@ -1,20 +1,7 @@
 <template>
   <div>
     <b-form>
-      <!-- <section class="border-bottom border-secondary mb-4 pb-4">
-        <b-row>
-          <b-col>
-            <h5>Process overview</h5>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </b-col>
-        </b-row>
-      </section> -->
+    
       <section class=" mb-4 pb-4">
         <b-row>
           <b-col>
@@ -23,20 +10,20 @@
             <b-form-group>
               <b-list-group >
                 <b-list-group-item>
-                  <h6>1.   An administrator from you union has started an entry permit application on your behalf.</h6>
+                  <h6>1.   An administrator from you union has started an entry permit application.</h6>
                  
                     
                 </b-list-group-item>
                 <b-list-group-item>
-                  <h6>2.   You will need to provide your personal details, ID documents, supporting documents and sign a statuary declaration confirming your details.</h6>
+                  <h6>2.   The Proposed Permit Holder has been identified and provided their ID, supporting documents and signed a statuary declaration verifying the information they have provided.</h6>
                   
                 </b-list-group-item>
                 <b-list-group-item>
-                  <h6>3. Your application will then be submitted to FWC by your union administrator.</h6>
+                  <h6>3. You now need to confirm the identity of the Proposed Permit Holder, assess their suitability for an entry permit and sign a statuary declaration confirming these details.</h6>
                 
                 </b-list-group-item>
                 <b-list-group-item>
-                  <h6>4.  Once submitted you will be contacted by FWC to complete a final interview via video call to complete the application to receive your permit.</h6>
+                  <h6>4.  The application will then be submitted to FWC.</h6>
                  
                 </b-list-group-item>
                 
@@ -53,26 +40,26 @@
             <b-form-group>
               <b-list-group >
                 <b-list-group-item>
-                  <h6>Confirm Full legal names (given, middle and surname)</h6>
+                  <h6>Confirm your legal name</h6>
+                </b-list-group-item>
+                 <b-list-group-item>
+                  <h6>Confirm the ID of the Proposed Permit Holder</h6>
                 </b-list-group-item>
                 <b-list-group-item>
-                  <h6>Details of entry permit training</h6>
+                  <h6>Confirm training details and date of the Proposed Permit Holder</h6>
                   
                 </b-list-group-item>
                 <b-list-group-item>
-                  <h6>Photograph of yourself</h6>
+                  <h6>Provide additional details of the suitability of the Proposed Permit Holder</h6>
                 </b-list-group-item>
-                <b-list-group-item>
-                  <h6>Two forms of identification</h6>
-                 
-                </b-list-group-item>
+              
                 
               </b-list-group>
             </b-form-group>
           </b-col>
         </b-row>
       </section>
-        <section class="mb-4 pb-4">
+          <section class="mb-4 pb-4">
         <b-row>
           <b-col>
             <h5>Privacy</h5>
@@ -114,12 +101,12 @@
 </template>
 
 <script>
-import entity from "./entity.vue";
-import EntityAddress from "./entityAddress.vue";
-import Notice from "./notice.vue";
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
 export default {
   components: { entity, Notice, EntityAddress },
-  name: "f42ProcessAdmin",
+  name: "f42MemberViewProcess",
   props: {
     form: {
       type: Object,

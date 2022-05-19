@@ -1,83 +1,56 @@
 <template>
   <div>
-    <notice
-      class="mb-3"
-      :message="'Legal name must match drivers license or name on an official ID document.'"
-    ></notice>
-    <entity
-      :entity="form.permitHolder"
-      showFirstName
-      showLastName
-      showEmail
-      :showMiddleName="true"
-              :firstNameLabel="'Legal first name'"
-              :lastNameLabel="'Legal surname'"
-              :middleNameLabel="'Middle name (optional)'"
-              :showPreferredName="true"
-      showMobilePhone
-      :emailDesc="emailDesc"
-      :mobilePhoneDesc="'The mobile number may be used for notifications'"
-      :mobilePhoneLabel="'Mobile phone (optional)'"
-    >
-    </entity>
+    <b-form>
+      <section class=" mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Information provided about you by the administrator</h6>
+            <p>
+             The following details were provided by the union administrator. 
+              Please check that they are accurate and correct.
+            </p>
+           
+           
+          </b-col>
+          <b-col>
+           
+<f-42-holder-details-read-only :form="form"></f-42-holder-details-read-only>
 
-    <b-form-group :label="employeeOrOfficeHolderLabel">
-      <b-form-radio-group
-        stacked
-        v-model="form.permitHolder.employeeOrOfficeHolder"
-        :options="['An Office Holder', 'An Employee']"
-      ></b-form-radio-group>
-    </b-form-group>
+<b-form-group label="Are the details above correct?">
+             <b-form-radio-group v-model="form.permitHolder.confirmInfo" :options="boolOptions" >
 
-    <b-form-group :label="positionOrOfficeHeldLabel">
-      <b-form-input v-model="form.permitHolder.positionOrOfficeHeld">
-      </b-form-input>
-    </b-form-group>
+             </b-form-radio-group>
+            </b-form-group>
 
-    <b-form-group :label="previouslyHeldAnEntryPermitLabel">
-      <b-form-radio-group
-        v-model="form.permitHolder.previouslyHeldAnEntryPermit"
-        :options="boolOptions"
-      ></b-form-radio-group>
-    </b-form-group>
+            <b-form-group label="Please provide detailed explanation" v-if="form.permitHolder.confirmInfo === false">
+              <b-form-textarea v-model="form.permitHolder.infoCorrection">
 
-    <b-form-group
-      :label="previousPermitNumberLabel"
-      v-if="form.permitHolder.previouslyHeldAnEntryPermit === true"
-    >
-      <b-form-input v-model="form.permitHolder.previousPermitNumber">
-      </b-form-input>
-    </b-form-group>
-                <notice v-if="form.permitHolder.previouslyHeldAnEntryPermit === true" class="mt-2 mb-2" :message="'If a permit is returned more than 7 days after expiry or cannot be returned because it is lost, the proposed permit holder may be asked to provide a statutory declaration explaining the failure to comply with s.517 of the Fair Work Act 2009.'"></notice>
+              </b-form-textarea>
+            </b-form-group>
+
+            <notice class="mb-4" v-if="form.permitHolder.confirmInfo === false" :message="'Please proceed to complete and submit the form. When you submit it, the union administrator will be notified.'"></notice>
 
 
-    <b-form-group
-      label="Has that permit been returned?"
-      v-if="form.permitHolder.previouslyHeldAnEntryPermit === true"
-    >
-      <b-form-radio-group
-        v-model="form.permitHolder.previousPermitReturned"
-        :options="boolOptions"
-      ></b-form-radio-group>
-    </b-form-group>
-
-     <b-form-group
-      label="Why has it not been returned?"
-      v-if="form.permitHolder.previousPermitReturned === false"
-    >
-      <b-form-input v-model="form.permitHolder.previousPermitNotReturnedReason">
-      </b-form-input>
-    </b-form-group>
+            <notice :message="'Dev note: as part of the standard upload file component - if a file was uploaded the use can see a preview of it or click on a link to view it.'"></notice>
+          </b-col>
+        </b-row>
+      </section>
+      
+    </b-form>
   </div>
 </template>
 
 <script>
-import entity from "../entity.vue";
-import EntityAddress from "../entityAddress.vue";
-import Notice from "../notice.vue";
+
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
+import f42Training from "./common/f42Training.vue";
+import f42HolderDetailsReadOnly from "./common/f42HolderDetailsReadOnly.vue";
+
 export default {
-  components: { entity, Notice, EntityAddress },
-  name: "f42HolderDetailsComp",
+  components: { entity, Notice, EntityAddress,f42Training, f42HolderDetailsReadOnly },
+  name: "f42HolderViewTraining",
   props: {
     form: {
       type: Object,
@@ -146,43 +119,13 @@ export default {
       ],
     };
   },
+
+  mounted() {
+		this.form.permitHolder.firstName='Don',
+    this.form.permitHolder.lastName='Burrows'
+    this.form.permitHolder.email='don@burrows.com'
+		},
   computed: {
-    
-    employeeOrOfficeHolderLabel: function () {
-      if (this.form.userRole === "permitHolder") {
-        return "What is your role in ths organisation?";
-      } else {
-        return "The Proposed Permit Holder is:";
-      }
-    },
-    positionOrOfficeHeldLabel: function () {
-      if (this.form.userRole === "permitHolder") {
-        return "What is your office or position?";
-      } else {
-        return "What is their office or position?";
-      }
-    },
-    previouslyHeldAnEntryPermitLabel: function () {
-      if (this.form.userRole === "permitHolder") {
-        return "Have you previously held an entry permit?";
-      } else {
-        return "Has this person previously held an entry permit?";
-      }
-    },
-    previousPermitNumberLabel: function () {
-      if (this.form.userRole === "permitHolder") {
-        return "What is your most recent or current permit number?";
-      } else {
-        return "What is their most recent or current permit number?";
-      }
-    },
-    emailDesc: function () {
-      if (this.form.userRole === "permitHolder") {
-        return "";
-      } else {
-        return "The email address will be used to notify the Proposed Permit holder";
-      }
-    },
     youString: function () {
       return this.form.repType === "self" ? "you" : "the Applicant";
     },

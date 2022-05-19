@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary mb-4 pb-4">
+      <!-- <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col>
             <h5>Process overview</h5>
@@ -14,78 +14,65 @@
             culpa qui officia deserunt mollit anim id est laborum.
           </b-col>
         </b-row>
-      </section>
-      <section class="border-bottom border-secondary mb-4 pb-4">
+      </section> -->
+      <section class=" mb-4 pb-4">
         <b-row>
           <b-col>
-            <h5>What you will do today</h5>
+            <h5>How the process works</h5>
 
             <b-form-group>
-              <b-list-group>
+              <b-list-group >
                 <b-list-group-item>
-                  <h6>1. Provide your contact details</h6>
-                  <span class="ml-3"
-                    >Explanation text about why you need to provide this</span
-                  >
+                  <h6>1.   An administrator from you union has started an entry permit application on your behalf.</h6>
+                 
+                    
                 </b-list-group-item>
                 <b-list-group-item>
-                  <h6>2. Provide Proposed Permit Holder details</h6>
-                  <span class="ml-3"
-                    >Explanation text about why you need to provide this</span
-                  >
+                  <h6>2.   You will need to provide your personal details, ID documents, supporting documents and sign a statuary declaration confirming your details.</h6>
+                  
                 </b-list-group-item>
                 <b-list-group-item>
-                  <h6>3. Provide Member of Committee of Management details</h6>
-                  <span class="ml-3"
-                    >Explanation text about why you need to provide this</span
-                  >
+                  <h6>3. Your application will then be submitted to FWC by your union administrator.</h6>
+                
                 </b-list-group-item>
                 <b-list-group-item>
-                  <h6>
-                    4. Invite the Proposed Permit Holder to confirm their
-                    details
-                  </h6>
-                  <span class="ml-3"
-                    >Explanation text about why you need to do this</span
-                  >
+                  <h6>4.  Once submitted you will be contacted by FWC to complete a final interview via video call to complete the application to receive your permit.</h6>
+                 
                 </b-list-group-item>
+                
               </b-list-group>
             </b-form-group>
           </b-col>
         </b-row>
       </section>
-      <section class="border-bottom border-secondary mb-4 pb-4">
+         <section class="mb-4 pb-4">
         <b-row>
           <b-col>
-            <h5>What will happen next</h5>
+            <h5>What you will provide now</h5>
 
             <b-form-group>
-              <div class="mt-4">
-                <p>
-                  The Proposed Permit Holder will be invited to complete their
-                  part of the application. They will review their details,
-                  verify their identity, provide additional supporting documents
-                  and sign their statuary declarations.
-                </p>
-              </div>
-              <div class="mt-4">
-                <p>
-                  Then the Member of Committee of Management will be invited to
-                  review the Proposed Permit Holder details, approve them for
-                  the entry and sign their statuary declarations.
-                </p>
-              </div>
-              <div class="mt-4">
-                <p>
-                  You will then be invited to submit the application to FWC for
-                  review.
-                </p>
-              </div>
+              <b-list-group >
+                <b-list-group-item>
+                  <h6>Confirm Full legal names (given, middle and surname)</h6>
+                </b-list-group-item>
+                <b-list-group-item>
+                  <h6>Details of entry permit training</h6>
+                  
+                </b-list-group-item>
+                <b-list-group-item>
+                  <h6>Photograph of yourself</h6>
+                </b-list-group-item>
+                <b-list-group-item>
+                  <h6>Two forms of identification</h6>
+                 
+                </b-list-group-item>
+                
+              </b-list-group>
             </b-form-group>
           </b-col>
         </b-row>
       </section>
-      <section class="mb-4 pb-4">
+        <section class="mb-4 pb-4">
         <b-row>
           <b-col>
             <h5>Privacy</h5>
@@ -127,9 +114,9 @@
 </template>
 
 <script>
-import entity from "./entity.vue";
-import EntityAddress from "./entityAddress.vue";
-import Notice from "./notice.vue";
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
 export default {
   components: { entity, Notice, EntityAddress },
   name: "f42ProcessAdmin",

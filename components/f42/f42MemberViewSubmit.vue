@@ -50,7 +50,7 @@ Giving false or misleading information is a serious offence. A person who: <ol><
                 
               </p>
               <f-42-member-dec :form="form"></f-42-member-dec>
-                <notice class="mb-2" :message="'The Commission can take into account any other matter that it considers relevant to whether the proposed permit holder is a fit and proper person to hold a permit. This may include adverse comments made about the proposed permit holder in a Commission or court decision, regardless of whether the proposed permit holder was a party to the proceeding.'" /></notice>
+                <notice class="mb-2" :message="'The Commission can take into account any other matter that it considers relevant to whether the proposed permit holder is a fit and proper person to hold a permit. This may include adverse comments made about the proposed permit holder in a Commission or court decision, regardless of whether the proposed permit holder was a party to the proceeding.'"></notice>
 
             <!-- <f-42-holder-super-details :form="form" :dec="form.committeeMember.dec"></f-42-holder-super-details> -->
              <b-form-group :label="'Are you aware of any other matters that may be relevant to whether the permit holder is a fit and proper person to hold a permit?'"
@@ -120,10 +120,10 @@ Giving false or misleading information is a serious offence. A person who: <ol><
 </template>
 
 <script>
-import entity from "./entity.vue";
-import EntityAddress from "./entityAddress.vue";
-import Notice from "./notice.vue";
-import f42MemberDec from  "./f42/f42MemberDec.vue";
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
+import f42MemberDec from  "./common/f42MemberDec.vue";
 export default {
   components: { entity, Notice, EntityAddress, f42MemberDec },
   name: "f42MemberViewSubmit",

@@ -52,9 +52,9 @@
 
 <script>
 
-import entity from "./entity.vue";
-import EntityAddress from "./entityAddress.vue";
-import Notice from "./notice.vue";
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
 export default {
   components: { entity, Notice, EntityAddress, },
   name: "f42MemberViewDetails",

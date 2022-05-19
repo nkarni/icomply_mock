@@ -1,19 +1,18 @@
 <template>
   <div>
-    <span :class="form.userRole === 'admin' ? 'active text-primary' : ''">Started</span>
-    <span :class="form.userRole === 'permitHolder' ? 'active text-primary' : ''">- Awaiting Proposed Permit Holder Verification</span>
+    <span :class="form.userRole === 'admin' ? 'active text-primary' : ''"
+      >Started</span
+    >
+    <span :class="form.userRole === 'permitHolder' ? 'active text-primary' : ''"
+      >- Awaiting Proposed Permit Holder Verification</span
+    >
     <span>- Awaiting Committee of Management Member Verification</span>
     <span>- Ready for Submission</span>
-
-   
-
   </div>
 </template>
 
 <script>
-
 export default {
-
   name: "f42ProgressBar",
   props: {
     form: {
@@ -75,20 +74,7 @@ export default {
       return this.form.repType === "self" ? "have you" : "has the Applicant";
     },
   },
-  methods: {
-    addVictim() {
-      this.court.victims.push({ firstName: "", lastName: "" });
-    },
-    removeVictim(i) {
-      this.court.victims.splice(i);
-    },
-    addPersonCharged() {
-      this.court.othersCharged.push({ firstName: "", lastName: "" });
-    },
-    removePersonCharged(i) {
-      this.court.othersCharged.splice(i,1);
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -100,11 +86,9 @@ export default {
 span {
   margin-right: 6px;
   font-size: 1rem;
-
- 
 }
- .active {
-    font-weight: 700 !important;
-    font-size: 1rem;
-  }
+.active {
+  font-weight: 700 !important;
+  font-size: 1rem;
+}
 </style>

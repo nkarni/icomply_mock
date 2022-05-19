@@ -1,77 +1,33 @@
 <template>
   <div>
-    <notice
-      class="mb-3"
-      :message="'Legal name must match drivers license or name on an official ID document.'"
-    ></notice>
-     <b-form-group label="Name:">
-              <p>Don Middle Burrows</p>
-            </b-form-group>
+    <b-form>
+      <section class="mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Digital ID</h6>
+            <p>You need to prove their identity to the Commission before their permit can be issued. </p>
+            <p>   You can do this with a Digital iD™ obtained from Australia Post. </p>
+            <p> You should have this before you lodge the application, or there may be a delay in issuing the permit.</p>
+          </b-col>
 
-            <b-form-group label="Office/Position:">
-              <p
-                v-if="
-                  form.permitHolder.employeeOrOfficeHolder ===
-                  'An Office Holder'
-                "
-              >
-                An office holder holding the office:
-                {{ form.permitHolder.positionOrOfficeHeld }}
-              </p>
-              <p v-else>
-                An employee holding the position:
-                {{ form.permitHolder.positionOrOfficeHeld }}
-              </p>
-            </b-form-group>
-
-            <b-form-group label="Previous permit:">
-              <p v-if="form.permitHolder.previouslyHeldAnEntryPermit === true">
-                They have held a permit previously. <br />Permit no.
-                {{ form.permitHolder.previousPermitNumber }}<br />
-                <span v-if="form.permitHolder.previousPermitReturned === true"
-                  >Permit was returned.</span
-                >
-                <span v-if="form.permitHolder.previousPermitReturned === true"
-                  >Permit was not returned.</span
-                >
-              </p>
-              <p v-else>They have not held a permit previously.</p>
-            </b-form-group>
-
-            <b-form-group label="Entry Permit Holder Training:">
-              <div
-                v-for="(training, index) of form.permitHolder.trainings"
-                :key="index"
-                v-bind:id="index"
-               class="mb-2"
-              >
-                Name: {{ training.trainingName }}<br />
-                Method: {{ training.trainingName }}<br />Completed on:
-                {{ training.trainingCompletionDate }}<br />Evidence:
-                <a target="_blank" href="">Click Here</a>
-              </div>
-            </b-form-group>
-
-            <b-form-group label="Photograph:">
-              <p>Image here</p>
-            </b-form-group>
-            <b-form-group label="Signature:">
-              <img
-                src="~/assets/img/pph_signature.png"
-                style="max-width: 100%"
-              />
-            </b-form-group>
-
+          <b-col class="text-center mt-3">
+            <b-button variant="primary"
+              >Validate via Australia Post Digital ID</b-button
+            >
+          </b-col>
+        </b-row>
+      </section>
+    </b-form>
   </div>
 </template>
 
 <script>
-import entity from "../entity.vue";
-import EntityAddress from "../entityAddress.vue";
-import Notice from "../notice.vue";
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
 export default {
   components: { entity, Notice, EntityAddress },
-  name: "f42HolderDetailsReadOnly",
+  name: "f42HolderViewId",
   props: {
     form: {
       type: Object,
@@ -140,43 +96,13 @@ export default {
       ],
     };
   },
+
+  mounted() {
+    (this.form.permitHolder.firstName = "Don"),
+      (this.form.permitHolder.lastName = "Burrows");
+    this.form.permitHolder.email = "don@burrows.com";
+  },
   computed: {
-    
-    employeeOrOfficeHolderLabel: function () {
-      if (this.form.userRole === "permitHolder") {
-        return "What is your role in ths organisation?";
-      } else {
-        return "The Proposed Permit Holder is:";
-      }
-    },
-    positionOrOfficeHeldLabel: function () {
-      if (this.form.userRole === "permitHolder") {
-        return "What is your office or position?";
-      } else {
-        return "What is their office or position?";
-      }
-    },
-    previouslyHeldAnEntryPermitLabel: function () {
-      if (this.form.userRole === "permitHolder") {
-        return "Have you previously held an entry permit?";
-      } else {
-        return "Has this person previously held an entry permit?";
-      }
-    },
-    previousPermitNumberLabel: function () {
-      if (this.form.userRole === "permitHolder") {
-        return "What is your most recent or current permit number?";
-      } else {
-        return "What is their most recent or current permit number?";
-      }
-    },
-    emailDesc: function () {
-      if (this.form.userRole === "permitHolder") {
-        return "";
-      } else {
-        return "The email address will be used to notify the Proposed Permit holder";
-      }
-    },
     youString: function () {
       return this.form.repType === "self" ? "you" : "the Applicant";
     },

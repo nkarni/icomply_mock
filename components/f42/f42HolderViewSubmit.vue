@@ -1,70 +1,38 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary mb-4 pb-2">
+        <section class=" mb-4 pb-2">
         <b-row>
-          <b-col>
-            <h5>Review your submission</h5>
-            <p>
-              Please check the information you provided. You can go back and
-              edit information as required by clicking on the pencil icon, or by
-              navigation back to the relevant section. 
-            </p>
+          <b-col cols="">
+            <h6>Declaration</h6>
+            <notice class="mb-2" message="Answer each question in the declaration below. Section 513(2) of the Fair Work Act 2009 has the effect that certain offences do not need to be disclosed.
+
+Giving false or misleading information is a serious offence. A person who: · knowingly or recklessly makes a false or misleading statement in an application for an entry permit; or · knowingly gives false or misleading information in an application for an entry permit is guilty of an offence, the punishment for which is imprisonment for up to 12 months if the statement is made or information is provided knowingly, or up to 6 months if the statement is made recklessly – see Part 7.4, s.136 and s.137.1 of the Criminal Code."></notice>
+            
+          <p>This is a declaration by the proposed permit holder in support of an application to the Fair Work Commission under s.512 of the Fair Work Act 2009 for an entry permit.</p>
+          
+             <p>
+                I, James Paul Roberts 
+                Of orgName, branch, full streetAddress
+              declare that each answer I give below is true and correct:</p>
+            <f-42-holder-super-details :form="form" :dec="form.permitHolder.dec"></f-42-holder-super-details>
           </b-col>
         </b-row>
-        <b-row>
-          <b-col>
-            <notice class="mb-3" :message="'Dev notice: this will be a summary of information entered so far, similar in style to the review tab in F2 and F3 mockups. ATM it is only a place holder.'"></notice>
-            <!-- <div
-              v-for="(section, index) of sections"
-              :key="index"
-              v-bind:id="index"
-              :class="'mb-4  pb-4 ' + (index < 4 ? 'border-bottom border-secondary' : '')"
-            >
-              <b-row >
-                <b-col>
-                  <h6>{{ section.label }}</h6>
-                </b-col>
-                <b-col class="text-right">
-                  <b-button
-                    variant="link"
-                    class="p-0"
-                    @click.prevent=""
-                    v-b-tooltip.hover
-                    title="Edit this section (coming soon)"
-                    ><b-icon icon="pencil"
-                  /></b-button>
-                </b-col>
-              </b-row>
-              <b-row
-                v-for="(item, n) of section.data"
-                :key="n"
-                v-bind:id="n"
-                class="mb-2"
-              >
-                <b-col cols="4">
-                  {{ item.label }}
-                </b-col>
-                <b-col cols="8" v-html="item.value"> </b-col>
-              </b-row>
-            </div> -->
-          </b-col>
-        </b-row>
-        <!-- <notice :message="'mockup notice: HC means hard coded, it will be dynamic and show provided info in the final build. Similarly, the link to the relevant tab for editing will be activated in the final build.'"></notice> -->
       </section>
+      
       <section
         class=" mb-4 pb-2"
       >
         <b-row>
-          <b-col cols="4">
-            <h6>Save and Proceed</h6>
-            <p>
-              Invite the Proposed Permit Holder to verify their information
-            </p>
-          </b-col>
           <b-col>
+         
+            <h5>Submit</h5>
+            <p></p>
+        
+        <p v-if="form.permitHolder.confirmInfo === false">The form will be sent to the administrator for review and correction.</p>
+        <p v-else>The form will be submitted for verification by a member of Committee of Management and passed on to FWC for review.</p>
            <b-col class="text-center mt-3">
-          <b-button variant="primary">Invite the Proposed Permit Holder</b-button>
+          <b-button variant="primary">Submit the form</b-button>
         </b-col>
             
           </b-col>
@@ -76,12 +44,13 @@
 </template>
 
 <script>
-import entity from "./entity.vue";
-import EntityAddress from "./entityAddress.vue";
-import Notice from "./notice.vue";
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
+import f42HolderSuperDetails from  "./common/f42HolderSuperDetails.vue";
 export default {
-  components: { entity, Notice, EntityAddress },
-  name: "f42AdminSubmit",
+  components: { entity, Notice, EntityAddress, f42HolderSuperDetails },
+  name: "f42HolderViewSubmit",
   props: {
     form: {
       type: Object,

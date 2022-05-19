@@ -1,99 +1,71 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary mb-4 pb-2">
+      <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>The Proposed Permit Holder Identity</h6>
+            <h6>Member of Committee of Management details</h6>
 
-            <p>Explanation about how to verify it...</p>
-          </b-col>
-          <b-col cols="8">
-           <f-42-holder-details-read-only :form="form"></f-42-holder-details-read-only>
-
-            <b-form-group>
-              <b-form-checkbox
-                v-model="form.committeeMember.confirmedPphId"
-                :value="true"
-                :unchecked-value="false"
-              >
-                I confirm that the Proposed Permit Holder details are correct
-                and I have seen the identity and signature of the Proposed
-                Permit Holder.
-              </b-form-checkbox>
-            </b-form-group>
-          </b-col>
-        </b-row>
-      </section>
-      <section class="mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>PPH declaration</h6>
-          </b-col>
-          <b-col cols="8">
-            <f-42-holder-super-details
-              :form="form"
-              :readOnly="true"
-            ></f-42-holder-super-details>
-          </b-col>
-        </b-row>
-      </section>
-      <!-- <section class="border-bottom border-secondary mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>Proper inquiries</h6>
-
-           
+            <p>Provide details of the Member of Committee of Management.</p>
             <p>
-              Explanation about how to do it...
+              This information will be reviewed and can be edited by the
+              Member of Committee of Management if incorrect.
             </p>
+            <p>
+              Throughout this form - all fields are mandatory unless
+              specifically marked as optional.
+            </p>
+          </b-col>
+          <b-col>
+             <!-- <notice
+             class="mb-3"
+            :message="'Legal name must match drivers license or name on an official ID document.'"
+          ></notice> -->
+
+          
+          
+                      <entity
+              :entity="form.committeeMember"
+              showFirstName
+              showLastName
+              :firstNameLabel="'Legal first name'"
+              showEmail
+:lastNameLabel="'Surname'"
+              
+            >
+            
+            </entity>
+                   
+                    <b-form-group label="Office held">
+              <b-form-input v-model="form.committeeMember.officeHeld"></b-form-input>
+            </b-form-group>
+
+                    <!-- NOTICE TO DEVS, WHEN SELECTED IT SHOULD POPULATE THE FORMDATA WITH THE FULL DETAILS OF THIS PERSON  -->
+
+                   <!-- <b-form-group label="Email address:" v-if="form.committeeMember.selectedName !== ''">
+                     <p>jessica@joses.com</p>
+                   </b-form-group>
+                   <notice :message="'Dev note: If the selected member has more than one email address, then the user will see a single select and must select one of those email addresses.'"></notice> -->
+
+           
+
            
           </b-col>
-          <b-col cols="8">
-            <b-form-group
-            label="Describe the inquiries you made and what you did to satisfy yourself that the Proposed Permit Holder meets the permit qualification matters listed in 2.513(1)(b) to (f) of the Fair Work Act 2009:"
-          >
-            <b-form-textarea
-             
-              v-model="form.committeeMember.inquiries"
-              rows="6"
-              max-rows="12"
-             
-            ></b-form-textarea>
-          </b-form-group>
-
-
-<f-42-files :files="form.committeeMember.files"></f-42-files>
-
-
-      
-          </b-col>
         </b-row>
- </section> -->
+      </section>
+
     </b-form>
   </div>
 </template>
 
 <script>
-import entity from "./entity.vue";
-import EntityAddress from "./entityAddress.vue";
-import Notice from "./notice.vue";
-import f42Training from "./f42/f42Training.vue";
-import f42Files from "./f42/f42Files.vue";
-import f42HolderSuperDetails from "./f42/f42HolderSuperDetails.vue";
-import f42HolderDetailsReadOnly from "./f42/f42HolderDetailsReadOnly.vue";
 
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
 export default {
-  components: {
-    entity,
-    Notice,
-    EntityAddress,
-    f42Training,
-    f42Files,
-    f42HolderSuperDetails,
-    f42HolderDetailsReadOnly
-  },
-  name: "f42MemberViewPph",
+  components: { entity, Notice, EntityAddress },
+  name: "holderDetails",
   props: {
     form: {
       type: Object,
@@ -163,13 +135,6 @@ export default {
     };
   },
   computed: {
-    trainingRowClass() {
-      if (this.form.permitHolder.trainings.length > 1) {
-        return "training mb-3";
-      } else {
-        return "";
-      }
-    },
     youString: function () {
       return this.form.repType === "self" ? "you" : "the Applicant";
     },
@@ -194,22 +159,6 @@ export default {
     AreYouString: function () {
       return this.form.repType === "self" ? "are you" : "the Applicant is";
     },
-  },
-  mounted() {
-    this.form.permitHolder.trainings = [
-      {
-        trainingName: "Sample training 1",
-        trainingMethod: "Online",
-        trainingCompletionDate: "25 November 2015",
-        trainingFile: null,
-      },
-      {
-        trainingName: "Sample training 2",
-        trainingMethod: "Online",
-        trainingCompletionDate: "25 November 2019",
-        trainingFile: null,
-      },
-    ];
   },
   methods: {
     onWrongBusinessNameClick() {
@@ -259,9 +208,5 @@ export default {
 <style lang="scss" scoped>
 h6::first-letter {
   text-transform: uppercase;
-}
-.training {
-  border-left: 4px solid var(--primaryLighter) !important;
-  padding-left: 10px;
 }
 </style>

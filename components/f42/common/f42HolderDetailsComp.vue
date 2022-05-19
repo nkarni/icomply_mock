@@ -4,18 +4,18 @@
       class="mb-3"
       :message="'Legal name must match drivers license or name on an official ID document.'"
     ></notice>
-  
+
     <entity
       :entity="form.permitHolder"
       showFirstName
       showLastName
       showEmail
       :showMiddleName="true"
-              :firstNameLabel="'Legal first name'"
-              :lastNameLabel="'Legal surname'"
-              :middleNameLabel="'Middle name (optional)'"
-              :showPreferredName="true"
-              showOtherNames
+      :firstNameLabel="'Legal first name'"
+      :lastNameLabel="'Legal surname'"
+      :middleNameLabel="'Middle name (optional)'"
+      :showPreferredName="true"
+      showOtherNames
       showMobilePhone
       :emailDesc="emailDesc"
       :mobilePhoneDesc="'The mobile number may be used for notifications'"
@@ -53,8 +53,11 @@
       <b-form-input v-model="form.permitHolder.previousPermitNumber">
       </b-form-input>
     </b-form-group>
-                <notice v-if="form.permitHolder.previouslyHeldAnEntryPermit === true" class="mt-2 mb-2" :message="'If a permit is returned more than 7 days after expiry or cannot be returned because it is lost, the proposed permit holder may be asked to provide a statutory declaration explaining the failure to comply with s.517 of the Fair Work Act 2009.'"></notice>
-
+    <notice
+      v-if="form.permitHolder.previouslyHeldAnEntryPermit === true"
+      class="mt-2 mb-2"
+      :message="'If a permit is returned more than 7 days after expiry or cannot be returned because it is lost, the proposed permit holder may be asked to provide a statutory declaration explaining the failure to comply with s.517 of the Fair Work Act 2009.'"
+    ></notice>
 
     <b-form-group
       label="Has that permit been returned?"
@@ -66,22 +69,23 @@
       ></b-form-radio-group>
     </b-form-group>
 
-     <b-form-group
+    <b-form-group
       label="Why has it not been returned?"
       v-if="form.permitHolder.previousPermitReturned === false"
     >
-      <b-form-textarea v-model="form.permitHolder.previousPermitNotReturnedReason">
+      <b-form-textarea
+        v-model="form.permitHolder.previousPermitNotReturnedReason"
+      >
       </b-form-textarea>
     </b-form-group>
 
-      <b-form-group
+    <b-form-group
       label="Please provide a Statuary Declaration (optional)"
       v-if="form.permitHolder.previousPermitReturned === false"
     >
-     <b-form-file></b-form-file>
-     
+      <b-form-file></b-form-file>
     </b-form-group>
-     <b-form-group
+    <b-form-group
       label="Has that permit been returned on time?"
       v-if="form.permitHolder.previousPermitReturned === true"
     >
@@ -90,20 +94,19 @@
         :options="boolOptions"
       ></b-form-radio-group>
     </b-form-group>
-     <b-form-group
+    <b-form-group
       label="Please provide a Statuary Declaration (optional)"
       v-if="form.permitHolder.previousPermitReturnedOnTime === false"
     >
-     <b-form-file></b-form-file>
-     
+      <b-form-file></b-form-file>
     </b-form-group>
   </div>
 </template>
 
 <script>
-import entity from "../entity.vue";
-import EntityAddress from "../entityAddress.vue";
-import Notice from "../notice.vue";
+import entity from "../../common/entity.vue";
+import EntityAddress from "../../common/entityAddress.vue";
+import Notice from "../../common/notice.vue";
 export default {
   components: { entity, Notice, EntityAddress },
   name: "f42HolderDetailsComp",
@@ -176,10 +179,13 @@ export default {
     };
   },
   computed: {
-    firstPerson: function(){
-      return this.form.userRole === "permitHolder" || (this.form.userRole === "admin" && this.form.permitHolder.isSameAsAdmin)
+    firstPerson: function () {
+      return (
+        this.form.userRole === "permitHolder" ||
+        (this.form.userRole === "admin" && this.form.permitHolder.isSameAsAdmin)
+      );
     },
-    
+
     employeeOrOfficeHolderLabel: function () {
       if (this.firstPerson) {
         return "What is your role in ths organisation?";
@@ -215,7 +221,7 @@ export default {
         return "The email address will be used to notify the Proposed Permit holder";
       }
     },
-   
+
     youString: function () {
       return this.firstPerson ? "you" : "they";
     },
@@ -228,16 +234,18 @@ export default {
     DoYouString: function () {
       return this.firstPerson ? "do you" : "do they";
     },
-   
+
     youAreString: function () {
       return this.firstPerson ? "you are" : "they are";
     },
     wereYouString: function () {
       return this.firstPerson ? "were you" : "were they";
     },
-    
- HaveYouString: function () {
-      return this.form.userRole === "permitHolder" ? "have you been" : "have they been";
+
+    HaveYouString: function () {
+      return this.form.userRole === "permitHolder"
+        ? "have you been"
+        : "have they been";
     },
   },
   methods: {
@@ -245,42 +253,7 @@ export default {
       if (form.businessDetailsCorrect === false) {
         this.businessDetailsWereWrong = true;
       }
-    },
-    onSelectedNewAbn() {
-      this.form.businessDetailsCorrect = true;
-      this.$bvModal.hide("manual-abn");
-    },
-    onNumDepnedantsChange() {
-      if (this.form.entities.applicant.details.numOfDependants < 0) return;
-      if (
-        this.form.entities.applicant.details.numOfDependants <
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants <
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.pop();
-        }
-      } else if (
-        this.form.entities.applicant.details.numOfDependants >
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants >
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.push({
-            firstName: "",
-            lastName: "",
-            dob: "",
-            relationship: "",
-            stayOvernight: null,
-            involvedInLegalIssue: null,
-          });
-        }
-      }
-    },
+    }
   },
 };
 </script>

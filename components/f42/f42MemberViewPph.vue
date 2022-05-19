@@ -1,72 +1,99 @@
 <template>
   <div>
+    <b-form>
+      <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>The Proposed Permit Holder Identity</h6>
 
-      <div
-        v-for="(training, index) of form.permitHolder.trainings"
-        :key="index"
-        v-bind:id="index"
-      >
-        <b-row :class="trainingRowClass">
-          <b-col>
-             <label style="font-weight:bold">Training {{ index+1 }}</label>
-            <b-form-group label="Name of training completed:">
-              <b-form-select
-                v-model="form.permitHolder.trainings[index].trainingName"
-                :options="['Australian Council of Trade Unions (ACTU)']"
-              ></b-form-select>
-            </b-form-group>
-
-            <b-form-group label="Method of training:">
-              <b-form-radio-group
-                :options="['Online', 'In Person']"
-                v-model="form.permitHolder.trainings[index].trainingMethod"
-              ></b-form-radio-group>
-            </b-form-group>
-            <b-form-group label="Date training completed:">
-              <b-form-datepicker
-                v-model="
-                  form.permitHolder.trainings[index].trainingCompletionDate
-                "
-              ></b-form-datepicker>
-            </b-form-group>
-            <b-form-group
-              label="Attach evidence of training"
-              description="Short explanation about how the file will be used."
-            >
-              <b-form-file
-                v-model="form.permitHolder.trainings[index].trainingFile"
-                placeholder="Choose a file or drop it here..."
-                drop-placeholder="Drop file here..."
-              ></b-form-file>
-            </b-form-group>
+            <p>Explanation about how to verify it...</p>
           </b-col>
-          <b-col cols="1" class="align-middle">
-            <b-button
-                            variant="link"
-                            class="p-0"
-                            @click.prevent="removeTraining(index)"
-                            v-b-tooltip.hover
-                            title="Remove"
-                            v-if="index > 0"
-                            ><b-icon icon="x-circle"
-                          /></b-button>
+          <b-col cols="8">
+           <f-42-holder-details-read-only :form="form"></f-42-holder-details-read-only>
+
+            <b-form-group>
+              <b-form-checkbox
+                v-model="form.committeeMember.confirmedPphId"
+                :value="true"
+                :unchecked-value="false"
+              >
+                I confirm that the Proposed Permit Holder details are correct
+                and I have seen the identity and signature of the Proposed
+                Permit Holder.
+              </b-form-checkbox>
+            </b-form-group>
           </b-col>
         </b-row>
-      </div>
-      <div class="text-right">
-        <b-button variant="link" class="p-0 mb-4" @click.prevent="addTraining"
-          >Click here to add another training</b-button
-        >
-      </div>
-    </div>
+      </section>
+      <section class="mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>PPH declaration</h6>
+          </b-col>
+          <b-col cols="8">
+            <f-42-holder-super-details
+              :form="form"
+              :readOnly="true"
+            ></f-42-holder-super-details>
+          </b-col>
+        </b-row>
+      </section>
+      <!-- <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Proper inquiries</h6>
 
+           
+            <p>
+              Explanation about how to do it...
+            </p>
+           
+          </b-col>
+          <b-col cols="8">
+            <b-form-group
+            label="Describe the inquiries you made and what you did to satisfy yourself that the Proposed Permit Holder meets the permit qualification matters listed in 2.513(1)(b) to (f) of the Fair Work Act 2009:"
+          >
+            <b-form-textarea
+             
+              v-model="form.committeeMember.inquiries"
+              rows="6"
+              max-rows="12"
+             
+            ></b-form-textarea>
+          </b-form-group>
+
+
+<f-42-files :files="form.committeeMember.files"></f-42-files>
+
+
+      
+          </b-col>
+        </b-row>
+ </section> -->
+    </b-form>
+  </div>
 </template>
 
 <script>
+import entity from "../common/entity.vue";
+import EntityAddress from "../common/entityAddress.vue";
+import Notice from "../common/notice.vue";
+import f42Training from "./common/f42Training.vue";
+import f42Files from "./common/f42Files.vue";
+import f42HolderSuperDetails from "./common/f42HolderSuperDetails.vue";
+import f42HolderDetailsReadOnly from "./common/f42HolderDetailsReadOnly.vue";
 
 export default {
-  
-  name: "f42Training",
+  components: {
+    entity,
+    Notice,
+    EntityAddress,
+    f42Training,
+    f42Files,
+    f42HolderSuperDetails,
+    f42HolderDetailsReadOnly
+  },
+  name: "f42MemberViewPph",
   props: {
     form: {
       type: Object,
@@ -136,11 +163,11 @@ export default {
     };
   },
   computed: {
-    trainingRowClass(){
-      if(this.form.permitHolder.trainings.length > 1){
-        return 'training mb-3'
-      }else{
-        return ''
+    trainingRowClass() {
+      if (this.form.permitHolder.trainings.length > 1) {
+        return "training mb-3";
+      } else {
+        return "";
       }
     },
     youString: function () {
@@ -168,18 +195,23 @@ export default {
       return this.form.repType === "self" ? "are you" : "the Applicant is";
     },
   },
+  mounted() {
+    this.form.permitHolder.trainings = [
+      {
+        trainingName: "Sample training 1",
+        trainingMethod: "Online",
+        trainingCompletionDate: "25 November 2015",
+        trainingFile: null,
+      },
+      {
+        trainingName: "Sample training 2",
+        trainingMethod: "Online",
+        trainingCompletionDate: "25 November 2019",
+        trainingFile: null,
+      },
+    ];
+  },
   methods: {
-    addTraining() {
-      this.form.permitHolder.trainings.push({
-              trainingName: "",
-              trainingMethod: "",
-              trainingCompletionDate: "",
-              trainingFile: null,
-            });
-    },
-    removeTraining(i) {
-      this.form.permitHolder.trainings.splice(i,1);
-    },
     onWrongBusinessNameClick() {
       if (form.businessDetailsCorrect === false) {
         this.businessDetailsWereWrong = true;
@@ -230,5 +262,6 @@ h6::first-letter {
 }
 .training {
   border-left: 4px solid var(--primaryLighter) !important;
+  padding-left: 10px;
 }
 </style>
