@@ -1,6 +1,7 @@
 <template>
   <div>
     <b-form>
+     
          <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
@@ -50,7 +51,7 @@
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>{{ yourString }} contact details</h6>
+            <h6>Applicant's contact details</h6>
             <p>
               We need to be able to send {{ youString }} information about {{ yourString }} case. The
               former employer will also need to send {{ youString }} information about their

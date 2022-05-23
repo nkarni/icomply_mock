@@ -12,7 +12,7 @@
           </b-col>
           <b-col>
             <b-form-group
-              :label="AreYouStringReverse + ' 18 years age or over?'"
+              :label="AreYouStringReverse + ' 18 years of age or over?'"
             >
               <b-form-radio-group
                 v-model="form.applicant.over18"
@@ -54,9 +54,12 @@
               label="What language?"
             >
               <b-form-select
-                :options="['LOV from caseHq']"
+                :options="['LOV from caseHq', 'Other']"
                 v-model="form.needsInterpreterLanguage"
               ></b-form-select>
+            </b-form-group>
+            <b-form-group label="Please provide details" v-if="form.needsInterpreterLanguage === 'Other'">
+            <b-form-input v-model="form.needsInterpreterLanguageDetails"></b-form-input>
             </b-form-group>
           </b-col>
         </b-row>

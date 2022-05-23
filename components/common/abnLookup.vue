@@ -144,7 +144,7 @@ export default {
         this.showAddManually = true;
         return;
       }
-      this.showSearch = false;
+      // this.showSearch = false;
       this.showSelectOne = false;
       this.businessDetails.name = newBus.name;
       this.businessDetails.tradingName = newBus.tradingName;

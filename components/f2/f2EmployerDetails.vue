@@ -8,25 +8,23 @@
         <b-row>
           <b-col cols="4">
             <h6>Employer business details</h6>
-            <p>
+            <!-- <p>
               We need to contact {{ yourString }} former employer to tell them
               {{ youString }} have started a case against them. We will send
               them a copy of this form with all your answers in it.
-            </p>
-            <p>
-              During the case, we will call {{ yourString }} former employer
-              <strong>the Respondent</strong>. This is because they are
-              responding to {{ yoursString }} unfair dismissal case.
-            </p>
+            </p> -->
+            
 
             <p>
               We need the legal name of {{ yourString }} former employer. This
               may be different from their trading or business name. You can
               normally find it on your pay slips, PAYG payment summary,
-              appointment letter or employment contract. During the case, we
-              will call {{ yourString }} former employer the Respondent. This is
-              because they are responding to {{ yourString }} unfair dismissal
-              case
+              appointment letter or employment contract. 
+            </p>
+            <p>
+              During the case, we will call {{ yourString }} former employer
+              <strong>the Respondent</strong>. This is because they are
+              responding to {{ yoursString }} unfair dismissal case.
             </p>
           </b-col>
           <b-col>

@@ -41,7 +41,16 @@
               :dateLabel="'When did ' + yourString + ' employment end?'"
             ></vague-date>
 <br /> -->
+          </b-col>
+        </b-row>
+      </section>
+      <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Dismissal notification</h6>
+          </b-col>
 
+          <b-col>
             <b-form-group
               :label="wereYouString + ' told about being dismissed?'"
             >
@@ -60,25 +69,27 @@
           </b-col>
         </b-row>
       </section>
+
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Effective dismissal date</h6>
             <p v-if="form.applyingForSelf">
-              This is generally the last day of your employment. If
-              you didn’t find out they were being dismissed until
-              after your last day, then it’s generally the day you
-              found out your are  being dismissed. You can find out more
-              about <a href="">when a dismissal takes effect</a> on our website.
+              This is generally the last day of your employment. If you didn’t
+              find out they were being dismissed until after your last day, then
+              it’s generally the day you found out your are  being dismissed.
+              You can find out more about <a href=""
+                >when a dismissal takes effect</a
+              >
+              on our website.
             </p>
-             <p>
+            <p>
               This is generally the last day of the Applicant's employment. If
               the Applicant didn’t find out they were being dismissed until
               after their last day, then it’s generally the day the Applicant
-              found out they were being dismissed. You can find out more
-              about <a href="">when a dismissal takes effect</a> on our website.
+              found out they were being dismissed. You can find out more about
+              <a href="">when a dismissal takes effect</a> on our website.
             </p>
-           
           </b-col>
           <b-col>
             <vague-date

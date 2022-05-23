@@ -295,6 +295,7 @@ export default {
           over18: null,
           needsInterpreter: null,
           needsInterpreterLanguage: "",
+          needsInterpreterLanguageDetails: '',
           needsAccessibility: null,
           needsAccessibilityDetails: "",
           researchConsent: null,
