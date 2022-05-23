@@ -108,8 +108,7 @@
     </b-navbar>
 
     <div class="w-100 text-center pt-1 pb-1 text-primary bg-lightblue">
-      If you need help filling out this form or have any questions you
-      can call us on 1300 XXX XXX
+      If you have any questions about this form, you can call us on 1300 799 675 between 9 am and 5 pm (local time), Monday to Friday
     </div>
 
     <b-container class="mt-4">

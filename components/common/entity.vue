@@ -185,7 +185,7 @@ export default {
     },
     firstNameLabel: {
       type: String,
-      default: "Given name(s)",
+      default: "First name",
     },
     showFirstName: {
       type: Boolean,
@@ -217,7 +217,7 @@ export default {
     },
     lastNameLabel: {
       type: String,
-      default: "Family name(s)",
+      default: "Surname",
     },
     showLastName: {
       type: Boolean,

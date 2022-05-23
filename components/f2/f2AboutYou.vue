@@ -1,86 +1,49 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>Are you the Applicant?</h6>
-            <p>The applicant is the person this form is about, the person who has been dismissed from their employment.</p>
-            <p>Throughout this form - all fields are mandatory unless specifically marked as optional.</p>
-          </b-col>
-          <b-col>
-
-            <b-form-group label="Are you making this application for yourself, or someone else?" class="mt-3">
-              <b-form-radio-group
-                v-model="form.applyingForSelf"
-                :options="applyingForSelfOptions"
-              ></b-form-radio-group>
-            </b-form-group>
-
-            <b-form-group
-              v-if="form.applyingForSelf === false"
-              label="What is your relationship to the applicant?"
-            >
-             <b-form-radio-group
-             stacked
-                v-model="form.formFiller.relationshipToApplicant"
-                :options="repTypeOptions"
-              ></b-form-radio-group>
-            </b-form-group>
-            <entity
-            v-if="form.formFiller.relationshipToApplicant && form.formFiller.relationshipToApplicant !== 'Family or friend'"
-            showTitle
-            showFirstName
-            showLastName
-            showPhones
-            showEmail
-            showPostalAddress
-            postalAddressLabel="Your postal address (not the Applicant)"
-            :entity="form.formFiller"
-            :orgNameLabel="'Firm or Organisation name'"
-            showOrgName
-            >
-            </entity>
-
-            <notice v-if="form.applyingForSelf === false && form.formFiller.relationshipToApplicant === 'Family or friend'" class="mb-2" :message="'We will contact you about this case in the future'"></notice>
-
-          </b-col>
-        </b-row>
-      </section>
-
-          <section
-        class="border-bottom border-secondary mb-4 pb-4"
-      >
+      <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>{{ yourString }} age</h6>
-          <p>If {{ youAreString }} under 18 {{youString}} must have a guardian.</p> 
+            <p>
+              If {{ youAreString }} under 18 {{ youString }} must have a
+              guardian.
+            </p>
           </b-col>
           <b-col>
-            <b-form-group :label="AreYouStringReverse + ' over 18?'">
+            <b-form-group
+              :label="AreYouStringReverse + ' 18 years age or over?'"
+            >
               <b-form-radio-group
                 v-model="form.applicant.over18"
-                :options="over18Options"
+                :options="boolOptions"
               ></b-form-radio-group>
             </b-form-group>
-           
+            <notice
+              v-if="form.applicant.over18 === false"
+              message="You can still apply if you are under 18, but you may need a parent or guardian present for certain parts of the process."
+            ></notice>
           </b-col>
         </b-row>
       </section>
-     
-      <section
-        class="border-bottom border-secondary mb-4 pb-4"
-      >
+
+      <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>Interpreter service</h6>
-            We might hold a conference or hearing about your case. It is
-            important that you can understand what is happening during the
-            proceeding. We can arrange an interpreter for you. You can find
-            information about help for non-English speakers on our website.
+            We might hold a conference or hearing about your case. We can
+            arrange an interpreter for {{ youString }}. You can find information
+            about help for non-English speakers on our
+            <a
+              target="_blank"
+              href=" https://www.fwc.gov.au/about-us/contact-us/language-help-non-english-speakers"
+              >website</a
+            >.
           </b-col>
           <b-col>
-            <b-form-group :label="'Will ' + youString + ' need an interpreter?'">
+            <b-form-group
+              :label="'Will ' + youString + ' need an interpreter?'"
+            >
               <b-form-radio-group
                 v-model="form.needsInterpreter"
                 :options="boolOptions"
@@ -91,7 +54,7 @@
               label="What language?"
             >
               <b-form-select
-              :options="['LOV from caseHq']"
+                :options="['LOV from caseHq']"
                 v-model="form.needsInterpreterLanguage"
               ></b-form-select>
             </b-form-group>
@@ -99,16 +62,21 @@
         </b-row>
       </section>
 
-      <section
-        class="border-bottom border-secondary mb-4 pb-4"
-      >
+      <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>Accessibility</h6>
-            It’s important that everyone has access to our services. If you have access needs, we can make arrangements so that you can participate fully in your case. You can read more about accessibility on our website.
+
+            If {{ youHaveString }} access needs, we can make arrangements so that {{ youString }} can
+            participate fully in your case. You can read more about
+            accessibility on our <a href="https://www.fwc.gov.au/about-us/legal-and-freedom-information/about-website/accessibility" target="_blank">website</a>.
+  
+           
           </b-col>
           <b-col>
-            <b-form-group :label=" DoYouStringCont + ' have any accessibility requirements?'">
+            <b-form-group
+              :label="DoYouStringCont + ' have any accessibility requirements?'"
+            >
               <b-form-radio-group
                 v-model="form.needsAccessibility"
                 :options="boolOptions"
@@ -126,10 +94,7 @@
         </b-row>
       </section>
 
-      <section
-        class="mb-4 pb-2"
-       
-      >
+      <section class="mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Research Consent</h6>
@@ -138,7 +103,11 @@
           </b-col>
           <b-col>
             <b-form-group
-              :label="'Can we pass on ' + yourString + ' contact details to an external provider so they can invite you to take part in research?'"
+              :label="
+                'Can we pass on ' +
+                yourString +
+                ' contact details to an external provider so they can invite you to take part in research?'
+              "
             >
               <b-form-radio-group
                 v-model="form.researchConsent"
@@ -167,16 +136,7 @@ export default {
   },
   data() {
     return {
-      repTypeOptions: [
-        "I am their lawyer or paid agent" ,
-        "Union representative",
-        "Family or friend",
-      ],
-       applyingForSelfOptions: [
-        { text: "I am the applicant (submitting for myself)", value: true },
-        { text: "I am submitting this form on behalf of someone else", value: false },
-      ],
-       over18Options: [
+      over18Options: [
         { text: "yes, I am over 18", value: true },
         { text: "no, I am under 18", value: false },
       ],
@@ -193,6 +153,9 @@ export default {
     };
   },
   computed: {
+    youHaveString: function () {
+      return this.form.applyingForSelf ? "you have" : "the Applicant has";
+    },
     youString: function () {
       return this.form.applyingForSelf ? "you" : "the Applicant";
     },
@@ -217,47 +180,11 @@ export default {
     AreYouString: function () {
       return this.form.applyingForSelf ? "are you" : "the Applicant is";
     },
-      AreYouStringReverse: function () {
+    AreYouStringReverse: function () {
       return this.form.applyingForSelf ? "are you" : "is the Applicant";
     },
   },
-  methods: {
-    onSelectedNewAbn() {
-      this.form.businessDetailsCorrect = true;
-      this.$bvModal.hide("manual-abn");
-    },
-    onNumDepnedantsChange() {
-      if (this.form.entities.applicant.details.numOfDependants < 0) return;
-      if (
-        this.form.entities.applicant.details.numOfDependants <
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants <
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.pop();
-        }
-      } else if (
-        this.form.entities.applicant.details.numOfDependants >
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants >
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.push({
-            firstName: "",
-            lastName: "",
-            dob: "",
-            relationship: "",
-            stayOvernight: null,
-            involvedInLegalIssue: null,
-          });
-        }
-      }
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -265,4 +192,5 @@ export default {
 h6::first-letter {
   text-transform: uppercase;
 }
+
 </style>

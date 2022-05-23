@@ -1,10 +1,56 @@
 <template>
   <div>
     <b-form>
+         <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Are you the Applicant?</h6>
+            <p>The applicant is the person this form is about, the person who has been dismissed from their employment.</p>
+            <p>Throughout this form - all fields are mandatory unless specifically marked as optional.</p>
+          </b-col>
+          <b-col>
+
+            <b-form-group label="Are you making this application for yourself, or someone else?" class="mt-3">
+              <b-form-radio-group
+                v-model="form.applyingForSelf"
+                :options="applyingForSelfOptions"
+              ></b-form-radio-group>
+            </b-form-group>
+
+            <b-form-group
+              v-if="form.applyingForSelf === false"
+              label="What is your relationship to the applicant?"
+            >
+             <b-form-radio-group
+             stacked
+                v-model="form.formFiller.relationshipToApplicant"
+                :options="repTypeOptions"
+              ></b-form-radio-group>
+            </b-form-group>
+            <entity
+            v-if="form.formFiller.relationshipToApplicant && form.formFiller.relationshipToApplicant !== 'Family or friend'"
+            showTitle
+            showFirstName
+            showLastName
+            showPhones
+            showEmail
+            showPostalAddress
+            postalAddressLabel="Your postal address (not the Applicant)"
+            :entity="form.formFiller"
+            :orgNameLabel="'Firm or Organisation name'"
+            showOrgName
+            >
+            </entity>
+
+            <notice v-if="form.applyingForSelf === false && form.formFiller.relationshipToApplicant === 'Family or friend'" class="mb-2" :message="'We will contact you about this case in the future'"></notice>
+
+          </b-col>
+        </b-row>
+      </section>
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Contact details</h6>
+            <h6>{{ yourString }} contact details</h6>
             <p>
               We need to be able to send {{ youString }} information about {{ yourString }} case. The
               former employer will also need to send {{ youString }} information about their
@@ -69,7 +115,15 @@ export default {
         { text: "Yes", value: true },
         { text: "No", value: false },
       ],
-     
+     applyingForSelfOptions: [
+        { text: "I am the applicant (submitting for myself)", value: true },
+        { text: "I am submitting this form on behalf of someone else", value: false },
+      ],
+      repTypeOptions: [
+        "I am their lawyer or paid agent" ,
+        "Union representative",
+        "Family or friend",
+      ],
     };
   },
   computed: {
@@ -99,41 +153,7 @@ export default {
     },
   },
   methods: {
-    onSelectedNewAbn() {
-      this.form.businessDetailsCorrect = true;
-      this.$bvModal.hide("manual-abn");
-    },
-    onNumDepnedantsChange() {
-      if (this.form.entities.applicant.details.numOfDependants < 0) return;
-      if (
-        this.form.entities.applicant.details.numOfDependants <
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants <
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.pop();
-        }
-      } else if (
-        this.form.entities.applicant.details.numOfDependants >
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants >
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.push({
-            firstName: "",
-            lastName: "",
-            dob: "",
-            relationship: "",
-            stayOvernight: null,
-            involvedInLegalIssue: null,
-          });
-        }
-      }
-    },
+
   },
 };
 </script>
