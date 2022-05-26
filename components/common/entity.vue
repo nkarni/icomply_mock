@@ -41,6 +41,14 @@
       </b-form-group>
     </div>
 
+<div v-if="showPreferredPronoun">
+     
+      <b-form-group :label="preferredPronounLabel" description="Please let us know if you have a preference for how the Commission refers to you throughout this case." >
+        <b-form-input v-model="entity.preferredPronoun" ></b-form-input>
+      </b-form-group>
+    </div>
+
+
     <div v-if="showOtherNames">
       <b-form-group :label="haveOtherNamesLabel">
         <b-form-radio-group v-model="entity.hasOtherNames" :options="boolOptions"></b-form-radio-group>
@@ -307,9 +315,17 @@ export default {
       type: Boolean,
       default: false,
     },
-    preferredNameLabel: {
+    titleLabel: {
       type: String,
-      default: "Preferred name",
+      default: "Title (optional)",
+    },
+    showPreferredPronoun: {
+      type: Boolean,
+      default: false,
+    },
+    preferredPronounLabel: {
+      type: String,
+      default: "Preferred pronoun (optional)",
     },
     showPreferredName: {
       type: Boolean,

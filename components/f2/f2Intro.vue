@@ -2,117 +2,95 @@
   <div>
     <b-form>
 
-   <section class=" pb-4">
+      <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
+          <b-col cols="4">
+            <h6>Process overview</h6>
+          </b-col>
           <b-col>
-            <h5>Process overview - </h5>
-            
-              TBC
-           
+            <p>
+              TBD
+            </p>
           </b-col>
         </b-row>
       </section>
-
-
-      <section class=" pb-4">
+      <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
+          <b-col cols="4">
+            <h6>Before you start</h6>
+
+          </b-col>
           <b-col>
-            <h5>Before you start -</h5>
-            <h6>
+            <p>
               Have the following information ready before you begin completing
               this form:
-            </h6>
+            </p>
+            <ol>
+              <li>Dates of your employment.</li>
+              <li>What type of employee you were.</li>
+              <li>Why you believe the dismissal was 'harsh, unjust or
+                unreasonable'.</li>
+              <li>Business and contact details of your employer.</li>
+              <li>A copy of your payslip and termination letter, if you have
+                them.</li>
+            </ol>
+          </b-col>
+        </b-row>
+      </section>
 
-           
-              <ol>
-                <li>Dates of your employment.</li>
-                <li>What type of employee you were.</li>
-                <li>Why you believe the dismissal was 'harsh, unjust or
-                    unreasonable'.</li>
-                <li>Business and contact details of your employer.</li>
-                <li>A copy of your payslip and termination letter, if you have
-                    them.</li>
-              </ol>
-              <!-- <b-list-group>
-                <b-list-group-item>
-                  <h6>dates of your employment</h6>
-                </b-list-group-item>
-                <b-list-group-item>
-                  <h6>what type of employee you were</h6>
-                </b-list-group-item>
-                <b-list-group-item>
-                  <h6>
-                    why you believe the dismissal was 'harsh, unjust or
-                    unreasonable'
-                  </h6>
-                </b-list-group-item>
-                <b-list-group-item>
-                  <h6>business and contact details of your employer</h6>
-                </b-list-group-item>
-                <b-list-group-item>
-                  <h6>
-                    a copy of your payslip and termination letter, if you have
-                    them
-                  </h6>
-                </b-list-group-item>
-              </b-list-group> -->
-          
-          </b-col>
-        </b-row>
-      </section>
-         <section class=" pb-4">
-        <b-row>
-          <b-col>
-            <h5>What you need to do now -</h5>
-           
-            
-               Complete the form - you must answer every question, we will tell you if a field is optional.
-              <!-- <b-list-group>
-                <b-list-group-item>
-                  <h6>Complete the form - you must answer every question, we will tell you if a field is optional</h6>
-                </b-list-group-item>
-              </b-list-group>-->
-          
-          </b-col>
-        </b-row>
-      </section>
-  <section class="pb-4">
-        <b-row>
-          <b-col>
-            <h5>What will happen next -</h5>
-            <h6>
-             After we receive your application, we:
-            </h6>
 
-           
-               <ol>
-                <li>Send a copy to your employer.</li>
-                <li>Organise a conciliation to help you and your employer discuss the issues.</li>
-                
-              </ol>
-              <!-- <b-list-group>
-                <b-list-group-item>
-                  <h6>send a copy to your employer</h6>
-                </b-list-group-item>
-                <b-list-group-item>
-                  <h6>organise a conciliation to help you and your employer discuss the issues</h6>
-                </b-list-group-item>
-                
-              </b-list-group> -->
-            
+
+      <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>What you need to do now</h6>
+          </b-col>
+          <b-col>
+            <p>
+              Complete the form - you must answer every question, we will tell you if a field is optional.
+            </p>
           </b-col>
         </b-row>
       </section>
-           <section class=" pb-2">
+
+      <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
+          <b-col cols="4">
+            <h6>What will happen next</h6>
+          </b-col>
           <b-col>
-            <h5>Privacy</h5>
+            <p>
+              After we receive your application, we:
+            </p>
+
+
+            <ol>
+              <li>Send a copy to your employer.</li>
+              <li>Organise a conciliation to help you and your employer discuss the issues.</li>
+
+            </ol>
+          </b-col>
+        </b-row>
+      </section>
+
+      <section class=" mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Privacy</h6>
+          </b-col>
+          <b-col>
+            <p>
+              After we receive your application, we:
+            </p>
+
+
+            <ol>
+              <li>Send a copy to your employer.</li>
+              <li>Organise a conciliation to help you and your employer discuss the issues.</li>
+            </ol>
             <p>
               Read the
-              <a
-                href="https://www.fwc.gov.au/documents/documents/forms/form_f42-privacy.pdf"
-                >Privacy notice</a
-              >
+              <a href="https://www.fwc.gov.au/documents/documents/forms/form_f42-privacy.pdf">Privacy notice</a>
               to find out what personal information we collect, why we collect
               it, and what we do with it.
             </p>
@@ -140,7 +118,9 @@
           </b-col>
         </b-row>
       </section>
-      
+
+
+
     </b-form>
   </div>
 </template>
@@ -160,32 +140,7 @@ export default {
   },
   data() {
     return {
-      repTypeOptions: [
-        "I am their lawyer or paid agent",
-        "Union representative",
-        "Family or friend",
-      ],
-      applyingForSelfOptions: [
-        { text: "I am the applicant (submitting for myself)", value: true },
-        {
-          text: "I am submitting this form on behalf of someone else",
-          value: false,
-        },
-      ],
-      over18Options: [
-        { text: "yes, I am over 18", value: true },
-        { text: "no, I am under 18", value: false },
-      ],
-      boolOptions: [
-        { text: "Yes", value: true },
-        { text: "No", value: false },
-      ],
-      aboriginalityOptions: [
-        { text: "Yes, Aboriginal", value: "aboriginal" },
-        { text: "Yes, Torres Strait Islander", value: "islander" },
-        { text: "Both Aboriginal and Torres Strait Islander", value: "both" },
-        { text: "No", value: "no" },
-      ],
+     
     };
   },
   computed: {
@@ -218,41 +173,7 @@ export default {
     },
   },
   methods: {
-    onSelectedNewAbn() {
-      this.form.businessDetailsCorrect = true;
-      this.$bvModal.hide("manual-abn");
-    },
-    onNumDepnedantsChange() {
-      if (this.form.entities.applicant.details.numOfDependants < 0) return;
-      if (
-        this.form.entities.applicant.details.numOfDependants <
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants <
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.pop();
-        }
-      } else if (
-        this.form.entities.applicant.details.numOfDependants >
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants >
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.push({
-            firstName: "",
-            lastName: "",
-            dob: "",
-            relationship: "",
-            stayOvernight: null,
-            involvedInLegalIssue: null,
-          });
-        }
-      }
-    },
+   
   },
 };
 </script>

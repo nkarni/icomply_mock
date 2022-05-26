@@ -226,6 +226,7 @@ export default {
         applyingForSelf: null,
         rep: {
           title: "",
+          preferredPronoun: '',
           titleDetails: "",
           firstName: "",
           lastName: "",
@@ -249,6 +250,7 @@ export default {
         },
         formFiller: {
           title: "",
+          preferredPronoun: '',
           titleDetails: "",
           firstName: "",
           lastName: "",
@@ -270,9 +272,11 @@ export default {
           },
           orgName: "",
           relationshipToApplicant: "",
+          relationshipToApplicant: ""
         },
         applicant: {
           title: "",
+          preferredPronoun: '',
           titleDetails: "",
           firstName: "",
           lastName: "",
@@ -296,6 +300,7 @@ export default {
           needsInterpreter: null,
           needsInterpreterLanguage: "",
           needsInterpreterLanguageDetails: '',
+          needsInterpreterLanguageNotFound: false,
           needsAccessibility: null,
           needsAccessibilityDetails: "",
           researchConsent: null,

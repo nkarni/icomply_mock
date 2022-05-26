@@ -6,10 +6,8 @@
           <b-col cols="4">
             <h6>Employment start date</h6>
             <p>
-              <strong
-                >There is a minimum employment period for unfair dismissal
-                cases:</strong
-              ><br />
+              <strong>There is a minimum employment period for unfair dismissal
+                cases:</strong><br />
               <span class="cap-first">{{ youString }}</span> must have been
               working for the employer for at least 6 months to qualify for
               unfair dismissal. If {{ youString }} worked for a business with
@@ -18,20 +16,21 @@
               for unfair dismissal cases.
             </p>
             <p>If you don't know the exact date, you can give an estimate.</p>
+            <p>
+
+              You can find out more about the
+              <a href="https://www.fwc.gov.au/what-minimum-period-employment" target="_blank">Minimum Employment
+                Period</a> on our website.
+            </p>
           </b-col>
           <b-col>
-            <vague-date
-              :date="form.employmentStart"
-              :dateLabel="'When did ' + yourString + ' employment start?'"
-              class="mb-4"
-            ></vague-date>
-            <notice
-              :message="
-                'Are you sure you have selected the correct date? Please check the minimum employment period. If it is less than min period ' +
-                youString +
-                ' may not be covered by unfair dismissal laws.<br><small>This message will only show if an exact end date was entered and it is less than 6 months from today.</small>'
-              "
-            >
+            <vague-date :date="form.employmentStart" :dateLabel="'When did ' + yourString + ' employment start?'"
+              class="mb-4"></vague-date>
+            <notice :message="
+              'Are you sure you have selected the correct date? Please check the minimum employment period. If it is less than min period ' +
+              youString +
+              ' may not be covered by unfair dismissal laws.<br><small>This message will only show if an exact end date was entered and it is less than 6 months from today.</small>'
+            ">
             </notice>
 
             <br />
@@ -51,21 +50,12 @@
           </b-col>
 
           <b-col>
-            <b-form-group
-              :label="wereYouString + ' told about being dismissed?'"
-            >
-              <b-form-radio-group
-                v-model="form.wasToldAboutDismissal"
-                :options="boolOptions"
-              ></b-form-radio-group>
+            <b-form-group :label="wereYouString + ' told about being dismissed?'">
+              <b-form-radio-group v-model="form.wasToldAboutDismissal" :options="boolOptions"></b-form-radio-group>
             </b-form-group>
-            <vague-date
-              v-if="form.wasToldAboutDismissal"
-              :date="form.dismissalTold"
-              :dateLabel="
-                'When ' + wereYouString + ' told about being dismissed?'
-              "
-            ></vague-date>
+            <vague-date v-if="form.wasToldAboutDismissal" :date="form.dismissalTold" :dateLabel="
+              'When ' + wereYouString + ' told about being dismissed?'
+            "></vague-date>
           </b-col>
         </b-row>
       </section>
@@ -78,25 +68,21 @@
               This is generally the last day of your employment. If you didn’t
               find out they were being dismissed until after your last day, then
               it’s generally the day you found out your are  being dismissed.
-              You can find out more about <a href=""
-                >when a dismissal takes effect</a
-              >
+              You can find out more about <a href="">when a dismissal takes effect</a>
               on our website.
             </p>
             <p>
               This is generally the last day of the Applicant's employment. If
               the Applicant didn’t find out they were being dismissed until
               after their last day, then it’s generally the day the Applicant
-              found out they were being dismissed. You can find out more about
-              <a href="">when a dismissal takes effect</a> on our website.
+              found out they were being dismissed. You can find out more about the
+              <a target="_blank" href="https://www.fwc.gov.au/when-does-dismissal-take-effect">when a dismissal takes
+                effect</a> on our website.
             </p>
           </b-col>
           <b-col>
-            <vague-date
-              :date="form.effectiveDismissalDate"
-              :dateLabel="'When did ' + yourString + ' dismissal take effect?'"
-              class="mb-4"
-            ></vague-date>
+            <vague-date :date="form.effectiveDismissalDate"
+              :dateLabel="'When did ' + yourString + ' dismissal take effect?'" class="mb-4"></vague-date>
           </b-col>
         </b-row>
       </section>
@@ -119,27 +105,16 @@
               extra information or evidence later if we need it.
             </p>
             <notice
-              message="<small>Dev notice: This section will only show if an exact date was provided for effective dismissal AND that date is more than 21 days from today</small>"
-            >
+              message="<small>Dev notice: This section will only show if an exact date was provided for effective dismissal AND that date is more than 21 days from today</small>">
             </notice>
           </b-col>
           <b-col>
-            <b-form-group
-              :label="'Are you lodging this form within the 21 days limit?'"
-            >
-              <b-form-radio-group
-                v-model="form.lodgingWithin21DaysLimit"
-                :options="boolOptions"
-              ></b-form-radio-group>
+            <b-form-group :label="'Are you lodging this form within the 21 days limit?'">
+              <b-form-radio-group v-model="form.lodgingWithin21DaysLimit" :options="boolOptions"></b-form-radio-group>
             </b-form-group>
-            <b-form-group
-              label="The form may be late. Why is it being lodged late?"
-              v-if="form.lodgingWithin21DaysLimit === false"
-            >
-              <b-form-textarea
-                v-model="form.lodgingWithin21DaysLimitDetails"
-                rows="6"
-              ></b-form-textarea>
+            <b-form-group label="The form may be late. Why is it being lodged late?"
+              v-if="form.lodgingWithin21DaysLimit === false">
+              <b-form-textarea v-model="form.lodgingWithin21DaysLimitDetails" rows="6"></b-form-textarea>
             </b-form-group>
           </b-col>
         </b-row>
@@ -154,25 +129,24 @@
               {{ yourString }}
               dismissal at the Fair Work Commission or somewhere else (e.g. the
               Human Rights Commission)
+
+              We may not be able to deal with {{ yourString }} unfair dismissal application if {{ YouHaveString }} made another claim {{yourString}}
+               dismissal to us or somewhere else (e.g. the Human Rights Commission). If {{yourString}} answer yes to this
+              question, we may ask {{ youString}} to decide which of {{ yourString}} applications {{ yous}} want to proceed with.
+              
+              </p>
+              <p>You can find out more about 
+              <a target="_blank" href="https://www.fwc.gov.au/multiple-actions">multiple applications</a> on our website.
+
             </p>
           </b-col>
           <b-col>
             <b-form-group
-              :label="'Have ' + youString + ' started any other claims?'"
-            >
-              <b-form-radio-group
-                v-model="form.startedOtherClaims"
-                :options="boolOptions"
-              ></b-form-radio-group>
+              :label="'Have ' + youString + '  started any other claims about your dismissal at the Fair Work Commission or somewhere else (e.g. the Human Rights Commission)?'">
+              <b-form-radio-group v-model="form.startedOtherClaims" :options="boolOptions"></b-form-radio-group>
             </b-form-group>
-            <b-form-group
-              label="Please provide details"
-              v-if="form.startedOtherClaims === true"
-            >
-              <b-form-textarea
-                v-model="form.startedOtherClaimsDetails"
-                rows="6"
-              ></b-form-textarea>
+            <b-form-group label="Please provide details" v-if="form.startedOtherClaims === true">
+              <b-form-textarea v-model="form.startedOtherClaimsDetails" rows="6"></b-form-textarea>
             </b-form-group>
           </b-col>
         </b-row>
@@ -190,25 +164,15 @@
               We will send a copy of this to {{ yourString }} former employer.
               This is so they can understand {{ youString }} side of the case.
             </p>
-            <p>
-              If {{ youAreString }} worried about particular information being
-              passed on, don’t include it yet. Lodge the completed form within
-              the 21-day time limit and then contact us to talk about whether
-              you should send the information to us.
-            </p>
+            
           </b-col>
           <b-col>
-            <b-form-group
-              :label="
-                'What happened and why ' +
-                DoYouStringCont +
-                ' think it is unfair?'
-              "
-            >
-              <b-form-textarea
-                v-model="form.employeeDescOfWhatHappened"
-                rows="9"
-              ></b-form-textarea>
+            <b-form-group :label="
+              'What happened and why ' +
+              DoYouStringCont +
+              ' think it is unfair?'
+            ">
+              <b-form-textarea v-model="form.employeeDescOfWhatHappened" rows="9"></b-form-textarea>
             </b-form-group>
           </b-col>
         </b-row>
@@ -235,13 +199,8 @@
             </p>
           </b-col>
           <b-col>
-            <b-form-group
-              :label="'What outcome ' + DoYouString + ' want from this case?'"
-            >
-              <b-form-textarea
-                v-model="form.employeeDesiredOutcomes"
-                rows="9"
-              ></b-form-textarea>
+            <b-form-group :label="'What outcome ' + DoYouStringCont + ' want from this case?'">
+              <b-form-textarea v-model="form.employeeDesiredOutcomes" rows="9"></b-form-textarea>
             </b-form-group>
           </b-col>
         </b-row>
@@ -329,6 +288,9 @@ export default {
     },
     haveYouString: function () {
       return this.form.applyingForSelf ? "have you" : "has the Applicant";
+    },
+     YouHaveString: function () {
+      return this.form.applyingForSelf ? "you have " : "The Applicant has";
     },
   },
   methods: {

@@ -18,19 +18,10 @@
               ></b-form-radio-group>
             </b-form-group>
 
-            <b-form-group
-              v-if="form.applyingForSelf === false"
-              label="What is your relationship to the applicant?"
-            >
-             <b-form-radio-group
-             stacked
-                v-model="form.formFiller.relationshipToApplicant"
-                :options="repTypeOptions"
-              ></b-form-radio-group>
-            </b-form-group>
-            <entity
-            v-if="form.formFiller.relationshipToApplicant && form.formFiller.relationshipToApplicant !== 'Family or friend'"
-            showTitle
+           
+            <!-- <entity
+            v-if="form.formFiller.relationshipToApplicant"
+            showPreferredPronoun
             showFirstName
             showLastName
             showPhones
@@ -43,7 +34,7 @@
             >
             </entity>
 
-            <notice v-if="form.applyingForSelf === false && form.formFiller.relationshipToApplicant === 'Family or friend'" class="mb-2" :message="'We will contact you about this case in the future'"></notice>
+            <notice v-if="form.applyingForSelf === false && form.formFiller.relationshipToApplicant === 'Family or friend'" class="mb-2" :message="'We will contact you about this case in the future'"></notice> -->
 
           </b-col>
         </b-row>
@@ -63,7 +54,7 @@
             </p>
           </b-col>
           <b-col>
-            <entity showTitle showFirstName showLastName showPhones showEmail showPostalAddress
+            <entity  showFirstName showLastName showPhones showEmail showPostalAddress showPreferredPronoun
               :entity="form.applicant">
             </entity>
             <b-form-group>
@@ -72,7 +63,7 @@
                   doesn't</span> have an address.
               </b-form-checkbox>
             </b-form-group>
-            <b-form-group :label="DoYouStringCont + ' have a representative (lawyer/union rep etc)?'">
+            <b-form-group :label="DoYouStringCont + ' have a representative?'">
               <b-form-radio-group v-model="form.applicant.hasRep" :options="boolOptions"></b-form-radio-group>
             </b-form-group>
           </b-col>
@@ -86,9 +77,22 @@
             <p>Please provide details about this representative if you know them.</p>
           </b-col>
           <b-col>
+             <b-form-group
+             
+              :label="'Relationship to ' + youString"
+            >
+             <b-form-radio-group
+             stacked
+                v-model="form.formFiller.relationshipToApplicant"
+                :options="repTypeOptions"
+              ></b-form-radio-group>
+            </b-form-group>
+           <b-form-group label="Please provide details" v-if="form.formFiller.relationshipToApplicant === 'Other'">
+            <b-form-input v-model="form.relationshipToApplicantDetails"></b-form-input>
+            </b-form-group>
 
-            <entity v-if="form.applicant.hasRep === true" :entity="form.rep" showOrgName showPhones showFirstName
-              showLastName showEmail showPostalAddress showTitle :orgNameLabel="'Firm or Organisation name'">
+            <entity v-if="form.applicant.hasRep === true" :entity="form.rep" showPreferredPronoun showOrgName showPhones showFirstName
+              showLastName showEmail showPostalAddress  :orgNameLabel="'Firm or Organisation name'"  >
             </entity>
           </b-col>
         </b-row>
@@ -121,9 +125,9 @@ export default {
         { text: "I am submitting this form on behalf of someone else", value: false },
       ],
       repTypeOptions: [
-        "I am their lawyer or paid agent" ,
-        "Union representative",
-        "Family or friend",
+        "Lawyer, Paid agent, union representative" ,
+        "Family member or friend",
+        "Other",
       ],
     };
   },

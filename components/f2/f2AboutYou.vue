@@ -6,8 +6,7 @@
           <b-col cols="4">
             <h6>{{ yourString }} age</h6>
             <p>
-              If {{ youAreString }} under 18 {{ youString }} must have a
-              guardian.
+              {{ youString }} can still apply if {{ youAreString }} are under 18, but  {{ youString }} may need a parent or guardian present for certain parts of the process.
             </p>
           </b-col>
           <b-col>
@@ -31,7 +30,7 @@
         <b-row>
           <b-col cols="4">
             <h6>Interpreter service</h6>
-            We might hold a conference or hearing about your case. We can
+            We might hold a conference or hearing about {{yourString}} case. We can
             arrange an interpreter for {{ youString }}. You can find information
             about help for non-English speakers on our
             <a
@@ -54,13 +53,20 @@
               label="What language?"
             >
               <b-form-select
-                :options="['LOV from caseHq', 'Other']"
+                :options="['LOV from caseHq']"
                 v-model="form.needsInterpreterLanguage"
               ></b-form-select>
             </b-form-group>
-            <b-form-group label="Please provide details" v-if="form.needsInterpreterLanguage === 'Other'">
+             <b-form-group v-if="form.needsInterpreter === true">
+              <b-form-checkbox v-model="form.needsInterpreterLanguageNotFound"  :value="true"
+                :unchecked-value="false">
+                My langauge is not listed
+              </b-form-checkbox>
+           </b-form-group>
+            <b-form-group label="Please provide details" v-if="form.needsInterpreterLanguageNotFound">
             <b-form-input v-model="form.needsInterpreterLanguageDetails"></b-form-input>
             </b-form-group>
+          
           </b-col>
         </b-row>
       </section>
@@ -97,29 +103,7 @@
         </b-row>
       </section>
 
-      <section class="mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>Research Consent</h6>
-            We do research so we can improve our services. Sometimes we use
-            external providers to do the research for us.
-          </b-col>
-          <b-col>
-            <b-form-group
-              :label="
-                'Can we pass on ' +
-                yourString +
-                ' contact details to an external provider so they can invite you to take part in research?'
-              "
-            >
-              <b-form-radio-group
-                v-model="form.researchConsent"
-                :options="boolOptions"
-              ></b-form-radio-group>
-            </b-form-group>
-          </b-col>
-        </b-row>
-      </section>
+    
     </b-form>
   </div>
 </template>
