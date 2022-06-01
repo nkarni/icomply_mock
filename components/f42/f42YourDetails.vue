@@ -4,11 +4,7 @@
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Applicant details</h6>
-            <p>
-              The following details are your Union organisation as recorded in
-              our system.
-            </p>
+            <h6>Applicant details</h6>     
             <p>
               If you have a different postal address than the Union, please
               provide it.
@@ -19,20 +15,18 @@
             </p>
           </b-col>
           <b-col>
-            <b-form-group>
-              <p>Australian manufacturing Workers' Union, Carlton Branch
-                </p>
-            <p>
-              251 Queensberry Street, Carlton Victoria 3053
-               
-            </p>
-              <p>
-                The organisation is registered under the Fair Work (Registered Organisation) Act 2009 (the RC Act)
-              </p>
-              
-            </b-form-group>
+            <union-lookup v-if="form.businessDetails.name === ''" :form="form" ></union-lookup>
+            <b-form-group v-if="form.businessDetails.name !== ''">
 
-            <b-form-group >
+              <p>{{ form.businessDetails.name}}</p>
+               <p>{{ form.businessDetails.address}}</p>
+              
+            
+              <div ><a @click.prevent="form.businessDetails.name = ''" href="">Change organisation</a></div>
+            </b-form-group>
+            
+
+            <b-form-group v-if="form.businessDetails.name !== ''" >
               <b-form-checkbox
                 v-model="form.admin.hasDifferentPostalAddress"
                 :value="true"
@@ -115,8 +109,9 @@
 import entity from "../common/entity.vue";
 import EntityAddress from "../common/entityAddress.vue";
 import Notice from "../common/notice.vue";
+import UnionLookup from "../common/unionLookup.vue";
 export default {
-  components: { entity, Notice, EntityAddress },
+  components: { entity, Notice, EntityAddress, UnionLookup },
   name: "yourDetails",
   props: {
     form: {
@@ -126,44 +121,6 @@ export default {
   },
   data() {
     return {
-      numberOfEmployeesOptionsUnder: [
-        {
-          text: "1 to 4 employees ",
-          value: "4",
-        },
-        {
-          text: "5 to 9  employees ",
-          value: "10",
-        },
-        {
-          text: "10 to 14  employees ",
-          value: "15",
-        },
-        {
-          text: "15 to 19 employees ",
-          value: "20",
-        },
-        {
-          text: "20 to 49 employees",
-          value: "50",
-        },
-        {
-          text: "50 to 99 employees",
-          value: "100",
-        },
-        {
-          text: "100 to 199 employees",
-          value: "200",
-        },
-        {
-          text: "200 to 999 employees",
-          value: "1000",
-        },
-        {
-          text: "over 1000 employees",
-          value: "999999999",
-        },
-      ],
       businessDetailsWereWrong: false,
       showIsBusinessDetailsCorrect: true,
       repTypeOptions: [
@@ -178,12 +135,7 @@ export default {
         { text: "Yes", value: true },
         { text: "No", value: false },
       ],
-      aboriginalityOptions: [
-        { text: "Yes, Aboriginal", value: "aboriginal" },
-        { text: "Yes, Torres Strait Islander", value: "islander" },
-        { text: "Both Aboriginal and Torres Strait Islander", value: "both" },
-        { text: "No", value: "no" },
-      ],
+    
     };
   },
   computed: {
@@ -218,9 +170,9 @@ export default {
         this.businessDetailsWereWrong = true;
       }
     },
-    onSelectedNewAbn() {
-      this.form.businessDetailsCorrect = true;
-      this.$bvModal.hide("manual-abn");
+    onBusinessSelected() {
+      
+      
     },
     onNumDepnedantsChange() {
       if (this.form.entities.applicant.details.numOfDependants < 0) return;
