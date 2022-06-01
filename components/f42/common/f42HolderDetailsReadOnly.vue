@@ -41,7 +41,7 @@
         class="mb-2"
       >
         Name: {{ training.trainingName }}<br />
-        Method: {{ training.trainingName }}<br />Completed on:
+        Method: {{ training.trainingMethod }}<br />Completed on:
         {{ training.trainingCompletionDate }}<br />Evidence:
         <a target="_blank" href="">Click Here</a>
       </div>

@@ -12,7 +12,7 @@
       :showMiddleName="true"
       :firstNameLabel="'Legal first name'"
       :lastNameLabel="'Legal surname'"
-      :middleNameLabel="'Middle name (optional)'"
+      :middleNameLabel="'Middle name'"
       :showPreferredName="true"
       showMobilePhone
       :emailDesc="emailDesc"

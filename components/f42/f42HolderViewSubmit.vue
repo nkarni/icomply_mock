@@ -12,10 +12,21 @@ Giving false or misleading information is a serious offence. A person who: · kn
           <p>This is a declaration by the proposed permit holder in support of an application to the Fair Work Commission under s.512 of the Fair Work Act 2009 for an entry permit.</p>
           
              <p>
-                I, James Paul Roberts 
-                Of orgName, branch, full streetAddress
-              declare that each answer I give below is true and correct:</p>
+                I, <br>James Paul Roberts 
+                <br>positionName<br>Of orgName, branch, full streetAddress</p> 
+                <p>   
+              Declare that each answer I give below is true and correct:</p>
             <f-42-holder-super-details :form="form" :dec="form.permitHolder.dec"></f-42-holder-super-details>
+             <b-form-group
+              :label="'Are you aware of any other matters that may be relevant to whether the permit holder is a fit and proper person to hold a permit?'">
+              <b-form-radio-group v-model="form.permitHolder.dec.awareOfMatters" :options="boolOptions">
+              </b-form-radio-group>
+            </b-form-group>
+
+            <b-form-group label="Please provide details" v-if="form.permitHolder.dec.awareOfMatters === true">
+              <b-form-textarea v-model="form.permitHolder.dec.awareOfMattersDetails"></b-form-textarea>
+            </b-form-group>
+
           </b-col>
         </b-row>
       </section>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-form>
-      <section class=" mb-4 pb-2">
+      <section class="border-bottom border-secondary  mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Your details</h6>
@@ -9,7 +9,8 @@
               The following details were provided by the union administrator.
             </p>
             <p>
-              Please check that they are accurate and correct if required, they must match your name on your driver license or on an official ID document.
+              Please check that they are accurate and correct if required, they must match your name on your driver
+              license or on an official ID document.
             </p>
             <p>
               Throughout this form - all fields are mandatory unless
@@ -17,28 +18,51 @@
             </p>
           </b-col>
           <b-col>
-         
-        
-       
-             <f-42-holder-details-comp :form="form"></f-42-holder-details-comp>
-         
+
+            <f-42-holder-details-comp :form="form"></f-42-holder-details-comp>
+
            
 
-            <b-form-group >
-              <b-form-checkbox
-                v-model="form.permitHolder.confirmDetails"
-                :value="true"
-                :unchecked-value="false"
-              >
-                I confirm my details are correct.
-              </b-form-checkbox>
-            </b-form-group>
-
-          
           </b-col>
         </b-row>
       </section>
-      
+      <section class="border-bottom border-secondary  mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Entry Permit Holder Training</h6>
+
+          </b-col>
+          <b-col>
+            <b-form-group >
+              <div v-if="form.permitHolder.trainings.length > 0" v-for="(training, index) of form.permitHolder.trainings" :key="index" v-bind:id="index" class="mb-2">
+                Name: {{ training.trainingName }}<br />
+                Method: {{ training.trainingMethod }}<br />Completed on:
+                {{ training.trainingCompletionDate }}<br />Evidence:
+                <a target="_blank" href="">Click Here</a>
+              </div>
+              <div v-else>
+                No training details provided.
+              </div>
+            </b-form-group>
+          </b-col>
+        </b-row>
+      </section>
+       <section class=" mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Confirmation</h6>
+          </b-col>
+          <b-col>
+             <b-form-group>
+              <b-form-checkbox v-model="form.permitHolder.confirmDetails" :value="true" :unchecked-value="false">
+                I confirm my details as provided above are correct.
+              </b-form-checkbox>
+            </b-form-group>
+            </b-col>
+            </b-row>
+            </section>
+
+
     </b-form>
   </div>
 </template>
@@ -51,7 +75,7 @@ import Notice from "../common/notice.vue";
 import f42HolderDetailsReadOnly from "./common/f42HolderDetailsReadOnly.vue";
 
 export default {
-  components: { entity, Notice, EntityAddress,f42HolderDetailsComp, f42HolderDetailsReadOnly },
+  components: { entity, Notice, EntityAddress, f42HolderDetailsComp, f42HolderDetailsReadOnly },
   name: "f42HolderViewDetails",
   props: {
     form: {
@@ -123,10 +147,10 @@ export default {
   },
 
   mounted() {
-		this.form.permitHolder.firstName='Don',
-    this.form.permitHolder.lastName='Burrows'
-    this.form.permitHolder.email='don@burrows.com'
-		},
+    this.form.permitHolder.firstName = 'Don',
+      this.form.permitHolder.lastName = 'Burrows'
+    this.form.permitHolder.email = 'don@burrows.com'
+  },
   computed: {
     youString: function () {
       return this.form.repType === "self" ? "you" : "the Applicant";

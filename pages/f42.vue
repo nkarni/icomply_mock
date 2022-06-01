@@ -181,22 +181,7 @@
               <f-42-holder-view-details :form="form"></f-42-holder-view-details>
             </b-tab>
 
-            <b-tab
-              :title-link-class="[
-                'laap-title-link',
-                'mb-2',
-                'p-3',
-                { 'laap-nav-item-complete': false },
-              ]"
-            >
-              <template #title>
-                <h5>Information</h5>
-                <!-- <span>Their details</span> -->
-              </template>
-              <f-42-holder-view-training
-                :form="form"
-              ></f-42-holder-view-training>
-            </b-tab>
+           
 
             <!-- <b-tab
               :title-link-class="[

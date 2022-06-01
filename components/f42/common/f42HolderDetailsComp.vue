@@ -13,7 +13,7 @@
       :showMiddleName="true"
       :firstNameLabel="'Legal first name'"
       :lastNameLabel="'Legal surname'"
-      :middleNameLabel="'Middle name (optional)'"
+      :middleNameLabel="'Middle name'"
       :showPreferredName="true"
       showOtherNames
       showMobilePhone
@@ -80,7 +80,7 @@
     </b-form-group>
 
     <b-form-group
-      label="Please provide a Statuary Declaration (optional)"
+      label="Please provide a statutory Declaration (optional)"
       v-if="form.permitHolder.previousPermitReturned === false"
     >
       <b-form-file></b-form-file>
@@ -95,8 +95,8 @@
       ></b-form-radio-group>
     </b-form-group>
     <b-form-group
-      label="Please provide a Statuary Declaration (optional)"
-      v-if="form.permitHolder.previousPermitReturnedOnTime === false"
+      label="Please provide a statutory Declaration (optional)"
+      v-if="form.permitHolder.previousPermitReturned === true && form.permitHolder.previousPermitReturnedOnTime === false"
     >
       <b-form-file></b-form-file>
     </b-form-group>
