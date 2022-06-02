@@ -121,3 +121,21 @@ form .btn {
 .capFirst::first-letter {
   text-transform: uppercase;
 }
+
+
+tbody tr {
+	background-color: white;
+}
+th {
+	font-weight: 600 !important;
+}
+
+.table  th {
+	color: #495057;
+	background-color: #e9ecef;
+	border-color: #dee2e6;
+}
+
+td, th{
+	vertical-align: top !important;
+}

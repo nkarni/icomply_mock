@@ -44,7 +44,7 @@
                 title="Apply"
                 aria-label="Apply"
                 class="nav-link"
-                href="/triage"
+                href="/apply"
                 target="_self"
               >
                 Apply

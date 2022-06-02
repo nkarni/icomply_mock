@@ -45,7 +45,7 @@
                 title="Apply"
                 aria-label="Apply"
                 class="nav-link"
-                href="/laap"
+                href="/apply"
                 target="_self"
               >
                 Apply
