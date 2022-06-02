@@ -139,3 +139,19 @@ th {
 td, th{
 	vertical-align: top !important;
 }
+.modal-header{
+	color: white;
+	background-color: var(--primaryDark);
+	border-radius: 0px;
+	h6{
+		font-size: 1.2rem
+	}
+}
+.modal-content {
+    padding: 2px;
+    border-radius: 0px;
+}
+.modal-footer {
+  
+    border-top: none;
+}

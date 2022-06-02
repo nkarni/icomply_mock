@@ -74,7 +74,7 @@
                 
                 
                 <td class="text-center">
-                  <b-button variant="outline-dark" class="btn-sm px-4" v-b-tooltip.hover title="Start F2 Application" >Select</b-button>
+                  <b-button variant="outline-dark" class="btn-sm px-4"  v-b-modal="`case-modal`" v-b-tooltip.hover title="Start F2 Application" >Select</b-button>
                 </td>
               </tr>
             </tbody>
@@ -83,7 +83,46 @@
       </b-col>
     </b-row>
 
+ <b-modal :id="`case-modal`" title="BootstrapVue">
+        <template #modal-header="{ close }">
+          <h6>Before you proceed</h6>
+          <!-- Emulate built in modal header close button action -->
+          <i @click="close()" v-b-tooltip.hover title="Close" class="bi bi-x fs-3 removeIcon"></i>
+        </template>
 
+
+        <b-row>
+          <b-col>
+            <b-form-group label="Is this application related to an existing case?">
+              <b-radio-group :options="boolOptions" v-model="haveCase"></b-radio-group>
+            </b-form-group>
+          </b-col>
+        </b-row>
+          <b-row v-if="haveCase">
+          <b-col>
+            <b-form-group label="Enter your case number:" description="For example: 2022/AG000043">
+              <b-form-input></b-form-input>
+            </b-form-group>
+          </b-col>
+        </b-row>
+
+       <template #modal-footer="{ ok, cancel }">
+        <!-- Emulate built in modal footer ok and cancel button actions -->
+        <b-button
+          size="md"
+          variant="primaryDark"
+          @click="
+            selectingForNewClaim = false;
+            ok();
+          "
+        >
+          Continue
+        </b-button>
+        <b-button size="md" variant="outline-primary" @click="cancel()">
+          Cancel
+        </b-button>
+      </template>
+      </b-modal>
   </b-container>
 </template>
 
@@ -92,7 +131,12 @@ export default {
   layout: "user",
   data() {
     return {
-    f2MoreInfo: false
+    f2MoreInfo: false,
+    haveCase: false,
+      boolOptions: [
+        { text: "Yes", value: true },
+        { text: "No", value: false },
+      ],
     };
   },
   mounted: function () { },
