@@ -8,10 +8,21 @@
             <p>Please provide relevant explanatory text</p>
           </b-col>
           <b-col>
+
             <b-form-group label="Check any jurisdictional objections that are relevant to this matter (optional)">
-              <b-form-checkbox-group stacked v-model="form.jurisdictionalObjections"
-                :options="['Item 1', 'Item 2', 'Item 3']"></b-form-checkbox-group>
-            </b-form-group>
+
+              <div v-for="(objection, index) of form.objections" :key="index" v-bind:id="index" class="mb-2 ">
+                <b-form-group>
+                  <b-form-checkbox v-model="form.objections[index].selected" :value="true" :unchecked-value="false">
+                    {{ objection.text }}
+                  </b-form-checkbox>
+                </b-form-group>
+                <b-form-group  v-if="form.objections[index].selected === true" label="Please provide details">
+                  <b-form-textarea v-model="form.objections[index].details"></b-form-textarea>
+                </b-form-group>
+              </div>
+
+             </b-form-group>
 
             <b-form-group label="Would you like to participate in conciliation?"
               v-if="form.jurisdictionalObjections.length > 0">

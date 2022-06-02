@@ -40,6 +40,20 @@
           :message="'mockup notice: HC means hard coded, it will be dynamic and show provided info in the final build. Similarly, the link to the relevant tab for editing will be activated in the final build.'">
         </notice>
       </section>
+      <section class="border-bottom border-secondary  mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Print a draft</h6>
+            <p>When you submit the form a final PDF containing the full form information will be emailed to you. However, if you wish to print a draft before you submit the form you can do so.</p>
+          </b-col>
+          <b-col>
+
+            <b-form-group>
+             <b-button variant="outline-primary">Print a draft</b-button>
+            </b-form-group>
+          </b-col>
+        </b-row>
+      </section>
       <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">

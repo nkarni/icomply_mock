@@ -93,6 +93,7 @@
             <h5>Attachments</h5>
             <span>Upload relevant documents</span>
           </template>
+          <F3Attachments :form="form"></F3Attachments>
         </b-tab>
         <b-tab
           :title-link-class="[
@@ -292,6 +293,48 @@ export default {
         employmentEndDate: "",
         otherInfo: "",
         wantsConciliation: null,
+         objections: [
+        {
+          text: 'The application is out of time (ie lodged more than 21 days after the dismissal took effect)',
+          selected: false,
+          details: ''
+        },
+         {
+          text: 'The Applicant was not an employee',
+          selected: false,
+          details: ''
+        },
+         {
+          text: 'The Applicant was not dismissed',
+          selected: false,
+          details: ''
+        },
+         {
+          text: 'The dismissal was a case of genuine redundancy',
+          selected: false,
+          details: ''
+        },
+         {
+          text: 'The Applicant’s employment does not meet the minimum employment period',
+          selected: false,
+          details: ''
+        },
+        {
+          text: 'The Applicant earned more than the high income threshold ',
+          selected: false,
+          details: ''
+        },
+        {
+          text: 'The employer is a small business employer and the employer complied with the Small Business Fair Dismissal Code',
+          selected: false,
+          details: ''
+        },
+        {
+          text: 'Other',
+          selected: false,
+          details: ''
+        },
+        ]
       },
 
       tabIndex: 0,
