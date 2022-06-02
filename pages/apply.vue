@@ -8,7 +8,7 @@
         <p>
           Submit your application and supporting documents online.
         </p>
-        <p>Select the application most relevant for you. If you need more information about an application you can click on the 'more info' link.</p>
+        <p>Select the most relevant application to proceed. If you need more information about an application you can click on the 'more info' link.</p>
         <p>You can filter the list of available applications by searching for a keyword or by topic and type</p>
       </b-col>
     </b-row>
