@@ -107,6 +107,9 @@
 
        <template #modal-footer="{ ok, cancel }">
         <!-- Emulate built in modal footer ok and cancel button actions -->
+         <b-button size="md" variant="outline-primary" @click="cancel()">
+          Cancel
+        </b-button>
         <b-button
           size="md"
           variant="primaryDark"
@@ -117,9 +120,7 @@
         >
           Continue
         </b-button>
-        <b-button size="md" variant="outline-primary" @click="cancel()">
-          Cancel
-        </b-button>
+       
       </template>
       </b-modal>
   </b-container>
