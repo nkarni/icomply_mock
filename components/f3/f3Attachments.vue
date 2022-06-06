@@ -5,14 +5,10 @@
         <b-col>
           <h6>Attachments</h6>
           <p>
-            Please attach a copy of your dismissal letter if you have one. You don’t need to provide additional
-            attachments at this stage. You can submit them later. We can also ask you to provide extra information or
-            evidence later if we need it.
+            If you have supporting documents e.g. termination letter, employment contract, to your response you can attach them here. There is no requirement to supply supporting documentation at this stage.  We can also ask you to provide extra information or evidence later if we need it.
           </p>
           <p>
-            If you are worried about particular information being passed on, don’t include it yet. Lodge your completed
-            form within the 21-day time limit and then contact us to talk about whether you should send the information
-            to us.
+           All information provided in this response form along with any supporting documents attached here will be provided to the Applicant.
           </p>
         </b-col>
       </b-row>

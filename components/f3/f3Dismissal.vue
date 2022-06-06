@@ -5,40 +5,90 @@
         <b-row>
           <b-col cols="4">
             <h6>Type of work and dates</h6>
-            <p>Click here to read about the difference between employees and independent contractors on our website (link: TBC)</p>
+            <p>Click here to read about the difference between employees and independent contractors on our website
+              (link: TBC)</p>
           </b-col>
           <b-col>
             <b-form-group label="Was the Applicant:">
               <b-form-radio-group stacked v-model="form.engagementType" :options="engagementTypeOptions">
               </b-form-radio-group>
             </b-form-group>
-                <b-form-group
-              v-if="form.engagementType === 'Other'"
-              label="Please provide details:"
-            >
-              <b-form-input
-                v-model="form.engagementTypeDetails"
-              ></b-form-input>
+            <b-form-group v-if="form.engagementType === 'Other'" label="Please provide details:">
+              <b-form-input v-model="form.engagementTypeDetails"></b-form-input>
             </b-form-group>
-            <notice v-if="form.engagementType && form.engagementType !== 'An employee'" message="The Fair Work Act only protects employees from unfair dismissal.  <br>You can object to the claim if the Applicant was not an employee.  <br>Include this information later under ‘Jurisdictional objections’ at the ‘Other details’ tab." class=" my-4" borderClass="red"></notice>
-          
+            <notice v-if="form.engagementType && form.engagementType !== 'An employee'"
+              message="The Fair Work Act only protects employees from unfair dismissal.  <br>You can object to the claim if the Applicant was not an employee.  <br>Include this information later under ‘Jurisdictional objections’ at the ‘Other details’ tab."
+              class=" my-4" borderClass="red"></notice>
+
             <b-form-group :label="startDateLabel">
               <b-form-datepicker v-model="form.employmentStartDate" class="mb-2"></b-form-datepicker>
             </b-form-group>
-            <notice class="mb-3"
-              :message="'If you are not sure how to answer this enter the last day they attended work'"></notice>
 
-            <b-form-group :label="employmentEndlabel">
+            <div id="trial">
+              <b-form-group label="Is the Applicant still working for the business?" class="mt-3">
+                <b-form-radio-group v-model="form.applicantStillWorksForBusiness" :options="boolOptions">
+                </b-form-radio-group>
+              </b-form-group>
+              <div v-if="form.applicantStillWorksForBusiness === false">
+              
+                <b-form-group :label="employmentEndlabel">
+                  <b-form-datepicker v-model="form.employmentEndDate" class="mb-2"></b-form-datepicker>
+                </b-form-group>
+                <notice class="mb-3"
+                  :message="'If you are not sure how to answer this enter the last day they attended work'"></notice>
+                <notice borderClass="nothing"
+                  :message="'Dev note: <br>1. Validate that dismissal date is on or after employment start date <br>2. notification date must be on or after contract start date <br>3. validate that dates in the past for dismissal, employment start or employment notification'">
+                </notice>
+              </div>
+             
+
+            </div>
+
+
+            <!-- <b-form-group :label="employmentEndlabel">
               <b-form-datepicker v-model="form.employmentEndDate" class="mb-2"></b-form-datepicker>
             </b-form-group>
-
-            <notice
+ <notice class="mb-3" 
+              :message="'If you are not sure how to answer this enter the last day they attended work'"></notice>
+            <notice borderClass="nothing"
               :message="'Dev note: <br>1. Validate that dismissal date is on or after employment start date <br>2. notification date must be on or after contract start date <br>3. validate that dates in the past for dismissal, employment start or employment notification'">
-            </notice>
+            </notice> -->
           </b-col>
         </b-row>
       </section>
-      <section class="border-bottom border-secondary mb-4 pb-4">
+          <section class="border-bottom border-secondary mb-4 pb-4">
+        <b-row>
+          <b-col cols="4">
+            <h6>Dismissal information</h6>
+          </b-col>
+          <b-col>
+            <b-form-group :label="wereTheyDismissedLabel">
+              <b-form-radio-group stacked v-model="form.wasDismissed" :options="boolOptions"></b-form-radio-group>
+            </b-form-group>
+
+            <b-form-group :label="'What date were they told they were being dismissed?'"
+              v-if="form.wasDismissed === true">
+              <b-form-datepicker v-model="form.employmentDismissedDate" class="mb-2"></b-form-datepicker>
+            </b-form-group>
+            <div v-if="
+              form.businessDetails.numberOfEmployeesIsUnder < 15 &&
+              form.wasDismissed === true
+            ">
+              <b-form-group
+                label="Did you follow the Small Business Fair Dismissal Code when you dismissed the employee?"
+                v-if="form.independentContractor !== true">
+                <b-form-radio-group  v-model="form.followedCode" :options="boolOptions"></b-form-radio-group>
+              </b-form-group>
+              <b-form-group v-if="form.followedCode === 'Yes'"
+                label="If you completed the Small Business Fair Dismissal checklist attach a copy">
+                <b-form-file placeholder="Choose a file or drop it here..." drop-placeholder="Drop file here...">
+                </b-form-file>
+              </b-form-group>
+            </div>
+          </b-col>
+        </b-row>
+      </section>
+      <section class="mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>What happened?</h6>
@@ -69,38 +119,7 @@
         </b-row>
       </section>
 
-      <section class="border-bottom border-secondary mb-4 pb-4">
-        <b-row>
-          <b-col cols="4">
-            <h6>Dismissal information</h6>
-          </b-col>
-          <b-col>
-            <b-form-group :label="wereTheyDismissedLabel">
-              <b-form-radio-group stacked v-model="form.wasDismissed" :options="boolOptions"></b-form-radio-group>
-            </b-form-group>
-
-            <b-form-group :label="'What date were they told they were being dismissed?'"
-              v-if="form.wasDismissed === true">
-              <b-form-datepicker v-model="form.employmentDismissedDate" class="mb-2"></b-form-datepicker>
-            </b-form-group>
-            <div v-if="
-              form.businessDetails.numberOfEmployeesIsUnder < 15 &&
-              form.wasDismissed === true
-            ">
-              <b-form-group
-                label="Did you follow the Small Business Fair Dismissal Code when you dismissed the employee?"
-                v-if="form.independentContractor !== true">
-                <b-form-radio-group stacked v-model="form.followedCode" :options="boolOptions"></b-form-radio-group>
-              </b-form-group>
-              <b-form-group v-if="form.followedCode === 'Yes'"
-                label="If you completed the Small Business Fair Dismissal checklist attach a copy">
-                <b-form-file placeholder="Choose a file or drop it here..." drop-placeholder="Drop file here...">
-                </b-form-file>
-              </b-form-group>
-            </div>
-          </b-col>
-        </b-row>
-      </section>
+  
     </b-form>
   </div>
 </template>
@@ -166,7 +185,7 @@ export default {
     },
     startDateLabel() {
       // if (this.form.independentContractor !== true) {
-        return "What date did the Applicant start working for the business?";
+      return "What date did the Applicant start working for the business?";
       // } else {
       //   return "What date did their contract start?";
       // }

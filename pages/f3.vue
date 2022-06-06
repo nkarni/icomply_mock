@@ -271,6 +271,7 @@ export default {
           },
           numberOfEmployeesIsUnder: 0,
         },
+        applicantStillWorksForBusiness: null,
         isRespondentContactPerson: null,
         needsInterpreter: null,
         needsInterpreterLanguage: "",
