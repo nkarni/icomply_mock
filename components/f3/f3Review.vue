@@ -40,6 +40,29 @@
           :message="'mockup notice: HC means hard coded, it will be dynamic and show provided info in the final build. Similarly, the link to the relevant tab for editing will be activated in the final build.'">
         </notice>
       </section>
+       <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Research Consent</h6>
+            We do research so we can improve our services. Sometimes we use
+            external providers to do the research for us.
+          </b-col>
+          <b-col>
+            <b-form-group
+              :label="
+                'Can we pass on ' +
+                yourString +
+                ' contact details to an external provider so they can invite you to take part in research?'
+              "
+            >
+              <b-form-radio-group
+                v-model="form.researchConsent"
+                :options="boolOptions"
+              ></b-form-radio-group>
+            </b-form-group>
+          </b-col>
+        </b-row>
+      </section>
       <section class="border-bottom border-secondary  mb-4 pb-2">
         <b-row>
           <b-col cols="4">

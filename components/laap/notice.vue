@@ -38,5 +38,9 @@ border-left: 4px solid var(--primary) !important;
 .yellow{
   border-left: 4px solid var(--yellow) !important;
 }
+
+.red{
+  border-left: 4px solid var(--danger) !important;
+}
   
 </style>

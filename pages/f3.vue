@@ -31,10 +31,38 @@
           ]"
         >
           <template #title>
-            <h5>About you</h5>
+            <h5>Introduction</h5>
+            <span>Information about the process</span>
+          </template>
+          <f-3-intro :form="form"></f-3-intro>
+        </b-tab>
+         <b-tab
+          :title-link-class="[
+            'laap-title-link',
+            'mb-2',
+            'p-3',
+            { 'laap-nav-item-complete': false },
+          ]"
+        >
+          <template #title>
+            <h5>Contact details</h5>
             <span>Contact and other details</span>
           </template>
-          <f-3-about-you :form="form"></f-3-about-you>
+          <f-3-contact-details :form="form"></f-3-contact-details>
+        </b-tab>
+         <b-tab
+          :title-link-class="[
+            'laap-title-link',
+            'mb-2',
+            'p-3',
+            { 'laap-nav-item-complete': false },
+          ]"
+        >
+          <template #title>
+            <h5>Business details</h5>
+            <span>Information about the business</span>
+          </template>
+          <f-3-business-details :form="form"></f-3-business-details>
         </b-tab>
 
         <b-tab
@@ -46,7 +74,7 @@
           ]"
         >
           <template #title>
-            <h5>About the employee</h5>
+            <h5>About the Applicant</h5>
             <span>Their details</span>
           </template>
           <f-3-employee-details :form="form"></f-3-employee-details>
@@ -243,12 +271,15 @@ export default {
           },
           numberOfEmployeesIsUnder: 0,
         },
+        isRespondentContactPerson: null,
         needsInterpreter: null,
         needsInterpreterLanguage: "",
         needsAccessibility: null,
         needsAccessibilityDetails: "",
         researchConsent: null,
         hasRep: null,
+        repType: null,
+        repTypeDetails: '',
         rep: {
           title: "",
           titleDetails: "",
@@ -271,6 +302,10 @@ export default {
             country: "",
           },
         },
+        formFillerPersona: '',
+        formFillerPersonaDetails: '',
+        engagementType: null,
+        engagementTypeDetails: '',
         employeeFirstName: "John",
         employeeLastName: "Smith",
         caseNumber: "ABC123",

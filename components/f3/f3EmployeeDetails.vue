@@ -1,10 +1,15 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary mb-4 pb-2">
+      <section class="mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Former employee details</h6>
+            <h6>Applicant details</h6>
+           
+            <p>During the case, we will call the person who has made the application the Applicant</p>
+            <p>Employees who earn above a high income threshold are not protected from unfair dismissal unless they are covered by an award or agreement. </p>
+             <p>Find the high income threshold on the <a href=" https://www.fwc.gov.au/high-income-threshold" target="_blank">website.</a></p>  
+             <p>If you believe the Applicant’s income was more than the threshold, you can object to the claim.  Include this information later under ‘Jurisdictional objections’ at the ‘Other details’ tab.</p> 
           </b-col>
           <b-col>
             <b-form-group label="Former employee's given name:">
@@ -24,16 +29,8 @@
             <b-form-group label="Case number:">
               <b-form-input v-model="form.caseNumber" disabled></b-form-input>
             </b-form-group>
-          </b-col>
-        </b-row>
-      </section>
-      <section class="border-bottom border-secondary mb-4 pb-4">
-        <b-row>
-          <b-col cols="4">
-            <h6>The employee's employment</h6>
-          </b-col>
-          <b-col>
-            <notice
+
+             <notice
               class="mb-4"
               message="If they were casual, write the hourly rate and describe their average weekly hours. "
             ></notice>
@@ -119,6 +116,7 @@
           </b-col>
         </b-row>
       </section>
+     
     </b-form>
   </div>
 </template>
