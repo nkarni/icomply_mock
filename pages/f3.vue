@@ -59,7 +59,7 @@
           ]"
         >
           <template #title>
-            <h5>Business details</h5>
+            <h5>The business</h5>
             <span>Information about the business</span>
           </template>
           <f-3-business-details :form="form"></f-3-business-details>
@@ -237,8 +237,13 @@ export default {
   data() {
     return {
       form: {
-        businessDetailsCorrect: null,
+        businessDetailsFromEmployeeCorrect: null,
         employeeProvidedBusinessNameString: "Sydney Bins ABN 12345678",
+        employeeProvidedBusinessDetails: {
+          name: "Sydney Bins",
+          abn: "",
+          tradingName: "12345678",
+        },
         businessDetails: {
           businessDetailsString: "ABC pty ltd Trading as MY ABC, ABN: 12345678",
           name: "",
@@ -271,6 +276,7 @@ export default {
           },
           numberOfEmployeesIsUnder: 0,
         },
+  
         applicantStillWorksForBusiness: null,
         isRespondentContactPerson: null,
         needsInterpreter: null,

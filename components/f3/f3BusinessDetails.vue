@@ -6,7 +6,7 @@
       >
         <b-row>
           <b-col cols="4">
-            <h6>The Business</h6>
+            <h6>Business size and industry</h6>
             <p>
              Count all full-time and part-time employees, including the Applicant. Only count casuals if they were regular casual employees  </p>
              <p>You can find more information on our <a href="https://www.fwc.gov.au/what-minimum-period-employment" target="_blank">website</a>.</p>
@@ -14,7 +14,17 @@
           </b-col>
           <b-col>
            
+           
             <b-form-group
+              :label="'How many employees did your business have when the employee was dismissed?'"
+            >
+              <b-form-select
+                stacked
+                v-model="form.businessDetails.numberOfEmployeesIsUnder"
+                :options="numberOfEmployeesOptionsUnder"
+              ></b-form-select>
+            </b-form-group>
+             <b-form-group
               :label="'Industry'"
             >
               <b-form-select
@@ -31,15 +41,6 @@
               <b-form-textarea
                 v-model="form.businessDetails.industryDetails"
               ></b-form-textarea>
-            </b-form-group>
-            <b-form-group
-              :label="'How many employees did your business have when the employee was dismissed?'"
-            >
-              <b-form-select
-                stacked
-                v-model="form.businessDetails.numberOfEmployeesIsUnder"
-                :options="numberOfEmployeesOptionsUnder"
-              ></b-form-select>
             </b-form-group>
           </b-col>
         </b-row>

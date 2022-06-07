@@ -4,18 +4,10 @@
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Business details</h6>
-            <p>
-              The following details were provided by the employee in their
-              Application. Please check the details and correct if required.
-            </p>
-            <p>
-              Through this form - all fields are mandatory unless specifically
-              marked as optional.
-            </p>
+            <h6>Who is completing this form?</h6>
           </b-col>
           <b-col>
-             <b-form-group
+ <b-form-group
               label="Are you the Respondent contact person?"
               class="mt-3"
             >
@@ -33,6 +25,22 @@
                 v-model="form.formFillerPersonaDetails"
               ></b-form-input>
             </b-form-group>
+          </b-col>
+          </b-row>
+          </section>
+
+      <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Business details</h6>
+            <p>
+              The following details were provided by the employee in their
+              Application. Please check the details and correct if required.
+            </p>
+           
+          </b-col>
+          <b-col>
+            
 
             <b-form-group
               label="The employee provided the following business details:"
@@ -101,6 +109,7 @@
             <h6>Contact person</h6>
             <p>The Applicant provided these details of a contact person for the business.</p> 
            <p>You can nominate a different person if there is someone else who should be the main contact. Please update any information if needed.</p>
+           <notice message="DEV NOTE: pre-populate contact person details as provided in F2" borderClass="none" class="mt-2"> </notice>
           </b-col>
           <b-col>
             <entity
@@ -164,7 +173,7 @@
               showLastName
               showEmail
               showPostalAddress
-              showTitle
+           
               :orgNameLabel="form.repType === 'Other' ? 'Organisation name (optional)' : 'Organisation name'"
             >
             </entity>
@@ -204,7 +213,7 @@
       </section>
 
       <section
-        class="border-bottom border-secondary mb-4 pb-4"
+        class=" mb-4 pb-4"
         v-if="form.businessDetailsCorrect === true"
       >
         <b-row>
@@ -311,7 +320,7 @@ export default {
         { text: "No", value: "no" },
       ],
       repTypeOptions: [
-        'lawyer', 'paid agent', 'employer association/peak body','Other'
+        'lawyer, paid agent, employer association, peak body','Other'
       ]
     };
   },

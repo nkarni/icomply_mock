@@ -68,7 +68,8 @@
               to find out what personal information we collect, why we collect
               it, and what we do with it.
             </p>
-            <p>The Commission may publish on its website:</p>
+            <p>TBC</p>
+            <!-- <p>The Commission may publish on its website:</p>
             <ul>
               <li>
                 the names of the applicant organisation and the proposed permit
@@ -88,7 +89,7 @@
               If the Commission decides to issue an entry permit, the Commission
               will publish on its website the names of the applicant
               organisation and the permit holder, and the permit details.
-            </p>
+            </p> -->
           </b-col>
         </b-row>
       </section>

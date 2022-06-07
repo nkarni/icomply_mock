@@ -35,7 +35,7 @@
                   <b-form-datepicker v-model="form.employmentEndDate" class="mb-2"></b-form-datepicker>
                 </b-form-group>
                 <notice class="mb-3"
-                  :message="'If you are not sure how to answer this enter the last day they attended work'"></notice>
+                  :message="'If you are not sure how to answer this, enter the last day they attended work'"></notice>
                 <notice borderClass="nothing"
                   :message="'Dev note: <br>1. Validate that dismissal date is on or after employment start date <br>2. notification date must be on or after contract start date <br>3. validate that dates in the past for dismissal, employment start or employment notification'">
                 </notice>
