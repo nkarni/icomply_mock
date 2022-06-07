@@ -237,13 +237,8 @@ export default {
   data() {
     return {
       form: {
-        businessDetailsFromEmployeeCorrect: null,
+        businessDetailsCorrect: null,
         employeeProvidedBusinessNameString: "Sydney Bins ABN 12345678",
-        employeeProvidedBusinessDetails: {
-          name: "Sydney Bins",
-          abn: "",
-          tradingName: "12345678",
-        },
         businessDetails: {
           businessDetailsString: "ABC pty ltd Trading as MY ABC, ABN: 12345678",
           name: "",
@@ -276,7 +271,6 @@ export default {
           },
           numberOfEmployeesIsUnder: 0,
         },
-  
         applicantStillWorksForBusiness: null,
         isRespondentContactPerson: null,
         needsInterpreter: null,
