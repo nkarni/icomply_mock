@@ -41,8 +41,8 @@
           </b-col>
           <b-col>
             
-
-            <b-form-group
+            <div>
+             <b-form-group
               label="The employee provided the following business details:"
               class="mt-3"
             >
@@ -51,23 +51,43 @@
 
             <b-form-group
               label="Are those details correct?"
-              v-if="showIsBusinessDetailsCorrect"
               class="mt-3"
             >
               <b-form-radio-group
-                v-model="form.businessDetailsCorrect"
+                v-model="form.employeeProvidedBusinessIsCorrect"
                 :options="boolOptions"
-                @click="onWrongBusinessNameClick"
               ></b-form-radio-group>
             </b-form-group>
-
-            <div v-if="form.businessDetailsCorrect === false">
-              <abn-lookup
-                :businessDetails="form.businessDetails"
-                @businessSelected="showIsBusinessDetailsCorrect = false"
-              ></abn-lookup>
-              <!-- Correct business: {{ form.businessDetails.businessDetailsString }} -->
             </div>
+
+            <div v-if="form.employeeProvidedBusinessIsCorrect === false">
+
+            <!-- do a search and select a new business or enter details if not found, via the component-->
+              <abn-lookup
+              v-if="form.businessDetails.name === ''"
+                :businessDetails="form.businessDetails"
+                @businessSelected="onSelectedNewAbn"
+              ></abn-lookup>
+          
+
+            <!--  show the selection -->
+            <div v-if="form.businessDetails.name !== ''">
+              <label>
+                You have corrected the business to:
+              </label>
+                <p>
+               {{ form.businessDetails.name}} <span v-if="form.businessDetails.tradingName.length > 0">{{ form.businessDetails.tradingName}} </span> ABN: {{form.businessDetails.abn}}
+               <br> <a href="" @click.prevent="changeSelectedBusiness">Change</a>
+              </p>
+             
+            </div>
+            </div>
+
+
+            
+           
+
+            
 
             <!-- <b-row>
               <b-col cols="4">
@@ -91,7 +111,7 @@
             </b-form-group>  -->
 
             <entity-address
-              v-if="form.businessDetailsCorrect === true"
+              v-if="businessNameVerified"
               :addressLabel="'Postal address'"
               :address="form.businessDetails.postalAddress"
               :addressHelp="'You can select another address - start typing the correct address and select one of the options'"
@@ -102,7 +122,7 @@
       </section>
       <section
         class="border-bottom border-secondary mb-4 pb-4"
-        v-if="form.businessDetailsCorrect === true"
+        v-if="businessNameVerified"
       >
         <b-row>
           <b-col cols="4">
@@ -127,7 +147,7 @@
 
       <section
         class="border-bottom border-secondary mb-4 pb-4"
-        v-if="form.businessDetailsCorrect === true"
+        v-if="businessNameVerified"
       >
         <b-row>
           <b-col cols="4">
@@ -182,7 +202,7 @@
       </section>
       <section
         class="border-bottom border-secondary mb-4 pb-4"
-        v-if="form.businessDetailsCorrect === true"
+        v-if="businessNameVerified"
       >
         <b-row>
           <b-col cols="4">
@@ -214,7 +234,7 @@
 
       <section
         class=" mb-4 pb-4"
-        v-if="form.businessDetailsCorrect === true"
+        v-if="businessNameVerified"
       >
         <b-row>
           <b-col cols="4">
@@ -302,8 +322,7 @@ export default {
           value: "999999999",
         },
       ],
-      businessDetailsWereWrong: false,
-      showIsBusinessDetailsCorrect: true,
+     
       formFillerPersonaOptions: [
         "Yes, I am an owner/director/employee of the Respondent",
        "No, I am representing the Respondent in this matter",
@@ -325,6 +344,9 @@ export default {
     };
   },
   computed: {
+    businessNameVerified: function(){
+      return (this.form.employeeProvidedBusinessIsCorrect === true || (this.form.employeeProvidedBusinessIsCorrect === false && this.form.businessDetails.name !== ''))
+    },
     youString: function () {
       return this.form.repType === "self" ? "you" : "the Applicant";
     },
@@ -351,15 +373,26 @@ export default {
     },
   },
   methods: {
-      onWrongBusinessNameClick() {
-      if (form.businessDetailsCorrect === false) {
-        this.businessDetailsWereWrong = true;
+      onEmployeeProvidedBusinessIsCorrectClick() {
+      if (form.employeeProvidedBusinessIsCorrect === false) {
+        this.showSearch = true
+      }else{
+
       }
     },
-    onSelectedNewAbn() {
-      this.form.businessDetailsCorrect = true;
-      this.$bvModal.hide("manual-abn");
+    onSelectedNewAbn(newBus) {
+      this.form.businessDetails.name = newBus.name
+      this.form.businessDetails.tradingName = newBus.tradingName
+      this.form.businessDetails.abn = newBus.abn
+      this.form.businessDetails.postalAddress.postalAddressString = ''
+      this.showSearch = false
+     
     },
+    changeSelectedBusiness(){
+      this.form.businessDetails.name = ''
+      this.form.businessDetails.tradingName = ''
+      this.form.businessDetails.abn = ''
+    }
   },
 };
 </script>

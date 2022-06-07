@@ -13,51 +13,38 @@
       </b-col>
     </b-row>
     <b-row class="mt-4">
-      <b-tabs
-        v-model="tabIndex"
-        vertical
-        nav-wrapper-class="w-30"
-        class="w-100"
-        active-nav-item-class="text-primary laap-nav-item-active"
-        nav-class="laap-nav"
-        content-class="card p-3"
-      >
-        <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-3',
-            { 'laap-nav-item-complete': true },
-          ]"
-        >
+      <b-tabs v-model="tabIndex" vertical nav-wrapper-class="w-30" class="w-100"
+        active-nav-item-class="text-primary laap-nav-item-active" nav-class="laap-nav" content-class="card p-3">
+        <b-tab :title-link-class="[
+          'laap-title-link',
+          'mb-2',
+          'p-3',
+          { 'laap-nav-item-complete': true },
+        ]">
           <template #title>
             <h5>Introduction</h5>
             <span>Information about the process</span>
           </template>
           <f-3-intro :form="form"></f-3-intro>
         </b-tab>
-         <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-3',
-            { 'laap-nav-item-complete': false },
-          ]"
-        >
+        <b-tab :title-link-class="[
+          'laap-title-link',
+          'mb-2',
+          'p-3',
+          { 'laap-nav-item-complete': false },
+        ]">
           <template #title>
             <h5>Contact details</h5>
             <span>Contact and other details</span>
           </template>
           <f-3-contact-details :form="form"></f-3-contact-details>
         </b-tab>
-         <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-3',
-            { 'laap-nav-item-complete': false },
-          ]"
-        >
+        <b-tab :title-link-class="[
+          'laap-title-link',
+          'mb-2',
+          'p-3',
+          { 'laap-nav-item-complete': false },
+        ]">
           <template #title>
             <h5>The business</h5>
             <span>Information about the business</span>
@@ -65,14 +52,12 @@
           <f-3-business-details :form="form"></f-3-business-details>
         </b-tab>
 
-        <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-3',
-            { 'laap-nav-item-complete': false },
-          ]"
-        >
+        <b-tab :title-link-class="[
+          'laap-title-link',
+          'mb-2',
+          'p-3',
+          { 'laap-nav-item-complete': false },
+        ]">
           <template #title>
             <h5>About the Applicant</h5>
             <span>Their details</span>
@@ -80,14 +65,12 @@
           <f-3-employee-details :form="form"></f-3-employee-details>
         </b-tab>
 
-        <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-3',
-            { 'laap-nav-item-complete': false },
-          ]"
-        >
+        <b-tab :title-link-class="[
+          'laap-title-link',
+          'mb-2',
+          'p-3',
+          { 'laap-nav-item-complete': false },
+        ]">
           <template #title>
             <h5>The dismissal</h5>
             <span>Information about the dismissal</span>
@@ -95,42 +78,36 @@
           <f-3-dismissal :form="form"></f-3-dismissal>
         </b-tab>
 
-        <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-4',
-            { 'laap-nav-item-complete': false },
-          ]"
-        >
+        <b-tab :title-link-class="[
+          'laap-title-link',
+          'mb-2',
+          'p-4',
+          { 'laap-nav-item-complete': false },
+        ]">
           <template #title>
             <h5>Other details</h5>
             <span>Additional information</span>
           </template>
           <f-3-other-info :form="form"></f-3-other-info>
         </b-tab>
-        <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-3',
-            { 'laap-nav-item-complete': false },
-          ]"
-        >
+        <b-tab :title-link-class="[
+          'laap-title-link',
+          'mb-2',
+          'p-3',
+          { 'laap-nav-item-complete': false },
+        ]">
           <template #title>
             <h5>Attachments</h5>
             <span>Upload relevant documents</span>
           </template>
           <F3Attachments :form="form"></F3Attachments>
         </b-tab>
-        <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-4',
-            { 'laap-nav-item-complete': false },
-          ]"
-        >
+        <b-tab :title-link-class="[
+          'laap-title-link',
+          'mb-2',
+          'p-4',
+          { 'laap-nav-item-complete': false },
+        ]">
           <template #title>
             <h5>Review and submit</h5>
             <span>Confirm details and submit the form</span>
@@ -142,16 +119,8 @@
 
     <b-row class="mt-4" v-if="tabIndex !== 2">
       <b-col cols="12" class="text-right">
-        <b-button
-          variant="primary"
-          v-if="tabIndex > 0"
-          @click="tabIndex--"
-          class="mr-2"
-          >Save & Prev</b-button
-        >
-        <b-button variant="primary" v-if="tabIndex < 5" @click="tabIndex++"
-          >Save & Next</b-button
-        >
+        <b-button variant="primary" v-if="tabIndex > 0" @click="tabIndex--" class="mr-2">Save & Prev</b-button>
+        <b-button variant="primary" v-if="tabIndex < 5" @click="tabIndex++">Save & Next</b-button>
       </b-col>
     </b-row>
 
@@ -237,8 +206,8 @@ export default {
   data() {
     return {
       form: {
-        businessDetailsCorrect: null,
         employeeProvidedBusinessNameString: "Sydney Bins ABN 12345678",
+        employeeProvidedBusinessIsCorrect: null,
         businessDetails: {
           businessDetailsString: "ABC pty ltd Trading as MY ABC, ABN: 12345678",
           name: "",
@@ -252,7 +221,7 @@ export default {
             state: "",
             country: "",
           },
-          postalAddressString: "22 Main street, Sydney NSW 2000",
+          postalAddressString: "",
           industryDetails: "",
           industry: "",
           contactPerson: {
@@ -327,56 +296,57 @@ export default {
         employmentStartDate: "",
         employmentDismissedDate: "",
         employmentEndDate: "",
+        mostRecentShift: '',
         otherInfo: "",
         wantsConciliation: null,
-         objections: [
-        {
-          text: 'The application is out of time (ie lodged more than 21 days after the dismissal took effect)',
-          selected: false,
-          details: ''
-        },
-         {
-          text: 'The Applicant was not an employee',
-          selected: false,
-          details: ''
-        },
-         {
-          text: 'The Applicant was not dismissed',
-          selected: false,
-          details: ''
-        },
-         {
-          text: 'The dismissal was a case of genuine redundancy',
-          selected: false,
-          details: ''
-        },
-         {
-          text: 'The Applicant’s employment does not meet the minimum employment period',
-          selected: false,
-          details: ''
-        },
-        {
-          text: 'The Applicant earned more than the high income threshold ',
-          selected: false,
-          details: ''
-        },
-        {
-          text: 'The employer is a small business employer and the employer complied with the Small Business Fair Dismissal Code',
-          selected: false,
-          details: ''
-        },
-        {
-          text: 'Other',
-          selected: false,
-          details: ''
-        },
+        objections: [
+          {
+            text: 'The application is out of time (ie lodged more than 21 days after the dismissal took effect)',
+            selected: false,
+            details: ''
+          },
+          {
+            text: 'The Applicant was not an employee',
+            selected: false,
+            details: ''
+          },
+          {
+            text: 'The Applicant was not dismissed',
+            selected: false,
+            details: ''
+          },
+          {
+            text: 'The dismissal was a case of genuine redundancy',
+            selected: false,
+            details: ''
+          },
+          {
+            text: 'The Applicant’s employment does not meet the minimum employment period',
+            selected: false,
+            details: ''
+          },
+          {
+            text: 'The Applicant earned more than the high income threshold ',
+            selected: false,
+            details: ''
+          },
+          {
+            text: 'The employer is a small business employer and the employer complied with the Small Business Fair Dismissal Code',
+            selected: false,
+            details: ''
+          },
+          {
+            text: 'Other',
+            selected: false,
+            details: ''
+          },
         ]
       },
 
       tabIndex: 0,
     };
   },
-  mounted: function () {},
+  mounted: function () { },
   methods: {
     changeTabIndex(index) {
       this.tabIndex = index;

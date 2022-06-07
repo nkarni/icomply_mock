@@ -160,7 +160,7 @@ export default {
           " ABN: " + this.businessDetails.abn;
       }
 
-      this.$emit("businessSelected");
+      this.$emit("businessSelected", newBus);
     },
   },
 };

@@ -30,7 +30,7 @@
                 </b-form-radio-group>
               </b-form-group>
               <div v-if="form.applicantStillWorksForBusiness === false">
-              
+
                 <b-form-group :label="employmentEndlabel">
                   <b-form-datepicker v-model="form.employmentEndDate" class="mb-2"></b-form-datepicker>
                 </b-form-group>
@@ -40,7 +40,12 @@
                   :message="'Dev note: <br>1. Validate that dismissal date is on or after employment start date <br>2. notification date must be on or after contract start date <br>3. validate that dates in the past for dismissal, employment start or employment notification'">
                 </notice>
               </div>
-             
+
+              <div v-if="form.applicantStillWorksForBusiness === true">
+                <b-form-group label="What date was their most recent shift?">
+                  <b-form-datepicker v-model="form.mostRecentShift" class="mb-2"></b-form-datepicker>
+                </b-form-group>
+              </div>
 
             </div>
 
@@ -56,7 +61,7 @@
           </b-col>
         </b-row>
       </section>
-          <section class="border-bottom border-secondary mb-4 pb-4">
+      <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>Dismissal information</h6>
@@ -77,7 +82,7 @@
               <b-form-group
                 label="Did you follow the Small Business Fair Dismissal Code when you dismissed the employee?"
                 v-if="form.independentContractor !== true">
-                <b-form-radio-group  v-model="form.followedCode" :options="boolOptions"></b-form-radio-group>
+                <b-form-radio-group v-model="form.followedCode" :options="boolOptions"></b-form-radio-group>
               </b-form-group>
               <b-form-group v-if="form.followedCode === 'Yes'"
                 label="If you completed the Small Business Fair Dismissal checklist attach a copy">
@@ -119,7 +124,7 @@
         </b-row>
       </section>
 
-  
+
     </b-form>
   </div>
 </template>
