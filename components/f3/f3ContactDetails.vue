@@ -34,7 +34,7 @@
           <b-col cols="4">
             <h6>Business details</h6>
             <p>
-              The following details were provided by the employee in their
+              The following details were provided by the Applicant in their
               Application. Please check the details and correct if required.
             </p>
            
@@ -43,7 +43,7 @@
             
             <div>
              <b-form-group
-              label="The employee provided the following business details:"
+              label="The Applicant provided the following business details:"
               class="mt-3"
             >
               {{ form.employeeProvidedBusinessNameString }}
@@ -63,11 +63,12 @@
             <div v-if="form.employeeProvidedBusinessIsCorrect === false">
 
             <!-- do a search and select a new business or enter details if not found, via the component-->
-              <abn-lookup
+              <f3-abn-lookup
               v-if="form.businessDetails.name === ''"
                 :businessDetails="form.businessDetails"
                 @businessSelected="onSelectedNewAbn"
-              ></abn-lookup>
+                @manualBusinessEntry="onManualBusinessEntry"
+              ></f3-abn-lookup>
           
 
             <!--  show the selection -->
@@ -269,12 +270,12 @@
 </template>
 
 <script>
-import AbnLookup from "../common/abnLookup.vue";
+import f3AbnLookup from "../f3/f3AbnLookup.vue";
 import entity from "../common/entity.vue";
 import EntityAddress from "../common/entityAddress.vue";
 import Notice from "../common/notice.vue";
 export default {
-  components: { entity, Notice, EntityAddress, AbnLookup },
+  components: { entity, Notice, EntityAddress, f3AbnLookup },
   name: "f3ContactDetails",
   props: {
     form: {
@@ -332,20 +333,15 @@ export default {
         { text: "Yes", value: true },
         { text: "No", value: false },
       ],
-      aboriginalityOptions: [
-        { text: "Yes, Aboriginal", value: "aboriginal" },
-        { text: "Yes, Torres Strait Islander", value: "islander" },
-        { text: "Both Aboriginal and Torres Strait Islander", value: "both" },
-        { text: "No", value: "no" },
-      ],
       repTypeOptions: [
         'lawyer, paid agent, employer association, peak body','Other'
-      ]
+      ],
+      manualBusinessEntry: false
     };
   },
   computed: {
     businessNameVerified: function(){
-      return (this.form.employeeProvidedBusinessIsCorrect === true || (this.form.employeeProvidedBusinessIsCorrect === false && this.form.businessDetails.name !== ''))
+      return (this.form.employeeProvidedBusinessIsCorrect === true || (this.form.employeeProvidedBusinessIsCorrect === false && this.form.businessDetails.name !== '') || this.manualBusinessEntry)
     },
     youString: function () {
       return this.form.repType === "self" ? "you" : "the Applicant";
@@ -392,6 +388,9 @@ export default {
       this.form.businessDetails.name = ''
       this.form.businessDetails.tradingName = ''
       this.form.businessDetails.abn = ''
+    },
+    onManualBusinessEntry(){
+      this.manualBusinessEntry = true
     }
   },
 };
