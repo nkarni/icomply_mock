@@ -25,7 +25,7 @@
         </b-row>
       </section>
 
-      <section class="border-bottom border-secondary mb-4 pb-2">
+      <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Permit training</h6>
@@ -60,7 +60,7 @@ Attach evidence showing the proposed permit holder has successfully completed th
           </b-col>
         </b-row>
       </section>
-      <section class=" mb-4 pb-2 border-bottom border-secondary">
+     <!-- <section class=" mb-4 pb-2 border-bottom border-secondary">
         <b-row>
           <b-col cols="4">
             <h6>Photograph</h6>
@@ -70,14 +70,7 @@ Attach evidence showing the proposed permit holder has successfully completed th
             </p>
           </b-col>
           <b-col>
-            <!-- <b-form-group
-              label="Do you have access to a recent passport photo of the Proposed Permit Holder?"
-            >
-              <b-form-radio-group
-                :options="boolOptions"
-                v-model="form.admin.hasHolderPhoto"
-              ></b-form-radio-group>
-            </b-form-group> -->
+         
             <div >
                             <notice class="mb-2" message="Only .jpg and .jpeg files are accepted, file size limit is 5MB"></notice>
 
@@ -94,7 +87,7 @@ Attach evidence showing the proposed permit holder has successfully completed th
             </div>
           </b-col>
         </b-row>
-      </section>
+      </section>  -->
 
   <!-- <section class=" mb-4 pb-2">
         <b-row>

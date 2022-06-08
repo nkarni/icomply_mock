@@ -127,7 +127,7 @@
           <b-col cols="12" class="text-right">
             <b-button
               variant="primary"
-              v-if="tabIndex > 0 && tabIndex < 4"
+              v-if="tabIndex > 0 && tabIndex < 5"
               @click="tabIndex--"
               class="mr-2"
               >Save & Prev</b-button
@@ -176,27 +176,10 @@
             >
               <template #title>
                 <h5>Your details</h5>
-                <!-- <span>Union organisation and administrator details</span> -->
               </template>
               <f-42-holder-view-details :form="form"></f-42-holder-view-details>
             </b-tab>
 
-           
-
-            <!-- <b-tab
-              :title-link-class="[
-                'laap-title-link',
-                'mb-2',
-                'p-3',
-                { 'laap-nav-item-complete': false },
-              ]"
-            >
-              <template #title>
-                <h5>Photograph</h5>
-                <span>Their details</span>
-              </template>
-              <f-42-holder-view-photo :form="form"></f-42-holder-view-photo>
-            </b-tab> -->
             <b-tab
               :title-link-class="[
                 'laap-title-link',
@@ -211,6 +194,20 @@
               </template>
               <f-42-holder-view-id :form="form"></f-42-holder-view-id>
             </b-tab>
+            <b-tab
+              :title-link-class="[
+                'laap-title-link',
+                'mb-2',
+                'p-3',
+                { 'laap-nav-item-complete': false },
+              ]"
+            >
+              <template #title>
+                <h5>Photo and signature</h5>
+              </template>
+              <f-42-holder-view-photo-signature :form="form"></f-42-holder-view-photo-signature>
+            </b-tab>
+
 
             <b-tab
               :title-link-class="[
@@ -237,7 +234,7 @@
               class="mr-2"
               >Save & Prev</b-button
             >
-            <b-button variant="primary" v-if="tabIndex < 5" @click="tabIndex++"
+            <b-button variant="primary" v-if="tabIndex < 4" @click="tabIndex++"
               >Save & Next</b-button
             >
           </b-col>
@@ -301,6 +298,20 @@
               <f-42-member-view-pph :form="form"></f-42-member-view-pph>
             </b-tab>
 
+             <b-tab
+              :title-link-class="[
+                'laap-title-link',
+                'mb-2',
+                'p-3',
+                { 'laap-nav-item-complete': false },
+              ]"
+            >
+              <template #title>
+                <h5>Photo and signature</h5>
+              </template>
+              <f-42-member-view-photo-signature :form="form"></f-42-member-view-photo-signature>
+            </b-tab>
+
             <b-tab
               :title-link-class="[
                 'laap-title-link',
@@ -326,7 +337,7 @@
               class="mr-2"
               >Save & Prev</b-button
             >
-            <b-button variant="primary" v-if="tabIndex < 3" @click="tabIndex++"
+            <b-button variant="primary" v-if="tabIndex < 4" @click="tabIndex++"
               >Save & Next</b-button
             >
           </b-col>
@@ -561,6 +572,7 @@ export default {
             awareOfMatters: null,
             awareOfMattersDetails: "",
           },
+          confirmPhotoSignatureDeclaration: false
         },
         committeeMember: {
           officeHeld: "",
