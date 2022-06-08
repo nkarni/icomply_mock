@@ -1,10 +1,10 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary mb-4 pb-4">
+      <section class=" pb-4">
         <b-row>
           <b-col>
-            <h5>Process overview</h5>
+            <h6>Process overview</h6>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -15,12 +15,19 @@
           </b-col>
         </b-row>
       </section>
-      <section class="border-bottom border-secondary mb-4 pb-4">
+      <section class="">
         <b-row>
           <b-col>
-            <h5>What you will do today</h5>
+            <h6>What you will do today</h6>
+            <ol>
+<li>Provide your contact details Explanation text about why you need to provide this</li>
+<li>Provide Proposed Permit Holder details Explanation text about why you need to provide this&nbsp;</li>
+<li>Provide Member of Committee of Management details Explanation text about why you need to provide this</li>
+<li>Invite the Proposed Permit Holder to confirm their details</li>
+<li>Explanation text about why you need to do this</li>
+</ol>
 
-            <b-form-group>
+            <!-- <b-form-group>
               <b-list-group>
                 <b-list-group-item>
                   <h6>1. Provide your contact details</h6>
@@ -50,16 +57,22 @@
                   >
                 </b-list-group-item>
               </b-list-group>
-            </b-form-group>
+            </b-form-group> -->
           </b-col>
         </b-row>
       </section>
-      <section class="border-bottom border-secondary mb-4 pb-4">
+      <section class="">
         <b-row>
           <b-col>
-            <h5>What will happen next</h5>
+            <h6>What will happen next</h6>
+            <ul>
+<li>The Proposed Permit Holder will be invited to complete their part of the application.</li>
+<li>They will review their details, verify their identity, provide additional supporting documents and sign their statuary declarations.</li>
+<li>Then the Member of Committee of Management will be invited to review the Proposed Permit Holder details, approve them for the entry and sign their statuary declarations.</li>
+<li>You will then be invited to submit the application to FWC for review.</li>
+</ul>
 
-            <b-form-group>
+            <!-- <b-form-group>
               <div class="mt-4">
                 <p>
                   The Proposed Permit Holder will be invited to complete their
@@ -81,14 +94,14 @@
                   review.
                 </p>
               </div>
-            </b-form-group>
+            </b-form-group> -->
           </b-col>
         </b-row>
       </section>
       <section class="mb-4 pb-4">
         <b-row>
           <b-col>
-            <h5>Privacy</h5>
+            <h6>Privacy</h6>
             <p>
               Read the
               <a

@@ -85,14 +85,14 @@
                                     containing my signature:<br />[Free text box to describe document containing
                                     signature]</li>
                             </ol>
-                            <p>Giving false or misleading information is a serious offence. A person who:</p>
+                            <p>Giving false or misleading information is a serious offence. A person who:
                             <ul>
                                 <li>knowingly or recklessly makes a false or misleading statement in an application for
                                     an entry permit; or</li>
                                 <li>knowingly gives false or misleading information in an application for an entry
                                     permit</li>
                             </ul>
-                            <p>is guilty of an offence, the punishment for which is imprisonment for up to 12 months if
+                            is guilty of an offence, the punishment for which is imprisonment for up to 12 months if
                                 the statement is made or information is provided knowingly, or up to 6 months if the
                                 statement is made recklessly - see Part 7.4, s.136 and s.137.1 of the Criminal Code.</p>
                         </div>
