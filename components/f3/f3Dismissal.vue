@@ -7,7 +7,7 @@
             <h6>Type of work and dates</h6>
             <p>
               Click here to read about the difference between employees and
-              independent contractors on our website (link: TBC)
+              independent contractors on our <a href="https://www.fwc.gov.au/independent-contractors" target="_blank">website</a>.
             </p>
           </b-col>
           <b-col>
