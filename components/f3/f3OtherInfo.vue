@@ -9,7 +9,7 @@
           </b-col>
           <b-col>
 
-            <b-form-group label="Check any jurisdictional objections that are relevant to this matter (optional)">
+            <b-form-group label="If you have any objections to the application please select them below and provide information for each (optional)">
 
               <div v-for="(objection, index) of form.objections" :key="index" v-bind:id="index" class="mb-2 ">
                 <b-form-group>
