@@ -250,7 +250,7 @@
             label="Select the applicant role that describes you:"
             description="If your role is not listed it may be that you are not eligible to make this type of application."
           >
-            <b-radio-group :options="['role1', 'role2']"></b-radio-group>
+            <b-form-select :options="['role1', 'role2']"></b-form-select>
           </b-form-group>
         </b-col>
       </b-row>
