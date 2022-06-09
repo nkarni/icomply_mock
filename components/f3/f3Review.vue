@@ -125,11 +125,11 @@ export default {
     };
   },
   computed: {
-    youString: function () {
-      return this.form.applyingForSelf ? "you" : "the Applicant";
+   youString: function () {
+      return this.form.formFillerPersona === 'self' ? "you" : "the Applicant";
     },
     yourString: function () {
-      return this.form.applyingForSelf ? "your" : "the Applicant's";
+      return this.form.formFillerPersona === 'self' ? "your" : "the Applicant's";
     },
     AreYouString: function () {
       return this.form.applyingForSelf ? "are you" : "is the Applicant";
@@ -287,10 +287,14 @@ export default {
           ],
         },
         {
-          label: "Other Details",
+          label: "Objections",
           data: [
+             {
+              label: 'Objections (HC)',
+              value: '<p>The Applicant was not an employee <br> Details here</p><p>The dismissal was a case of genuine redundancy <br> Details here</p>'
+            },
             {
-              label: "Is there anything else you need to tell us??",
+              label: "Is there anything else you need to tell us?",
               value: this.form.otherInfo,
             },
           ],

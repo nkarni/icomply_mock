@@ -26,9 +26,9 @@
               ></b-form-input>
             </b-form-group>
 
-            <b-form-group label="Case number:">
+            <!-- <b-form-group label="Case number:">
               <b-form-input v-model="form.caseNumber" disabled></b-form-input>
-            </b-form-group>
+            </b-form-group> -->
 
              <notice
               class="mb-4"

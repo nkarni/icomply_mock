@@ -7,17 +7,17 @@
             <h6>Who is completing this form?</h6>
           </b-col>
           <b-col>
- <b-form-group
+            <b-form-group
               label="Are you the Respondent contact person?"
               class="mt-3"
             >
               <b-form-radio-group
-              stacked
+                stacked
                 v-model="form.formFillerPersona"
                 :options="formFillerPersonaOptions"
               ></b-form-radio-group>
             </b-form-group>
-             <b-form-group
+            <b-form-group
               v-if="form.formFillerPersona === 'Other'"
               label="Please provide details"
             >
@@ -26,8 +26,8 @@
               ></b-form-input>
             </b-form-group>
           </b-col>
-          </b-row>
-          </section>
+        </b-row>
+      </section>
 
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
@@ -37,58 +37,46 @@
               The following details were provided by the Applicant in their
               Application. Please check the details and correct if required.
             </p>
-           
           </b-col>
           <b-col>
-            
             <div>
-             <b-form-group
-              label="The Applicant provided the following business details:"
-              class="mt-3"
-            >
-              {{ form.employeeProvidedBusinessNameString }}
-            </b-form-group>
+              <b-form-group
+                label="The Applicant provided the following business details:"
+                class="mt-3"
+              >
+                {{ form.employeeProvidedBusinessNameString }}
+              </b-form-group>
 
-            <b-form-group
-              label="Are those details correct?"
-              class="mt-3"
-            >
-              <b-form-radio-group
-                v-model="form.employeeProvidedBusinessIsCorrect"
-                :options="boolOptions"
-              ></b-form-radio-group>
-            </b-form-group>
+              <b-form-group label="Are those details correct?" class="mt-3">
+                <b-form-radio-group
+                  v-model="form.employeeProvidedBusinessIsCorrect"
+                  :options="boolOptions"
+                ></b-form-radio-group>
+              </b-form-group>
             </div>
 
             <div v-if="form.employeeProvidedBusinessIsCorrect === false">
-
-            <!-- do a search and select a new business or enter details if not found, via the component-->
+              <!-- do a search and select a new business or enter details if not found, via the component-->
               <f3-abn-lookup
-              v-if="form.businessDetails.name === ''"
+                v-if="form.businessDetails.name === ''"
                 :businessDetails="form.businessDetails"
                 @businessSelected="onSelectedNewAbn"
                 @manualBusinessEntry="onManualBusinessEntry"
               ></f3-abn-lookup>
-          
 
-            <!--  show the selection -->
-            <div v-if="form.businessDetails.name !== ''">
-              <label>
-                You have corrected the business to:
-              </label>
+              <!--  show the selection -->
+              <div v-if="form.businessDetails.name !== ''">
+                <label> You have corrected the business to: </label>
                 <p>
-               {{ form.businessDetails.name}} <span v-if="form.businessDetails.tradingName.length > 0">{{ form.businessDetails.tradingName}} </span> ABN: {{form.businessDetails.abn}}
-               <br> <a href="" @click.prevent="changeSelectedBusiness">Change</a>
-              </p>
-             
+                  {{ form.businessDetails.name }}
+                  <span v-if="form.businessDetails.tradingName.length > 0"
+                    >{{ form.businessDetails.tradingName }}
+                  </span>
+                  ABN: {{ form.businessDetails.abn }} <br />
+                  <a href="" @click.prevent="changeSelectedBusiness">Change</a>
+                </p>
+              </div>
             </div>
-            </div>
-
-
-            
-           
-
-            
 
             <!-- <b-row>
               <b-col cols="4">
@@ -128,9 +116,21 @@
         <b-row>
           <b-col cols="4">
             <h6>Contact person</h6>
-            <p>The Applicant provided these details of a contact person for the business.</p> 
-           <p>You can nominate a different person if there is someone else who should be the main contact. Please update any information if needed.</p>
-           <notice message="DEV NOTE: pre-populate contact person details as provided in F2" borderClass="none" class="mt-2"> </notice>
+            <p>
+              The Applicant provided these details of a contact person for the
+              business.
+            </p>
+            <p>
+              You can nominate a different person if there is someone else who
+              should be the main contact. Please update any information if
+              needed.
+            </p>
+            <notice
+              message="DEV NOTE: pre-populate contact person details as provided in F2"
+              borderClass="none"
+              class="mt-2"
+            >
+            </notice>
           </b-col>
           <b-col>
             <entity
@@ -139,7 +139,7 @@
               showFirstName
               showLastName
               showEmail
-               showPreferredPronoun
+              showPreferredPronoun
             >
             </entity>
           </b-col>
@@ -153,11 +153,26 @@
         <b-row>
           <b-col cols="4">
             <h6>Representative</h6>
-            A representative is a person who acts for you in the case but who
-            isn’t an employee of your business. They could be a lawyer, paid
-            agent, employer organisation or chamber of commerce. You don’t need
-            to have a representative. <a href="">Click here </a>to read more
-            about whether or not to have a representative on our website.
+            <p v-if="form.formFillerPersona === 'self'">
+              We might hold a conference or hearing about your case. We can
+              arrange an interpreter for you. You can find information about
+              help for non-English speakers on our
+              <a
+                href="https://www.fwc.gov.au/about-us/contact-us/language-help-non-english-speakers"
+                target="_blank"
+                >website</a
+              >.
+            </p>
+            <p v-else>
+              We might hold a conference or hearing about this case. We can
+              arrange an interpreter for the Respondent contact person. You can
+              find information about help for non-English speakers on our
+              <a
+                href="https://www.fwc.gov.au/about-us/contact-us/language-help-non-english-speakers"
+                target="_blank"
+                >website</a
+              >.
+            </p>
           </b-col>
           <b-col>
             <b-form-group label="Do you have a representative?">
@@ -167,15 +182,18 @@
               ></b-form-radio-group>
             </b-form-group>
 
-            <b-form-group label="Type of representative"  v-if="form.hasRep === true">
+            <b-form-group
+              label="Type of representative"
+              v-if="form.hasRep === true"
+            >
               <b-form-radio-group
-              stacked
+                stacked
                 v-model="form.repType"
                 :options="repTypeOptions"
               ></b-form-radio-group>
             </b-form-group>
 
-           <!-- <b-form-group
+            <!-- <b-form-group
               v-if="form.repType === 'Other' &&  form.hasRep === true"
               label="Please provide details"
             >
@@ -184,7 +202,6 @@
               ></b-form-input>
             </b-form-group> -->
 
-            
             <entity
               v-if="form.hasRep === true"
               :entity="form.rep"
@@ -194,8 +211,12 @@
               showLastName
               showEmail
               showPostalAddress
-           
-              :orgNameLabel="form.repType === 'Other' ? 'Organisation name (optional)' : 'Organisation name'"
+              showPreferredPronoun
+              :orgNameLabel="
+                form.repType === 'Other'
+                  ? 'Organisation name (optional)'
+                  : 'Organisation name'
+              "
             >
             </entity>
           </b-col>
@@ -208,10 +229,20 @@
         <b-row>
           <b-col cols="4">
             <h6>Interpreter service</h6>
-            We might hold a conference or hearing about your case. It is
-            important that you can understand what is happening during the
-            proceeding. We can arrange an interpreter for you. You can find
-            information about help for non-English speakers on our website.
+             <p v-if="form.formFillerPersona === 'self'">
+             If you have access needs, we can make arrangements so that you can participate fully in the case. You can read more about accessibility on our <a
+                href="https://www.fwc.gov.au/about-us/legal-and-freedom-information/about-website/accessibility"
+                target="_blank"
+                >website</a>.
+
+             
+            </p>
+            <p v-else>
+                If the Respondent contact person has access needs, we can make arrangements so that they can participate fully in the case. You can read more about accessibility on our <a
+                href="https://www.fwc.gov.au/about-us/legal-and-freedom-information/about-website/accessibility"
+                target="_blank"
+                >website</a>.
+            </p>
           </b-col>
           <b-col>
             <b-form-group label="Will you need an interpreter?">
@@ -233,10 +264,7 @@
         </b-row>
       </section>
 
-      <section
-        class=" mb-4 pb-4"
-        v-if="businessNameVerified"
-      >
+      <section class="mb-4 pb-4" v-if="businessNameVerified">
         <b-row>
           <b-col cols="4">
             <h6>Accessibility</h6>
@@ -263,8 +291,6 @@
           </b-col>
         </b-row>
       </section>
-
-      
     </b-form>
   </div>
 </template>
@@ -323,25 +349,37 @@ export default {
           value: "999999999",
         },
       ],
-     
+      
       formFillerPersonaOptions: [
-        "Yes, I am an owner/director/employee of the Respondent",
-       "No, I am representing the Respondent in this matter",
-       "Other"
+         {
+          text: "Yes, I am an owner/director/employee of the Respondent",
+          value: "self",
+        },
+        {
+          text: "No, I am representing the Respondent in this matter",
+          value: "rep",
+        },
+        { text: "Other", value: "Other" },
       ],
       boolOptions: [
         { text: "Yes", value: true },
         { text: "No", value: false },
       ],
       repTypeOptions: [
-        'lawyer, paid agent, employer association, peak body','Other'
+        "lawyer, paid agent, employer association, peak body",
+        "Other",
       ],
-      manualBusinessEntry: false
+      manualBusinessEntry: false,
     };
   },
   computed: {
-    businessNameVerified: function(){
-      return (this.form.employeeProvidedBusinessIsCorrect === true || (this.form.employeeProvidedBusinessIsCorrect === false && this.form.businessDetails.name !== '') || this.manualBusinessEntry)
+    businessNameVerified: function () {
+      return (
+        this.form.employeeProvidedBusinessIsCorrect === true ||
+        (this.form.employeeProvidedBusinessIsCorrect === false &&
+          this.form.businessDetails.name !== "") ||
+        this.manualBusinessEntry
+      );
     },
     youString: function () {
       return this.form.repType === "self" ? "you" : "the Applicant";
@@ -369,29 +407,27 @@ export default {
     },
   },
   methods: {
-      onEmployeeProvidedBusinessIsCorrectClick() {
+    onEmployeeProvidedBusinessIsCorrectClick() {
       if (form.employeeProvidedBusinessIsCorrect === false) {
-        this.showSearch = true
-      }else{
-
+        this.showSearch = true;
+      } else {
       }
     },
     onSelectedNewAbn(newBus) {
-      this.form.businessDetails.name = newBus.name
-      this.form.businessDetails.tradingName = newBus.tradingName
-      this.form.businessDetails.abn = newBus.abn
-      this.form.businessDetails.postalAddress.postalAddressString = ''
-      this.showSearch = false
-     
+      this.form.businessDetails.name = newBus.name;
+      this.form.businessDetails.tradingName = newBus.tradingName;
+      this.form.businessDetails.abn = newBus.abn;
+      this.form.businessDetails.postalAddress.postalAddressString = "";
+      this.showSearch = false;
     },
-    changeSelectedBusiness(){
-      this.form.businessDetails.name = ''
-      this.form.businessDetails.tradingName = ''
-      this.form.businessDetails.abn = ''
+    changeSelectedBusiness() {
+      this.form.businessDetails.name = "";
+      this.form.businessDetails.tradingName = "";
+      this.form.businessDetails.abn = "";
     },
-    onManualBusinessEntry(){
-      this.manualBusinessEntry = true
-    }
+    onManualBusinessEntry() {
+      this.manualBusinessEntry = true;
+    },
   },
 };
 </script>

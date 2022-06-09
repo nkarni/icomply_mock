@@ -5,50 +5,80 @@
         <b-row>
           <b-col cols="4">
             <h6>Type of work and dates</h6>
-            <p>Click here to read about the difference between employees and independent contractors on our website
-              (link: TBC)</p>
+            <p>
+              Click here to read about the difference between employees and
+              independent contractors on our website (link: TBC)
+            </p>
           </b-col>
           <b-col>
             <b-form-group label="Was the Applicant:">
-              <b-form-radio-group stacked v-model="form.engagementType" :options="engagementTypeOptions">
+              <b-form-radio-group
+                stacked
+                v-model="form.engagementType"
+                :options="engagementTypeOptions"
+              >
               </b-form-radio-group>
             </b-form-group>
-            <b-form-group v-if="form.engagementType === 'Other'" label="Please provide details:">
+            <b-form-group
+              v-if="form.engagementType === 'Other'"
+              label="Please provide details:"
+            >
               <b-form-input v-model="form.engagementTypeDetails"></b-form-input>
             </b-form-group>
-            <notice v-if="form.engagementType && form.engagementType !== 'An employee'"
+            <notice
+              v-if="
+                form.engagementType && form.engagementType !== 'An employee'
+              "
               message="The Fair Work Act only protects employees from unfair dismissal.  <br>You can object to the claim if the Applicant was not an employee.  <br>Include this information later under ‘Jurisdictional objections’ at the ‘Other details’ tab."
-              class=" my-4" borderClass="red"></notice>
+              class="my-4"
+              borderClass="red"
+            ></notice>
 
             <b-form-group :label="startDateLabel">
-              <b-form-datepicker v-model="form.employmentStartDate" class="mb-2"></b-form-datepicker>
+              <b-form-datepicker
+                v-model="form.employmentStartDate"
+                class="mb-2"
+              ></b-form-datepicker>
             </b-form-group>
 
             <div id="trial">
-              <b-form-group label="Is the Applicant still working for the business?" class="mt-3">
-                <b-form-radio-group v-model="form.applicantStillWorksForBusiness" :options="boolOptions">
+              <b-form-group
+                label="Is the Applicant still working for the business?"
+                class="mt-3"
+              >
+                <b-form-radio-group
+                  v-model="form.applicantStillWorksForBusiness"
+                  :options="boolOptions"
+                >
                 </b-form-radio-group>
               </b-form-group>
               <div v-if="form.applicantStillWorksForBusiness === false">
-
                 <b-form-group :label="employmentEndlabel">
-                  <b-form-datepicker v-model="form.employmentEndDate" class="mb-2"></b-form-datepicker>
+                  <b-form-datepicker
+                    v-model="form.employmentEndDate"
+                    class="mb-2"
+                  ></b-form-datepicker>
                 </b-form-group>
-                <notice class="mb-3"
-                  :message="'If you are not sure how to answer this, enter the last day they attended work'"></notice>
-                <notice borderClass="nothing"
-                  :message="'Dev note: <br>1. Validate that dismissal date is on or after employment start date <br>2. notification date must be on or after contract start date <br>3. validate that dates in the past for dismissal, employment start or employment notification'">
+                <notice
+                  class="mb-3"
+                  :message="'If you are not sure how to answer this, enter the last day they attended work'"
+                ></notice>
+                <notice
+                  borderClass="nothing"
+                  :message="'Dev note: <br>1. Validate that dismissal date is on or after employment start date <br>2. notification date must be on or after contract start date <br>3. validate that dates in the past for dismissal, employment start or employment notification'"
+                >
                 </notice>
               </div>
 
               <div v-if="form.applicantStillWorksForBusiness === true">
                 <b-form-group label="What date was their most recent shift?">
-                  <b-form-datepicker v-model="form.mostRecentShift" class="mb-2"></b-form-datepicker>
+                  <b-form-datepicker
+                    v-model="form.mostRecentShift"
+                    class="mb-2"
+                  ></b-form-datepicker>
                 </b-form-group>
               </div>
-
             </div>
-
 
             <!-- <b-form-group :label="employmentEndlabel">
               <b-form-datepicker v-model="form.employmentEndDate" class="mb-2"></b-form-datepicker>
@@ -68,25 +98,45 @@
           </b-col>
           <b-col>
             <b-form-group :label="wereTheyDismissedLabel">
-              <b-form-radio-group stacked v-model="form.wasDismissed" :options="boolOptions"></b-form-radio-group>
+              <b-form-radio-group
+                stacked
+                v-model="form.wasDismissed"
+                :options="boolOptions"
+              ></b-form-radio-group>
             </b-form-group>
 
-            <b-form-group :label="'What date were they told they were being dismissed?'"
-              v-if="form.wasDismissed === true">
-              <b-form-datepicker v-model="form.employmentDismissedDate" class="mb-2"></b-form-datepicker>
+            <b-form-group
+              :label="'What date were they told they were being dismissed?'"
+              v-if="form.wasDismissed === true"
+            >
+              <b-form-datepicker
+                v-model="form.employmentDismissedDate"
+                class="mb-2"
+              ></b-form-datepicker>
             </b-form-group>
-            <div v-if="
-              form.businessDetails.numberOfEmployeesIsUnder < 15 &&
-              form.wasDismissed === true
-            ">
+            <div
+              v-if="
+                form.businessDetails.numberOfEmployeesIsUnder < 15 &&
+                form.wasDismissed === true
+              "
+            >
               <b-form-group
                 label="Did you follow the Small Business Fair Dismissal Code when you dismissed the employee?"
-                v-if="form.independentContractor !== true">
-                <b-form-radio-group v-model="form.followedCode" :options="boolOptions"></b-form-radio-group>
+                v-if="form.independentContractor !== true"
+              >
+                <b-form-radio-group
+                  v-model="form.followedCode"
+                  :options="boolOptions"
+                ></b-form-radio-group>
               </b-form-group>
-              <b-form-group v-if="form.followedCode === 'Yes'"
-                label="If you completed the Small Business Fair Dismissal checklist attach a copy">
-                <b-form-file placeholder="Choose a file or drop it here..." drop-placeholder="Drop file here...">
+              <b-form-group
+                v-if="form.followedCode === 'Yes'"
+                label="If you completed the Small Business Fair Dismissal checklist attach a copy"
+              >
+                <b-form-file
+                  placeholder="Choose a file or drop it here..."
+                  drop-placeholder="Drop file here..."
+                >
                 </b-form-file>
               </b-form-group>
             </div>
@@ -98,39 +148,46 @@
           <b-col cols="4">
             <h6>What happened?</h6>
             <p>
-              Read what your former employee wrote in their application form.
-              <br /><br />Write a response to what they’ve written.
-              <br /><br />Attach a copy of the dismissal letter if there was
-              one.
+              Read what the Applicant wrote in their application form.
+            </p>
+             <p>
+              Write a response to what they have written.
             </p>
           </b-col>
           <b-col>
             <label>The employee wrote the following:</label>
-            <div style="
+            <div
+              style="
                 font-style: italic;
                 border-left: 2px solid gray;
                 padding-left: 8px;
-              " class="ml-2 mb-4">
+              "
+              class="ml-2 mb-4"
+            >
               {{ form.employeeDescOfWhatHappened }}
             </div>
-            <notice class="mb-3" message="Your former employee will see the answers you give in this form. This is so they can understand your side of the case. 
+            <notice
+              class="mb-3"
+              message="Your former employee will see the answers you give in this form. This is so they can understand your side of the case. 
 <br>If you are worried about particular information being passed on, don’t include it yet. Submit your completed form without it and then contact us to discuss whether you should send the information to us.
-"></notice>
+"
+            ></notice>
 
             <b-form-group label="Write a response to what they’ve written">
-              <b-form-textarea v-model="form.employerDescOfWhatHappened" rows="12" max-rows="18"></b-form-textarea>
+              <b-form-textarea
+                v-model="form.employerDescOfWhatHappened"
+                rows="12"
+                max-rows="18"
+              ></b-form-textarea>
             </b-form-group>
           </b-col>
         </b-row>
       </section>
-
-
     </b-form>
   </div>
 </template>
 
 <script>
-
 import entity from "../common/entity.vue";
 import EntityAddress from "../common/entityAddress.vue";
 import Notice from "../common/notice.vue";
@@ -150,11 +207,11 @@ export default {
         { text: "No", value: false },
       ],
       engagementTypeOptions: [
-        'An employee',
-        'An independent contractor',
-        'A volunteer',
-        'Other'
-      ]
+        "An employee",
+        "An independent contractor",
+        "A volunteer",
+        "Other",
+      ],
     };
   },
   computed: {

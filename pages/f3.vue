@@ -85,8 +85,8 @@
           { 'laap-nav-item-complete': false },
         ]">
           <template #title>
-            <h5>Other details</h5>
-            <span>Additional information</span>
+            <h5>Objections</h5>
+            <span>Objections to the application</span>
           </template>
           <f-3-other-info :form="form"></f-3-other-info>
         </b-tab>
@@ -117,7 +117,7 @@
       </b-tabs>
     </b-row>
 
-    <b-row class="mt-4" v-if="tabIndex !== 2">
+    <b-row class="mt-4" v-if="tabIndex ">
       <b-col cols="12" class="text-right">
         <b-button variant="primary" v-if="tabIndex > 0" @click="tabIndex--" class="mr-2">Save & Prev</b-button>
         <b-button variant="primary" v-if="tabIndex < 5" @click="tabIndex++">Save & Next</b-button>
