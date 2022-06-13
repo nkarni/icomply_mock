@@ -5,6 +5,9 @@
         <h3 class="text-primary">Unfair dismissal claim</h3>
       </b-col>
       <b-col cols="4" class="text-right">
+        <!-- <NuxtLink to="/home" class="text-right pr-0">
+          Back to dashboard
+        </NuxtLink> -->
         <b-button>Reference: YCFRU</b-button>
         <b-button variant="primary">Save for later</b-button>
       </b-col>
@@ -28,39 +31,10 @@
           ]"
         >
           <template #title>
-            <h5>Introduction</h5>
-            <span>Information about the process</span>
-          </template>
-          <f-2-intro :form="form"></f-2-intro>ç
-        </b-tab>
-
-        <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-3',
-            { 'laap-nav-item-complete': false },
-          ]"
-        >
-          <template #title>
-            <h5>Contact details</h5>
-            <span>Your contact details</span>
-          </template>
-          <f-2-contact-details :form="form"></f-2-contact-details>
-        </b-tab>
-        <b-tab
-          :title-link-class="[
-            'laap-title-link',
-            'mb-2',
-            'p-3',
-            { 'laap-nav-item-complete': false },
-          ]"
-        >
-          <template #title>
-            <h5>About {{youString}}</h5>
+            <h5>About you</h5>
             <span>Some details we need know</span>
           </template>
-          <f-2-about-you :form="form"></f-2-about-you>
+          <f-8-about-you :form="form"></f-8-about-you>
         </b-tab>
 
         <b-tab
@@ -87,11 +61,27 @@
           ]"
         >
           <template #title>
+            <h5>The employment</h5>
+            <span>Details about your employment</span>
+          </template>
+          <f-8-employment :form="form"></f-8-employment>
+        </b-tab>
+
+        <b-tab
+          :title-link-class="[
+            'laap-title-link',
+            'mb-2',
+            'p-3',
+            { 'laap-nav-item-complete': false },
+          ]"
+        >
+          <template #title>
             <h5>The dismissal</h5>
             <span>Details about your employment and the dismissal</span>
           </template>
-          <f-2-dismissal :form="form"></f-2-dismissal>
+          <f-8-dismissal :form="form"></f-8-dismissal>
         </b-tab>
+
         <b-tab
           :title-link-class="[
             'laap-title-link',
@@ -125,7 +115,7 @@
       </b-tabs>
     </b-row>
 
-    <b-row class="mt-4" >
+    <b-row class="mt-4" v-if="tabIndex !== 2">
       <b-col cols="12" class="text-right">
         <b-button
           variant="primary"
@@ -134,7 +124,7 @@
           class="mr-2"
           >Save & Prev</b-button
         >
-        <b-button variant="primary" v-if="tabIndex < 6" @click="tabIndex++"
+        <b-button variant="primary" v-if="tabIndex < 5" @click="tabIndex++"
           >Save & Next</b-button
         >
       </b-col>
@@ -201,32 +191,31 @@
 </template>
 
 <script>
-import f2Intro from "../components/f2/f2Intro.vue";
-import F2AboutYou from "../components/f2/f2AboutYou.vue";
+import f8AboutYou from "../components/f8/f8AboutYou.vue";
+import f8Employment from "../components/f8/f8Employment.vue";
 import f2ContactDetails from "../components/f2/f2ContactDetails.vue";
 import f2EmployerDetails from "../components/f2/f2EmployerDetails.vue";
-import f2Dismissal from "../components/f2/f2Dismissal.vue";
+import f8Dismissal from "../components/f8/f8Dismissal.vue";
 import f2Attachments from "../components/f2/f2Attachments.vue";
 import f2Rev from "../components/f2/f2Rev.vue";
 
 export default {
   components: {
-    F2AboutYou,
+    f8AboutYou,
     f2ContactDetails,
     f2EmployerDetails,
-    f2Dismissal,
+    f8Dismissal,
     f2Attachments,
     f2Rev,
-    f2Intro,
+    f8Employment,
   },
   layout: "form",
   data() {
     return {
       form: {
-        applyingForSelf: null,
+        applyingForSelf: true, // this form is only for the applicant use
         rep: {
           title: "",
-          preferredPronoun: '',
           titleDetails: "",
           firstName: "",
           lastName: "",
@@ -250,7 +239,6 @@ export default {
         },
         formFiller: {
           title: "",
-          preferredPronoun: '',
           titleDetails: "",
           firstName: "",
           lastName: "",
@@ -272,11 +260,9 @@ export default {
           },
           orgName: "",
           relationshipToApplicant: "",
-          relationshipToApplicant: ""
         },
         applicant: {
           title: "",
-          preferredPronoun: '',
           titleDetails: "",
           firstName: "",
           lastName: "",
@@ -299,8 +285,6 @@ export default {
           over18: null,
           needsInterpreter: null,
           needsInterpreterLanguage: "",
-          needsInterpreterLanguageDetails: '',
-          needsInterpreterLanguageNotFound: false,
           needsAccessibility: null,
           needsAccessibilityDetails: "",
           researchConsent: null,
@@ -368,7 +352,7 @@ export default {
           dateYear: "",
           unknownDate: false,
         },
-
+        perceivedDismissalReasons: [],
         lodgingWithin21DaysLimit: null,
         lodgingWithin21DaysLimitDetails: "",
         startedOtherClaims: null,
@@ -392,32 +376,6 @@ export default {
     changeTabIndex(index) {
       this.tabIndex = index;
       console.log("changed to index", index);
-    },
-  },
-    computed: {
-    youString: function () {
-      return this.form.applyingForSelf ? "you" : "the Applicant";
-    },
-    yourString: function () {
-      return this.form.applyingForSelf ? "your" : "the Applicant's";
-    },
-    AreYouString: function () {
-      return this.form.applyingForSelf ? "are you" : "is the Applicant";
-    },
-    DoYouString: function () {
-      return this.form.applyingForSelf ? "do you" : "is the Applicant";
-    },
-    DoYouStringCont: function () {
-      return this.form.applyingForSelf ? "do you" : "does the Applicant";
-    },
-    youAreString: function () {
-      return this.form.applyingForSelf ? "you are" : "the Applicant is";
-    },
-    wereYouString: function () {
-      return this.form.applyingForSelf ? "were you" : "was the Applicant";
-    },
-    AreYouString: function () {
-      return this.form.applyingForSelf ? "are you" : "the Applicant is";
     },
   },
 };
