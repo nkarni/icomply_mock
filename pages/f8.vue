@@ -2,7 +2,7 @@
   <b-container>
     <b-row>
       <b-col cols="8">
-        <h3 class="text-primary">Unfair dismissal claim</h3>
+        <h3 class="text-primary">General protections involving dismissal claim</h3>
       </b-col>
       <b-col cols="4" class="text-right">
         <b-button>Reference: YCFRU</b-button>
