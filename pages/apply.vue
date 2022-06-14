@@ -90,7 +90,7 @@
     </div>
 
     <div
-      v-if="
+      v-if=" this.haveCase === false ||
         !(this.matterValidationPosition === 'before' && !this.matterValidated)
       "
     >
@@ -325,12 +325,6 @@ export default {
   computed: {
     f2MoreInfoText: function () {
       return this.f2MoreInfo ? "Less info" : "More info";
-    },
-    showBody: function () {
-      // need a validated matter
-      if (this.matterValidationPosition === "before" && !this.matterValidated) {
-        return false;
-      }
     },
   },
 };
