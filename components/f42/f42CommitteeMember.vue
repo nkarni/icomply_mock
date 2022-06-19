@@ -11,10 +11,7 @@
               This information will be reviewed and can be edited by the
               Member of Committee of Management if incorrect.
             </p>
-            <p>
-              Throughout this form - all fields are mandatory unless
-              specifically marked as optional.
-            </p>
+           
           </b-col>
           <b-col>
              <!-- <notice

@@ -42,6 +42,10 @@
                 Permit Holder
               </li>
             </ul>
+             <p>
+              Throughout this form - all fields are mandatory unless
+              specifically marked as optional.
+            </p>
           </b-col>
         </b-row>
       </section>

@@ -507,6 +507,7 @@ export default {
           hasMiddleName: null,
           lastName: "",
           email: "",
+          role: "",
           postalAddress: {
             line1: "",
             line2: "",
@@ -515,6 +516,10 @@ export default {
             state: "",
             country: "",
           },
+          phones: [{
+            phone:'',
+            type: ''
+          }],
           hasHolderTrainingInfo: null,
           hasHolderPhoto: null,
         },

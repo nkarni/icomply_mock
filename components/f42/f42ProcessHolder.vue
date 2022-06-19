@@ -1,88 +1,52 @@
 <template>
   <div>
     <b-form>
-      <!-- <section class="border-bottom border-secondary mb-4 pb-4">
-        <b-row>
-          <b-col>
-            <h5>Process overview</h5>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
-          </b-col>
-        </b-row>
-      </section> -->
       <section class="">
         <b-row>
           <b-col>
             <h6>How the process works</h6>
-<ol>
-<li>An administrator from you union has started an entry permit application on your behalf.</li>
-<li>You will need to provide your personal details, ID documents, supporting documents and sign a statuary declaration confirming your details.</li>
-<li>Your application will then be submitted to FWC by your union administrator.</li>
-<li>Once submitted you will be contacted by FWC to complete a final interview via video call to complete the application to receive your permit.</li>
-</ol>
-
-            <!-- <b-form-group>
-              <b-list-group >
-                <b-list-group-item>
-                  <h6>1.   An administrator from you union has started an entry permit application on your behalf.</h6>
-                 
-                    
-                </b-list-group-item>
-                <b-list-group-item>
-                  <h6>2.   You will need to provide your personal details, ID documents, supporting documents and sign a statuary declaration confirming your details.</h6>
-                  
-                </b-list-group-item>
-                <b-list-group-item>
-                  <h6>3. Your application will then be submitted to FWC by your union administrator.</h6>
-                
-                </b-list-group-item>
-                <b-list-group-item>
-                  <h6>4.  Once submitted you will be contacted by FWC to complete a final interview via video call to complete the application to receive your permit.</h6>
-                 
-                </b-list-group-item>
-                
-              </b-list-group>
-            </b-form-group> -->
+            <ol>
+              <li>
+                An administrator from you union has started an entry permit
+                application on your behalf.
+              </li>
+              <li>
+                You will need to provide your personal details, ID documents,
+                supporting documents and sign a statuary declaration confirming
+                your details.
+              </li>
+              <li>
+                Your application will then be submitted to FWC by your union
+                administrator.
+              </li>
+              <li>
+                Once submitted you will be contacted by FWC to complete a final
+                interview via video call to complete the application to receive
+                your permit.
+              </li>
+            </ol>
           </b-col>
         </b-row>
       </section>
-         <section class="">
+      <section class="">
         <b-row>
           <b-col>
             <h6>What you will provide now</h6>
-<ul>
-<li>Confirm Full legal names (given, middle and surname)</li>
-<li>Details of entry permit training Photograph of yourself Two forms of identification</li>
-</ul>
-
-            <!-- <b-form-group>
-              <b-list-group >
-                <b-list-group-item>
-                  <h6>Confirm Full legal names (given, middle and surname)</h6>
-                </b-list-group-item>
-                <b-list-group-item>
-                  <h6>Details of entry permit training</h6>
-                  
-                </b-list-group-item>
-                <b-list-group-item>
-                  <h6>Photograph of yourself</h6>
-                </b-list-group-item>
-                <b-list-group-item>
-                  <h6>Two forms of identification</h6>
-                 
-                </b-list-group-item>
-                
-              </b-list-group>
-            </b-form-group> -->
+            <ul>
+              <li>Confirm Full legal names (given, middle and surname)</li>
+              <li>
+                Details of entry permit training Photograph of yourself Two
+                forms of identification
+              </li>
+            </ul>
+            <p>
+              Throughout this form - all fields are mandatory unless
+              specifically marked as optional.
+            </p>
           </b-col>
         </b-row>
       </section>
-        <section class="mb-4 pb-4">
+      <section class="mb-4 pb-4">
         <b-row>
           <b-col>
             <h6>Privacy</h6>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-form>
-      <section class=" pb-4">
+      <section class="pb-4">
         <b-row>
           <b-col>
             <h6>Process overview</h6>
@@ -20,12 +20,27 @@
           <b-col>
             <h6>What you will do today</h6>
             <ol>
-<li>Provide your contact details Explanation text about why you need to provide this</li>
-<li>Provide Proposed Permit Holder details Explanation text about why you need to provide this&nbsp;</li>
-<li>Provide Member of Committee of Management details Explanation text about why you need to provide this</li>
-<li>Invite the Proposed Permit Holder to confirm their details</li>
-<li>Explanation text about why you need to do this</li>
-</ol>
+              <li>
+                Provide your contact details Explanation text about why you need
+                to provide this
+              </li>
+              <li>
+                Provide Proposed Permit Holder details Explanation text about
+                why you need to provide this&nbsp;
+              </li>
+              <li>
+                Provide Member of Committee of Management details Explanation
+                text about why you need to provide this
+              </li>
+              <li>
+                Invite the Proposed Permit Holder to confirm their details
+              </li>
+              <li>Explanation text about why you need to do this</li>
+            </ol>
+            <p>
+              Throughout this form - all fields are mandatory unless
+              specifically marked as optional.
+            </p>
 
             <!-- <b-form-group>
               <b-list-group>
@@ -66,11 +81,25 @@
           <b-col>
             <h6>What will happen next</h6>
             <ul>
-<li>The Proposed Permit Holder will be invited to complete their part of the application.</li>
-<li>They will review their details, verify their identity, provide additional supporting documents and sign their statuary declarations.</li>
-<li>Then the Member of Committee of Management will be invited to review the Proposed Permit Holder details, approve them for the entry and sign their statuary declarations.</li>
-<li>You will then be invited to submit the application to FWC for review.</li>
-</ul>
+              <li>
+                The Proposed Permit Holder will be invited to complete their
+                part of the application.
+              </li>
+              <li>
+                They will review their details, verify their identity, provide
+                additional supporting documents and sign their statuary
+                declarations.
+              </li>
+              <li>
+                Then the Member of Committee of Management will be invited to
+                review the Proposed Permit Holder details, approve them for the
+                entry and sign their statuary declarations.
+              </li>
+              <li>
+                You will then be invited to submit the application to FWC for
+                review.
+              </li>
+            </ul>
 
             <!-- <b-form-group>
               <div class="mt-4">

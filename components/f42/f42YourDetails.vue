@@ -69,11 +69,15 @@
               showFirstName
               showLastName
               showEmail
+              showPhones
               
               :firstNameLabel="'First name'"
               :lastNameLabel="'Surname'"
             >
             </entity>
+            <b-form-group label="Role/Position">
+              <b-form-input v-model="form.admin.role"></b-form-input>
+            </b-form-group>
           </b-col>
         </b-row>
       </section>

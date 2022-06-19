@@ -12,10 +12,7 @@
               Please check that they are accurate and correct if required, they must match your name on your driver
               license or on an official ID document.
             </p>
-            <p>
-              Throughout this form - all fields are mandatory unless
-              specifically marked as optional.
-            </p>
+         
           </b-col>
           <b-col>
 
