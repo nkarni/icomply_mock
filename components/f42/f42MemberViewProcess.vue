@@ -1,80 +1,51 @@
 <template>
   <div>
     <b-form>
-    
-      <section class=" ">
+      <section class="">
         <b-row>
           <b-col>
-            <!-- <h5>How the process works</h5> -->
-
-            
-              <!-- <b-list-group >
-                <b-list-group-item>
-                  <h6>1.   An administrator from you union has started an entry permit application.</h6>
-                 
-                    
-                </b-list-group-item>
-                <b-list-group-item>
-                  <h6>2.   The Proposed Permit Holder has been identified and provided their ID, supporting documents and signed a statuary declaration verifying the information they have provided.</h6>
-                  
-                </b-list-group-item>
-                <b-list-group-item>
-                  <h6>3. You now need to confirm the identity of the Proposed Permit Holder, assess their suitability for an entry permit and sign a statuary declaration confirming these details.</h6>
-                
-                </b-list-group-item>
-                <b-list-group-item>
-                  <h6>4.  The application will then be submitted to FWC.</h6>
-                 
-                </b-list-group-item>
-                
-              </b-list-group> -->
-  <h6>How the process works</h6>
-<ol>
-<li>An administrator from you union has started an entry permit application.</li>
-<li>The Proposed Permit Holder has been identified and provided their ID, supporting documents and signed a statuary declaration verifying the information they have provided.</li>
-<li>You now need to confirm the identity of the Proposed Permit Holder, assess their suitability for an entry permit and sign a statuary declaration confirming these details.</li>
-<li>The application will then be submitted to FWC.</li>
-</ol>
-  
- 
+            <h6>How the process works</h6>
+            <ol>
+              <li>
+                An administrator from you union has started an entry permit
+                application.
+              </li>
+              <li>
+                The Proposed Permit Holder has been identified and provided
+                their ID, supporting documents and signed a statuary declaration
+                verifying the information they have provided.
+              </li>
+              <li>
+                You now need to confirm the identity of the Proposed Permit
+                Holder, assess their suitability for an entry permit and sign a
+                statuary declaration confirming these details.
+              </li>
+              <li>The application will then be submitted to FWC.</li>
+            </ol>
           </b-col>
         </b-row>
       </section>
-         <section class="">
+      <section class="">
         <b-row>
           <b-col>
-            <!-- <h5>What you will provide now</h5> -->
-
-           
-              <!-- <b-list-group >
-                <b-list-group-item>
-                  <h6>Confirm your legal name</h6>
-                </b-list-group-item>
-                 <b-list-group-item>
-                  <h6>Confirm the ID of the Proposed Permit Holder</h6>
-                </b-list-group-item>
-                <b-list-group-item>
-                  <h6>Confirm training details and date of the Proposed Permit Holder</h6>
-                  
-                </b-list-group-item>
-                <b-list-group-item>
-                  <h6>Provide additional details of the suitability of the Proposed Permit Holder</h6>
-                </b-list-group-item>
-              
-                
-              </b-list-group> -->
-           <h6>What you will provide now</h6>
-<ul>
-<li>Confirm your legal name Confirm the ID of the Proposed Permit Holder</li>
-<li>Confirm training details and date of the Proposed Permit Holder</li>
-<li>Provide additional details of the suitability of the Proposed Permit Holder</li>
-</ul>
-           
-          
+            <h6>What you will provide now</h6>
+            <ul>
+              <li>
+                Confirm your legal name Confirm the ID of the Proposed Permit
+                Holder
+              </li>
+              <li>
+                Confirm training details and date of the Proposed Permit Holder
+              </li>
+              <li>
+                Provide additional details of the suitability of the Proposed
+                Permit Holder
+              </li>
+            </ul>
           </b-col>
         </b-row>
       </section>
-          <section class="mb-4 pb-4">
+      <section class="mb-4 pb-4">
         <b-row>
           <b-col>
             <h6>Privacy</h6>

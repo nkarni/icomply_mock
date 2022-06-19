@@ -4,15 +4,11 @@
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Applicant details</h6>     
+            <h6>About the Applicant (organisation or branch)</h6>     
             <p>
-              If you have a different postal address than the Union, please
-              provide it.
+              The permit will be posted to the address of the organisation or branch address unless you provide a different address.
             </p>
-            <p>
-              Throughout this form - all fields are mandatory unless
-              specifically marked as optional.
-            </p>
+           
           </b-col>
           <b-col>
             <union-lookup v-if="form.businessDetails.name === ''" :form="form" ></union-lookup>
@@ -32,7 +28,7 @@
                 :value="true"
                 :unchecked-value="false"
               >
-                I have a different postal address to union organisation address.
+                Post the permit to a different address.
               </b-form-checkbox>
             </b-form-group>
 

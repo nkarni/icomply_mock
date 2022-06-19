@@ -9,7 +9,7 @@
       <b-form-input></b-form-input>
     </b-form-group>
      <b-form-group label="State (optional)">
-      <b-form-select :options="['ACT','NSW','NT','SA','TAS', 'WA']"></b-form-select>
+      <b-form-select :options="['ACT','NSW','NT','QLD','SA','TAS', 'VIC', 'WA']"></b-form-select>
     </b-form-group>
     <b-form-group>
       <b-button variant="primary" style="float: right" class="mt-2" @click="showSelectOne = true">Search</b-button>
