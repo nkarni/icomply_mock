@@ -17,9 +17,7 @@
                 :value="true"
                 :unchecked-value="false"
               >
-                I confirm that the Proposed Permit Holder details are correct
-                and I have seen the identity and signature of the Proposed
-                Permit Holder.
+                I confirm that the Proposed Permit Holder details are correct.
               </b-form-checkbox>
             </b-form-group>
           </b-col>
@@ -28,7 +26,7 @@
       <section class="mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>PPH declaration</h6>
+            <h6>The Proposed Entry Permit Holder's declaration</h6>
           </b-col>
           <b-col cols="8">
             <f-42-holder-super-details

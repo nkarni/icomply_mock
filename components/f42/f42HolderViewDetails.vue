@@ -23,27 +23,7 @@
           </b-col>
         </b-row>
       </section>
-      <section class="border-bottom border-secondary  mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>Entry Permit Holder Training</h6>
-
-          </b-col>
-          <b-col>
-            <b-form-group >
-              <div v-if="form.permitHolder.trainings.length > 0" v-for="(training, index) of form.permitHolder.trainings" :key="index" v-bind:id="index" class="mb-2">
-                Name: {{ training.trainingName }}<br />
-                Method: {{ training.trainingMethod }}<br />Completed on:
-                {{ training.trainingCompletionDate }}<br />Evidence:
-                <a target="_blank" href="">Click Here</a>
-              </div>
-              <div v-else>
-                No training details provided.
-              </div>
-            </b-form-group>
-          </b-col>
-        </b-row>
-      </section>
+      
        <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">

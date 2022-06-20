@@ -47,12 +47,12 @@
       </div>
     </b-form-group>
 
-    <b-form-group label="Photograph:">
+    <!-- <b-form-group label="Photograph:">
       <p>Image here</p>
     </b-form-group>
     <b-form-group label="Signature:">
       <img src="~/assets/img/pph_signature.png" style="max-width: 100%" />
-    </b-form-group>
+    </b-form-group> -->
   </div>
 </template>
 

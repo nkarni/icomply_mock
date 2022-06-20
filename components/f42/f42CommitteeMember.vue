@@ -1,62 +1,57 @@
 <template>
   <div>
     <b-form>
-      <section class=" mb-4 pb-2">
+      <section class="mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Member of Committee of Management details</h6>
 
+            <p>
+              The Member of Committee of Management must be an elected officer.
+            </p>
             <p>Provide details of the Member of Committee of Management.</p>
             <p>
-              This information will be reviewed and can be edited by the
-              Member of Committee of Management if incorrect.
+              This information will be reviewed and can be edited by the Member
+              of Committee of Management if incorrect.
             </p>
-           
           </b-col>
           <b-col>
-             <!-- <notice
+            <!-- <notice
              class="mb-3"
             :message="'Legal name must match drivers license or name on an official ID document.'"
           ></notice> -->
 
-          
-          
-                      <entity
+            <entity
               :entity="form.committeeMember"
               showFirstName
               showLastName
               :firstNameLabel="'Legal first name'"
               showEmail
-:lastNameLabel="'Surname'"
-              
+              :lastNameLabel="'Surname'"
+              :showPhones="true"
             >
-            
             </entity>
-                   
-                    <b-form-group label="Office held">
-              <b-form-input v-model="form.committeeMember.officeHeld"></b-form-input>
+
+            <b-form-group label="Office held">
+              <b-form-input
+                v-model="form.committeeMember.officeHeld"
+              ></b-form-input>
             </b-form-group>
 
-                    <!-- NOTICE TO DEVS, WHEN SELECTED IT SHOULD POPULATE THE FORMDATA WITH THE FULL DETAILS OF THIS PERSON  -->
+            <!-- NOTICE TO DEVS, WHEN SELECTED IT SHOULD POPULATE THE FORMDATA WITH THE FULL DETAILS OF THIS PERSON  -->
 
-                   <!-- <b-form-group label="Email address:" v-if="form.committeeMember.selectedName !== ''">
+            <!-- <b-form-group label="Email address:" v-if="form.committeeMember.selectedName !== ''">
                      <p>jessica@joses.com</p>
                    </b-form-group>
                    <notice :message="'Dev note: If the selected member has more than one email address, then the user will see a single select and must select one of those email addresses.'"></notice> -->
-
-           
-
-           
           </b-col>
         </b-row>
       </section>
-
     </b-form>
   </div>
 </template>
 
 <script>
-
 import entity from "../common/entity.vue";
 import EntityAddress from "../common/entityAddress.vue";
 import Notice from "../common/notice.vue";

@@ -3,7 +3,7 @@
     <b-form-group
       :label="
         haveYouStr +
-        ' ever been convicted of an offense against an industrial law?'
+        ' ever been convicted of an offence against an industrial law?'
       "
     >
       <b-form-radio-group
@@ -25,7 +25,7 @@
 
     <b-form-group>
       <label>
-        {{ haveYouStr }} ever been convicted of an offense against a law of the
+        {{ haveYouStr }} ever been convicted of an offence against a law of the
         Commonwealth, a State, a Territory or a foreign country, involving:
         <br />(i) entry onto premises; or <br />(ii) fraud or dishonesty; or
         <br />(iii) intentional use of violence against another person or

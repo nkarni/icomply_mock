@@ -44,12 +44,12 @@
         </b-row>
       </section>
 
-      <section class="border-bottom border-secondary mb-4 pb-2">
+      <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Your details</h6>
             <p> We have pre-populated your details from our records. Please check and correct if required.</p>
-            <p>Is here a better place to put the 'why we need it' rather than in the intro page? </p>
+            <p>We will contact you if we have questions about the application.</p>
           </b-col>
           <b-col>
             <b-form-group>
@@ -81,7 +81,7 @@
           </b-col>
         </b-row>
       </section>
-       <section class=" mb-4 pb-2">
+       <!-- <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Your declaration</h6>
@@ -99,7 +99,7 @@
             </b-form-group>
           </b-col>
         </b-row>
-      </section>
+      </section> -->
       
     </b-form>
   </div>

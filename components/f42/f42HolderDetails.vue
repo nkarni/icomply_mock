@@ -25,7 +25,7 @@
       <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Permit training</h6>
+            <h6>Right of entry training</h6>
             <p>Give details of the training completed and the date it was completed.</p><p>
 Attach evidence showing the proposed permit holder has successfully completed the relevant training. 
 </p> <p>See Rule 51 of the Fair Work Commission Rules 2013. </p>

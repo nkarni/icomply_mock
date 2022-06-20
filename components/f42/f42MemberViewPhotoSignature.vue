@@ -45,6 +45,10 @@
                     </b-col>
                     <b-col>
 
+                        1. The photograph above is a true photograph of the proposed permit holder. 
+2.  
+3. The other signed document(s) shown to me by the proposed permit holder were: [text box]
+
                         <div>
                             <p>
                                 I, <br>James Paul Roberts
@@ -54,29 +58,18 @@
 
                             <p>Declare that:</p>
                             <ol>
-                                <li>The proposed permit holder firstName midName lastName has shown me
-                                    a photograph of himself/herself. The photograph is a true photograph of the proposed
-                                    permit holder.</li>
-                                <li>The photograph shown to me by the proposed permit holder accompanies this form.</li>
-                                <li>I have compared the signature at the end of the &lsquo;Declaration by proposed
-                                    permit holder&rsquo; in this form to the signatures in one or more other signed
-                                    documents shown to me by the proposed permit holder, and I believe the signature on
-                                    this form to be a true signature of the proposed permit holder.</li>
+                                <li>The photograph above is a true photograph of the proposed permit holder.</li>
+                                <li>I have compared the signature above to the signatures in one or more other signed documents shown to me by the proposed permit holder, and I believe the signature on this form to be a true signature of the proposed permit holder.</li>
                                 <li>The other signed document(s) shown to me by the proposed permit holder were: [Free
                                     text box to describe document containing signature] (Add radio button at the bottom
                                     for the Com member to confirm their declaration)</li>
                             </ol>
-                            <p>Giving false or misleading information is a serious offence. A person who:
-                            <ul class="mt-1">
-                                <li>knowingly or recklessly makes a false or misleading statement in an application for
-                                    an entry permit; or</li>
-                                <li>knowingly gives false or misleading information in an application for an entry
-                                    permit</li>
-                            </ul>
-                            is guilty of an offence, the punishment for which is imprisonment for up to 12 months if
-                                the statement is made or information is provided knowingly, or up to 6 months if the
-                                statement is made recklessly - see Part 7.4, s.136 and s.137.1 of the Criminal Code.</p>
+                            
+                           
                         </div>
+                        <b-form-group label="The other signed document(s) shown to me by the proposed permit holder were:">
+                            <b-form-textarea v-model="form.committeeMember.dec.viewedDocs"></b-form-textarea>
+                        </b-form-group>
                         <b-form-group>
                             <b-form-checkbox v-model="form.permitHolder.confirmPhotoSignatureDeclaration" :value="true"
                                 :unchecked-value="false">

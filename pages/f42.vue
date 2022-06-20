@@ -73,7 +73,7 @@
               ]"
             >
               <template #title>
-                <h5>The proposed Entry Permit holder</h5>
+                <h5>About the proposed permit holder</h5>
                 <!-- <span>Their details</span> -->
               </template>
               <f-42-holder-details :form="form"></f-42-holder-details>
@@ -88,7 +88,7 @@
               ]"
             >
               <template #title>
-                <h5>The Member of Committee of Management</h5>
+                <h5>About the member of Committee of Management</h5>
                 <!-- <span>Their details</span> -->
               </template>
               <f-42-committee-member :form="form"></f-42-committee-member>
@@ -180,20 +180,7 @@
               <f-42-holder-view-details :form="form"></f-42-holder-view-details>
             </b-tab>
 
-            <b-tab
-              :title-link-class="[
-                'laap-title-link',
-                'mb-2',
-                'p-3',
-                { 'laap-nav-item-complete': false },
-              ]"
-            >
-              <template #title>
-                <h5>Digital ID</h5>
-                <!-- <span>Their details</span> -->
-              </template>
-              <f-42-holder-view-id :form="form"></f-42-holder-view-id>
-            </b-tab>
+            
             <b-tab
               :title-link-class="[
                 'laap-title-link',
@@ -218,7 +205,7 @@
               ]"
             >
               <template #title>
-                <h5>Declaration</h5>
+                <h5>Permit qualifications matters</h5>
                 <!-- <span>Confirm details and submit the form</span> -->
               </template>
               <f-42-holder-view-submit :form="form"></f-42-holder-view-submit>
@@ -292,7 +279,7 @@
               ]"
             >
               <template #title>
-                <h5>The proposed Entry Permit holder</h5>
+                <h5>About the proposed permit holder</h5>
                 <!-- <span>Their details</span> -->
               </template>
               <f-42-member-view-pph :form="form"></f-42-member-view-pph>
@@ -321,7 +308,7 @@
               ]"
             >
               <template #title>
-                <h5>Declaration</h5>
+                <h5>Permit qualification matters</h5>
                 <!-- <span>Confirm details and submit the form</span> -->
               </template>
               <f-42-member-view-submit :form="form"></f-42-member-view-submit>
@@ -517,7 +504,7 @@ export default {
             country: "",
           },
           phones: [{
-            phone:'',
+            number:'',
             type: ''
           }],
           hasHolderTrainingInfo: null,
@@ -525,6 +512,7 @@ export default {
         },
         permitHolder: {
           isSameAsAdmin: false,
+          hasDigitalId: null,
           infoCorrection: "",
           confirmInfo: null,
           firstName: "",
@@ -541,6 +529,10 @@ export default {
           ],
           hasOtherNames: null,
           email: "",
+          phones: [{
+            number:'',
+            type: ''
+          }],
           mobilePhone: "",
           employeeOrOfficeHolder: null,
           positionOrOfficeHeld: "",
@@ -562,6 +554,7 @@ export default {
           correctPhoto2: null,
           confirmDetails: null,
           dec: {
+            didAboveTraining: null,
             convictedIndustrialLaw: null,
             convictedIndustrialLawDetails: "",
             convictedOther: null,
@@ -595,6 +588,10 @@ export default {
               file: "",
             },
           ],
+           phones: [{
+            number:'0432123123',
+            type: 'mobile'
+          }],
           dec: {
             convictedIndustrialLaw: null,
             convictedIndustrialLawDetails: "",
@@ -610,6 +607,7 @@ export default {
             beenDisqualifiedDetails: "",
             awareOfMatters: null,
             awareOfMattersDetails: "",
+            viewedDocs:""
           },
         },
 

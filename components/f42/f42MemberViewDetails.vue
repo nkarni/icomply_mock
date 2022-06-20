@@ -9,7 +9,7 @@
               The following details were provided by the union administrator.
             </p>
             <p>
-              Please check that they are accurate and correct if required, they must match your name on your driver license or on an official ID document.
+              Please check that they are accurate and correct if required.
             </p>
           
           </b-col>
@@ -22,7 +22,7 @@
               showEmail
 :firstNameLabel="'Legal first name'"
 :lastNameLabel="'Surname'"
-              
+              showPhones
             >
             </entity>
              <b-form-group label="Office held">

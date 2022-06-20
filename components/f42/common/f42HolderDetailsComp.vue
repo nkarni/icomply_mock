@@ -1,9 +1,29 @@
 <template>
   <div>
-    <notice
+    <!-- <notice
       class="mb-3"
       :message="'Legal name must match drivers license or name on an official ID document.'"
+    ></notice> -->
+
+    <b-form-group v-if="!firstPerson" label="Does the proposed permit holder hold a Digital iD™ matching their full legal as provided on this form?">
+      <b-form-radio-group :options="boolOptions" v-model="form.permitHolder.hasDigitalId">
+      </b-form-radio-group>
+    </b-form-group>
+    <b-form-group v-if="firstPerson" label="Do you hold a Digital iD™ matching your full legal as provided on this form?">
+      <b-form-radio-group :options="boolOptions" v-model="form.permitHolder.hasDigitalId">
+      </b-form-radio-group>
+    </b-form-group>
+     <notice
+     v-if="form.permitHolder.hasDigitalId === false && !firstPerson"
+      class="mb-3"
+      :message="'Please contact FWC.'"
     ></notice>
+ <notice
+     v-if="form.permitHolder.hasDigitalId === false && firstPerson"
+      class="mb-3"
+      :message="'You will require a Digital iD™ that matches your full legal name provided above before this application can be lodged'"
+    ></notice>
+    
 
     <entity
       :entity="form.permitHolder"
@@ -16,15 +36,16 @@
       :middleNameLabel="'Middle name'"
       :showPreferredName="true"
       showOtherNames
-      showMobilePhone
+      showPhones
       :emailDesc="emailDesc"
-      :mobilePhoneDesc="'The mobile number may be used for notifications'"
-      :mobilePhoneLabel="'Mobile phone (optional)'"
+  
       :haveMiddleNameLabel="DoYouString + ' have a middle name?'"
       :havePreferredNameLabel="DoYouString + ' have a preferred name?'"
       :haveOtherNamesLabel="HaveYouString + ' known by any other names?'"
+      
     >
     </entity>
+    <notice class="mb-4" :message="'If you give us a mobile number for the proposed permit holder, we may send them reminders by SMS'" ></notice>
 
     <b-form-group :label="employeeOrOfficeHolderLabel">
       <b-form-radio-group
