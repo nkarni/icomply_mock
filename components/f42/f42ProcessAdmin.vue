@@ -25,7 +25,7 @@
                 to provide this
               </li>
               <li>
-                Provide Proposed Permit Holder details Explanation text about
+                Provide proposed permit holder details Explanation text about
                 why you need to provide this&nbsp;
               </li>
               <li>
@@ -33,7 +33,7 @@
                 text about why you need to provide this
               </li>
               <li>
-                Invite the Proposed Permit Holder to confirm their details
+                Invite the proposed permit holder to confirm their details
               </li>
               <li>Explanation text about why you need to do this</li>
             </ol>
@@ -51,7 +51,7 @@
                   >
                 </b-list-group-item>
                 <b-list-group-item>
-                  <h6>2. Provide Proposed Permit Holder details</h6>
+                  <h6>2. Provide proposed permit holder details</h6>
                   <span class="ml-3"
                     >Explanation text about why you need to provide this</span
                   >
@@ -64,7 +64,7 @@
                 </b-list-group-item>
                 <b-list-group-item>
                   <h6>
-                    4. Invite the Proposed Permit Holder to confirm their
+                    4. Invite the proposed permit holder to confirm their
                     details
                   </h6>
                   <span class="ml-3"
@@ -82,7 +82,7 @@
             <h6>What will happen next</h6>
             <ul>
               <li>
-                The Proposed Permit Holder will be invited to complete their
+                The proposed permit holder will be invited to complete their
                 part of the application.
               </li>
               <li>
@@ -92,7 +92,7 @@
               </li>
               <li>
                 Then the Member of Committee of Management will be invited to
-                review the Proposed Permit Holder details, approve them for the
+                review the proposed permit holder details, approve them for the
                 entry and sign their statuary declarations.
               </li>
               <li>
@@ -104,7 +104,7 @@
             <!-- <b-form-group>
               <div class="mt-4">
                 <p>
-                  The Proposed Permit Holder will be invited to complete their
+                  The proposed permit holder will be invited to complete their
                   part of the application. They will review their details,
                   verify their identity, provide additional supporting documents
                   and sign their statuary declarations.
@@ -113,7 +113,7 @@
               <div class="mt-4">
                 <p>
                   Then the Member of Committee of Management will be invited to
-                  review the Proposed Permit Holder details, approve them for
+                  review the proposed permit holder details, approve them for
                   the entry and sign their statuary declarations.
                 </p>
               </div>

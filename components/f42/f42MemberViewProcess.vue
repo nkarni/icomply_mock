@@ -11,7 +11,7 @@
                 application.
               </li>
               <li>
-                The Proposed Permit Holder has been identified and provided
+                The proposed permit holder has been identified and provided
                 their ID, supporting documents and signed a statuary declaration
                 verifying the information they have provided.
               </li>
@@ -35,7 +35,7 @@
                 Holder
               </li>
               <li>
-                Confirm training details and date of the Proposed Permit Holder
+                Confirm training details and date of the proposed permit holder
               </li>
               <li>
                 Provide additional details of the suitability of the Proposed

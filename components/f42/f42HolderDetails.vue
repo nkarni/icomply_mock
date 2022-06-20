@@ -4,12 +4,12 @@
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>The Proposed Permit Holder</h6>
+            <h6>The proposed permit holder</h6>
 
-            <p>Provide details of the Proposed Permit Holder.</p>
+            <p>Provide details of the proposed permit holder.</p>
             <p>
               This information will be reviewed and can be edited by the
-              Proposed Permit Holder if incorrect.
+              proposed permit holder if incorrect.
             </p>
           
           </b-col>
@@ -62,7 +62,7 @@ Attach evidence showing the proposed permit holder has successfully completed th
           <b-col cols="4">
             <h6>Photograph</h6>
             <p>
-              Provide a photograph of the Proposed Permit Holder that
+              Provide a photograph of the proposed permit holder that
               follows the FWC requirements <a target="_blank" href="https://www.fwc.gov.au/registered-organisations/entry-permits/about-fair-work-entry-permits/how-we-process-fair-work-entry">click here</a> for more information.
             </p>
           </b-col>

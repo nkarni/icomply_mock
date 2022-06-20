@@ -4,7 +4,7 @@
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>The Proposed Permit Holder Identity</h6>
+            <h6>The proposed permit holder Identity</h6>
 
             <p>Explanation about how to verify it...</p>
           </b-col>
@@ -17,7 +17,7 @@
                 :value="true"
                 :unchecked-value="false"
               >
-                I confirm that the Proposed Permit Holder details are correct.
+                I confirm that the proposed permit holder details are correct.
               </b-form-checkbox>
             </b-form-group>
           </b-col>
@@ -49,7 +49,7 @@
           </b-col>
           <b-col cols="8">
             <b-form-group
-            label="Describe the inquiries you made and what you did to satisfy yourself that the Proposed Permit Holder meets the permit qualification matters listed in 2.513(1)(b) to (f) of the Fair Work Act 2009:"
+            label="Describe the inquiries you made and what you did to satisfy yourself that the proposed permit holder meets the permit qualification matters listed in 2.513(1)(b) to (f) of the Fair Work Act 2009:"
           >
             <b-form-textarea
              

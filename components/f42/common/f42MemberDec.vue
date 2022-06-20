@@ -179,14 +179,14 @@ export default {
       if (this.form.userRole === "permitHolder") {
         return "have you";
       } else {
-        return "Has the Proposed Permit Holder";
+        return "Has the proposed permit holder";
       }
     },
     youStr: function () {
       if (this.form.userRole === "permitHolder") {
         return "you";
       } else {
-        return "The Proposed Permit Holder";
+        return "The proposed permit holder";
       }
     },
   },

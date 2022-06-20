@@ -4,7 +4,7 @@
       >Started</span
     >
     <span :class="form.userRole === 'permitHolder' ? 'active text-primary' : ''"
-      >- Awaiting Proposed Permit Holder Verification</span
+      >- Awaiting proposed permit holder Verification</span
     >
     <span>- Awaiting Committee of Management Member Verification</span>
     <span>- Ready for Submission</span>

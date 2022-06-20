@@ -57,7 +57,7 @@ Giving false or misleading information is a serious offence. A person who: <ol><
             </b-form-group>
 
             <b-form-group
-              label="Describe the inquiries you made and what you did to satisfy yourself that the Proposed Permit Holder meets the permit qualification matters listed in 2.513(1)(b) to (f) of the Fair Work Act 2009:">
+              label="Describe the inquiries you made and what you did to satisfy yourself that the proposed permit holder meets the permit qualification matters listed in 2.513(1)(b) to (f) of the Fair Work Act 2009:">
               <b-form-textarea v-model="form.committeeMember.inquiries" rows="6" max-rows="12"></b-form-textarea>
             </b-form-group>
 
@@ -123,14 +123,14 @@ export default {
       if (this.form.userRole === "permitHolder") {
         return "have you";
       } else {
-        return "Has the Proposed Permit Holder";
+        return "Has the proposed permit holder";
       }
     },
     youStr: function () {
       if (this.form.userRole === "permitHolder") {
         return "you";
       } else {
-        return "The Proposed Permit Holder";
+        return "The proposed permit holder";
       }
     },
   },

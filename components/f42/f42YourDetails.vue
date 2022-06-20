@@ -58,7 +58,7 @@
                 :value="true"
                 :unchecked-value="false"
               >
-                Check this box if you are also the Proposed Permit Holder.
+                Check this box if you are also the proposed permit holder.
               </b-form-checkbox>
             </b-form-group>
             <notice  v-if="form.permitHolder.isSameAsAdmin" :message="'Enter your full details in the next step.'"></notice>

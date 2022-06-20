@@ -154,7 +154,7 @@ export default {
       if (this.form.userRole === "permitHolder") {
         return "What is your role in ths organisation?";
       } else {
-        return "The Proposed Permit Holder is:";
+        return "The proposed permit holder is:";
       }
     },
     positionOrOfficeHeldLabel: function () {

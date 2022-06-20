@@ -59,12 +59,12 @@
           <b-col cols="4">
             <h6>Save and Proceed</h6>
             <p>
-              Invite the Proposed Permit Holder to verify their information
+              Invite the proposed permit holder to verify their information
             </p>
           </b-col>
           <b-col>
            <b-col class="text-center mt-3">
-          <b-button variant="primary">Invite the Proposed Permit Holder</b-button>
+          <b-button variant="primary">Invite the proposed permit holder</b-button>
         </b-col>
             
           </b-col>
