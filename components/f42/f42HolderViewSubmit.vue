@@ -32,11 +32,11 @@
           <b-col cols="">
             <h6>Declaration</h6>
             <label>Answer each question in the declaration below.</label>
-          
-             <notice
-                class="mb-2 danger"
-                :borderClass="'red'"
-                message="<p>Giving false or misleading information is a serious offence. A person who:
+
+            <notice
+              class="mb-2 danger"
+              :borderClass="'red'"
+              message="<p>Giving false or misleading information is a serious offence. A person who:
                             <ul>
                                 <li>knowingly or recklessly makes a false or misleading statement in an application for
                                     an entry permit; or</li>
@@ -46,13 +46,12 @@
                             is guilty of an offence, the punishment for which is imprisonment for up to 12 months if
                                 the statement is made or information is provided knowingly, or up to 6 months if the
                                 statement is made recklessly - see Part 7.4, s.136 and s.137.1 of the Criminal Code.</p>"
-              ></notice>
-  <notice
+            ></notice>
+            <notice
               class="mb-2"
               message=" Section 513(2) of the Fair Work Act 2009 has the effect that certain offences do not need to be disclosed.
 "
             ></notice>
-
 
             <p>
               This is a declaration by the proposed permit holder in support of
@@ -87,8 +86,10 @@
                 v-model="form.permitHolder.dec.awareOfMattersDetails"
               ></b-form-textarea>
             </b-form-group>
-             <notice class=""
-              :message="'The Commission can take into account any other matter that it considers relevant to whether you are a fit and proper person to hold a permit. This may include adverse comments made about you in a Commission or court decision, regardless of whether you were a party to the proceeding.'">
+            <notice
+              class=""
+              :message="'The Commission can take into account any other matter that it considers relevant to whether you are a fit and proper person to hold a permit. This may include adverse comments made about you in a Commission or court decision, regardless of whether you were a party to the proceeding.'"
+            >
             </notice>
           </b-col>
         </b-row>

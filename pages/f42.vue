@@ -593,6 +593,7 @@ export default {
             type: 'mobile'
           }],
           dec: {
+            confirm: null,
             convictedIndustrialLaw: null,
             convictedIndustrialLawDetails: "",
             convictedOther: null,

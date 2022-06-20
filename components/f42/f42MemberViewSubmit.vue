@@ -10,13 +10,26 @@
           <p>This is a declaration by the proposed permit holder in support of an application to the Fair Work Commission under s.512 of the Fair Work Act 2009 for an entry permit.</p>
           </b-col> -->
          
-            <notice class="mb-2"
-              message="Answer each question in the declaration below. Section 513(2) of the Fair Work Act 2009 has the effect that certain offences do not need to be disclosed.
-
-Giving false or misleading information is a serious offence. A person who: <ol><li>knowingly or recklessly makes a false or misleading statement in an application for an entry permit; or</li><li>knowingly gives false or misleading information in an application for an entry permit</li></ol>is guilty of an offence, the punishment for which is imprisonment for up to 12 months if the statement is made or information is provided knowingly, or up to 6 months if the statement is made recklessly – see Part 7.4, s.136 and s.137.1 of the Criminal Code.">
-            </notice>
-
-
+          <label>Answer each question in the declaration below.</label>
+ <notice
+                class="mb-2 danger"
+                :borderClass="'red'"
+                message="<p>Giving false or misleading information is a serious offence. A person who:
+                            <ul>
+                                <li>knowingly or recklessly makes a false or misleading statement in an application for
+                                    an entry permit; or</li>
+                                <li>knowingly gives false or misleading information in an application for an entry
+                                    permit</li>
+                            </ul>
+                            is guilty of an offence, the punishment for which is imprisonment for up to 12 months if
+                                the statement is made or information is provided knowingly, or up to 6 months if the
+                                statement is made recklessly - see Part 7.4, s.136 and s.137.1 of the Criminal Code.</p>"
+              ></notice>
+ <notice
+              class="mb-2"
+              message=" Section 513(2) of the Fair Work Act 2009 has the effect that certain offences do not need to be disclosed.
+"
+            ></notice>
 
             <p>
               This is a declaration in support of an application to the Fair Work Commission under s.512 of the Fair
@@ -47,7 +60,7 @@ Giving false or misleading information is a serious offence. A person who: <ol><
 
             <!-- <f-42-holder-super-details :form="form" :dec="form.committeeMember.dec"></f-42-holder-super-details> -->
             <b-form-group
-              :label="'Are you aware of any other matters that may be relevant to whether the permit holder is a fit and proper person to hold a permit?'">
+              :label="'Are you aware of any other matters that may be relevant to whether the proposed permit holder is a fit and proper person to hold a permit?'">
               <b-form-radio-group v-model="form.committeeMember.dec.awareOfMatters" :options="boolOptions">
               </b-form-radio-group>
             </b-form-group>
@@ -56,8 +69,18 @@ Giving false or misleading information is a serious offence. A person who: <ol><
               <b-form-textarea v-model="form.committeeMember.dec.awareOfMattersDetails"></b-form-textarea>
             </b-form-group>
 
+             <b-form-group>
+              <b-form-checkbox
+                v-model="form.committeeMember.dec.confirmed"
+                :value="true"
+                :unchecked-value="false"
+              >
+                I confirm.
+              </b-form-checkbox>
+            </b-form-group>
+
             <b-form-group
-              label="Describe the inquiries you made and what you did to satisfy yourself that the proposed permit holder meets the permit qualification matters listed in 2.513(1)(b) to (f) of the Fair Work Act 2009:">
+              label="Describe the inquiries you made and what you did to satisfy yourself that the proposed permit holder meets the permit qualification matters listed in s.513(1)(b) to (f) of the Fair Work Act 2009:">
               <b-form-textarea v-model="form.committeeMember.inquiries" rows="6" max-rows="12"></b-form-textarea>
             </b-form-group>
 
