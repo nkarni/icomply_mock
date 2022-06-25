@@ -257,42 +257,6 @@ export default {
         : "the dismissed person is";
     }
 
-    // youString: function () {
-    //   return this.form.applyingForSelf ? "you" : "the Applicant";
-    // },
-    // yourString: function () {
-    //   return this.form.applyingForSelf ? "your" : "the Applicant's";
-    // },
-    // AreYouString: function () {
-    //   return this.form.applyingForSelf ? "are you" : "is the Applicant";
-    // },
-    // DoYouString: function () {
-    //   return this.form.applyingForSelf ? "do you" : "is the Applicant";
-    // },
-    // DoYouStringCont: function () {
-    //   return this.form.applyingForSelf ? "do you" : "does the Applicant";
-    // },
-    // youAreString: function () {
-    //   return this.form.applyingForSelf ? "you are" : "the Applicant is";
-    // },
-    // wereYouString: function () {
-    //   return this.form.applyingForSelf ? "were you" : "was the Applicant";
-    // },
-    // AreYouString: function () {
-    //   return this.form.applyingForSelf ? "are you" : "the Applicant is";
-    // },
-    // AreYouStringReverse: function () {
-    //   return this.form.applyingForSelf ? "are you" : "is the Applicant";
-    // },
-    // additionalS: function () {
-    //   return this.form.applyingForSelf ? "" : "s";
-    // },
-    // yoursString: function () {
-    //   return this.form.applyingForSelf ? "yours" : "the Applicant/'s";
-    // },
-    // haveYouString: function () {
-    //   return this.form.applyingForSelf ? "have you" : "has the Applicant";
-    // },
   },
   methods: {},
 };

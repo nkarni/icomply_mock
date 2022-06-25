@@ -98,42 +98,42 @@ export default {
       return names;
     },
 
-    // youString: function () {
-    //   return this.form.applyingForSelf ? "you" : "the Applicant";
-    // },
-    // yourString: function () {
-    //   return this.form.applyingForSelf ? "your" : "the Applicant's";
-    // },
-    // AreYouString: function () {
-    //   return this.form.applyingForSelf ? "are you" : "is the Applicant";
-    // },
-    // DoYouString: function () {
-    //   return this.form.applyingForSelf ? "do you" : "is the Applicant";
-    // },
-    // DoYouStringCont: function () {
-    //   return this.form.applyingForSelf ? "do you" : "does the Applicant";
-    // },
-    // youAreString: function () {
-    //   return this.form.applyingForSelf ? "you are" : "the Applicant is";
-    // },
-    // wereYouString: function () {
-    //   return this.form.applyingForSelf ? "were you" : "was the Applicant";
-    // },
-    // AreYouString: function () {
-    //   return this.form.applyingForSelf ? "are you" : "the Applicant is";
-    // },
-    // AreYouStringReverse: function () {
-    //   return this.form.applyingForSelf ? "are you" : "is the Applicant";
-    // },
-    // additionalS: function () {
-    //   return this.form.applyingForSelf ? "" : "s";
-    // },
-    // yoursString: function () {
-    //   return this.form.applyingForSelf ? "yours" : "the Applicant/'s";
-    // },
-    // haveYouString: function () {
-    //   return this.form.applyingForSelf ? "have you" : "has the Applicant";
-    // },
+    youString: function () {
+      return this.form.userRole === "dismissedPerson" ? "you" : "the dismissed person";
+    },
+    yourString: function () {
+      return this.form.userRole === "dismissedPerson" ? "your" : "the dismissed person's";
+    },
+    AreYouString: function () {
+      return this.form.userRole === "dismissedPerson" ? "are you" : "is the dismissed person";
+    },
+    DoYouString: function () {
+      return this.form.userRole === "dismissedPerson" ? "do you" : "is the dismissed person";
+    },
+    DoYouStringCont: function () {
+      return this.form.userRole === "dismissedPerson" ? "do you" : "does the dismissed person";
+    },
+    youAreString: function () {
+      return this.form.userRole === "dismissedPerson" ? "you are" : "the dismissed person is";
+    },
+    wereYouString: function () {
+      return this.form.userRole === "dismissedPerson" ? "were you" : "was the dismissed person";
+    },
+    AreYouString: function () {
+      return this.form.userRole === "dismissedPerson" ? "are you" : "the dismissed person is";
+    },
+    AreYouStringReverse: function () {
+      return this.form.userRole === "dismissedPerson" ? "are you" : "is the dismissed person";
+    },
+    additionalS: function () {
+      return this.form.userRole === "dismissedPerson" ? "" : "s";
+    },
+    yoursString: function () {
+      return this.form.userRole === "dismissedPerson" ? "yours" : "the dismissed person/'s";
+    },
+    haveYouString: function () {
+      return this.form.userRole === "dismissedPerson" ? "have you" : "has the dismissed person";
+    },
   },
   methods: {
     removeOrg(index) {

@@ -213,7 +213,7 @@
         <b-row>
           <b-col cols="4">
             <h6>Payment</h6>
-            <p>It costs $74.90 to start an unfair dismissal case.</p>
+            <p>It costs $74.90 to lodge a general protection case.</p>
 
             <p>If you have serious financial hardship, you can ask us to waive the fee. Click yes to view the steps for doing this.</p>
           </b-col>
@@ -300,40 +300,50 @@ export default {
   },
   computed: {
     youString: function () {
-      return this.form.applyingForSelf ? "you" : "the Applicant";
+      return this.form.userRole === "dismissedPerson" ? "you" : "the dismissed person";
     },
     yourString: function () {
-      return this.form.applyingForSelf ? "your" : "the Applicant's";
+      return this.form.userRole === "dismissedPerson" ? "your" : "the dismissed person's";
     },
     AreYouString: function () {
-      return this.form.applyingForSelf ? "are you" : "is the Applicant";
+      return this.form.userRole === "dismissedPerson" ? "are you" : "is the dismissed person";
     },
     DoYouString: function () {
-      return this.form.applyingForSelf ? "do you" : "is the Applicant";
+      return this.form.userRole === "dismissedPerson" ? "do you" : "is the dismissed person";
     },
     DoYouStringCont: function () {
-      return this.form.applyingForSelf ? "do you" : "does the Applicant";
+      return this.form.userRole === "dismissedPerson" ? "do you" : "does the dismissed person";
     },
     youAreString: function () {
-      return this.form.applyingForSelf ? "you are" : "the Applicant is";
+      return this.form.userRole === "dismissedPerson" ? "you are" : "the dismissed person is";
     },
     wereYouString: function () {
-      return this.form.applyingForSelf ? "were you" : "was the Applicant";
+      return this.form.userRole === "dismissedPerson" ? "were you" : "was the dismissed person";
     },
     AreYouString: function () {
-      return this.form.applyingForSelf ? "are you" : "the Applicant is";
+      return this.form.userRole === "dismissedPerson" ? "are you" : "the dismissed person is";
     },
     AreYouStringReverse: function () {
-      return this.form.applyingForSelf ? "are you" : "is the Applicant";
+      return this.form.userRole === "dismissedPerson" ? "are you" : "is the dismissed person";
     },
     additionalS: function () {
-      return this.form.applyingForSelf ? "" : "s";
+      return this.form.userRole === "dismissedPerson" ? "" : "s";
     },
     yoursString: function () {
-      return this.form.applyingForSelf ? "yours" : "the Applicant/'s";
+      return this.form.userRole === "dismissedPerson" ? "yours" : "the dismissed person/'s";
     },
     haveYouString: function () {
-      return this.form.applyingForSelf ? "have you" : "has the Applicant";
+      return this.form.userRole === "dismissedPerson" ? "have you" : "has the dismissed person";
+    },
+    IWasString: function(){
+       return this.form.userRole === "dismissedPerson"
+        ? "I was"
+        : "the dismissed person was dismissed";
+    },
+     youAreString: function(){
+       return this.form.userRole === "dismissedPerson"
+        ? "You are"
+        : "the dismissed person is";
     },
 
     contactPersonName: function () {

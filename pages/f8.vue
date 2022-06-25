@@ -107,7 +107,7 @@
             <span>Upload documents</span>
           </template>
 
-          <f-2-attachments :form="form"></f-2-attachments>
+          <f-8-attachments :form="form"></f-8-attachments>
         </b-tab>
 
         <b-tab
@@ -122,7 +122,7 @@
             <h5>Review and submit</h5>
             <span>Review your information and lodge the form</span>
           </template>
-          <f-2-rev :form="form"></f-2-rev>
+          <f-8-rev :form="form"></f-8-rev>
         </b-tab>
       </b-tabs>
     </b-row>
