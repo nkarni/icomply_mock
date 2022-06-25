@@ -7,7 +7,7 @@
             <h6>Your dismissal</h6>
             <p>
               Tell us about {{ yourString }} dismissal. What happened and why
-              {{ DoYouString }} think it was unfair?
+              {{ DoYouStringCont }} think it was unfair?
             </p>
             <p>
               We will send a copy of this to {{ yourString }} former employer.
@@ -22,7 +22,7 @@
           </b-col>
           <b-col>
             <b-form-group
-              label="Why do you think you were dismissed? Tick all that apply"
+              :label="this.form.userRole === 'dismissedPerson' ? 'Why do you think you were dismissed? Tick all that apply' : 'Why do you think dismissed person was dismissed? Tick all that apply'"
             >
               <b-form-checkbox-group
                 v-model="form.perceivedDismissalReasons"
@@ -56,17 +56,37 @@
                 >
 
                 <b-form-checkbox
+                  v-if="this.form.userRole === 'dismissedPerson'"
                   value="I was dismissed because I had a temporary absence from work due to an illness or injury (s352)"
                   >I was dismissed because I had a temporary absence from work
                   due to an illness or injury (s352)</b-form-checkbox
                 >
                 <b-form-checkbox
+                v-else
+                  value="Because the dismissed person had a temporary absence from work due to an illness or injury (s352)"
+                  >The dismissed person was dismissed because they had a temporary absence from work
+                  due to an illness or injury (s352)</b-form-checkbox
+                >
+
+
+                <b-form-checkbox
+                v-if="this.form.userRole === 'dismissedPerson'"
                   value="I was dismissed because I had an absence from work during maternity leave or other parental leave (s340, s351)"
                   >I was dismissed because I had an absence from work during
                   maternity leave or other parental leave (ss 340,
                   351)</b-form-checkbox
                 >
+                 <b-form-checkbox
+                  v-else
+                  value="Because the dismissed person had an absence from work during maternity leave or other parental leave (s340, s351)"
+                  >The dismissed person was dismissed because they had an absence from work during
+                  maternity leave or other parental leave (ss 340,
+                  351)</b-form-checkbox
+                >
+
+
                 <b-form-checkbox
+                  v-if="this.form.userRole === 'dismissedPerson'"
                   value="I was dismissed because of my workplace rights (s340)"
                   >I was dismissed because of my workplace rights (s340)
                   <small class="form-text text-muted">
@@ -77,6 +97,20 @@
                   </small>
                 </b-form-checkbox>
                 <b-form-checkbox
+                v-else
+                  value="Because of the dismissed person's workplace rights (s340)"
+                  >The dismissed person was dismissed because of my workplace rights (s340)
+                  <small class="form-text text-muted">
+                    The dismissed person was dismissed because they had a workplace right, or because
+                    they exercised or proposed to exercise a workplace right.
+                    <br />For example, because they asked about being paid for
+                    overtime or complained about not getting breaks.
+                  </small>
+                </b-form-checkbox>
+
+
+                <b-form-checkbox
+                v-if="this.form.userRole === 'dismissedPerson'"
                   value="I was dismissed because of industrial activities (s346)"
                   >I was dismissed because of industrial activities (s346)
                   <small class="form-text text-muted"
@@ -87,8 +121,28 @@
                   ></b-form-checkbox
                 >
                 <b-form-checkbox
+                v-else
+                  value="Because of industrial activities (s346)"
+                  >The dismissed person was dismissed because of industrial activities (s346)
+                  <small class="form-text text-muted"
+                    >The dismissed person was dismissed because they engaged in or proposed to engage
+                    in industrial activity (such as belonging to a union), or
+                    because they refused to participate in any industrial
+                    action.</small
+                  ></b-form-checkbox
+                >
+
+                <b-form-checkbox
+                v-if="this.form.userRole === 'dismissedPerson'"
                   value="My employer dismissed me so they could engage me as an independent contractor to do the same job or substantially the same job (s358)"
                   >My employer dismissed me so they could engage me as an
+                  independent contractor to do the same job or substantially the
+                  same job (s358)</b-form-checkbox
+                >
+                <b-form-checkbox
+                v-else
+                  value="The employer dismissed the dismissed person so they could engage them as an independent contractor to do the same job or substantially the same job (s358)"
+                  >The employer dismissed the dismissed person so they could engage them as an
                   independent contractor to do the same job or substantially the
                   same job (s358)</b-form-checkbox
                 >
@@ -116,24 +170,14 @@
           <b-col cols="4">
             <h6>Desired outcome</h6>
             <p>
-              There are only two outcomes the Commission can order if we decide
-              that {{ yourString }} dismissal was unfair: compensation for lost
-              wages or getting {{ yourString }} {{ yourString }} job back.
-            </p>
-            <p>
-              {{ youString }} can ask for other things at conciliation, but only
-              get them if the employer agrees. For example, the employer may
-              agree to pay out {{ yourString }} notice period or to giving a
-              statement of service to help you get {{ yourString }} next job.
-            </p>
-            <p>
-              You can find out more about <a href="">possible outcomes</a> on
-              our website.
-            </p>
+             The Commission can only assist the parties to resolve this application through conciliation. </p>
+             <p>Use this field to explain what you are seeking by lodging this application. What you write here will be discussed in conciliation with your former employer to see if you can come to an agreement to resolve your application.</p>
+             
+          
           </b-col>
           <b-col>
             <b-form-group
-              :label="'What outcome ' + DoYouString + ' want from this case?'"
+              :label="'What outcome ' + DoYouStringCont + ' want from this case?'"
             >
               <b-form-textarea
                 v-model="form.employeeDesiredOutcomes"
@@ -182,41 +226,73 @@ export default {
   },
   computed: {
     youString: function () {
-      return this.form.applyingForSelf ? "you" : "the Applicant";
+      return this.form.userRole === "dismissedPerson"
+        ? "you"
+        : "the dismissed person";
     },
     yourString: function () {
-      return this.form.applyingForSelf ? "your" : "the Applicant's";
+      return this.form.userRole === "dismissedPerson"
+        ? "your"
+        : "the dismissed person's";
     },
-    AreYouString: function () {
-      return this.form.applyingForSelf ? "are you" : "is the Applicant";
-    },
-    DoYouString: function () {
-      return this.form.applyingForSelf ? "do you" : "is the Applicant";
-    },
-    DoYouStringCont: function () {
-      return this.form.applyingForSelf ? "do you" : "does the Applicant";
-    },
-    youAreString: function () {
-      return this.form.applyingForSelf ? "you are" : "the Applicant is";
-    },
-    wereYouString: function () {
-      return this.form.applyingForSelf ? "were you" : "was the Applicant";
-    },
-    AreYouString: function () {
-      return this.form.applyingForSelf ? "are you" : "the Applicant is";
-    },
-    AreYouStringReverse: function () {
-      return this.form.applyingForSelf ? "are you" : "is the Applicant";
-    },
-    additionalS: function () {
-      return this.form.applyingForSelf ? "" : "s";
+
+     DoYouStringCont: function () {
+      return this.form.userRole === "dismissedPerson"
+        ? "do you"
+        : "does the dismissed person";
     },
     yoursString: function () {
-      return this.form.applyingForSelf ? "yours" : "the Applicant/'s";
+      return this.form.userRole === "dismissedPerson"
+        ? "yours"
+        : "the dismissed person's";
     },
-    haveYouString: function () {
-      return this.form.applyingForSelf ? "have you" : "has the Applicant";
+    IWasString: function(){
+       return this.form.userRole === "dismissedPerson"
+        ? "I was"
+        : "the dismissed person was dismissed";
     },
+     youAreString: function(){
+       return this.form.userRole === "dismissedPerson"
+        ? "You are"
+        : "the dismissed person is";
+    }
+
+    // youString: function () {
+    //   return this.form.applyingForSelf ? "you" : "the Applicant";
+    // },
+    // yourString: function () {
+    //   return this.form.applyingForSelf ? "your" : "the Applicant's";
+    // },
+    // AreYouString: function () {
+    //   return this.form.applyingForSelf ? "are you" : "is the Applicant";
+    // },
+    // DoYouString: function () {
+    //   return this.form.applyingForSelf ? "do you" : "is the Applicant";
+    // },
+    // DoYouStringCont: function () {
+    //   return this.form.applyingForSelf ? "do you" : "does the Applicant";
+    // },
+    // youAreString: function () {
+    //   return this.form.applyingForSelf ? "you are" : "the Applicant is";
+    // },
+    // wereYouString: function () {
+    //   return this.form.applyingForSelf ? "were you" : "was the Applicant";
+    // },
+    // AreYouString: function () {
+    //   return this.form.applyingForSelf ? "are you" : "the Applicant is";
+    // },
+    // AreYouStringReverse: function () {
+    //   return this.form.applyingForSelf ? "are you" : "is the Applicant";
+    // },
+    // additionalS: function () {
+    //   return this.form.applyingForSelf ? "" : "s";
+    // },
+    // yoursString: function () {
+    //   return this.form.applyingForSelf ? "yours" : "the Applicant/'s";
+    // },
+    // haveYouString: function () {
+    //   return this.form.applyingForSelf ? "have you" : "has the Applicant";
+    // },
   },
   methods: {},
 };

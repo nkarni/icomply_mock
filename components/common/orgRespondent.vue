@@ -58,7 +58,7 @@
                   },
                   {
                     text: 'I have not found the business',
-                    value: { name: 'Other', tradingName: '', abn: '' },
+                    value: { name: '', tradingName: '', abn: '' },
                   },
                 ]"
               ></b-form-radio-group>
@@ -67,7 +67,7 @@
           <div v-if="showAddManually">
             <b-row>
               <b-col>
-                <b-form-group label="Business Name" class="mt-4">
+                <b-form-group label="Business Name" >
                   <b-form-input v-model="form.respondents[index].name"></b-form-input>
                 </b-form-group>
                 <b-form-group
@@ -136,9 +136,7 @@
         <b-col cols="4">
           <h6>Contact Person</h6>
           <p>
-            We need to contact {{ yourString }} former employer to tell them
-            {{ youString }} have started a case against them. We will send them
-            a copy of this form with all your answers in it. Please provide
+           Please provide
             details of a contact person at {{ yourString }} former employer.
           </p>
         </b-col>

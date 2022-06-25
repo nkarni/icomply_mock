@@ -92,7 +92,7 @@
             <h5>The dismissal</h5>
             <span>Details about your employment and the dismissal</span>
           </template>
-          <f-2-dismissal :form="form"></f-2-dismissal>
+          <f-8-dismissal :form="form"></f-8-dismissal>
         </b-tab>
         <b-tab
           :title-link-class="[
