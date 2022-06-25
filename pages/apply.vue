@@ -19,7 +19,7 @@
             >
             </b-form-checkbox-group>
           </b-form-group>
-          <b-form-group label="Include 'select a role'">
+          <b-form-group label="Ask for their role in the form?">
             <b-form-radio-group
               stacked
               :options="boolOptions"
@@ -90,7 +90,8 @@
     </div>
 
     <div
-      v-if=" this.haveCase === false ||
+      v-if="
+        this.haveCase === false ||
         !(this.matterValidationPosition === 'before' && !this.matterValidated)
       "
     >
@@ -112,27 +113,31 @@
             <p class="text-center mt-4">OR</p>
           </b-form-group>
         </b-col>
-        <b-col v-if="filters.includes('topic')">
-          <b-form-group label="Application topic">
-            <b-form-select
-              :options="['Select one', 'item1', 'item2']"
-            ></b-form-select>
-          </b-form-group>
-        </b-col>
-        <b-col v-if="filters.includes('type')">
-          <b-form-group label="Application type">
-            <b-form-select
-              :options="['Select one', 'itemA', 'itemB']"
-            ></b-form-select>
-          </b-form-group>
-        </b-col>
-        <b-col v-if="filters.includes('role')" class="text-end">
-          <b-form-group label="Role">
-            <b-form-select
-              style="max-width: 350px"
-              :options="['Select one', 'itemA', 'itemB']"
-            ></b-form-select>
-          </b-form-group>
+        <b-col cols="8">
+          <b-row class="justify-content-end">
+            <b-col cols="4" v-if="filters.includes('topic')">
+              <b-form-group label="Application topic">
+                <b-form-select
+                  :options="['Select one', 'item1', 'item2']"
+                ></b-form-select>
+              </b-form-group>
+            </b-col>
+            <b-col cols="4" v-if="filters.includes('type')">
+              <b-form-group label="Application type">
+                <b-form-select
+                  :options="['Select one', 'itemA', 'itemB']"
+                ></b-form-select>
+              </b-form-group>
+            </b-col>
+            <b-col cols="4" v-if="filters.includes('role')" class="text-end">
+              <b-form-group label="Role">
+                <b-form-select
+                  style="max-width: 350px"
+                  :options="['Select one', 'itemA', 'itemB']"
+                ></b-form-select>
+              </b-form-group>
+            </b-col>
+          </b-row>
         </b-col>
       </b-row>
 

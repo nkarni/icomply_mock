@@ -2,7 +2,9 @@
   <b-container>
     <b-row>
       <b-col cols="8">
-        <h3 class="text-primary">General protections involving dismissal claim</h3>
+        <h3 class="text-primary">
+          General protections involving dismissal claim
+        </h3>
       </b-col>
       <b-col cols="4" class="text-right">
         <b-button>Reference: YCFRU</b-button>
@@ -31,7 +33,7 @@
             <h5>Introduction</h5>
             <span>Information about the process</span>
           </template>
-          <f-2-intro :form="form"></f-2-intro>ç
+          <f-8-intro :form="form"></f-8-intro>
         </b-tab>
 
         <b-tab
@@ -46,7 +48,7 @@
             <h5>Contact details</h5>
             <span>Your contact details</span>
           </template>
-          <f-2-contact-details :form="form"></f-2-contact-details>
+          <f-8-contact-details :form="form8"></f-8-contact-details>
         </b-tab>
         <b-tab
           :title-link-class="[
@@ -57,10 +59,10 @@
           ]"
         >
           <template #title>
-            <h5>About {{youString}}</h5>
+            <h5>About {{ youString }}</h5>
             <span>Some details we need know</span>
           </template>
-          <f-2-about-you :form="form"></f-2-about-you>
+          <f-8-about-you :form="form8"></f-8-about-you>
         </b-tab>
 
         <b-tab
@@ -75,7 +77,7 @@
             <h5>Former employer</h5>
             <span>Details about the employer</span>
           </template>
-          <f-2-employer-details :form="form"></f-2-employer-details>
+          <f-8-employer-details :form="form8"></f-8-employer-details>
         </b-tab>
 
         <b-tab
@@ -125,7 +127,7 @@
       </b-tabs>
     </b-row>
 
-    <b-row class="mt-4" >
+    <b-row class="mt-4">
       <b-col cols="12" class="text-right">
         <b-button
           variant="primary"
@@ -192,8 +194,9 @@
       <b-col cols="12">
         <b-card>
           <p>Current data:</p>
+          <pre>{{ form8 }}</pre>
 
-          <pre>{{ form }}</pre>
+          <pre>old form:{{ form }}</pre>
         </b-card>
       </b-col>
     </b-row>
@@ -201,32 +204,395 @@
 </template>
 
 <script>
-import f2Intro from "../components/f2/f2Intro.vue";
-import F2AboutYou from "../components/f2/f2AboutYou.vue";
-import f2ContactDetails from "../components/f2/f2ContactDetails.vue";
-import f2EmployerDetails from "../components/f2/f2EmployerDetails.vue";
-import f2Dismissal from "../components/f2/f2Dismissal.vue";
-import f2Attachments from "../components/f2/f2Attachments.vue";
-import f2Rev from "../components/f2/f2Rev.vue";
+import f8Intro from "../components/f8/f8Intro.vue";
+import f8AboutYou from "../components/f8/f8AboutYou.vue";
+import f8ContactDetails from "../components/f8/f8ContactDetails.vue";
+import f8EmployerDetails from "../components/f8/f8EmployerDetails.vue";
+import f8Dismissal from "../components/f8/f8Dismissal.vue";
+import f8Attachments from "../components/f8/f8Attachments.vue";
+import f8Rev from "../components/f8/f8Rev.vue";
 
 export default {
   components: {
-    F2AboutYou,
-    f2ContactDetails,
-    f2EmployerDetails,
-    f2Dismissal,
-    f2Attachments,
-    f2Rev,
-    f2Intro,
+    f8AboutYou,
+    f8ContactDetails,
+    f8EmployerDetails,
+    f8Dismissal,
+    f8Attachments,
+    f8Rev,
+    f8Intro,
   },
   layout: "form",
   data() {
     return {
+      olsF2Model: {
+        aboutTheApplicant: {
+          over18: null,
+          accessibilityReq: null,
+          accessibilityReqDetails: null,
+          interpreterReq: null,
+          requiredLanguage: "",
+          languageIsUnlisted: "",
+        },
+        dismissal: {
+          dismissal: {
+            within21Days: "",
+            lateReason: "",
+            madeOtherClaims: "",
+            otherClaimDetails: "",
+            whatHappened: "",
+            desiredOutcome: "",
+            employmentStart: "",
+            employmentStartUnknown: "",
+            approximateDate: {
+              day: "",
+              month: "",
+              year: "",
+            },
+            dismissalToldDateUnknown: "",
+            dismissalToldApproximateDate: {
+              day: "",
+              month: "",
+              year: "",
+            },
+            applicantTold: "",
+            applicantToldDate: "",
+            effectiveDismissalDate: "",
+            effectiveDismissalApproximateDate: {
+              day: "",
+              month: "",
+              year: "",
+            },
+          },
+        },
+        applicantDetails: {
+          applicant: {
+            noAddress: "",
+            languageIsUnlisted: "",
+            unlistedLanguage: "",
+            appRep: "",
+            applicantType: null,
+            details: {
+              pronoun: "",
+              email: "",
+              givenName: "",
+              lastName: "",
+            },
+            mailAddress: {
+              address1: "",
+              address2: "",
+              city: "",
+              postalCode: "",
+              territory: "",
+              countryCode: "",
+              mailAddressType: "postal",
+            },
+            contact: [{ type: "", number: "" }],
+            address: {
+              address1: "",
+              address2: "",
+              city: "",
+              postalCode: "",
+              territory: "",
+              countryCode: "",
+              isSameMailAddress: false,
+            },
+          },
+          repDetails: {
+            applicantType: "solicitor",
+            organizationName: "",
+            address: {
+              address1: "",
+              address2: "",
+              city: "",
+              postalCode: "",
+              territory: "",
+              countryCode: "",
+            },
+            email: "",
+            details: {
+              firmOrgName: "",
+              pronoun: "",
+              givenName: "",
+              lastName: "",
+            },
+            contact: [{ type: "", number: "" }],
+          },
+          repRelation: "",
+          applicantRole: "",
+        },
+        formerEmployerDetails: {
+          formerEmployer: {
+            abn: null,
+            applicantType: null,
+            details: {
+              role: "",
+              title: "",
+              givenName: "",
+              lastName: "",
+              sameAddress: null,
+              email: "",
+            },
+            mailAddress: {
+              address1: "",
+              address2: "",
+              city: "",
+              postalCode: "",
+              territory: "",
+              countryCode: "",
+              mailAddressType: "postal",
+            },
+            contact: [{ type: "", number: "" }],
+            address: {
+              address1: "",
+              address2: "",
+              city: "",
+              postalCode: "",
+              territory: "",
+              countryCode: "",
+              isSameMailAddress: false,
+            },
+            address2: {
+              address1: "",
+              address2: "",
+              city: "",
+              postalCode: "",
+              territory: "",
+              countryCode: "",
+              isSameMailAddress: false,
+            },
+          },
+          appRep: "",
+        },
+        lodgeTheApplicationDetails: {
+          agreeToTerms: null,
+          objectToConfidentiality: null,
+        },
+      },
+
+      form8: {
+        userRole: "", // [dismissedPerson, unionOfficeHolder, helper]
+        dismissedPerson: {
+          // this is the same entity as the applicant if applicant.type === individual
+
+          // this will be either the dismissed person or the union officer, depending on applicant.type
+          title: "",
+          preferredPronoun: "",
+          titleDetails: "",
+          firstName: "",
+          lastName: "",
+          email: "",
+          phones: [
+            {
+              type: "",
+              number: "",
+              isSafe: null,
+            },
+          ],
+          postalAddress: {
+            line1: "",
+            line2: "",
+            suburb: "",
+            postcode: "",
+            state: "",
+            country: "",
+          },
+
+          over18: null, // in the case of applicant.type === org: referring to the orgContact?
+        },
+        rep: {
+          relationToDismissedPerson: "",
+          relationToDismissedPersonDetails: "",
+          title: "",
+          preferredPronoun: "",
+          titleDetails: "",
+          firstName: "",
+          lastName: "",
+          email: "",
+          phones: [
+            {
+              type: "",
+              number: "",
+              isSafe: null,
+            },
+          ],
+          postalAddress: {
+            line1: "",
+            line2: "",
+            suburb: "",
+            postcode: "",
+            state: "",
+            country: "",
+          },
+          orgName: "",
+        },
+        applicant: {
+          type: "", // [org,individual]
+          orgName: "", // if applicant.type === org
+          orgContactPerson: {
+            // if applicant.type === org
+            title: "",
+            preferredPronoun: "",
+            titleDetails: "",
+            firstName: "",
+            lastName: "",
+            email: "",
+            phones: [
+              {
+                type: "",
+                number: "",
+                isSafe: null,
+              },
+            ],
+            postalAddress: {
+              line1: "",
+              line2: "",
+              suburb: "",
+              postcode: "",
+              state: "",
+              country: "",
+            },
+          },
+          hasRep: null,
+          // should the following be about the applicant or about the contact person or about the dismissed person?
+          needsInterpreter: null,
+          needsInterpreterLanguage: "",
+          needsInterpreterLanguageDetails: "",
+          needsInterpreterLanguageNotFound: false,
+          needsAccessibility: null,
+          needsAccessibilityDetails: "",
+          researchConsent: null,
+          doesNotHaveAnAddress: null,
+
+          // end of F8 new stuff
+        },
+        respondents: [
+          {
+            businessDetailsString:
+              "ABC pty ltd Trading as MY ABC, ABN: 12345678",
+            name: "",
+            tradingName: "",
+            abn: "",
+            postalAddress: {
+              line1: "",
+              line2: "",
+              suburb: "",
+              postcode: "",
+              state: "",
+              country: "",
+            },
+            postalAddressString: "",
+            contactPerson: {
+              role: "",
+              title: "",
+              titleDetails: "",
+              firstName: "",
+              lastName: "",
+              email: "",
+              phones: [
+                {
+                  type: "",
+                  number: "",
+                  isSafe: null,
+                },
+              ],
+            },
+            businessAddressIsEmploymentAddress: null,
+            employmentAddress: {
+              line1: "",
+              line2: "",
+              suburb: "",
+              postcode: "",
+              state: "",
+              country: "",
+            },
+          },
+        ],
+      },
+
       form: {
+        userRole: "", // [dismissedPerson, unionOfficeHolder, helper]
+        dismissedPerson: {
+          // this is the applicant in applicant.type !== org
+        },
+        applicant: {
+          type: "", // [org,individual]
+          orgName: "", // if applicant.type === org
+          contactDetails: {
+            // this will be either the dismissed person or the union officer, depending on applicant.type
+            title: "",
+            preferredPronoun: "",
+            titleDetails: "",
+            firstName: "",
+            lastName: "",
+            email: "",
+            phones: [
+              {
+                type: "",
+                number: "",
+                isSafe: null,
+              },
+            ],
+            postalAddress: {
+              line1: "",
+              line2: "",
+              suburb: "",
+              postcode: "",
+              state: "",
+              country: "",
+            },
+          },
+          over18: null, // in the case of applicant.type === org: referring to the orgContact?
+          needsInterpreter: null, // as above
+          needsInterpreterLanguage: "", // as above
+          needsInterpreterLanguageDetails: "", // as above
+          needsInterpreterLanguageNotFound: false, // as above
+          needsAccessibility: null, // as above
+          needsAccessibilityDetails: "", // as above
+          researchConsent: null,
+          doesNotHaveAnAddress: null,
+          hasRep: null,
+
+          // end of F8 new stuff
+          applicantType: "",
+          title: "",
+          preferredPronoun: "",
+          titleDetails: "",
+          firstName: "",
+          lastName: "",
+          email: "",
+          phones: [
+            {
+              type: "",
+              number: "",
+              isSafe: null,
+            },
+          ],
+          postalAddress: {
+            line1: "",
+            line2: "",
+            suburb: "",
+            postcode: "",
+            state: "",
+            country: "",
+          },
+          // over18: null,
+          // needsInterpreter: null,
+          // needsInterpreterLanguage: "",
+          // needsInterpreterLanguageDetails: "",
+          // needsInterpreterLanguageNotFound: false,
+          // needsAccessibility: null,
+          // needsAccessibilityDetails: "",
+          // researchConsent: null,
+          // doesNotHaveAnAddress: null,
+          // hasRep: null,
+        },
+
         applyingForSelf: null,
+
         rep: {
           title: "",
-          preferredPronoun: '',
+          preferredPronoun: "",
           titleDetails: "",
           firstName: "",
           lastName: "",
@@ -250,7 +616,7 @@ export default {
         },
         formFiller: {
           title: "",
-          preferredPronoun: '',
+          preferredPronoun: "",
           titleDetails: "",
           firstName: "",
           lastName: "",
@@ -272,41 +638,9 @@ export default {
           },
           orgName: "",
           relationshipToApplicant: "",
-          relationshipToApplicant: ""
+          relationshipToApplicant: "",
         },
-        applicant: {
-          title: "",
-          preferredPronoun: '',
-          titleDetails: "",
-          firstName: "",
-          lastName: "",
-          email: "",
-          phones: [
-            {
-              type: "",
-              number: "",
-              isSafe: null,
-            },
-          ],
-          postalAddress: {
-            line1: "",
-            line2: "",
-            suburb: "",
-            postcode: "",
-            state: "",
-            country: "",
-          },
-          over18: null,
-          needsInterpreter: null,
-          needsInterpreterLanguage: "",
-          needsInterpreterLanguageDetails: '',
-          needsInterpreterLanguageNotFound: false,
-          needsAccessibility: null,
-          needsAccessibilityDetails: "",
-          researchConsent: null,
-          doesNotHaveAnAddress: null,
-          hasRep: null,
-        },
+
         employerBusinessDetails: {
           businessDetailsString: "ABC pty ltd Trading as MY ABC, ABN: 12345678",
           name: "",
@@ -394,7 +728,7 @@ export default {
       console.log("changed to index", index);
     },
   },
-    computed: {
+  computed: {
     youString: function () {
       return this.form.applyingForSelf ? "you" : "the Applicant";
     },

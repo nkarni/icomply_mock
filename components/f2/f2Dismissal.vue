@@ -132,7 +132,7 @@
 
               We may not be able to deal with {{ yourString }} unfair dismissal application if {{ YouHaveString }} made another claim {{yourString}}
                dismissal to us or somewhere else (e.g. the Human Rights Commission). If {{yourString}} answer yes to this
-              question, we may ask {{ youString}} to decide which of {{ yourString}} applications {{ yous}} want to proceed with.
+              question, we may ask {{ youString}} to decide which of {{ yourString}} applications {{ yourString}} want to proceed with.
               
               </p>
               <p>You can find out more about 

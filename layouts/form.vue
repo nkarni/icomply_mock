@@ -19,6 +19,7 @@
           >
           
         </router-link>
+        
 
         <b-navbar-toggle
           target="nav-collapse"
@@ -28,7 +29,8 @@
           id="nav-collapse"
           is-nav
         >
-          <ul class="navbar-nav top-navbar--main">
+        
+          <ul class="navbar-nav top-navbar--main ml-md-auto">
             <li class="nav-item">
               <router-link
                 title="Home"
@@ -73,8 +75,7 @@
                 History
               </router-link>
             </li>
-          </ul>
-          <ul class="navbar-nav top-navbar--main ml-md-auto">
+         
             <b-nav-item-dropdown
               text="John Doe"
               right

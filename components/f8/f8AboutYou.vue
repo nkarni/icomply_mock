@@ -1,102 +1,29 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>Contact details</h6>
-            <p>
-              We need to be able to send {{ youString }} information about
-              {{ yourString }} case. The former employer will also need to send
-              {{ youString }} information about their side of the case.
-            </p>
-            <p v-if="form.applyingForSelf === true">
-              During the case, we will call you the Applicant. This is because
-              you are the person making this application about your dismissal.
-            </p>
-          </b-col>
-          <b-col>
-            <entity
-              showTitle
-              showFirstName
-              showLastName
-              showPhones
-              showEmail
-              showPostalAddress
-              :entity="form.applicant"
-            >
-            </entity>
-            <b-form-group>
-              <b-form-checkbox
-                v-model="form.doesNotHaveAnAddress"
-                :value="true"
-                :unchecked-value="false"
-              >
-                Check this box if
-                <span v-if="form.applyingForSelf === true">you don't</span
-                ><span v-else>the Applicant doesn't</span> have an address.
-              </b-form-checkbox>
-            </b-form-group>
-            <b-form-group
-              :label="
-                DoYouStringCont +
-                ' have a representative (lawyer/union rep etc)?'
-              "
-            >
-              <b-form-radio-group
-                v-model="form.applicant.hasRep"
-                :options="boolOptions"
-              ></b-form-radio-group>
-            </b-form-group>
-          </b-col>
-        </b-row>
-      </section>
-
-      <section
-        class="border-bottom border-secondary mb-4 pb-2"
-        v-if="form.applicant.hasRep === true"
-      >
-        <b-row>
-          <b-col cols="4">
-            <h6>Representative</h6>
-            <p>
-              Please provide details about this representative if you know them.
-            </p>
-          </b-col>
-          <b-col>
-            <entity
-              v-if="form.applicant.hasRep === true"
-              :entity="form.rep"
-              showOrgName
-              showPhones
-              showFirstName
-              showLastName
-              showEmail
-              showPostalAddress
-              showTitle
-              :orgNameLabel="'Firm or Organisation name'"
-            >
-            </entity>
-          </b-col>
-        </b-row>
-      </section>
-
       <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>{{ yourString }} age</h6>
             <p>
-              If {{ youAreString }} under 18 {{ youString }} must have a
-              guardian.
+              {{ youString }} can still apply if {{ youAreString }} are under
+              18, but {{ youString }} may need a parent or guardian present for
+              certain parts of the process.
             </p>
           </b-col>
           <b-col>
-            <b-form-group :label="AreYouStringReverse + ' over 18?'">
+            <b-form-group
+              :label="AreYouStringReverse + ' 18 years of age or over?'"
+            >
               <b-form-radio-group
                 v-model="form.applicant.over18"
-                :options="over18Options"
+                :options="boolOptions"
               ></b-form-radio-group>
             </b-form-group>
+            <notice
+              v-if="form.applicant.over18 === false"
+              message="You can still apply if you are under 18, but you may need a parent or guardian present for certain parts of the process."
+            ></notice>
           </b-col>
         </b-row>
       </section>
@@ -105,10 +32,14 @@
         <b-row>
           <b-col cols="4">
             <h6>Interpreter service</h6>
-            We might hold a conference or hearing about your case. It is
-            important that you can understand what is happening during the
-            proceeding. We can arrange an interpreter for you. You can find
-            information about help for non-English speakers on our website.
+            We might hold a conference or hearing about {{ yourString }} case.
+            We can arrange an interpreter for {{ youString }}. You can find
+            information about help for non-English speakers on our
+            <a
+              target="_blank"
+              href=" https://www.fwc.gov.au/about-us/contact-us/language-help-non-english-speakers"
+              >website</a
+            >.
           </b-col>
           <b-col>
             <b-form-group
@@ -128,18 +59,40 @@
                 v-model="form.needsInterpreterLanguage"
               ></b-form-select>
             </b-form-group>
+            <b-form-group v-if="form.needsInterpreter === true">
+              <b-form-checkbox
+                v-model="form.needsInterpreterLanguageNotFound"
+                :value="true"
+                :unchecked-value="false"
+              >
+                The langauge is not listed
+              </b-form-checkbox>
+            </b-form-group>
+            <b-form-group
+              label="Please provide details"
+              v-if="form.needsInterpreterLanguageNotFound"
+            >
+              <b-form-input
+                v-model="form.needsInterpreterLanguageDetails"
+              ></b-form-input>
+            </b-form-group>
           </b-col>
         </b-row>
       </section>
 
-      <section class="border-bottom border-secondary mb-4 pb-4">
+      <section class=" mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>Accessibility</h6>
-            It’s important that everyone has access to our services. If you have
-            access needs, we can make arrangements so that you can participate
-            fully in your case. You can read more about accessibility on our
-            website.
+
+            If {{ youHaveString }} access needs, we can make arrangements so
+            that {{ youString }} can participate fully in your case. You can
+            read more about accessibility on our
+            <a
+              href="https://www.fwc.gov.au/about-us/legal-and-freedom-information/about-website/accessibility"
+              target="_blank"
+              >website</a
+            >.
           </b-col>
           <b-col>
             <b-form-group
@@ -152,35 +105,11 @@
             </b-form-group>
             <b-form-group
               v-if="form.needsAccessibility === true"
-              label="What do you need?"
+              :label="'What ' + DoYouStringCont + ' need?'"
             >
               <b-form-input
                 v-model="form.needsAccessibilityDetails"
               ></b-form-input>
-            </b-form-group>
-          </b-col>
-        </b-row>
-      </section>
-
-      <section class="mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>Research Consent</h6>
-            We do research so we can improve our services. Sometimes we use
-            external providers to do the research for us.
-          </b-col>
-          <b-col>
-            <b-form-group
-              :label="
-                'Can we pass on ' +
-                yourString +
-                ' contact details to an external provider so they can invite you to take part in research?'
-              "
-            >
-              <b-form-radio-group
-                v-model="form.researchConsent"
-                :options="boolOptions"
-              ></b-form-radio-group>
             </b-form-group>
           </b-col>
         </b-row>
@@ -204,18 +133,6 @@ export default {
   },
   data() {
     return {
-      repTypeOptions: [
-        "I am their lawyer or paid agent",
-        "Union representative",
-        "Family or friend",
-      ],
-      applyingForSelfOptions: [
-        { text: "I am the applicant (submitting for myself)", value: true },
-        {
-          text: "I am submitting this form on behalf of someone else",
-          value: false,
-        },
-      ],
       over18Options: [
         { text: "yes, I am over 18", value: true },
         { text: "no, I am under 18", value: false },
@@ -234,32 +151,63 @@ export default {
   },
   computed: {
     youString: function () {
-      return this.form.applyingForSelf ? "you" : "the Applicant";
+      return this.form.userRole === "dismissedPerson"
+        ? "you"
+        : "the dismissed person";
     },
     yourString: function () {
-      return this.form.applyingForSelf ? "your" : "the Applicant's";
-    },
-    AreYouString: function () {
-      return this.form.applyingForSelf ? "are you" : "is the Applicant";
-    },
-    DoYouString: function () {
-      return this.form.applyingForSelf ? "do you" : "is the Applicant";
+      return this.form.userRole === "dismissedPerson"
+        ? "your"
+        : "the dismissed person's";
     },
     DoYouStringCont: function () {
-      return this.form.applyingForSelf ? "do you" : "does the Applicant";
-    },
-    youAreString: function () {
-      return this.form.applyingForSelf ? "you are" : "the Applicant is";
-    },
-    wereYouString: function () {
-      return this.form.applyingForSelf ? "were you" : "was the Applicant";
+      return this.form.userRole === "dismissedPerson"
+        ? "do you"
+        : "does the dismissed person";
     },
     AreYouString: function () {
-      return this.form.applyingForSelf ? "are you" : "the Applicant is";
+      return this.form.userRole === "dismissedPerson"
+        ? "are you"
+        : "is the dismissed person";
+    },
+    youAreString: function () {
+      return this.form.userRole === "dismissedPerson"
+        ? "you are"
+        : "the dismissed person is";
     },
     AreYouStringReverse: function () {
-      return this.form.applyingForSelf ? "are you" : "is the Applicant";
+      return this.form.userRole === "dismissedPerson"
+        ? "are you"
+        : "is the dismissed person";
     },
+
+  
+
+    youHaveString: function () {
+      return this.form.userRole === "dismissedPerson" ? "you have" : "the dismissed person has";
+    },
+    // youString: function () {
+    //   return this.form.applyingForSelf ? "you" : "the Applicant";
+    // },
+    // yourString: function () {
+    //   return this.form.applyingForSelf ? "your" : "the Applicant's";
+    // },
+    // AreYouString: function () {
+    //   return this.form.applyingForSelf ? "are you" : "is the Applicant";
+    // },
+    // DoYouString: function () {
+    //   return this.form.applyingForSelf ? "do you" : "is the Applicant";
+    // },
+    // DoYouStringCont: function () {
+    //   return this.form.applyingForSelf ? "do you" : "does the Applicant";
+    // },
+
+    // wereYouString: function () {
+    //   return this.form.applyingForSelf ? "were you" : "was the Applicant";
+    // },
+    // AreYouString: function () {
+    //   return this.form.applyingForSelf ? "are you" : "the Applicant is";
+    // },
   },
   methods: {},
 };
