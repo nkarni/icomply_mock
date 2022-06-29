@@ -1,6 +1,91 @@
 <template>
   <div>
     <b-form>
+            <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Employment start date</h6>
+            <p>
+              <strong>There is a minimum employment period for unfair dismissal
+                cases:</strong><br />
+              <span class="cap-first">{{ youString }}</span> must have been
+              working for the employer for at least 6 months to qualify for
+              unfair dismissal. If {{ youString }} worked for a business with
+              less than 15 employees, {{ youString }} must have worked there for
+              at least 12 months. This is called the minimum employment period
+              for unfair dismissal cases.
+            </p>
+            <p>If you don't know the exact date, you can give an estimate.</p>
+            <p>
+
+              You can find out more about the
+              <a href="https://www.fwc.gov.au/what-minimum-period-employment" target="_blank">Minimum Employment
+                Period</a> on our website.
+            </p>
+          </b-col>
+          <b-col>
+            <vague-date :date="form.employmentStart" :dateLabel="'When did ' + yourString + ' employment start?'"
+              class="mb-4"></vague-date>
+            <notice :message="
+              'Are you sure you have selected the correct date? Please check the minimum employment period. If it is less than min period ' +
+              youString +
+              ' may not be covered by unfair dismissal laws.<br><small>This message will only show if an exact end date was entered and it is less than 6 months from today.</small>'
+            ">
+            </notice>
+
+            <br />
+
+            <!-- <vague-date
+              :date="form.employmentEnd"
+              :dateLabel="'When did ' + yourString + ' employment end?'"
+            ></vague-date>
+<br /> -->
+          </b-col>
+        </b-row>
+      </section>
+      <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Dismissal notification</h6>
+          </b-col>
+
+          <b-col>
+            <b-form-group :label="wereYouString + ' told about being dismissed?'">
+              <b-form-radio-group v-model="form.wasToldAboutDismissal" :options="boolOptions"></b-form-radio-group>
+            </b-form-group>
+            <vague-date v-if="form.wasToldAboutDismissal" :date="form.dismissalTold" :dateLabel="
+              'When ' + wereYouString + ' told about being dismissed?'
+            "></vague-date>
+          </b-col>
+        </b-row>
+      </section>
+
+      <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Effective dismissal date</h6>
+            <p v-if="form.applyingForSelf">
+              This is generally the last day of your employment. If you didn’t
+              find out they were being dismissed until after your last day, then
+              it’s generally the day you found out your are  being dismissed.
+              You can find out more about <a href="">when a dismissal takes effect</a>
+              on our website.
+            </p>
+            <p>
+              This is generally the last day of the Applicant's employment. If
+              the Applicant didn’t find out they were being dismissed until
+              after their last day, then it’s generally the day the Applicant
+              found out they were being dismissed. You can find out more about the
+              <a target="_blank" href="https://www.fwc.gov.au/when-does-dismissal-take-effect">when a dismissal takes
+                effect</a> on our website.
+            </p>
+          </b-col>
+          <b-col>
+            <vague-date :date="form.effectiveDismissalDate"
+              :dateLabel="'When did ' + yourString + ' dismissal take effect?'" class="mb-4"></vague-date>
+          </b-col>
+        </b-row>
+      </section>
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
@@ -225,37 +310,42 @@ export default {
     };
   },
   computed: {
-    youString: function () {
-      return this.form.userRole === "dismissedPerson"
-        ? "you"
-        : "the dismissed person";
+youString: function () {
+      return this.form.userRole === "dismissedPerson" ? "you" : "the dismissed person";
     },
     yourString: function () {
-      return this.form.userRole === "dismissedPerson"
-        ? "your"
-        : "the dismissed person's";
+      return this.form.userRole === "dismissedPerson" ? "your" : "the dismissed person's";
     },
-
-     DoYouStringCont: function () {
-      return this.form.userRole === "dismissedPerson"
-        ? "do you"
-        : "does the dismissed person";
+    AreYouString: function () {
+      return this.form.userRole === "dismissedPerson" ? "are you" : "is the dismissed person";
+    },
+    DoYouString: function () {
+      return this.form.userRole === "dismissedPerson" ? "do you" : "is the dismissed person";
+    },
+    DoYouStringCont: function () {
+      return this.form.userRole === "dismissedPerson" ? "do you" : "does the dismissed person";
+    },
+    youAreString: function () {
+      return this.form.userRole === "dismissedPerson" ? "you are" : "the dismissed person is";
+    },
+    wereYouString: function () {
+      return this.form.userRole === "dismissedPerson" ? "were you" : "was the dismissed person";
+    },
+    AreYouString: function () {
+      return this.form.userRole === "dismissedPerson" ? "are you" : "the dismissed person is";
+    },
+    AreYouStringReverse: function () {
+      return this.form.userRole === "dismissedPerson" ? "are you" : "is the dismissed person";
+    },
+    additionalS: function () {
+      return this.form.userRole === "dismissedPerson" ? "" : "s";
     },
     yoursString: function () {
-      return this.form.userRole === "dismissedPerson"
-        ? "yours"
-        : "the dismissed person's";
+      return this.form.userRole === "dismissedPerson" ? "yours" : "the dismissed person/'s";
     },
-    IWasString: function(){
-       return this.form.userRole === "dismissedPerson"
-        ? "I was"
-        : "the dismissed person was dismissed";
+    haveYouString: function () {
+      return this.form.userRole === "dismissedPerson" ? "have you" : "has the dismissed person";
     },
-     youAreString: function(){
-       return this.form.userRole === "dismissedPerson"
-        ? "You are"
-        : "the dismissed person is";
-    }
 
   },
   methods: {},

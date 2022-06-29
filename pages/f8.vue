@@ -196,7 +196,7 @@
           <p>Current data:</p>
           <pre>{{ form8 }}</pre>
 
-          <pre>old form:{{ form }}</pre>
+          <!-- <pre>old form:{{ form }}</pre> -->
         </b-card>
       </b-col>
     </b-row>
@@ -508,6 +508,68 @@ export default {
             },
           },
         ],
+         employerBusinessDetails: {
+          businessDetailsString: "ABC pty ltd Trading as MY ABC, ABN: 12345678",
+          name: "",
+          tradingName: "",
+          abn: "",
+          postalAddress: {
+            line1: "",
+            line2: "",
+            suburb: "",
+            postcode: "",
+            state: "",
+            country: "",
+          },
+          postalAddressString: "",
+          contactPerson: {
+            role: "",
+            title: "",
+            titleDetails: "",
+            firstName: "",
+            lastName: "",
+            email: "",
+            phones: [
+              {
+                type: "",
+                number: "",
+                isSafe: null,
+              },
+            ],
+          },
+          businessAddressIsEmploymentAddress: null,
+          employmentAddress: {
+            line1: "",
+            line2: "",
+            suburb: "",
+            postcode: "",
+            state: "",
+            country: "",
+          },
+        },
+        employmentStart: {
+          date: "",
+          dateDay: "",
+          dateMonth: "",
+          dateYear: "",
+          unknownDate: false,
+        },
+        effectiveDismissalDate: {
+          date: "",
+          dateDay: "",
+          dateMonth: "",
+          dateYear: "",
+          unknownDate: false,
+        },
+        wasToldAboutDismissal: null,
+        dismissalTold: {
+          date: "",
+          dateDay: "",
+          dateMonth: "",
+          dateYear: "",
+          unknownDate: false,
+        },
+
       },
 
       form: {
