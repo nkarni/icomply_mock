@@ -39,7 +39,7 @@
           </template>
           <f-3-contact-details :form="form"></f-3-contact-details>
         </b-tab>
-        <b-tab :title-link-class="[
+        <!-- <b-tab :title-link-class="[
           'laap-title-link',
           'mb-2',
           'p-3',
@@ -50,7 +50,7 @@
             <span>Information about the business</span>
           </template>
           <f-3-business-details :form="form"></f-3-business-details>
-        </b-tab>
+        </b-tab> -->
 
         <b-tab :title-link-class="[
           'laap-title-link',
@@ -60,7 +60,7 @@
         ]">
           <template #title>
             <h5>About the Applicant</h5>
-            <span>Their details</span>
+            <span>Details of Applicant’s engagement </span>
           </template>
           <f-3-employee-details :form="form"></f-3-employee-details>
         </b-tab>
@@ -276,6 +276,8 @@ export default {
         formFillerPersonaDetails: '',
         engagementType: null,
         engagementTypeDetails: '',
+        engagementCommitment: '',
+        engagementRegularCasual: null,
         employeeFirstName: "John",
         employeeLastName: "Smith",
         caseNumber: "ABC123",

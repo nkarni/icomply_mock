@@ -4,12 +4,12 @@
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Who is completing this form?</h6>
+            <h6>About you</h6>
+            <p>The Respondent is the business that the former employee (the Applicant) lodged an unfair dismissal claim against.</p>
           </b-col>
           <b-col>
             <b-form-group
-              label="Are you the Respondent contact person?"
-              class="mt-3"
+              label="What is your relationship to the business (the Respondent)?"
             >
               <b-form-radio-group
                 stacked
@@ -34,15 +34,13 @@
           <b-col cols="4">
             <h6>Business details</h6>
             <p>
-              The following details were provided by the Applicant in their
-              Application. Please check the details and correct if required.
+             The applicant gave us these details about the business. Please update them if they are not correct.
             </p>
           </b-col>
           <b-col>
             <div>
               <b-form-group
                 label="The Applicant provided the following business details:"
-                class="mt-3"
               >
                 {{ form.employeeProvidedBusinessNameString }}
               </b-form-group>
@@ -117,14 +115,13 @@
           <b-col cols="4">
             <h6>Contact person</h6>
             <p>
-              The Applicant provided these details of a contact person for the
-              business.
+              We will send information about the case to your contact person. You can change the contact person or update incorrect information
             </p>
-            <p>
+            <!-- <p>
               You can nominate a different person if there is someone else who
               should be the main contact. Please update any information if
               needed.
-            </p>
+            </p> -->
             <notice
               message="DEV NOTE: pre-populate contact person details as provided in F2"
               borderClass="none"
@@ -153,26 +150,7 @@
         <b-row>
           <b-col cols="4">
             <h6>Representative</h6>
-            <p v-if="form.formFillerPersona === 'self'">
-              We might hold a conference or hearing about your case. We can
-              arrange an interpreter for you. You can find information about
-              help for non-English speakers on our
-              <a
-                href="https://www.fwc.gov.au/about-us/contact-us/language-help-non-english-speakers"
-                target="_blank"
-                >website</a
-              >.
-            </p>
-            <p v-else>
-              We might hold a conference or hearing about this case. We can
-              arrange an interpreter for the Respondent contact person. You can
-              find information about help for non-English speakers on our
-              <a
-                href="https://www.fwc.gov.au/about-us/contact-us/language-help-non-english-speakers"
-                target="_blank"
-                >website</a
-              >.
-            </p>
+           <p>Please provide details about this representative if you know them.</p>
           </b-col>
           <b-col>
             <b-form-group label="Do you have a representative?">
@@ -229,20 +207,9 @@
         <b-row>
           <b-col cols="4">
             <h6>Interpreter service</h6>
-             <p v-if="form.formFillerPersona === 'self'">
-             If you have access needs, we can make arrangements so that you can participate fully in the case. You can read more about accessibility on our <a
-                href="https://www.fwc.gov.au/about-us/legal-and-freedom-information/about-website/accessibility"
-                target="_blank"
-                >website</a>.
-
-             
-            </p>
-            <p v-else>
-                If the Respondent contact person has access needs, we can make arrangements so that they can participate fully in the case. You can read more about accessibility on our <a
-                href="https://www.fwc.gov.au/about-us/legal-and-freedom-information/about-website/accessibility"
-                target="_blank"
-                >website</a>.
-            </p>
+            
+            <p>We might hold a conference or hearing about this case. We can arrange an interpreter. You can find information about help for non-English speakers on our 
+              <a href="https://www.fwc.gov.au/about-us/contact-us/language-help-non-english-speakers" target="_blank">website</a>.</p>
           </b-col>
           <b-col>
             <b-form-group label="Will you need an interpreter?">
@@ -260,6 +227,15 @@
                 v-model="form.needsInterpreterLanguage"
               ></b-form-select>
             </b-form-group>
+              <b-form-group v-if="form.needsInterpreter === true">
+              <b-form-checkbox v-model="form.needsInterpreterLanguageNotFound"  :value="true"
+                :unchecked-value="false">
+                My langauge is not listed
+              </b-form-checkbox>
+           </b-form-group>
+            <b-form-group label="Please provide details" v-if="form.needsInterpreterLanguageNotFound">
+            <b-form-input v-model="form.needsInterpreterLanguageDetails"></b-form-input>
+            </b-form-group>
           </b-col>
         </b-row>
       </section>
@@ -268,10 +244,20 @@
         <b-row>
           <b-col cols="4">
             <h6>Accessibility</h6>
-            It’s important that everyone has access to our services. If you have
-            access needs, we can make arrangements so that you can participate
-            fully in your case. You can read more about accessibility on our
-            website.
+            <p v-if="form.formFillerPersona === 'self'">
+             If you have access needs, we can make arrangements so that you can participate fully in the case. You can read more about accessibility on our <a
+                href="https://www.fwc.gov.au/about-us/legal-and-freedom-information/about-website/accessibility"
+                target="_blank"
+                >website</a>.
+
+             
+            </p>
+            <p v-else>
+                If the Respondent contact person has access needs, we can make arrangements so that they can participate fully in the case. You can read more about accessibility on our <a
+                href="https://www.fwc.gov.au/about-us/legal-and-freedom-information/about-website/accessibility"
+                target="_blank"
+                >website</a>.
+            </p>
           </b-col>
           <b-col>
             <b-form-group label="Do you have any accessibility requirements?">
@@ -352,14 +338,14 @@ export default {
       
       formFillerPersonaOptions: [
          {
-          text: "Yes, I am an owner/director/employee of the Respondent",
+          text: "I am an owner/director/employee of the Respondent",
           value: "self",
         },
         {
-          text: "No, I am representing the Respondent in this matter",
+          text: "I am representing the Respondent in this matter",
           value: "rep",
         },
-        { text: "Other", value: "Other" },
+       // { text: "Other", value: "Other" },
       ],
       boolOptions: [
         { text: "Yes", value: true },

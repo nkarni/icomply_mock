@@ -1,38 +1,43 @@
 <template>
   <div>
     <b-form>
+         <section
+        class="border-bottom border-secondary mb-4 pb-4"
+      >
+        <b-row>
+          <b-col cols="4">
+            <h6>Business size</h6>
+            <p>
+             Count all full-time and part-time employees, including the Applicant. Only count casuals if they were regular casual employees  </p>
+             <p>You can find more information on our <a href="https://www.fwc.gov.au/what-minimum-period-employment" target="_blank">website</a>.</p>
+           
+          </b-col>
+          <b-col>
+           
+           
+            <b-form-group
+              :label="'How many employees did your business have when the Applicant was dismissed?'"
+            >
+              <b-form-select
+                stacked
+                v-model="form.businessDetails.numberOfEmployeesIsUnder"
+                :options="numberOfEmployeesOptionsUnder"
+              ></b-form-select>
+            </b-form-group>
+           
+          </b-col>
+        </b-row>
+      </section>
       <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>Type of work and dates</h6>
             <p>
-              Click here to read about the difference between employees and
-              independent contractors on our <a href="https://www.fwc.gov.au/independent-contractors" target="_blank">website</a>.
+              You can find out mor einformation about when a dismissal takes effect on our <a href="https://www.fwc.gov.au/independent-contractors" target="_blank">website</a>.
             </p>
           </b-col>
           <b-col>
-            <b-form-group label="Was the Applicant:">
-              <b-form-radio-group
-                stacked
-                v-model="form.engagementType"
-                :options="engagementTypeOptions"
-              >
-              </b-form-radio-group>
-            </b-form-group>
-            <b-form-group
-              v-if="form.engagementType === 'Other'"
-              label="Please provide details:"
-            >
-              <b-form-input v-model="form.engagementTypeDetails"></b-form-input>
-            </b-form-group>
-            <notice
-              v-if="
-                form.engagementType && form.engagementType !== 'An employee'
-              "
-              message="The Fair Work Act only protects employees from unfair dismissal.  <br>You can object to the claim if the Applicant was not an employee.  <br>Include this information later under ‘Jurisdictional objections’ at the ‘Other details’ tab."
-              class="my-4"
-              borderClass="red"
-            ></notice>
+           
 
             <b-form-group :label="startDateLabel">
               <b-form-datepicker
@@ -146,13 +151,13 @@
       <section class="mb-4 pb-4">
         <b-row>
           <b-col cols="4">
-            <h6>What happened?</h6>
+            <h6>Tell us your side of the case</h6>
             <p>
-              Read what the Applicant wrote in their application form.
+             Read the Applicant’s documents and then briefly tell us your side:
             </p>
-             <p>
+             <!-- <p>
               Write a response to what they have written.
-            </p>
+            </p> -->
           </b-col>
           <b-col>
             <label>The employee wrote the following:</label>
@@ -211,6 +216,44 @@ export default {
         "An independent contractor",
         "A volunteer",
         "Other",
+      ],
+         numberOfEmployeesOptionsUnder: [
+        {
+          text: "1 to 4 ",
+          value: "4",
+        },
+        {
+          text: "5 to 9 ",
+          value: "10",
+        },
+        {
+          text: "10 to 14 ",
+          value: "15",
+        },
+        {
+          text: "15 to 19 ",
+          value: "20",
+        },
+        {
+          text: "20 to 49",
+          value: "50",
+        },
+        {
+          text: "50 to 99",
+          value: "100",
+        },
+        {
+          text: "100 to 199",
+          value: "200",
+        },
+        {
+          text: "200 to 999",
+          value: "1000",
+        },
+        {
+          text: "over 1000",
+          value: "999999999",
+        },
       ],
     };
   },

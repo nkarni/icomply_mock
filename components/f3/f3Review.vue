@@ -50,9 +50,7 @@
           <b-col>
             <b-form-group
               :label="
-                'Can we pass on ' +
-                yourString +
-                ' contact details to an external provider so they can invite you to take part in research?'
+                'Can we pass on your contact details to an external provider so they can invite you to take part in research?'
               "
             >
               <b-form-radio-group
@@ -96,7 +94,7 @@
 
       <b-row>
         <b-col class="text-center mt-3">
-          <b-button variant="primary">Submit the form</b-button>
+          <b-button variant="primary">Create and save a draft of the form</b-button>
         </b-col>
       </b-row>
     </b-form>

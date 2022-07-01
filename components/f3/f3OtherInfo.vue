@@ -5,11 +5,11 @@
         <b-row>
           <b-col cols="4">
             <h6>Jurisdictional objections</h6>
-            <p>Please provide relevant explanatory text</p>
+            <p>Select any objections that apply (you can select more than one)</p>
           </b-col>
           <b-col>
 
-            <b-form-group label="If you have any objections to the application please select them below and provide information for each (optional)">
+            <!-- <b-form-group label="If you have any objections to the application please select them below and provide information for each (optional)"> -->
 
               <div v-for="(objection, index) of form.objections" :key="index" v-bind:id="index" class="mb-2 ">
                 <b-form-group>
