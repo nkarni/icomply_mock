@@ -69,15 +69,8 @@
               <b-form-textarea v-model="form.committeeMember.dec.awareOfMattersDetails"></b-form-textarea>
             </b-form-group>
 
-             <b-form-group>
-              <b-form-checkbox
-                v-model="form.committeeMember.dec.confirmed"
-                :value="true"
-                :unchecked-value="false"
-              >
-                I confirm.
-              </b-form-checkbox>
-            </b-form-group>
+
+             
 
             <b-form-group
               label="Describe the inquiries you made and what you did to satisfy yourself that the proposed permit holder meets the permit qualification matters listed in s.513(1)(b) to (f) of the Fair Work Act 2009:">
@@ -95,7 +88,20 @@
             <h6>Signature</h6>
           </b-col>
           <b-col>
-            TBD
+            <b-row>
+              <b-col cols="6">
+                <b-form-group label="Name">
+                  <b-form-input  v-model="form.committeeMember.dec.signedName">
+                  </b-form-input>
+                </b-form-group>
+              </b-col>
+              <b-col>
+                <b-form-group label="Date">
+                  <b-form-datepicker placeholder=""  v-model="form.committeeMember.dec.signedDate">
+                    </b-form-datepicker>
+                  </b-form-group>
+              </b-col>
+            </b-row>
           </b-col>
         </b-row>
       </section>

@@ -56,3 +56,7 @@ h5{
 section a {
   color: #1c6ab2 !important;
 }
+
+.b-form-datepicker button {
+  padding-left: 12px !important;
+}

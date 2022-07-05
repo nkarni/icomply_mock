@@ -27,7 +27,7 @@
           </b-col>
         </b-row>
       </section>
-      <section class="mb-4 pb-2">
+      <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="">
             <h6>Declaration</h6>
@@ -68,29 +68,30 @@
               :form="form"
               :dec="form.permitHolder.dec"
             ></f-42-holder-super-details>
-            <b-form-group
-              :label="'Are you aware of any other matters that may be relevant to whether you are a fit and proper person to hold a permit?'"
-            >
-              <b-form-radio-group
-                v-model="form.permitHolder.dec.awareOfMatters"
-                :options="boolOptions"
-              >
-              </b-form-radio-group>
-            </b-form-group>
-
-            <b-form-group
-              label="Please provide details"
-              v-if="form.permitHolder.dec.awareOfMatters === true"
-            >
-              <b-form-textarea
-                v-model="form.permitHolder.dec.awareOfMattersDetails"
-              ></b-form-textarea>
-            </b-form-group>
-            <notice
-              class=""
-              :message="'The Commission can take into account any other matter that it considers relevant to whether you are a fit and proper person to hold a permit. This may include adverse comments made about you in a Commission or court decision, regardless of whether you were a party to the proceeding.'"
-            >
-            </notice>
+           
+          </b-col>
+        </b-row>
+      </section>
+        <section class="border-bottom border-secondary  mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Signature</h6>
+          </b-col>
+          <b-col>
+            <b-row>
+              <b-col cols="6">
+                <b-form-group label="Name">
+                  <b-form-input  v-model="form.permitHolder.dec.signedName">
+                  </b-form-input>
+                </b-form-group>
+              </b-col>
+              <b-col>
+                <b-form-group label="Date">
+                  <b-form-datepicker placeholder=""  v-model="form.permitHolder.dec.signedDate">
+                    </b-form-datepicker>
+                  </b-form-group>
+              </b-col>
+            </b-row>
           </b-col>
         </b-row>
       </section>

@@ -569,6 +569,8 @@ export default {
             beenDisqualifiedDetails: "",
             awareOfMatters: null,
             awareOfMattersDetails: "",
+            signedName: "",
+            signedDate: ""
           },
           confirmPhotoSignatureDeclaration: false
         },
@@ -608,8 +610,11 @@ export default {
             beenDisqualifiedDetails: "",
             awareOfMatters: null,
             awareOfMattersDetails: "",
-            viewedDocs:""
+            viewedDocs:"",
+            signedName: "",
+            signedDate: ""
           },
+
         },
 
         businessDetailsCorrect: null,
