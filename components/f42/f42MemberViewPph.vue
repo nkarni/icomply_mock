@@ -9,7 +9,7 @@
             <p>Explanation about how to verify it...</p>
           </b-col>
           <b-col cols="8">
-           <f-42-holder-details-read-only :form="form"></f-42-holder-details-read-only>
+           <f-42-holder-details-read-only :form="form" dec="form.permitHolder.dec"></f-42-holder-details-read-only>
 
             <b-form-group>
               <b-form-checkbox
@@ -31,43 +31,13 @@
           <b-col cols="8">
             <f-42-holder-super-details
               :form="form"
+              :dec="form.permitHolder.dec"
               :readOnly="true"
             ></f-42-holder-super-details>
           </b-col>
         </b-row>
       </section>
-      <!-- <section class="border-bottom border-secondary mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>Proper inquiries</h6>
-
-           
-            <p>
-              Explanation about how to do it...
-            </p>
-           
-          </b-col>
-          <b-col cols="8">
-            <b-form-group
-            label="Describe the inquiries you made and what you did to satisfy yourself that the proposed permit holder meets the permit qualification matters listed in 2.513(1)(b) to (f) of the Fair Work Act 2009:"
-          >
-            <b-form-textarea
-             
-              v-model="form.committeeMember.inquiries"
-              rows="6"
-              max-rows="12"
-             
-            ></b-form-textarea>
-          </b-form-group>
-
-
-<f-42-files :files="form.committeeMember.files"></f-42-files>
-
-
-      
-          </b-col>
-        </b-row>
- </section> -->
+     
     </b-form>
   </div>
 </template>

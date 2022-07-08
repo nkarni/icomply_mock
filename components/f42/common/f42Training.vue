@@ -11,9 +11,18 @@
           <b-form-group label="Name of training completed:">
             <b-form-select
               v-model="form.permitHolder.trainings[index].trainingName"
-              :options="['Australian Council of Trade Unions (ACTU)']"
+              :options="trainingOptions"
             ></b-form-select>
           </b-form-group>
+
+           <b-form-group
+          label="Please provide details"
+          v-if="form.permitHolder.trainings[index].trainingName === 'Other'"
+        >
+          <b-form-textarea
+            v-model="form.permitHolder.trainings[index].trainingNameDetails"
+          ></b-form-textarea>
+        </b-form-group>
 
           <b-form-group label="Method of training:">
             <b-form-radio-group
@@ -75,6 +84,23 @@ export default {
         { text: "Yes", value: true },
         { text: "No", value: false },
       ],
+      trainingOptions: [
+        'Australian Council of Trade Unions',
+        'Australasian Meat Industry Employees Union',
+        'Australian Municipal, Administrative, clerical and Services Union',
+        'Australian Workers\' Union',
+        'Construction, Forestry, Maritime, Mining and Energy Union - Construction and General Division',
+        'Construction, Forestry, Maritime, Mining and Energy Union - Manufacturing Division (formerly Textile, Clothing and Footwear Union of Australia)',
+        'Construction, Forestry, Maritime, Mining and Energy Union - Mining and Energy Division',
+        'IRIQ Law',
+        'Media, Entertainment and Arts Alliance',
+        'Queensland Council of Unions',
+        'Rail, Tram and Bus Industry Union',
+         'Shop, Distributive and Allied Employees Association - Newcastle and Northern Branch',
+          'United Workers\' Union (formerly National Union of Workers, United Voice - Queensland Branch and United Voice - Western Australian Branch)',
+           'Unions NSW',
+           'Other'
+      ]
     };
   },
   computed: {
@@ -117,6 +143,7 @@ export default {
         trainingMethod: "",
         trainingCompletionDate: "",
         trainingFile: null,
+        trainingNameDetails: ''
       });
     },
     removeTraining(i) {

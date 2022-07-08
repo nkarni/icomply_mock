@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary mb-4 pb-2">
+      <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Right of entry training</h6>
@@ -27,7 +27,7 @@
           </b-col>
         </b-row>
       </section>
-      <section class="border-bottom border-secondary mb-4 pb-2">
+      <section class="border-top border-secondary mb-4 pt-4">
         <b-row>
           <b-col cols="">
             <h6>Declaration</h6>
@@ -72,7 +72,7 @@
           </b-col>
         </b-row>
       </section>
-        <section class="border-bottom border-secondary  mb-4 pb-2">
+        <section v-if="form.permitHolder.dec.awareOfMatters === false || form.permitHolder.dec.awareOfMattersDetails.length > 2" class="border-top border-secondary  mb-4 pt-4">
         <b-row>
           <b-col cols="4">
             <h6>Signature</h6>
@@ -95,8 +95,8 @@
           </b-col>
         </b-row>
       </section>
-
-      <section class="mb-4 pb-2">
+ 
+      <section class="border-top border-secondary mb-4 pt-4" v-if="form.permitHolder.dec.signedName.length > 2">
         <b-row>
           <b-col>
             <h5>Submit</h5>

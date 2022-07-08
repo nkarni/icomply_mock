@@ -548,6 +548,7 @@ export default {
               trainingMethod: "",
               trainingCompletionDate: "",
               trainingFile: null,
+              trainingNameDetails: ''
             },
           ],
           adminPhotoIsCorrect: null,
@@ -570,7 +571,9 @@ export default {
             awareOfMatters: null,
             awareOfMattersDetails: "",
             signedName: "",
-            signedDate: ""
+            signedDate: "",
+            beenDisqualified: null,
+            beenDisqualifiedDetails: "",
           },
           confirmPhotoSignatureDeclaration: false
         },
@@ -607,7 +610,7 @@ export default {
             hadConditionsImposed: null,
             hadConditionsImposedDetails: "",
             beenDisqualified: null,
-            beenDisqualifiedDetails: "",
+            beenDisqualifiedDetails: '',
             awareOfMatters: null,
             awareOfMattersDetails: "",
             viewedDocs:"",

@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary  mb-4 pb-2">
+      <section class=" mb-4 pb-2">
         <b-row>
           <b-col >
             <h6>Declaration</h6>
@@ -53,8 +53,11 @@
 
 
             </p>
-            <f-42-member-dec :form="form"></f-42-member-dec>
-            <notice class="mb-2"
+
+            
+            <f-42-member-dec :form="form" :dec="form.committeeMember.dec"></f-42-member-dec>
+            <div v-if="form.committeeMember.dec.beenDisqualified === false || form.committeeMember.dec.beenDisqualifiedDetails.length > 2">
+             <notice class="mb-2"
               :message="'The Commission can take into account any other matter that it considers relevant to whether the proposed permit holder is a fit and proper person to hold a permit. This may include adverse comments made about the proposed permit holder in a Commission or court decision, regardless of whether the proposed permit holder was a party to the proceeding.'">
             </notice>
 
@@ -73,16 +76,19 @@
              
 
             <b-form-group
+            v-if="form.committeeMember.dec.awareOfMatters === false || form.committeeMember.dec.awareOfMattersDetails.length > 2"
               label="Describe the inquiries you made and what you did to satisfy yourself that the proposed permit holder meets the permit qualification matters listed in s.513(1)(b) to (f) of the Fair Work Act 2009:">
               <b-form-textarea v-model="form.committeeMember.inquiries" rows="6" max-rows="12"></b-form-textarea>
             </b-form-group>
+            </div>
+           
 
           </b-col>
         </b-row>
       </section>
 
 
-      <section class="border-bottom border-secondary  mb-4 pb-2">
+      <section class="border-top border-secondary  mb-4 pt-4"  v-if="form.committeeMember.inquiries.length > 2">
         <b-row>
           <b-col cols="4">
             <h6>Signature</h6>
@@ -106,7 +112,7 @@
         </b-row>
       </section>
 
-      <section class=" mb-4 pb-2">
+      <section class="border-top border-secondary mb-4 pt-4" v-if="form.committeeMember.dec.signedName.length > 2">
         <b-row>
           <b-col>
 

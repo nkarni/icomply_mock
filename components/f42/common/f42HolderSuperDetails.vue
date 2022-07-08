@@ -16,7 +16,7 @@
     </b-row>
 
     <Transition>
-    <b-row  v-if="dec.didAboveTraining === true" >
+    <b-row  v-if="dec.didAboveTraining !== null" >
       <b-col class="numberCol"> b. </b-col>
       <b-col class="pl-1">
         <b-form-group
@@ -47,8 +47,8 @@
 
 
   
-
-    <b-row>
+<Transition>
+    <b-row v-if="dec.convictedIndustrialLaw === false || dec.convictedIndustrialLawDetails.length > 2">
       <b-col class="numberCol"> c. </b-col>
       <b-col class="pl-1">
         <b-form-group>
@@ -78,8 +78,10 @@
         </b-form-group>
       </b-col>
     </b-row>
+    </Transition>
 
-    <b-row>
+<Transition>
+    <b-row v-if="dec.convictedOther === false || dec.convictedOtherDetails.length > 2">
       <b-col class="numberCol"> d. </b-col>
       <b-col class="pl-1">
         <b-form-group
@@ -108,8 +110,9 @@
         </b-form-group>
       </b-col>
     </b-row>
-
-    <b-row>
+</Transition>
+<Transition>
+    <b-row v-if="dec.orderedToPay === false || dec.orderedToPayDetails.length > 2">
       <b-col class="numberCol"> e. </b-col>
       <b-col class="pl-1">
         <b-form-group
@@ -136,8 +139,10 @@
         </b-form-group>
       </b-col>
     </b-row>
+</Transition>
 
-    <b-row>
+<Transition>
+    <b-row  v-if="dec.hadRevoked === false || dec.hadRevokedDetails.length > 2">
       <b-col class="numberCol"> f. </b-col>
       <b-col class="pl-1">
         <b-form-group
@@ -164,8 +169,10 @@
         </b-form-group>
       </b-col>
     </b-row>
+</Transition>
 
-    <b-row>
+<Transition>
+    <b-row v-if="dec.hadConditionsImposed === false || dec.hadConditionsImposedDetails.length > 2">
       <b-col class="numberCol"> g. </b-col>
       <b-col class="pl-1">
         <b-form-group
@@ -192,8 +199,10 @@
         </b-form-group>
       </b-col>
     </b-row>
+</Transition>
 
-    <b-row>
+<Transition>
+    <b-row v-if="dec.beenDisqualified === false || dec.beenDisqualifiedDetails.length > 2 ">
       <b-col class="numberCol"> h. </b-col>
       <b-col class="pl-1"> 
        <b-form-group
@@ -221,7 +230,7 @@
             </notice>
             </b-col>
     </b-row>
-
+</Transition>
    
   </div>
 </template>
@@ -308,15 +317,6 @@ export default {
         this.businessDetailsWereWrong = true;
       }
     },
-  },
-  watch: {
-   dec: {
-      handler(newValue, oldValue) {
-        console.log('newValue', newValue)
-        console.log('oldValue', oldValue)
-      },
-      deep: true
-    }
   },
 };
 </script>

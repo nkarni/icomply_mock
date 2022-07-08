@@ -5,11 +5,11 @@
         <b-row>
           <b-col cols="4">
             <h6>Member of Committee of Management details</h6>
-
+            <p>Provide details of the Member of Committee of Management.</p>
             <p>
               The Member of Committee of Management must be an elected officer.
             </p>
-            <p>Provide details of the Member of Committee of Management.</p>
+
             <p>
               This information will be reviewed and can be edited by the Member
               of Committee of Management if incorrect.
