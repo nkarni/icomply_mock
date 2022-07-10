@@ -9,7 +9,7 @@
             <p>Explanation about how to verify it...</p>
           </b-col>
           <b-col cols="8">
-           <f-42-holder-details-read-only :form="form" dec="form.permitHolder.dec"></f-42-holder-details-read-only>
+           <f-42-holder-details-review :form="form" dec="form.permitHolder.dec"></f-42-holder-details-review>
 
             <b-form-group>
               <b-form-checkbox
@@ -49,7 +49,7 @@ import Notice from "../common/notice.vue";
 import f42Training from "./common/f42Training.vue";
 import f42Files from "./common/f42Files.vue";
 import f42HolderSuperDetails from "./common/f42HolderSuperDetails.vue";
-import f42HolderDetailsReadOnly from "./common/f42HolderDetailsReadOnly.vue";
+import f42HolderDetailsReview from "./common/f42HolderDetailsReview.vue";
 
 export default {
   components: {
@@ -59,7 +59,7 @@ export default {
     f42Training,
     f42Files,
     f42HolderSuperDetails,
-    f42HolderDetailsReadOnly
+    f42HolderDetailsReview
   },
   name: "f42MemberViewPph",
   props: {

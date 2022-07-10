@@ -49,10 +49,10 @@ import f42HolderDetailsComp from "./common/f42HolderDetailsComp.vue";
 import entity from "../common/entity.vue";
 import EntityAddress from "../common/entityAddress.vue";
 import Notice from "../common/notice.vue";
-import f42HolderDetailsReadOnly from "./common/f42HolderDetailsReadOnly.vue";
+import f42HolderDetailsReview from "./common/f42HolderDetailsReview.vue";
 
 export default {
-  components: { entity, Notice, EntityAddress, f42HolderDetailsComp, f42HolderDetailsReadOnly },
+  components: { entity, Notice, EntityAddress, f42HolderDetailsComp, f42HolderDetailsReview },
   name: "f42HolderViewDetails",
   props: {
     form: {

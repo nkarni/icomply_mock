@@ -1,10 +1,12 @@
 <template>
   <div>
     <b-row v-if="numOfFields > maxFieldsForOneColumn"> 
-        <b-col :cols="colsSize"  v-for="(field, index) of fields" :key="index" v-bind:id="index">
+        <b-col class="controlledWidth"  v-for="(field, index) of fields" :key="index" v-bind:id="index">
             <b-form-group :label="field.label">
-            Place the correct input here
+            
+              <b-form-input :style="'width: ' + field.inputWidth + 'px'"></b-form-input>
             </b-form-group>
+         
         </b-col>
     </b-row>
     
@@ -23,7 +25,7 @@ export default {
   mounted() {
     var i
     for (i = 0; i <= this.numOfFields; i++) {
-      this.fields.push({ label: "Field " + (i + 1) });
+      this.fields.push({ label: "Field " + (i + 1), inputWidth: Math.floor(Math.random() * 250)});
     }
   },
    computed: {
@@ -33,3 +35,8 @@ export default {
    }
 };
 </script>
+<style scoped>
+.controlledWidth {
+  width: 300px
+}
+</style>

@@ -62,7 +62,7 @@ import EntityAddress from "../../common/entityAddress.vue";
 import Notice from "../../common/notice.vue";
 export default {
   components: { entity, Notice, EntityAddress },
-  name: "f42HolderDetailsReadOnly",
+  name: "f42HolderDetailsReview",
   props: {
     form: {
       type: Object,

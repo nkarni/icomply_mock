@@ -180,7 +180,6 @@
               <f-42-holder-view-details :form="form"></f-42-holder-view-details>
             </b-tab>
 
-            
             <b-tab
               :title-link-class="[
                 'laap-title-link',
@@ -192,9 +191,10 @@
               <template #title>
                 <h5>Photo and signature</h5>
               </template>
-              <f-42-holder-view-photo-signature :form="form"></f-42-holder-view-photo-signature>
+              <f-42-holder-view-photo-signature
+                :form="form"
+              ></f-42-holder-view-photo-signature>
             </b-tab>
-
 
             <b-tab
               :title-link-class="[
@@ -285,7 +285,7 @@
               <f-42-member-view-pph :form="form"></f-42-member-view-pph>
             </b-tab>
 
-             <b-tab
+            <b-tab
               :title-link-class="[
                 'laap-title-link',
                 'mb-2',
@@ -296,7 +296,9 @@
               <template #title>
                 <h5>Photo and signature</h5>
               </template>
-              <f-42-member-view-photo-signature :form="form"></f-42-member-view-photo-signature>
+              <f-42-member-view-photo-signature
+                :form="form"
+              ></f-42-member-view-photo-signature>
             </b-tab>
 
             <b-tab
@@ -332,6 +334,102 @@
       </div>
     </b-container>
     <b-container>
+      <b-row class="mt-4">
+        <b-col>
+          <b-form-group label="Form life cycle control:">
+            <b-form-radio-group>
+              <ol>
+                <li>
+                  <b-button
+                    variant="link"
+                    @click.prevent="form.userRole = 'admin'"
+                  >
+                    Admin <span class="currentRole" v-if="form.userRole === 'admin'"> (current)</span>
+                  </b-button>
+
+                  <ul>
+                    <li>starts the form</li>
+                    <li>fills it and sends to PPH</li>
+                    <li>
+                      note: if admin is also the PPH then the form is sent
+                      straight to the Comm member (step 4) skipping steps 2 & 3)
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                   <b-button
+                    variant="link"
+                    @click.prevent="form.userRole = 'permitHolder'"
+                  >
+                    PPH <span class="currentRole" v-if="form.userRole === 'permitHolder'"> (current)</span>
+                  </b-button>
+                  <ul>
+                    <li>reviews and add corrections, missing information</li>
+                    <li>fills in declaration</li>
+                    <li>when submitted the form - admin is informed</li>
+                  </ul>
+                </li>
+                <li>
+                  <b-button
+                    variant="link"
+                    @click.prevent="form.userRole = 'adminPphReview'"
+                  >
+                    Admin (PPH info review) <span class="currentRole" v-if="form.userRole === 'adminPphReview'"> (current)</span>
+                  </b-button>
+                  <ul>
+                    <li>
+                      reviews data entered by PPH, any mismatch with their
+                      previous information entered initially by admin is
+                      highlighted
+                    </li>
+                    <li>
+                      confirms they corrected their own records if required (off
+                      form).
+                    </li>
+                    <li>
+                      note: if admin is also the comm member, then steps 4 & 5
+                      are skipped and the form is submitted to FWC (caseHQ)
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <b-button
+                    variant="link"
+                    @click.prevent="form.userRole = 'committeeMember'"
+                  >
+                    Comm member <span class="currentRole" v-if="form.userRole === 'committeeMember'"> (current)</span>
+                  </b-button>
+                  <ul>
+                    <li>reviews and add corrections, missing information</li>
+                    <li>fills in declaration</li>
+                    <li>when submitted the form - admin is informed</li>
+                  </ul>
+                </li>
+                <li>
+                   <b-button
+                    variant="link"
+                    @click.prevent="form.userRole = 'adminMemberReview'"
+                  >
+                    Admin (Comm member info review and final submission) <span class="currentRole" v-if="form.userRole === 'adminMemberReview'"> (current)</span>
+                  </b-button>
+                  <ul>
+                    <li>
+                      reviews data entered by Comm member, any mismatch with
+                      their previous information entered initially by admin is
+                      highlighted
+                    </li>
+                    <li>
+                      confirms they corrected their own records if required (off
+                      form).
+                    </li>
+                    <li>Submits the form to FWC (caseHQ)</li>
+                  </ul>
+                </li>
+              </ol>
+            </b-form-radio-group>
+          </b-form-group>
+        </b-col>
+      </b-row>
       <b-row class="mt-4">
         <b-col>
           <h4>Select a role:</h4>
@@ -503,10 +601,12 @@ export default {
             state: "",
             country: "",
           },
-          phones: [{
-            number:'',
-            type: ''
-          }],
+          phones: [
+            {
+              number: "",
+              type: "",
+            },
+          ],
           hasHolderTrainingInfo: null,
           hasHolderPhoto: null,
         },
@@ -529,10 +629,12 @@ export default {
           ],
           hasOtherNames: null,
           email: "",
-          phones: [{
-            number:'',
-            type: ''
-          }],
+          phones: [
+            {
+              number: "",
+              type: "",
+            },
+          ],
           mobilePhone: "",
           employeeOrOfficeHolder: null,
           positionOrOfficeHeld: "",
@@ -548,7 +650,7 @@ export default {
               trainingMethod: "",
               trainingCompletionDate: "",
               trainingFile: null,
-              trainingNameDetails: ''
+              trainingNameDetails: "",
             },
           ],
           adminPhotoIsCorrect: null,
@@ -575,7 +677,7 @@ export default {
             beenDisqualified: null,
             beenDisqualifiedDetails: "",
           },
-          confirmPhotoSignatureDeclaration: false
+          confirmPhotoSignatureDeclaration: false,
         },
         committeeMember: {
           officeHeld: "",
@@ -593,10 +695,12 @@ export default {
               file: "",
             },
           ],
-           phones: [{
-            number:'0432123123',
-            type: 'mobile'
-          }],
+          phones: [
+            {
+              number: "0432123123",
+              type: "mobile",
+            },
+          ],
           dec: {
             confirm: null,
             convictedIndustrialLaw: null,
@@ -610,14 +714,13 @@ export default {
             hadConditionsImposed: null,
             hadConditionsImposedDetails: "",
             beenDisqualified: null,
-            beenDisqualifiedDetails: '',
+            beenDisqualifiedDetails: "",
             awareOfMatters: null,
             awareOfMattersDetails: "",
-            viewedDocs:"",
+            viewedDocs: "",
             signedName: "",
-            signedDate: ""
+            signedDate: "",
           },
-
         },
 
         businessDetailsCorrect: null,
@@ -625,7 +728,7 @@ export default {
           businessDetailsString: "ABC pty ltd Trading as MY ABC, ABN: 12345678",
           name: "",
           address: "",
-        }
+        },
       },
       tabIndex: 0,
     };
@@ -639,3 +742,10 @@ export default {
   },
 };
 </script>
+<style scoped>
+.currentRole{
+  padding-left: 10px;
+  color: red;
+  font-weight: bold
+}
+</style>

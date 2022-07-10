@@ -14,7 +14,7 @@
           </b-col>
           <b-col>
            
-<f-42-holder-details-read-only :form="form"></f-42-holder-details-read-only>
+<f-42-holder-details-review :form="form"></f-42-holder-details-review>
 
 <b-form-group label="Are the details above correct?">
              <b-form-radio-group v-model="form.permitHolder.confirmInfo" :options="boolOptions" >
@@ -46,10 +46,10 @@ import entity from "../common/entity.vue";
 import EntityAddress from "../common/entityAddress.vue";
 import Notice from "../common/notice.vue";
 import f42Training from "./common/f42Training.vue";
-import f42HolderDetailsReadOnly from "./common/f42HolderDetailsReadOnly.vue";
+import f42HolderDetailsReview from "./common/f42HolderDetailsReview.vue";
 
 export default {
-  components: { entity, Notice, EntityAddress,f42Training, f42HolderDetailsReadOnly },
+  components: { entity, Notice, EntityAddress,f42Training, f42HolderDetailsReview },
   name: "f42HolderViewTraining",
   props: {
     form: {
