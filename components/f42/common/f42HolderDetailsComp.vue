@@ -31,7 +31,7 @@
       <b-form-radio-group :options="boolOptions" v-model="form.permitHolder.hasDigitalId">
       </b-form-radio-group>
     </b-form-group>
-    <b-form-group v-if="firstPerson" label="Do you hold a Digital iD™ matching your full legal as provided on this form?">
+    <b-form-group v-if="firstPerson" label="Do you hold a Digital iD™ matching your full legal name as provided on this form?">
       <b-form-radio-group :options="boolOptions" v-model="form.permitHolder.hasDigitalId">
       </b-form-radio-group>
     </b-form-group>
