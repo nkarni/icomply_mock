@@ -16,6 +16,74 @@
         <!-- <notice :message="'mockup notice: HC means hard coded, it will be dynamic and show provided info in the final build. Similarly, the link to the relevant tab for editing will be activated in the final build.'"></notice> -->
       </section>
 
+     
+
+      
+
+      <section  class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>
+              Your details
+              <b-button
+                variant="link"
+                class="p-0"
+                @click.prevent=""
+                v-b-tooltip.hover
+                title="Edit this section (coming soon)"
+              >
+                <b-icon icon="pencil" />
+              </b-button>
+            </h6>
+          </b-col>
+          <b-col cols="8">
+
+            <div v-if="!form.permitHolder.isSameAsAdmin">
+            
+             <review-item
+              :label="'Name:'"
+              :value="
+                form.admin.firstName + ' ' + form.admin.lastName
+              "
+            ></review-item>
+
+            <review-item
+              :label="'Email:'"
+              :value="form.admin.email"
+            ></review-item>
+
+            <review-item
+              :label="'Phone(s):'"
+              :value="phoneToString(form.admin.phones)"
+            ></review-item>
+
+            
+            </div>
+
+        
+          
+           
+            <review-item
+              :label="'Organisation details:'"
+              :value="form.businessDetails.name + ' '  + form.businessDetails.address + ' ' + form.businessDetails.town + ' ' + form.businessDetails.state"
+            ></review-item>
+
+            <review-item
+            v-if="!form.permitHolder.isSameAsAdmin"
+              :label="'Role/Position:'"
+              :value="form.admin.position"
+            ></review-item>
+
+              <review-item
+              :label="'Post permit to a different address?'"
+              :value="form.admin.hasDifferentPostalAddress === true ? form.admin.otherAddress : 'No'"
+            ></review-item>
+
+           
+          </b-col>
+        </b-row>
+      </section>
+
       <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
@@ -45,6 +113,30 @@
         <b-row>
           <b-col cols="4">
             <h6>
+              The proposed permit holder training
+              <b-button
+                variant="link"
+                class="p-0"
+                @click.prevent=""
+                v-b-tooltip.hover
+                title="Edit this section (coming soon)"
+              >
+                <b-icon icon="pencil" />
+              </b-button>
+            </h6>
+          </b-col>
+          <b-col cols="8">
+            <f-42-holder-training-review
+              :form="form"
+            ></f-42-holder-training-review>
+          </b-col>
+        </b-row>
+      </section>
+
+      <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>
               The committee member
               <b-button
                 variant="link"
@@ -58,10 +150,13 @@
             </h6>
           </b-col>
           <b-col cols="8">
+           
             <f-42-member-details-review
+            v-if="!form.committeeMember.isSameAsAdmin"
               :form="form"
               dec="form.permitHolder.dec"
             ></f-42-member-details-review>
+            <div v-else > See Your details section</div>
           </b-col>
         </b-row>
       </section>
@@ -70,11 +165,15 @@
         <b-row>
           <b-col cols="4">
             <h6>Save and Proceed</h6>
-            <p>Invite the proposed permit holder to verify their information</p>
+            <p v-if="!form.permitHolder.isSameAsAdmin">Invite the proposed permit holder to verify their information</p>
+            <p v-else>Invite the committee member to verify their information</p>
           </b-col>
           <b-col>
             <b-col class="text-center mt-3">
-              <b-button variant="primary"
+              <b-button variant="primary" v-if="form.permitHolder.isSameAsAdmin"
+                >Invite the committee member</b-button
+              >
+              <b-button variant="primary" v-if="!form.permitHolder.isSameAsAdmin"
                 >Invite the proposed permit holder</b-button
               >
             </b-col>
@@ -92,6 +191,8 @@ import Notice from "../../common/notice.vue";
 import reviewItem from "../../common/reviewItem.vue";
 import f42HolderDetailsReview from "../common/f42HolderDetailsReview.vue";
 import f42MemberDetailsReview from "../common/f42MemberDetailsReview.vue";
+import f42HolderTrainingReview from "../common/f42HolderTrainingReview.vue";
+
 export default {
   components: {
     entity,
@@ -99,7 +200,8 @@ export default {
     EntityAddress,
     reviewItem,
     f42HolderDetailsReview,
-    f42MemberDetailsReview
+    f42MemberDetailsReview,
+    f42HolderTrainingReview,
   },
   name: "f42AdminSubmit",
   props: {
@@ -297,59 +399,21 @@ export default {
       }
       return "No";
     },
-    personToString(person) {
-      var str;
-      // let personName = 'sdfsdfsdf'
-      str = person.firstName + " " + person.lastName + ",jhglkjg";
-      // console.log('str', str)
+     phoneToString(phones) {
+      var str = "";
 
-      str += " " + person.email;
-
-      if (person.email.length > 0) {
-        str = +" " + person.email;
-      }
-      if (person.phones.length > 0) {
-        person.phones.forEach((phone) => {
-          if (phone.phone !== "") {
-            str += " " + phone.phone + " (" + phone.type + ")";
+      if (phones.length > 0) {
+        phones.forEach((phone, i) => {
+          if (phone.number !== "") {
+            if (i > 0) {
+              str += "<br>";
+            }
+            str += phone.number + " (" + phone.type + ")";
           }
         });
-        str += " " + person.email;
       }
-      console.log("person", person);
-      console.log("str", str);
+
       return str;
-    },
-    onNumDepnedantsChange() {
-      if (this.form.entities.applicant.details.numOfDependants < 0) return;
-      if (
-        this.form.entities.applicant.details.numOfDependants <
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants <
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.pop();
-        }
-      } else if (
-        this.form.entities.applicant.details.numOfDependants >
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants >
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.push({
-            firstName: "",
-            lastName: "",
-            dob: "",
-            relationship: "",
-            stayOvernight: null,
-            involvedInLegalIssue: null,
-          });
-        }
-      }
     },
   },
 };

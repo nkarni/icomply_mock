@@ -1,7 +1,7 @@
 <template>
  <div>
     <b-row
-      class="mb-2"
+      :class="rowClass"
     >
       <b-col cols="4">
         <label>{{ label }}</label>
@@ -32,6 +32,10 @@ export default {
      value: {
       type: String,
       default: () => (''),
+    },
+     rowClass: {
+      type: String,
+      default: () => ('mb-2'),
     },
   },
   data() {

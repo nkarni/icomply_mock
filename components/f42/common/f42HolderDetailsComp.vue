@@ -116,9 +116,10 @@
     </b-form-group>
     <b-form-group
       label="Please provide a statutory Declaration (optional)"
+     
       v-if="form.permitHolder.previousPermitReturned === true && form.permitHolder.previousPermitReturnedOnTime === false"
     >
-      <b-form-file></b-form-file>
+      <b-form-file  v-model="form.permitHolder.previousPermitStatDecFile"></b-form-file>
     </b-form-group>
   </div>
 </template>

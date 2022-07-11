@@ -1,78 +1,18 @@
 <template>
   <div>
-    <notice
-      class="mb-3"
-      :message="'Legal name must match drivers license or name on an official ID document.'"
-    ></notice>
+    <div
+      v-for="(training, index) of form.permitHolder.trainings"
+      :key="index"
+      v-bind:id="index"
+      class="mb-4"
+    >
+      <strong v-if="form.permitHolder.trainings.length > 1">Training {{index + 1}}:</strong>
+      <review-item :rowClass="'mb-0'" :label="'Name:'" :value="training.trainingName"></review-item>
+      <review-item :rowClass="'mb-0'" :label="'Method:'" :value="training.trainingMethod"></review-item>
+      <review-item :rowClass="'mb-0'" :label="'Completed on:'" :value="training.trainingCompletionDate"></review-item>
+      <review-item :rowClass="'mb-0'" :label="'Evidence:'" value="<a >Click Here</a>"></review-item>
 
-    <review-item
-      v-if="form.permitHolder.hasMiddleName === false"
-      :label="'Name:'"
-      :value="form.permitHolder.firstName + ' ' + form.permitHolder.lastName"
-    ></review-item>
-
-    <review-item
-      v-else
-      :label="'Name:'"
-      :value="
-        form.permitHolder.firstName +
-        ' ' +
-        form.permitHolder.middleName +
-        ' ' +
-        form.permitHolder.lastName
-      "
-    ></review-item>
-
-    <review-item
-      v-if="form.permitHolder.hasPreferredName === true"
-      :label="'Preferred name:'"
-      :value="form.permitHolder.preferredName"
-    ></review-item>
-
-    <review-item
-      v-if="form.permitHolder.hasOtherNames === true"
-      :label="'Other names:'"
-      :value="namesToString(form.permitHolder.otherNames)"
-    ></review-item>
-
-    <review-item
-      :label="'Email:'"
-      :value="form.permitHolder.email"
-    ></review-item>
-
-    <review-item
-      :label="'Phone(s):'"
-      :value="phoneToString(form.permitHolder.phones)"
-    ></review-item>
-
-    <review-item
-      :label="'Holds a matching Digital iD™?'"
-      :value="boolToString(form.permitHolder.hasDigitalId)"
-    ></review-item>
-
-    <review-item
-      v-if="form.permitHolder.employeeOrOfficeHolder === 'An Office Holder'"
-      :label="'Office/Position:'"
-      :value="
-        'An office holder holding the office: ' +
-        form.permitHolder.positionOrOfficeHeld
-      "
-    ></review-item>
-
-    <review-item
-      v-else
-      :label="'Office/Position:'"
-      :value="
-        'An employee holding the position: ' +
-        form.permitHolder.positionOrOfficeHeld
-      "
-    ></review-item>
-
-    <review-item
-      :label="'Previous permit:'"
-      :value="prevPermitToString()"
-    ></review-item>
-
+    </div>
   </div>
 </template>
 
@@ -83,7 +23,7 @@ import Notice from "../../common/notice.vue";
 import reviewItem from "../../common/reviewItem.vue";
 export default {
   components: { entity, Notice, EntityAddress, reviewItem },
-  name: "f42HolderDetailsReview",
+  name: "f42HolderTrainingReview",
   props: {
     form: {
       type: Object,

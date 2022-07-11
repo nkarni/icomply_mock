@@ -1,18 +1,26 @@
 <template>
   <div>
-     <review-item :label="'Name:'"
-              :value="form.committeeMember.firstName + ' ' + form.committeeMember.lastName"></review-item>
-    
-     <review-item :label="'Email:'"
-              :value="form.committeeMember.email"></review-item>
+    <review-item
+      :label="'Name:'"
+      :value="
+        form.committeeMember.firstName + ' ' + form.committeeMember.lastName
+      "
+    ></review-item>
 
-      <review-item :label="'Phone(s):'"
-              :value="phoneToString(form.committeeMember.phones)"></review-item>
+    <review-item
+      :label="'Email:'"
+      :value="form.committeeMember.email"
+    ></review-item>
 
-               <review-item :label="'Office held:'"
-              :value="form.committeeMember.officeHeld"></review-item>
+    <review-item
+      :label="'Phone(s):'"
+      :value="phoneToString(form.committeeMember.phones)"
+    ></review-item>
 
-    
+    <review-item
+      :label="'Office held:'"
+      :value="form.committeeMember.officeHeld"
+    ></review-item>
   </div>
 </template>
 
@@ -108,24 +116,23 @@ export default {
         this.businessDetailsWereWrong = true;
       }
     },
-     phoneToString(phones) {
-      var str = "";
-     
+    phoneToString(phones) {
+      let str = "";
+
       if (phones.length > 0) {
         phones.forEach((phone, i) => {
           if (phone.number !== "") {
-            if(i > 0){
-              str += "<br>"
+            if (i > 0) {
+              str += "<br>";
             }
             str += phone.number + " (" + phone.type + ")";
           }
         });
-       
       }
 
       return str;
     },
-  }
+  },
 };
 </script>
 

@@ -16,34 +16,40 @@
             </p>
           </b-col>
           <b-col>
-            <!-- <notice
-             class="mb-3"
-            :message="'Legal name must match drivers license or name on an official ID document.'"
-          ></notice> -->
-
-            <entity
-              :entity="form.committeeMember"
-              showFirstName
-              showLastName
-              :firstNameLabel="'Legal first name'"
-              showEmail
-              :lastNameLabel="'Surname'"
-              :showPhones="true"
-            >
-            </entity>
-
-            <b-form-group label="Office held">
-              <b-form-input
-                v-model="form.committeeMember.officeHeld"
-              ></b-form-input>
+            <b-form-group v-if="!form.permitHolder.isSameAsAdmin">
+              <b-form-checkbox
+                v-model="form.committeeMember.isSameAsAdmin"
+                :value="true"
+                :unchecked-value="false"
+              >
+                Check this box if you are also the committee member.
+              </b-form-checkbox>
             </b-form-group>
 
-            <!-- NOTICE TO DEVS, WHEN SELECTED IT SHOULD POPULATE THE FORMDATA WITH THE FULL DETAILS OF THIS PERSON  -->
+            <div v-if="form.committeeMember.isSameAsAdmin">
+              <notice
+                class="mb-4"
+                :message="'Your details were already provided.'"
+              ></notice>
+            </div>
+            <div v-else>
+              <entity
+                :entity="form.committeeMember"
+                showFirstName
+                showLastName
+                :firstNameLabel="'Legal first name'"
+                showEmail
+                :lastNameLabel="'Surname'"
+                :showPhones="true"
+              >
+              </entity>
 
-            <!-- <b-form-group label="Email address:" v-if="form.committeeMember.selectedName !== ''">
-                     <p>jessica@joses.com</p>
-                   </b-form-group>
-                   <notice :message="'Dev note: If the selected member has more than one email address, then the user will see a single select and must select one of those email addresses.'"></notice> -->
+              <b-form-group label="Office held">
+                <b-form-input
+                  v-model="form.committeeMember.officeHeld"
+                ></b-form-input>
+              </b-form-group>
+            </div>
           </b-col>
         </b-row>
       </section>

@@ -61,7 +61,7 @@
                 Check this box if you are also the proposed permit holder.
               </b-form-checkbox>
             </b-form-group>
-            <notice  v-if="form.permitHolder.isSameAsAdmin" :message="'Enter your full details in the next step.'"></notice>
+            <notice class="mb-4" v-if="form.permitHolder.isSameAsAdmin" :message="'Enter your full details in the next step.'"></notice>
 
           <entity
           v-if="!form.permitHolder.isSameAsAdmin"
@@ -75,8 +75,8 @@
               :lastNameLabel="'Surname'"
             >
             </entity>
-            <b-form-group label="Role/Position">
-              <b-form-input v-model="form.admin.role"></b-form-input>
+            <b-form-group label="Role/Position" v-if="!form.permitHolder.isSameAsAdmin">
+              <b-form-input v-model="form.admin.position"></b-form-input>
             </b-form-group>
           </b-col>
         </b-row>

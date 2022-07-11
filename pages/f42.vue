@@ -586,13 +586,14 @@ export default {
         userRole: "",
         admin: {
           hasDifferentPostalAddress: false,
+          otherAddress: '33 main street, Sydney NSW 2000 (hard coded)',
           confirmAuthorised: false,
           firstName: "",
           middleName: "",
           hasMiddleName: null,
           lastName: "",
           email: "",
-          role: "",
+          position: "",
           postalAddress: {
             line1: "",
             line2: "",
@@ -643,6 +644,7 @@ export default {
           previousPermitNumber: "",
           previousPermitNotReturnedReason: "",
           previousPermitReturnedOnTime: null,
+          previousPermitStatDecFile: '',
           photoFile: null,
           trainings: [
             {
