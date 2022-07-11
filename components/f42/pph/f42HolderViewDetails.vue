@@ -1,104 +1,43 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary mb-4 pb-2">
+      <section class="border-bottom border-secondary  mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>The proposed permit holder</h6>
-
-            <p>Provide details of the proposed permit holder.</p>
+            <h6>Your details</h6>
             <p>
-              This information will be reviewed and can be edited by the
-              proposed permit holder if incorrect.
-            </p>
-          
-          </b-col>
-          <b-col>
-            
-
-<f-42-holder-details-comp  :form="form"></f-42-holder-details-comp>
-            
-          </b-col>
-        </b-row>
-      </section>
-
-      <section class=" mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>Right of entry training</h6>
-            <p>Give details of the training completed and the date it was completed.</p><p>
-Attach evidence showing the proposed permit holder has successfully completed the relevant training. 
-</p> <p>See Rule 51 of the Fair Work Commission Rules 2013. </p>
-<p> You can find information about right of entry training on <a href="https://www.fwc.gov.au/registered-organisations/entry-permits/training-permit-holders-must-complete" target="_blank">our website</a>.
-            </p>
-
-
-            <!-- <p>
-              You can provide further information on behalf of the Proposed
-              Permit Holder.
+              The following details were provided by the union administrator.
             </p>
             <p>
-              Although this is optional, it will help to improve the process and
-              make it faster and more efficient (temporary text!)
-            </p> -->
-          </b-col>
-          <b-col>
-            <!-- <b-form-group
-              label="Do you have access to their training information (including evidence of completion)?"
-            >
-              <b-form-radio-group
-                :options="boolOptions"
-                v-model="form.admin.hasHolderTrainingInfo"
-              ></b-form-radio-group>
-            </b-form-group> -->
-            <div >
-              <f-42-training :form="form"></f-42-training>
-            </div>
-          </b-col>
-        </b-row>
-      </section>
-     <!-- <section class=" mb-4 pb-2 border-bottom border-secondary">
-        <b-row>
-          <b-col cols="4">
-            <h6>Photograph</h6>
-            <p>
-              Provide a photograph of the proposed permit holder that
-              follows the FWC requirements <a target="_blank" href="https://www.fwc.gov.au/registered-organisations/entry-permits/about-fair-work-entry-permits/how-we-process-fair-work-entry">click here</a> for more information.
+              Please check that they are accurate and correct if required, they must match your name on your driver
+              license or on an official ID document.
             </p>
-          </b-col>
-          <b-col>
          
-            <div >
-                            <notice class="mb-2" message="Only .jpg and .jpeg files are accepted, file size limit is 5MB"></notice>
-
-              <b-form-group
-                label="Attach a photograph"
-                description="Short explanation about how the file will be used."
-              >
-                <b-form-file
-                  v-model="form.permitHolder.photoFile"
-                  placeholder="Choose a file or drop it here..."
-                  drop-placeholder="Drop file here..."
-                ></b-form-file>
-              </b-form-group>
-            </div>
-          </b-col>
-        </b-row>
-      </section>  -->
-
-  <!-- <section class=" mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>Other information</h6>
-            
           </b-col>
           <b-col>
-            
-            <f-42-holder-super-details :form="form"></f-42-holder-super-details>
+
+            <f-42-holder-details-comp :form="form"></f-42-holder-details-comp>
+
+           
+
           </b-col>
         </b-row>
-      </section> -->
-
+      </section>
+      
+       <section class=" mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Confirmation</h6>
+          </b-col>
+          <b-col>
+             <b-form-group>
+              <b-form-checkbox v-model="form.permitHolder.confirmDetails" :value="true" :unchecked-value="false">
+                I confirm my details as provided above are correct.
+              </b-form-checkbox>
+            </b-form-group>
+            </b-col>
+            </b-row>
+            </section>
 
 
     </b-form>
@@ -106,16 +45,15 @@ Attach evidence showing the proposed permit holder has successfully completed th
 </template>
 
 <script>
+import f42HolderDetailsComp from "../common/f42HolderDetailsComp.vue";
+import entity from "../../common/entity.vue";
+import EntityAddress from "../../common/entityAddress.vue";
+import Notice from "../../common/notice.vue";
+import f42HolderDetailsReview from "../common/f42HolderDetailsReview.vue";
 
-import entity from "../common/entity.vue";
-import EntityAddress from "../common/entityAddress.vue";
-import Notice from "../common/notice.vue";
-import f42Training from "./common/f42Training.vue";
-import f42HolderSuperDetails from  "./common/f42HolderSuperDetails.vue";
-import f42HolderDetailsComp from  "./common/f42HolderDetailsComp.vue";
 export default {
-  components: { entity, Notice, EntityAddress, f42Training , f42HolderSuperDetails, f42HolderDetailsComp},
-  name: "holderDetails",
+  components: { entity, Notice, EntityAddress, f42HolderDetailsComp, f42HolderDetailsReview },
+  name: "f42HolderViewDetails",
   props: {
     form: {
       type: Object,
@@ -183,6 +121,12 @@ export default {
         { text: "No", value: "no" },
       ],
     };
+  },
+
+  mounted() {
+    this.form.permitHolder.firstName = 'Don',
+      this.form.permitHolder.lastName = 'Burrows'
+    this.form.permitHolder.email = 'don@burrows.com'
   },
   computed: {
     youString: function () {

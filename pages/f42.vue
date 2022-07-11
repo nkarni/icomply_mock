@@ -532,22 +532,22 @@
 </template>
 
 <script>
-import f42MemberViewSubmit from "../components/f42/f42MemberViewSubmit.vue";
-import f42MemberViewPph from "../components/f42/f42MemberViewPph.vue";
-import f42MemberViewDetails from "../components/f42/f42MemberViewDetails.vue";
-import f42MemberViewProcess from "../components/f42/f42MemberViewProcess.vue";
-import f42HolderViewSubmit from "../components/f42/f42HolderViewSubmit.vue";
-import f42HolderViewId from "../components/f42/f42HolderViewId.vue";
-import f42HolderViewPhoto from "../components/f42/f42HolderViewPhoto.vue";
-import f42HolderViewTraining from "../components/f42/f42HolderViewTraining.vue";
-import f42HolderViewDetails from "../components/f42/f42HolderViewDetails.vue";
-import f42ProcessHolder from "../components/f42/f42ProcessHolder.vue";
-import f42AdminSubmit from "../components/f42/f42AdminSubmit.vue";
-import f42CommitteeMember from "../components/f42/f42CommitteeMember.vue";
+import f42MemberViewSubmit from "../components/f42/member/f42MemberViewSubmit.vue";
+import f42MemberViewPph from "../components/f42/member/f42MemberViewPph.vue";
+import f42MemberViewDetails from "../components/f42/member/f42MemberViewDetails.vue";
+import f42MemberViewProcess from "../components/f42/member/f42MemberViewProcess.vue";
+import f42HolderViewSubmit from "../components/f42/pph/f42HolderViewSubmit.vue";
+import f42HolderViewId from "../components/f42/archive/f42HolderViewId.vue";
+import f42HolderViewPhoto from "../components/f42/archive/f42HolderViewPhoto.vue";
+import f42HolderViewTraining from "../components/f42/archive/f42HolderViewTraining.vue";
+import f42HolderViewDetails from "../components/f42/pph/f42HolderViewDetails.vue";
+import f42ProcessHolder from "../components/f42/pph/f42HolderViewProcess.vue";
+import f42AdminSubmit from "../components/f42/admin/f42AdminSubmit.vue";
+import f42CommitteeMember from "../components/f42/admin/f42CommitteeMember.vue";
 import f42ProgressBar from "../components/f42/common/f42ProgressBar.vue";
-import f42HolderDetails from "../components/f42/f42HolderDetails.vue";
-import f42ProcessAdmin from "../components/f42/f42ProcessAdmin.vue";
-import f42YourDetails from "../components/f42/f42YourDetails.vue";
+import f42HolderDetails from "../components/f42/admin/f42HolderDetails.vue";
+import f42ProcessAdmin from "../components/f42/admin/f42ProcessAdmin.vue";
+import f42YourDetails from "../components/f42/admin/f42YourDetails.vue";
 import F3Circumstances from "../components/f3/f3Circumstances.vue";
 import F3Dismissal from "../components/f3/f3Dismissal.vue";
 import f3EmployeeDetails from "../components/f3/f3EmployeeDetails.vue";

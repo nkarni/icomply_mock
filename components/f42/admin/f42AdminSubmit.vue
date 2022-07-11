@@ -8,79 +8,99 @@
             <p>
               Please check the information you provided. You can go back and
               edit information as required by clicking on the pencil icon, or by
-              navigation back to the relevant section. 
+              navigation back to the relevant section.
             </p>
           </b-col>
         </b-row>
-        <b-row>
-          <b-col>
-            <notice class="mb-3" :message="'Dev notice: this will be a summary of information entered so far, similar in style to the review tab in F2 and F3 mockups. ATM it is only a place holder.'"></notice>
-            <!-- <div
-              v-for="(section, index) of sections"
-              :key="index"
-              v-bind:id="index"
-              :class="'mb-4  pb-4 ' + (index < 4 ? 'border-bottom border-secondary' : '')"
-            >
-              <b-row >
-                <b-col>
-                  <h6>{{ section.label }}</h6>
-                </b-col>
-                <b-col class="text-right">
-                  <b-button
-                    variant="link"
-                    class="p-0"
-                    @click.prevent=""
-                    v-b-tooltip.hover
-                    title="Edit this section (coming soon)"
-                    ><b-icon icon="pencil"
-                  /></b-button>
-                </b-col>
-              </b-row>
-              <b-row
-                v-for="(item, n) of section.data"
-                :key="n"
-                v-bind:id="n"
-                class="mb-2"
-              >
-                <b-col cols="4">
-                  {{ item.label }}
-                </b-col>
-                <b-col cols="8" v-html="item.value"> </b-col>
-              </b-row>
-            </div> -->
-          </b-col>
-        </b-row>
+
         <!-- <notice :message="'mockup notice: HC means hard coded, it will be dynamic and show provided info in the final build. Similarly, the link to the relevant tab for editing will be activated in the final build.'"></notice> -->
       </section>
-      <section
-        class=" mb-4 pb-2"
-      >
+
+      <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Save and Proceed</h6>
-            <p>
-              Invite the proposed permit holder to verify their information
-            </p>
+            <h6>
+              The proposed permit holder Identity
+              <b-button
+                variant="link"
+                class="p-0"
+                @click.prevent=""
+                v-b-tooltip.hover
+                title="Edit this section (coming soon)"
+              >
+                <b-icon icon="pencil" />
+              </b-button>
+            </h6>
           </b-col>
-          <b-col>
-           <b-col class="text-center mt-3">
-          <b-button variant="primary">Invite the proposed permit holder</b-button>
-        </b-col>
-            
+          <b-col cols="8">
+            <f-42-holder-details-review
+              :form="form"
+              dec="form.permitHolder.dec"
+            ></f-42-holder-details-review>
           </b-col>
         </b-row>
       </section>
 
+      <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>
+              The committee member
+              <b-button
+                variant="link"
+                class="p-0"
+                @click.prevent=""
+                v-b-tooltip.hover
+                title="Edit this section (coming soon)"
+              >
+                <b-icon icon="pencil" />
+              </b-button>
+            </h6>
+          </b-col>
+          <b-col cols="8">
+            <f-42-member-details-review
+              :form="form"
+              dec="form.permitHolder.dec"
+            ></f-42-member-details-review>
+          </b-col>
+        </b-row>
+      </section>
+
+      <section class="mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Save and Proceed</h6>
+            <p>Invite the proposed permit holder to verify their information</p>
+          </b-col>
+          <b-col>
+            <b-col class="text-center mt-3">
+              <b-button variant="primary"
+                >Invite the proposed permit holder</b-button
+              >
+            </b-col>
+          </b-col>
+        </b-row>
+      </section>
     </b-form>
   </div>
 </template>
 
 <script>
-import entity from "../common/entity.vue";
-import EntityAddress from "../common/entityAddress.vue";
-import Notice from "../common/notice.vue";
+import entity from "../../common/entity.vue";
+import EntityAddress from "../../common/entityAddress.vue";
+import Notice from "../../common/notice.vue";
+import reviewItem from "../../common/reviewItem.vue";
+import f42HolderDetailsReview from "../common/f42HolderDetailsReview.vue";
+import f42MemberDetailsReview from "../common/f42MemberDetailsReview.vue";
 export default {
-  components: { entity, Notice, EntityAddress },
+  components: {
+    entity,
+    Notice,
+    EntityAddress,
+    reviewItem,
+    f42HolderDetailsReview,
+    f42MemberDetailsReview
+  },
   name: "f42AdminSubmit",
   props: {
     form: {

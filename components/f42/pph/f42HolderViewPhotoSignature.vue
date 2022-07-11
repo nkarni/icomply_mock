@@ -122,12 +122,12 @@
 </template>
 
 <script>
-import entity from "../common/entity.vue";
-import EntityAddress from "../common/entityAddress.vue";
-import Notice from "../common/notice.vue";
-import f42Training from "./common/f42Training.vue";
-import f42HolderSuperDetails from "./common/f42HolderSuperDetails.vue";
-import f42HolderDetailsComp from "./common/f42HolderDetailsComp.vue";
+import entity from "../../common/entity.vue";
+import EntityAddress from "../../common/entityAddress.vue";
+import Notice from "../../common/notice.vue";
+import f42Training from "../common/f42Training.vue";
+import f42HolderSuperDetails from "../common/f42HolderSuperDetails.vue";
+import f42HolderDetailsComp from "../common/f42HolderDetailsComp.vue";
 export default {
   components: {
     entity,

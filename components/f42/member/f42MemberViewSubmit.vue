@@ -132,10 +132,10 @@
 </template>
 
 <script>
-import entity from "../common/entity.vue";
-import EntityAddress from "../common/entityAddress.vue";
-import Notice from "../common/notice.vue";
-import f42MemberDec from "./common/f42MemberDec.vue";
+import entity from "../../common/entity.vue";
+import EntityAddress from "../../common/entityAddress.vue";
+import Notice from "../../common/notice.vue";
+import f42MemberDec from "../common/f42MemberDec.vue";
 export default {
   components: { entity, Notice, EntityAddress, f42MemberDec },
   name: "f42MemberViewSubmit",

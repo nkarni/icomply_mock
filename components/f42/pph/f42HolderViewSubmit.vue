@@ -121,10 +121,10 @@
 </template>
 
 <script>
-import entity from "../common/entity.vue";
-import EntityAddress from "../common/entityAddress.vue";
-import Notice from "../common/notice.vue";
-import f42HolderSuperDetails from "./common/f42HolderSuperDetails.vue";
+import entity from "../../common/entity.vue";
+import EntityAddress from "../../common/entityAddress.vue";
+import Notice from "../../common/notice.vue";
+import f42HolderSuperDetails from "../common/f42HolderSuperDetails.vue";
 export default {
   components: { entity, Notice, EntityAddress, f42HolderSuperDetails },
   name: "f42HolderViewSubmit",

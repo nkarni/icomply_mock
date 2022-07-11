@@ -1,67 +1,33 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>The proposed permit holder Identity</h6>
-
-            <p>Explanation about how to verify it...</p>
-          </b-col>
-          <b-col cols="8">
-           <f-42-holder-details-review :form="form" dec="form.permitHolder.dec"></f-42-holder-details-review>
-
-            <b-form-group>
-              <b-form-checkbox
-                v-model="form.committeeMember.confirmedPphId"
-                :value="true"
-                :unchecked-value="false"
-              >
-                I confirm that the proposed permit holder details are correct.
-              </b-form-checkbox>
-            </b-form-group>
-          </b-col>
-        </b-row>
-      </section>
       <section class="mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>The Proposed Entry Permit Holder's declaration</h6>
+            <h6>Digital ID</h6>
+            <p>You need to prove their identity to the Commission before their permit can be issued. </p>
+            <p>   You can do this with a Digital iD™ obtained from Australia Post. </p>
+            <p> You should have this before you lodge the application, or there may be a delay in issuing the permit.</p>
           </b-col>
-          <b-col cols="8">
-            <f-42-holder-super-details
-              :form="form"
-              :dec="form.permitHolder.dec"
-              :readOnly="true"
-            ></f-42-holder-super-details>
+
+          <b-col class="text-center mt-3">
+            <b-button variant="primary"
+              >Validate via Australia Post Digital ID</b-button
+            >
           </b-col>
         </b-row>
       </section>
-     
     </b-form>
   </div>
 </template>
 
 <script>
-import entity from "../common/entity.vue";
-import EntityAddress from "../common/entityAddress.vue";
-import Notice from "../common/notice.vue";
-import f42Training from "./common/f42Training.vue";
-import f42Files from "./common/f42Files.vue";
-import f42HolderSuperDetails from "./common/f42HolderSuperDetails.vue";
-import f42HolderDetailsReview from "./common/f42HolderDetailsReview.vue";
-
+import entity from "../../common/entity.vue";
+import EntityAddress from "../../common/entityAddress.vue";
+import Notice from "../../common/notice.vue";
 export default {
-  components: {
-    entity,
-    Notice,
-    EntityAddress,
-    f42Training,
-    f42Files,
-    f42HolderSuperDetails,
-    f42HolderDetailsReview
-  },
-  name: "f42MemberViewPph",
+  components: { entity, Notice, EntityAddress },
+  name: "f42HolderViewId",
   props: {
     form: {
       type: Object,
@@ -130,14 +96,13 @@ export default {
       ],
     };
   },
+
+  mounted() {
+    (this.form.permitHolder.firstName = "Don"),
+      (this.form.permitHolder.lastName = "Burrows");
+    this.form.permitHolder.email = "don@burrows.com";
+  },
   computed: {
-    trainingRowClass() {
-      if (this.form.permitHolder.trainings.length > 1) {
-        return "training mb-3";
-      } else {
-        return "";
-      }
-    },
     youString: function () {
       return this.form.repType === "self" ? "you" : "the Applicant";
     },
@@ -162,22 +127,6 @@ export default {
     AreYouString: function () {
       return this.form.repType === "self" ? "are you" : "the Applicant is";
     },
-  },
-  mounted() {
-    this.form.permitHolder.trainings = [
-      {
-        trainingName: "Sample training 1",
-        trainingMethod: "Online",
-        trainingCompletionDate: "25 November 2015",
-        trainingFile: null,
-      },
-      {
-        trainingName: "Sample training 2",
-        trainingMethod: "Online",
-        trainingCompletionDate: "25 November 2019",
-        trainingFile: null,
-      },
-    ];
   },
   methods: {
     onWrongBusinessNameClick() {
@@ -227,9 +176,5 @@ export default {
 <style lang="scss" scoped>
 h6::first-letter {
   text-transform: uppercase;
-}
-.training {
-  border-left: 4px solid var(--primaryLighter) !important;
-  padding-left: 10px;
 }
 </style>

@@ -169,9 +169,9 @@
 </template>
 
 <script>
-import entity from "../common/entity.vue";
-import EntityAddress from "../common/entityAddress.vue";
-import Notice from "../common/notice.vue";
+import entity from "../../common/entity.vue";
+import EntityAddress from "../../common/entityAddress.vue";
+import Notice from "../../common/notice.vue";
 export default {
   components: { entity, Notice, EntityAddress },
   name: "f42ProcessAdmin",

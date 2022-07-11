@@ -4,16 +4,46 @@
       <section class="mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Digital ID</h6>
-            <p>You need to prove their identity to the Commission before their permit can be issued. </p>
-            <p>   You can do this with a Digital iD™ obtained from Australia Post. </p>
-            <p> You should have this before you lodge the application, or there may be a delay in issuing the permit.</p>
-          </b-col>
+            <h6>Member of Committee of Management details</h6>
+            <p>Provide details of the Member of Committee of Management.</p>
+            <p>
+              The Member of Committee of Management must be an elected officer.
+            </p>
 
-          <b-col class="text-center mt-3">
-            <b-button variant="primary"
-              >Validate via Australia Post Digital ID</b-button
+            <p>
+              This information will be reviewed and can be edited by the Member
+              of Committee of Management if incorrect.
+            </p>
+          </b-col>
+          <b-col>
+            <!-- <notice
+             class="mb-3"
+            :message="'Legal name must match drivers license or name on an official ID document.'"
+          ></notice> -->
+
+            <entity
+              :entity="form.committeeMember"
+              showFirstName
+              showLastName
+              :firstNameLabel="'Legal first name'"
+              showEmail
+              :lastNameLabel="'Surname'"
+              :showPhones="true"
             >
+            </entity>
+
+            <b-form-group label="Office held">
+              <b-form-input
+                v-model="form.committeeMember.officeHeld"
+              ></b-form-input>
+            </b-form-group>
+
+            <!-- NOTICE TO DEVS, WHEN SELECTED IT SHOULD POPULATE THE FORMDATA WITH THE FULL DETAILS OF THIS PERSON  -->
+
+            <!-- <b-form-group label="Email address:" v-if="form.committeeMember.selectedName !== ''">
+                     <p>jessica@joses.com</p>
+                   </b-form-group>
+                   <notice :message="'Dev note: If the selected member has more than one email address, then the user will see a single select and must select one of those email addresses.'"></notice> -->
           </b-col>
         </b-row>
       </section>
@@ -22,12 +52,12 @@
 </template>
 
 <script>
-import entity from "../common/entity.vue";
-import EntityAddress from "../common/entityAddress.vue";
-import Notice from "../common/notice.vue";
+import entity from "../../common/entity.vue";
+import EntityAddress from "../../common/entityAddress.vue";
+import Notice from "../../common/notice.vue";
 export default {
   components: { entity, Notice, EntityAddress },
-  name: "f42HolderViewId",
+  name: "holderDetails",
   props: {
     form: {
       type: Object,
@@ -95,12 +125,6 @@ export default {
         { text: "No", value: "no" },
       ],
     };
-  },
-
-  mounted() {
-    (this.form.permitHolder.firstName = "Don"),
-      (this.form.permitHolder.lastName = "Burrows");
-    this.form.permitHolder.email = "don@burrows.com";
   },
   computed: {
     youString: function () {

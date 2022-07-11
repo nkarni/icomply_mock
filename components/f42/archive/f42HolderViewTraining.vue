@@ -1,59 +1,56 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary  mb-4 pb-2">
+      <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Your details</h6>
+            <h6>Information provided about you by the administrator</h6>
             <p>
-              The following details were provided by the union administrator.
+             The following details were provided by the union administrator. 
+              Please check that they are accurate and correct.
             </p>
-            <p>
-              Please check that they are accurate and correct if required, they must match your name on your driver
-              license or on an official ID document.
-            </p>
-         
+           
+           
           </b-col>
           <b-col>
-
-            <f-42-holder-details-comp :form="form"></f-42-holder-details-comp>
-
            
+<f-42-holder-details-review :form="form"></f-42-holder-details-review>
 
+<b-form-group label="Are the details above correct?">
+             <b-form-radio-group v-model="form.permitHolder.confirmInfo" :options="boolOptions" >
+
+             </b-form-radio-group>
+            </b-form-group>
+
+            <b-form-group label="Please provide detailed explanation" v-if="form.permitHolder.confirmInfo === false">
+              <b-form-textarea v-model="form.permitHolder.infoCorrection">
+
+              </b-form-textarea>
+            </b-form-group>
+
+            <notice class="mb-4" v-if="form.permitHolder.confirmInfo === false" :message="'Please proceed to complete and submit the form. When you submit it, the union administrator will be notified.'"></notice>
+
+
+            <notice :message="'Dev note: as part of the standard upload file component - if a file was uploaded the use can see a preview of it or click on a link to view it.'"></notice>
           </b-col>
         </b-row>
       </section>
       
-       <section class=" mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>Confirmation</h6>
-          </b-col>
-          <b-col>
-             <b-form-group>
-              <b-form-checkbox v-model="form.permitHolder.confirmDetails" :value="true" :unchecked-value="false">
-                I confirm my details as provided above are correct.
-              </b-form-checkbox>
-            </b-form-group>
-            </b-col>
-            </b-row>
-            </section>
-
-
     </b-form>
   </div>
 </template>
 
 <script>
-import f42HolderDetailsComp from "./common/f42HolderDetailsComp.vue";
-import entity from "../common/entity.vue";
-import EntityAddress from "../common/entityAddress.vue";
-import Notice from "../common/notice.vue";
-import f42HolderDetailsReview from "./common/f42HolderDetailsReview.vue";
+
+import entity from "../../common/entity.vue";
+import EntityAddress from "../../common/entityAddress.vue";
+import Notice from "../../common/notice.vue";
+import f42Training from "../common/f42Training.vue";
+import f42HolderDetailsReview from "../common/f42HolderDetailsReview.vue";
 
 export default {
-  components: { entity, Notice, EntityAddress, f42HolderDetailsComp, f42HolderDetailsReview },
-  name: "f42HolderViewDetails",
+  components: { entity, Notice, EntityAddress,f42Training, f42HolderDetailsReview },
+  name: "f42HolderViewTraining",
   props: {
     form: {
       type: Object,
@@ -124,10 +121,10 @@ export default {
   },
 
   mounted() {
-    this.form.permitHolder.firstName = 'Don',
-      this.form.permitHolder.lastName = 'Burrows'
-    this.form.permitHolder.email = 'don@burrows.com'
-  },
+		this.form.permitHolder.firstName='Don',
+    this.form.permitHolder.lastName='Burrows'
+    this.form.permitHolder.email='don@burrows.com'
+		},
   computed: {
     youString: function () {
       return this.form.repType === "self" ? "you" : "the Applicant";

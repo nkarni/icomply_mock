@@ -8,22 +8,19 @@
             <ol>
               <li>
                 An administrator from you union has started an entry permit
-                application on your behalf.
+                application.
               </li>
               <li>
-                You will need to provide your personal details, ID documents,
-                supporting documents and sign a statuary declaration confirming
-                your details.
+                The proposed permit holder has been identified and provided
+                their ID, supporting documents and signed a statuary declaration
+                verifying the information they have provided.
               </li>
               <li>
-                Your application will then be submitted to FWC by your union
-                administrator.
+                You now need to confirm the identity of the Proposed Permit
+                Holder, assess their suitability for an entry permit and sign a
+                statuary declaration confirming these details.
               </li>
-              <li>
-                Once submitted you will be contacted by FWC to complete a final
-                interview via video call to complete the application to receive
-                your permit.
-              </li>
+              <li>The application will then be submitted to FWC.</li>
             </ol>
           </b-col>
         </b-row>
@@ -33,13 +30,19 @@
           <b-col>
             <h6>What you will provide now</h6>
             <ul>
-              <li>Confirm Full legal names (given, middle and surname)</li>
               <li>
-                Details of entry permit training Photograph of yourself Two
-                forms of identification
+                Confirm your legal name Confirm the ID of the Proposed Permit
+                Holder
+              </li>
+              <li>
+                Confirm training details and date of the proposed permit holder
+              </li>
+              <li>
+                Provide additional details of the suitability of the Proposed
+                Permit Holder
               </li>
             </ul>
-            <p>
+             <p>
               Throughout this form - all fields are mandatory unless
               specifically marked as optional.
             </p>
@@ -88,12 +91,12 @@
 </template>
 
 <script>
-import entity from "../common/entity.vue";
-import EntityAddress from "../common/entityAddress.vue";
-import Notice from "../common/notice.vue";
+import entity from "../../common/entity.vue";
+import EntityAddress from "../../common/entityAddress.vue";
+import Notice from "../../common/notice.vue";
 export default {
   components: { entity, Notice, EntityAddress },
-  name: "f42ProcessAdmin",
+  name: "f42MemberViewProcess",
   props: {
     form: {
       type: Object,

@@ -1,52 +1,44 @@
 <template>
   <div>
     <b-form>
-    <section class=" mb-4 pb-2">
+      <section class=" mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Photograph</h6>
+            <h6>Your details</h6>
             <p>
-              You union administrator may have uploaded a photograph of you. The following details were provided by the union administrator. If they have, 
-              please check that this photo is current, correct and comply with the FWC requirements, <a href="https://asset.fwc.gov.au/documents/documents/forms/form_42c.pdf">click here</a> for more information.
+              The following details were provided by the union administrator.
             </p>
-            <!-- <p>
-              If they administrator has not uploaded your photo, please provide a Photograph of yourself that
-              follows the FWC requirements.
-            </p> -->
+            <p>
+              Please check that they are accurate and correct if required.
+            </p>
+          
           </b-col>
           <b-col>
-            <b-form-group label="The photo uploaded by the administrator:">
-
-              IMAGE HERE
-
-            </b-form-group>
-            
-            <b-form-group
-              label="Do you confirm this photo is current and accurate?"
+           
+<entity
+              :entity="form.committeeMember"
+              showFirstName
+              showLastName
+              showEmail
+:firstNameLabel="'Legal first name'"
+:lastNameLabel="'Surname'"
+              showPhones
             >
-              <b-form-radio-group
-                :options="boolOptions"
-                v-model="form.permitHolder.adminPhotoIsCorrect"
-              ></b-form-radio-group>
+            </entity>
+             <b-form-group label="Office held">
+              <b-form-input v-model="form.committeeMember.officeHeld"></b-form-input>
             </b-form-group>
-            <div v-if="form.permitHolder.adminPhotoIsCorrect === false">
-              <b-form-group
-                label="Attach a photograph"
-                description="Short explanation about how the file will be used."
+            <b-form-group >
+              <b-form-checkbox
+                v-model="form.permitHolder.confirmDetails"
+                :value="true"
+                :unchecked-value="false"
               >
-                <b-form-file
-                  v-model="form.permitHolder.photoFile"
-                  placeholder="Choose a file or drop it here..."
-                  drop-placeholder="Drop file here..."
-                ></b-form-file>
-              </b-form-group>
+                I confirm my details are correct.
+              </b-form-checkbox>
+            </b-form-group>
 
-              <b-form-group label="Do you confirm the photograph meets the Fair Work Commission’s requirements for entry permit photographs?">
-                <b-form-radio-group v-model="correctPhoto2" :options="boolOptions">
-
-                </b-form-radio-group>
-              </b-form-group>
-            </div>
+          
           </b-col>
         </b-row>
       </section>
@@ -57,12 +49,12 @@
 
 <script>
 
-import entity from "../common/entity.vue";
-import EntityAddress from "../common/entityAddress.vue";
-import Notice from "../common/notice.vue";
+import entity from "../../common/entity.vue";
+import EntityAddress from "../../common/entityAddress.vue";
+import Notice from "../../common/notice.vue";
 export default {
   components: { entity, Notice, EntityAddress, },
-  name: "f42HolderViewPhoto",
+  name: "f42MemberViewDetails",
   props: {
     form: {
       type: Object,
@@ -133,9 +125,9 @@ export default {
   },
 
   mounted() {
-		this.form.permitHolder.firstName='Don',
-    this.form.permitHolder.lastName='Burrows'
-    this.form.permitHolder.email='don@burrows.com'
+		this.form.committeeMember.firstName='Nina',
+    this.form.committeeMember.lastName='Simone'
+    this.form.committeeMember.email='nina@simone.com'
 		},
   computed: {
     youString: function () {

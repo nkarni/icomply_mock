@@ -1,63 +1,67 @@
 <template>
   <div>
     <b-form>
-      <section class="mb-4 pb-2">
+      <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Member of Committee of Management details</h6>
-            <p>Provide details of the Member of Committee of Management.</p>
-            <p>
-              The Member of Committee of Management must be an elected officer.
-            </p>
+            <h6>The proposed permit holder Identity</h6>
 
-            <p>
-              This information will be reviewed and can be edited by the Member
-              of Committee of Management if incorrect.
-            </p>
+            <p>Explanation about how to verify it...</p>
           </b-col>
-          <b-col>
-            <!-- <notice
-             class="mb-3"
-            :message="'Legal name must match drivers license or name on an official ID document.'"
-          ></notice> -->
+          <b-col cols="8">
+           <f-42-holder-details-review :form="form" dec="form.permitHolder.dec"></f-42-holder-details-review>
 
-            <entity
-              :entity="form.committeeMember"
-              showFirstName
-              showLastName
-              :firstNameLabel="'Legal first name'"
-              showEmail
-              :lastNameLabel="'Surname'"
-              :showPhones="true"
-            >
-            </entity>
-
-            <b-form-group label="Office held">
-              <b-form-input
-                v-model="form.committeeMember.officeHeld"
-              ></b-form-input>
+            <b-form-group>
+              <b-form-checkbox
+                v-model="form.committeeMember.confirmedPphId"
+                :value="true"
+                :unchecked-value="false"
+              >
+                I confirm that the proposed permit holder details are correct.
+              </b-form-checkbox>
             </b-form-group>
-
-            <!-- NOTICE TO DEVS, WHEN SELECTED IT SHOULD POPULATE THE FORMDATA WITH THE FULL DETAILS OF THIS PERSON  -->
-
-            <!-- <b-form-group label="Email address:" v-if="form.committeeMember.selectedName !== ''">
-                     <p>jessica@joses.com</p>
-                   </b-form-group>
-                   <notice :message="'Dev note: If the selected member has more than one email address, then the user will see a single select and must select one of those email addresses.'"></notice> -->
           </b-col>
         </b-row>
       </section>
+      <section class="mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>The Proposed Entry Permit Holder's declaration</h6>
+          </b-col>
+          <b-col cols="8">
+            <f-42-holder-super-details
+              :form="form"
+              :dec="form.permitHolder.dec"
+              :readOnly="true"
+            ></f-42-holder-super-details>
+          </b-col>
+        </b-row>
+      </section>
+     
     </b-form>
   </div>
 </template>
 
 <script>
-import entity from "../common/entity.vue";
-import EntityAddress from "../common/entityAddress.vue";
-import Notice from "../common/notice.vue";
+import entity from "../../common/entity.vue";
+import EntityAddress from "../../common/entityAddress.vue";
+import Notice from "../../common/notice.vue";
+import f42Training from "../common/f42Training.vue";
+import f42Files from "../common/f42Files.vue";
+import f42HolderSuperDetails from "../common/f42HolderSuperDetails.vue";
+import f42HolderDetailsReview from "../common/f42HolderDetailsReview.vue";
+
 export default {
-  components: { entity, Notice, EntityAddress },
-  name: "holderDetails",
+  components: {
+    entity,
+    Notice,
+    EntityAddress,
+    f42Training,
+    f42Files,
+    f42HolderSuperDetails,
+    f42HolderDetailsReview
+  },
+  name: "f42MemberViewPph",
   props: {
     form: {
       type: Object,
@@ -127,6 +131,13 @@ export default {
     };
   },
   computed: {
+    trainingRowClass() {
+      if (this.form.permitHolder.trainings.length > 1) {
+        return "training mb-3";
+      } else {
+        return "";
+      }
+    },
     youString: function () {
       return this.form.repType === "self" ? "you" : "the Applicant";
     },
@@ -151,6 +162,22 @@ export default {
     AreYouString: function () {
       return this.form.repType === "self" ? "are you" : "the Applicant is";
     },
+  },
+  mounted() {
+    this.form.permitHolder.trainings = [
+      {
+        trainingName: "Sample training 1",
+        trainingMethod: "Online",
+        trainingCompletionDate: "25 November 2015",
+        trainingFile: null,
+      },
+      {
+        trainingName: "Sample training 2",
+        trainingMethod: "Online",
+        trainingCompletionDate: "25 November 2019",
+        trainingFile: null,
+      },
+    ];
   },
   methods: {
     onWrongBusinessNameClick() {
@@ -200,5 +227,9 @@ export default {
 <style lang="scss" scoped>
 h6::first-letter {
   text-transform: uppercase;
+}
+.training {
+  border-left: 4px solid var(--primaryLighter) !important;
+  padding-left: 10px;
 }
 </style>
