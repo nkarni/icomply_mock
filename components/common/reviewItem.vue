@@ -1,6 +1,16 @@
 <template>
  <div>
+  <b-row v-if="fulWidthLabel" class="mb-4">
+    <b-col cols="12">
+      <div class="mb-2" v-html="label"></div>
+
+<div class="font-italic" v-html="value"></div>
+     
+    </b-col>
+   
+  </b-row>
     <b-row
+    v-else
       :class="rowClass"
     >
       <b-col cols="4">
@@ -36,6 +46,10 @@ export default {
      rowClass: {
       type: String,
       default: () => ('mb-2'),
+    },
+     fulWidthLabel: {
+      type: Boolean,
+      default: () => (false),
     },
   },
   data() {

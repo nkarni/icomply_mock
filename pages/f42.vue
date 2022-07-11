@@ -23,7 +23,7 @@
                  </b-col>
       </b-row> -->
       <!-- ADMIN START VIEW -->
-      <div v-if="form.userRole === 'admin'">
+      <div v-if="form.userRole === 'admin' && form.userRolePhase === ''">
         <b-row class="mt-4">
           <b-tabs
             v-model="tabIndex"
@@ -221,7 +221,7 @@
               class="mr-2"
               >Save & Prev</b-button
             >
-            <b-button variant="primary" v-if="tabIndex < 4" @click="tabIndex++"
+            <b-button variant="primary" v-if="tabIndex < 3" @click="tabIndex++"
               >Save & Next</b-button
             >
           </b-col>
@@ -332,19 +332,101 @@
           </b-col>
         </b-row>
       </div>
+
+      <!-- adminView phase: PPH Review -->
+      <div
+        v-if="form.userRole === 'admin' && form.userRolePhase === 'pphInfoReview'"
+      >
+        <b-row class="mt-4">
+          <b-tabs
+            v-model="tabIndex"
+            vertical
+            nav-wrapper-class="w-30"
+            class="w-100"
+            active-nav-item-class="text-primary laap-nav-item-active"
+            nav-class="laap-nav"
+            content-class="card p-3"
+          >
+            <b-tab
+              :title-link-class="[
+                'laap-title-link',
+                'mb-2',
+                'p-3',
+                { 'laap-nav-item-complete': false },
+              ]"
+            >
+              <template #title>
+                <h5>The proposed permit holder</h5>
+                <!-- <span>How it works and what is expected of you</span> -->
+              </template>
+               <f-42-admin-pph-review-submit :form="form"></f-42-admin-pph-review-submit>
+            </b-tab>
+          </b-tabs>
+        </b-row>
+      </div>
+
+       <!-- adminView phase: member info Review -->
+      <div
+        v-if="form.userRole === 'admin' && form.userRolePhase === 'adminMemberReview'"
+      >
+        <b-row class="mt-4">
+          <b-tabs
+            v-model="tabIndex"
+            vertical
+            nav-wrapper-class="w-30"
+            class="w-100"
+            active-nav-item-class="text-primary laap-nav-item-active"
+            nav-class="laap-nav"
+            content-class="card p-3"
+          >
+            <b-tab
+              :title-link-class="[
+                'laap-title-link',
+                'mb-2',
+                'p-3',
+                { 'laap-nav-item-complete': false },
+              ]"
+            >
+              <template #title>
+                <h5>The proposed permit holder</h5>
+              </template>
+               <f-42-admin-pph-review-submit :form="form"></f-42-admin-pph-review-submit>
+              
+            </b-tab>
+            <b-tab
+              :title-link-class="[
+                'laap-title-link',
+                'mb-2',
+                'p-3',
+                { 'laap-nav-item-complete': false },
+              ]"
+            >
+              <template #title>
+                <h5>The committee member</h5>
+              </template>
+               <f-42-admin-member-review-submit :form="form"></f-42-admin-member-review-submit>
+            </b-tab>
+          </b-tabs>
+        </b-row>
+      </div>
     </b-container>
+
     <b-container>
       <b-row class="mt-4">
         <b-col>
+          <p>Follow the logical life cycle of the form by clicking on each phase below. Do take the time to fill in the data in each phase to get to correct impression.</p>
           <b-form-group label="Form life cycle control:">
             <b-form-radio-group>
               <ol>
                 <li>
                   <b-button
                     variant="link"
-                    @click.prevent="form.userRole = 'admin'"
+                    @click.prevent="form.userRole = 'admin';tabIndex = 0"
                   >
-                    Admin <span class="currentRole" v-if="form.userRole === 'admin'"> (current)</span>
+                    Admin
+                    <span class="currentRole" v-if="form.userRole === 'admin' && form.userRolePhase === ''">
+                      (current)</span
+                    >
                   </b-button>
 
                   <ul>
@@ -357,11 +439,17 @@
                   </ul>
                 </li>
                 <li>
-                   <b-button
+                  <b-button
                     variant="link"
-                    @click.prevent="form.userRole = 'permitHolder'"
+                    @click.prevent="form.userRole = 'permitHolder';tabIndex = 0"
                   >
-                    PPH <span class="currentRole" v-if="form.userRole === 'permitHolder'"> (current)</span>
+                    PPH
+                    <span
+                      class="currentRole"
+                      v-if="form.userRole === 'permitHolder'"
+                    >
+                      (current)</span
+                    >
                   </b-button>
                   <ul>
                     <li>reviews and add corrections, missing information</li>
@@ -372,9 +460,18 @@
                 <li>
                   <b-button
                     variant="link"
-                    @click.prevent="form.userRole = 'adminPphReview'"
+                    @click.prevent="
+                      form.userRole = 'admin';
+                      form.userRolePhase = 'pphInfoReview';tabIndex = 0;
+                    "
                   >
-                    Admin (PPH info review) <span class="currentRole" v-if="form.userRole === 'adminPphReview'"> (current)</span>
+                    Admin (PPH info review)
+                    <span
+                      class="currentRole"
+                      v-if="form.userRole === 'admin' && form.userRolePhase === 'pphInfoReview'"
+                    >
+                      (current)</span
+                    >
                   </b-button>
                   <ul>
                     <li>
@@ -395,9 +492,15 @@
                 <li>
                   <b-button
                     variant="link"
-                    @click.prevent="form.userRole = 'committeeMember'"
+                    @click.prevent="form.userRole = 'committeeMember';tabIndex = 0"
                   >
-                    Comm member <span class="currentRole" v-if="form.userRole === 'committeeMember'"> (current)</span>
+                    Comm member
+                    <span
+                      class="currentRole"
+                      v-if="form.userRole === 'committeeMember'"
+                    >
+                      (current)</span
+                    >
                   </b-button>
                   <ul>
                     <li>reviews and add corrections, missing information</li>
@@ -406,12 +509,24 @@
                   </ul>
                 </li>
                 <li>
-                   <b-button
+ <b-button
                     variant="link"
-                    @click.prevent="form.userRole = 'adminMemberReview'"
+                    @click.prevent="
+                      form.userRole = 'admin';
+                      form.userRolePhase = 'adminMemberReview';tabIndex = 0;
+                    "
                   >
-                    Admin (Comm member info review and final submission) <span class="currentRole" v-if="form.userRole === 'adminMemberReview'"> (current)</span>
+                    Admin (Comm member info review and final submission)
+                    <span
+                      class="currentRole"
+                      v-if="form.userRole === 'admin' && form.userRolePhase === 'adminMemberReview'"
+                    >
+                      (current)</span
+                    >
                   </b-button>
+
+
+                  
                   <ul>
                     <li>
                       reviews data entered by Comm member, any mismatch with
@@ -430,15 +545,15 @@
           </b-form-group>
         </b-col>
       </b-row>
-      <b-row class="mt-4">
+      <!-- <b-row class="mt-4">
         <b-col>
           <h4>Select a role:</h4>
           <div v-if="form.userRole != ''">
             Current view is {{ form.userRole }}
           </div>
         </b-col>
-      </b-row>
-      <b-row class="mt-4">
+      </b-row> -->
+      <!-- <b-row class="mt-4">
         <b-col cols="4">
           <b-button
             variant="outline-primary"
@@ -466,7 +581,7 @@
             Join an application
           </b-button>
         </b-col>
-      </b-row>
+      </b-row> -->
     </b-container>
     <b-container v-if="form.userRole !== ''">
       <b-row class="mt-4">
@@ -543,6 +658,7 @@ import f42HolderViewTraining from "../components/f42/archive/f42HolderViewTraini
 import f42HolderViewDetails from "../components/f42/pph/f42HolderViewDetails.vue";
 import f42ProcessHolder from "../components/f42/pph/f42HolderViewProcess.vue";
 import f42AdminSubmit from "../components/f42/admin/f42AdminSubmit.vue";
+import f42AdminPphReviewSubmit from "../components/f42/adminPphDetailsReview/f42AdminPphReviewSubmit.vue";
 import f42CommitteeMember from "../components/f42/admin/f42CommitteeMember.vue";
 import f42ProgressBar from "../components/f42/common/f42ProgressBar.vue";
 import f42HolderDetails from "../components/f42/admin/f42HolderDetails.vue";
@@ -554,6 +670,8 @@ import f3EmployeeDetails from "../components/f3/f3EmployeeDetails.vue";
 import F3OtherInfo from "../components/f3/f3OtherInfo.vue";
 import F3Review from "../components/f3/f3Review.vue";
 import F3files from "../components/f3/f3files.vue";
+import f42AdminMemberReviewSubmit from "../components/f42/adminMemberReview/f42AdminMemberReviewSubmit.vue";
+
 export default {
   components: {
     f42MemberViewSubmit,
@@ -578,15 +696,18 @@ export default {
     F3OtherInfo,
     F3Review,
     F3files,
+    f42AdminPphReviewSubmit,
+    f42AdminMemberReviewSubmit
   },
   layout: "form",
   data() {
     return {
       form: {
         userRole: "",
+        userRolePhase: "",
         admin: {
           hasDifferentPostalAddress: false,
-          otherAddress: '33 main street, Sydney NSW 2000 (hard coded)',
+          otherAddress: "33 main street, Sydney NSW 2000 (hard coded)",
           confirmAuthorised: false,
           firstName: "",
           middleName: "",
@@ -610,6 +731,8 @@ export default {
           ],
           hasHolderTrainingInfo: null,
           hasHolderPhoto: null,
+          permitHolderDataEnteredByAdmin: {},
+          memberDataEnteredByAdmin: {},
         },
         permitHolder: {
           isSameAsAdmin: false,
@@ -644,7 +767,7 @@ export default {
           previousPermitNumber: "",
           previousPermitNotReturnedReason: "",
           previousPermitReturnedOnTime: null,
-          previousPermitStatDecFile: '',
+          previousPermitStatDecFile: "",
           photoFile: null,
           trainings: [
             {
@@ -736,18 +859,24 @@ export default {
     };
   },
   mounted: function () {},
-  methods: {
-    changeTabIndex(index) {
-      this.tabIndex = index;
-      console.log("changed to index", index);
+  methods: {},
+  watch: {
+    // DEV NOTE: FOR THE REAL FORM DO NOT USE WATCH, DO THIS OR SIMILAR CHECK WHEN A TAB IS SUBMITTED OR MAKE THE ADMIN PAGES SAVE TO permitHolderDataEnteredByAdmin ETC. Talk to me about it :) ...
+    tabIndex(newValue, oldValue) {
+      if (oldValue === 2 && this.form.userRole === "admin") {
+        this.form.admin.permitHolderDataEnteredByAdmin = JSON.parse(JSON.stringify(this.form.permitHolder));
+      }
+      if (oldValue === 3 && this.form.userRole === "admin") {
+        this.form.admin.memberDataEnteredByAdmin = JSON.parse(JSON.stringify(this.form.committeeMember));
+      }
     },
   },
 };
 </script>
 <style scoped>
-.currentRole{
+.currentRole {
   padding-left: 10px;
   color: red;
-  font-weight: bold
+  font-weight: bold;
 }
 </style>

@@ -5,12 +5,59 @@
         <b-row>
           <b-col cols="4">
             <h6>The proposed permit holder Identity</h6>
-
-            <p>Explanation about how to verify it...</p>
           </b-col>
           <b-col cols="8">
            <f-42-holder-details-review :form="form" dec="form.permitHolder.dec"></f-42-holder-details-review>
 
+            
+          </b-col>
+        </b-row>
+      </section>
+
+       <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>The proposed permit holder photo and signature</h6>
+          </b-col>
+          <b-col cols="8">
+            Photo and signature will show here when it is decided how we collect them... (including any 'declaration' they fill in that tab)
+          </b-col>
+        </b-row>
+      </section>
+
+       <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>The proposed permit holder training</h6>
+          </b-col>
+          <b-col cols="8">
+            <f-42-holder-training-review
+              :form="form"
+            ></f-42-holder-training-review>
+          </b-col>
+        </b-row>
+      </section>
+
+       <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>The proposed permit holder declaration</h6>
+            <p>The proposed permit holder has submitted the following declaration</p>
+          </b-col>
+          <b-col cols="8">
+            <f-42-holder-dec-review
+              :form="form"
+            ></f-42-holder-dec-review>
+          </b-col>
+        </b-row>
+      </section>
+
+       <section class="mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Confirmation</h6>
+          </b-col>
+          <b-col cols="8">
             <b-form-group>
               <b-form-checkbox
                 v-model="form.committeeMember.confirmedPphId"
@@ -23,21 +70,7 @@
           </b-col>
         </b-row>
       </section>
-      <section class="mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>The Proposed Entry Permit Holder's declaration</h6>
-          </b-col>
-          <b-col cols="8">
-            <f-42-holder-super-details
-              :form="form"
-              :dec="form.permitHolder.dec"
-              :readOnly="true"
-            ></f-42-holder-super-details>
-          </b-col>
-        </b-row>
-      </section>
-     
+
     </b-form>
   </div>
 </template>

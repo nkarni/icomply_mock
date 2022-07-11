@@ -125,9 +125,9 @@ export default {
   },
 
   mounted() {
-		this.form.committeeMember.firstName='Nina',
-    this.form.committeeMember.lastName='Simone'
-    this.form.committeeMember.email='nina@simone.com'
+		// this.form.committeeMember.firstName='Nina',
+    // this.form.committeeMember.lastName='Simone'
+    // this.form.committeeMember.email='nina@simone.com'
 		},
   computed: {
     youString: function () {

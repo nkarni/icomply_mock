@@ -120,11 +120,7 @@ export default {
     };
   },
 
-  mounted() {
-		this.form.permitHolder.firstName='Don',
-    this.form.permitHolder.lastName='Burrows'
-    this.form.permitHolder.email='don@burrows.com'
-		},
+  
   computed: {
     youString: function () {
       return this.form.repType === "self" ? "you" : "the Applicant";

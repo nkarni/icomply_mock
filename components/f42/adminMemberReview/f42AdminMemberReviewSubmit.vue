@@ -1,122 +1,83 @@
 <template>
   <div>
     <b-form>
-      <section class=" mb-4 pb-2">
+      <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
-          <b-col cols="4">
-            <h6>Right of entry training</h6>
-          </b-col>
           <b-col>
-            <b-form-group>
-              <div v-if="form.permitHolder.trainings.length > 0">
-                <div
-                  v-for="(training, index) of form.permitHolder.trainings"
-                  :key="index"
-                  v-bind:id="index"
-                  class="mb-2"
-                >
-                  Name: {{ training.trainingName }}<br />
-                  Method: {{ training.trainingMethod }}<br />Completed on:
-                  {{ training.trainingCompletionDate }}<br />Evidence:
-                  <a target="_blank" href="">Click Here</a>
-                </div>
-              </div>
-
-              <div v-else>No training details provided.</div>
-            </b-form-group>
+            <h5>
+              Review the information provided by the proposed permit holder
+            </h5>
+            <p>
+              Please check the information provided. Where the information you
+              have provided differs than the information provided by the
+              committee member - it is highlighted, please correct your
+              records.
+            </p>
           </b-col>
         </b-row>
       </section>
-      <section class="border-top border-secondary mb-4 pt-4">
+
+      <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
-          <b-col cols="">
-            <h6>Declaration</h6>
-            <label>Answer each question in the declaration below.</label>
-
-            <notice
-              class="mb-2 danger"
-              :borderClass="'red'"
-              message="<p>Giving false or misleading information is a serious offence. A person who:
-                            <ul>
-                                <li>knowingly or recklessly makes a false or misleading statement in an application for
-                                    an entry permit; or</li>
-                                <li>knowingly gives false or misleading information in an application for an entry
-                                    permit</li>
-                            </ul>
-                            is guilty of an offence, the punishment for which is imprisonment for up to 12 months if
-                                the statement is made or information is provided knowingly, or up to 6 months if the
-                                statement is made recklessly - see Part 7.4, s.136 and s.137.1 of the Criminal Code.</p>"
-            ></notice>
-            <notice
-              class="mb-2"
-              message=" Section 513(2) of the Fair Work Act 2009 has the effect that certain offences do not need to be disclosed.
-"
-            ></notice>
-
-            <p>
-              This is a declaration by the proposed permit holder in support of
-              an application to the Fair Work Commission under s.512 of the Fair
-              Work Act 2009 for an entry permit.
-            </p>
-
-            <p>
-              I, <br />James Paul Roberts <br />positionName<br />Of orgName,
-              branch, full streetAddress
-            </p>
-            <p>Declare that each answer I give below is true and correct:</p>
-            <f-42-holder-super-details
+          <b-col cols="4">
+            <h6>The committee member details</h6>
+          </b-col>
+          <b-col cols="8">
+            <f-42-member-details-review
               :form="form"
-              :dec="form.permitHolder.dec"
-            ></f-42-holder-super-details>
-           
+            ></f-42-member-details-review>
           </b-col>
         </b-row>
       </section>
-        <section v-if="form.permitHolder.dec.awareOfMatters === false || form.permitHolder.dec.awareOfMattersDetails.length > 2" class="border-top border-secondary  mb-4 pt-4">
+
+      <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Signature</h6>
+            <h6>Confirmation of the photo and signature</h6>
           </b-col>
-          <b-col>
-            <b-row>
-              <b-col cols="6">
-                <b-form-group label="Name">
-                  <b-form-input  v-model="form.permitHolder.dec.signedName">
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col>
-                <b-form-group label="Date">
-                  <b-form-datepicker placeholder=""  v-model="form.permitHolder.dec.signedDate">
-                    </b-form-datepicker>
-                  </b-form-group>
-              </b-col>
-            </b-row>
+          <b-col cols="8">
+            TBD (should be part of the declaration?)
           </b-col>
         </b-row>
       </section>
- 
-      <section class="border-top border-secondary mb-4 pt-4" v-if="form.permitHolder.dec.signedName.length > 2">
-        <b-row>
-          <b-col>
-            <h5>Submit</h5>
-            <p></p>
 
-            <p v-if="form.permitHolder.confirmInfo === false">
-              The form will be sent to the administrator for review and
-              correction.
+       <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>The committee member declaration</h6>
+            <p>The committee member has submitted the following declaration</p>
+          </b-col>
+          <b-col cols="8">
+            <f-42-member-dec-review
+              :form="form"
+            ></f-42-member-dec-review>
+          </b-col>
+        </b-row>
+      </section>
+
+      <section class="mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Submit</h6>
+            <p >
+              Submit the form to the Commission
             </p>
-            <p v-else>
-              The form will be submitted for verification by a member of
-              Committee of Management and passed on to FWC for review.
-            </p>
+          
+          </b-col>
+          <b-col>
             <b-col class="text-center mt-3">
-              <b-button variant="primary">Submit the form</b-button>
+              <b-button variant="primary" v-if="!form.committeeMember.isSameAsAdmin"
+                >Submit</b-button
+              >
+              <b-button
+                variant="primary"
+                v-else
+                >Confirm and submit to the Commission</b-button
+              >
             </b-col>
           </b-col>
         </b-row>
       </section>
-      
     </b-form>
   </div>
 </template>
@@ -125,10 +86,25 @@
 import entity from "../../common/entity.vue";
 import EntityAddress from "../../common/entityAddress.vue";
 import Notice from "../../common/notice.vue";
-import f42HolderSuperDetails from "../common/f42HolderSuperDetails.vue";
+import reviewItem from "../../common/reviewItem.vue";
+import f42HolderDetailsReview from "../common/f42HolderDetailsReview.vue";
+import f42MemberDetailsReview from "../common/f42MemberDetailsReview.vue";
+import f42HolderTrainingReview from "../common/f42HolderTrainingReview.vue";
+import f42MemberDecReview from "../common/f42MemberDecReview.vue";
+
+
 export default {
-  components: { entity, Notice, EntityAddress, f42HolderSuperDetails },
-  name: "f42HolderViewSubmit",
+  components: {
+    entity,
+    Notice,
+    EntityAddress,
+    reviewItem,
+    f42HolderDetailsReview,
+    f42MemberDetailsReview,
+    f42HolderTrainingReview,
+    f42MemberDecReview
+  },
+  name: "f42AdminMemberReviewSubmit",
   props: {
     form: {
       type: Object,
@@ -324,59 +300,21 @@ export default {
       }
       return "No";
     },
-    personToString(person) {
-      var str;
-      // let personName = 'sdfsdfsdf'
-      str = person.firstName + " " + person.lastName + ",jhglkjg";
-      // console.log('str', str)
+    phoneToString(phones) {
+      var str = "";
 
-      str += " " + person.email;
-
-      if (person.email.length > 0) {
-        str = +" " + person.email;
-      }
-      if (person.phones.length > 0) {
-        person.phones.forEach((phone) => {
-          if (phone.phone !== "") {
-            str += " " + phone.phone + " (" + phone.type + ")";
+      if (phones.length > 0) {
+        phones.forEach((phone, i) => {
+          if (phone.number !== "") {
+            if (i > 0) {
+              str += "<br>";
+            }
+            str += phone.number + " (" + phone.type + ")";
           }
         });
-        str += " " + person.email;
       }
-      console.log("person", person);
-      console.log("str", str);
+
       return str;
-    },
-    onNumDepnedantsChange() {
-      if (this.form.entities.applicant.details.numOfDependants < 0) return;
-      if (
-        this.form.entities.applicant.details.numOfDependants <
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants <
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.pop();
-        }
-      } else if (
-        this.form.entities.applicant.details.numOfDependants >
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants >
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.push({
-            firstName: "",
-            lastName: "",
-            dob: "",
-            relationship: "",
-            stayOvernight: null,
-            involvedInLegalIssue: null,
-          });
-        }
-      }
     },
   },
 };

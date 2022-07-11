@@ -18,30 +18,49 @@
       showOtherNames
       showPhones
       :emailDesc="emailDesc"
-  
       :haveMiddleNameLabel="DoYouString + ' have a middle name?'"
       :havePreferredNameLabel="DoYouString + ' have a preferred name?'"
       :haveOtherNamesLabel="HaveYouString + ' known by any other names?'"
-      
     >
     </entity>
-    <notice class="mb-4" :message="'If you give us a mobile number for the proposed permit holder, we may send them reminders by SMS'" ></notice>
+    <notice
+      v-if="!firstPerson"
+      class="mb-4"
+      :message="'If you give us a mobile number for the proposed permit holder, we may send them reminders by SMS'"
+    ></notice>
+    <notice
+      v-if="firstPerson"
+      class="mb-4"
+      :message="'If you give us a mobile number, we may send you reminders by SMS'"
+    ></notice>
 
-      <b-form-group v-if="!firstPerson" label="Does the proposed permit holder hold a Digital iD™ matching their full legal as provided on this form?">
-      <b-form-radio-group :options="boolOptions" v-model="form.permitHolder.hasDigitalId">
+    <b-form-group
+      v-if="!firstPerson"
+      label="Does the proposed permit holder hold a Digital iD™ matching their full legal as provided on this form?"
+    >
+      <b-form-radio-group
+        :options="boolOptions"
+        v-model="form.permitHolder.hasDigitalId"
+      >
       </b-form-radio-group>
     </b-form-group>
-    <b-form-group v-if="firstPerson" label="Do you hold a Digital iD™ matching your full legal name as provided on this form?">
-      <b-form-radio-group :options="boolOptions" v-model="form.permitHolder.hasDigitalId">
+    <b-form-group
+      v-if="firstPerson"
+      label="Do you hold a Digital iD™ matching your full legal name as provided on this form?"
+    >
+      <b-form-radio-group
+        :options="boolOptions"
+        v-model="form.permitHolder.hasDigitalId"
+      >
       </b-form-radio-group>
     </b-form-group>
-     <notice
-     v-if="form.permitHolder.hasDigitalId === false && !firstPerson"
+    <notice
+      v-if="form.permitHolder.hasDigitalId === false && !firstPerson"
       class="mb-3"
       :message="'Please contact FWC.'"
     ></notice>
- <notice
-     v-if="form.permitHolder.hasDigitalId === false && firstPerson"
+    <notice
+      v-if="form.permitHolder.hasDigitalId === false && firstPerson"
       class="mb-3"
       :message="'You will require a Digital iD™ that matches your full legal name provided above before this application can be lodged'"
     ></notice>
@@ -116,10 +135,14 @@
     </b-form-group>
     <b-form-group
       label="Please provide a statutory Declaration (optional)"
-     
-      v-if="form.permitHolder.previousPermitReturned === true && form.permitHolder.previousPermitReturnedOnTime === false"
+      v-if="
+        form.permitHolder.previousPermitReturned === true &&
+        form.permitHolder.previousPermitReturnedOnTime === false
+      "
     >
-      <b-form-file  v-model="form.permitHolder.previousPermitStatDecFile"></b-form-file>
+      <b-form-file
+        v-model="form.permitHolder.previousPermitStatDecFile"
+      ></b-form-file>
     </b-form-group>
   </div>
 </template>
@@ -139,63 +162,12 @@ export default {
   },
   data() {
     return {
-      numberOfEmployeesOptionsUnder: [
-        {
-          text: "1 to 4 employees ",
-          value: "4",
-        },
-        {
-          text: "5 to 9  employees ",
-          value: "10",
-        },
-        {
-          text: "10 to 14  employees ",
-          value: "15",
-        },
-        {
-          text: "15 to 19 employees ",
-          value: "20",
-        },
-        {
-          text: "20 to 49 employees",
-          value: "50",
-        },
-        {
-          text: "50 to 99 employees",
-          value: "100",
-        },
-        {
-          text: "100 to 199 employees",
-          value: "200",
-        },
-        {
-          text: "200 to 999 employees",
-          value: "1000",
-        },
-        {
-          text: "over 1000 employees",
-          value: "999999999",
-        },
-      ],
       businessDetailsWereWrong: false,
       showIsBusinessDetailsCorrect: true,
-      repTypeOptions: [
-        { text: "I am the Applicant (submitting for myself)", value: "self" },
-        { text: "I am the Applicant's solicitor", value: "solicitor" },
-        {
-          text: "I am submitting this form on behalf of the Applicant",
-          value: "other",
-        },
-      ],
+
       boolOptions: [
         { text: "Yes", value: true },
         { text: "No", value: false },
-      ],
-      aboriginalityOptions: [
-        { text: "Yes, Aboriginal", value: "aboriginal" },
-        { text: "Yes, Torres Strait Islander", value: "islander" },
-        { text: "Both Aboriginal and Torres Strait Islander", value: "both" },
-        { text: "No", value: "no" },
       ],
     };
   },
@@ -274,7 +246,7 @@ export default {
       if (form.businessDetailsCorrect === false) {
         this.businessDetailsWereWrong = true;
       }
-    }
+    },
   },
 };
 </script>

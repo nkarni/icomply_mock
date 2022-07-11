@@ -124,44 +124,7 @@ export default {
   },
   data() {
     return {
-      numberOfEmployeesOptionsUnder: [
-        {
-          text: "1 to 4 employees ",
-          value: "4",
-        },
-        {
-          text: "5 to 9  employees ",
-          value: "10",
-        },
-        {
-          text: "10 to 14  employees ",
-          value: "15",
-        },
-        {
-          text: "15 to 19 employees ",
-          value: "20",
-        },
-        {
-          text: "20 to 49 employees",
-          value: "50",
-        },
-        {
-          text: "50 to 99 employees",
-          value: "100",
-        },
-        {
-          text: "100 to 199 employees",
-          value: "200",
-        },
-        {
-          text: "200 to 999 employees",
-          value: "1000",
-        },
-        {
-          text: "over 1000 employees",
-          value: "999999999",
-        },
-      ],
+  
       businessDetailsWereWrong: false,
       showIsBusinessDetailsCorrect: true,
       repTypeOptions: [
@@ -176,12 +139,7 @@ export default {
         { text: "Yes", value: true },
         { text: "No", value: false },
       ],
-      aboriginalityOptions: [
-        { text: "Yes, Aboriginal", value: "aboriginal" },
-        { text: "Yes, Torres Strait Islander", value: "islander" },
-        { text: "Both Aboriginal and Torres Strait Islander", value: "both" },
-        { text: "No", value: "no" },
-      ],
+      
     };
   },
   computed: {
@@ -219,37 +177,6 @@ export default {
     onSelectedNewAbn() {
       this.form.businessDetailsCorrect = true;
       this.$bvModal.hide("manual-abn");
-    },
-    onNumDepnedantsChange() {
-      if (this.form.entities.applicant.details.numOfDependants < 0) return;
-      if (
-        this.form.entities.applicant.details.numOfDependants <
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants <
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.pop();
-        }
-      } else if (
-        this.form.entities.applicant.details.numOfDependants >
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants >
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.push({
-            firstName: "",
-            lastName: "",
-            dob: "",
-            relationship: "",
-            stayOvernight: null,
-            involvedInLegalIssue: null,
-          });
-        }
-      }
     },
   },
 };
