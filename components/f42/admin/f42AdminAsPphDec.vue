@@ -1,36 +1,10 @@
 <template>
   <div>
     <b-form>
-      <section class=" mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>Right of entry training</h6>
-          </b-col>
-          <b-col>
-            <b-form-group>
-              <div v-if="form.permitHolder.trainings.length > 0">
-                <div
-                  v-for="(training, index) of form.permitHolder.trainings"
-                  :key="index"
-                  v-bind:id="index"
-                  class="mb-2"
-                >
-                  Name: {{ training.trainingName }}<br />
-                  Method: {{ training.trainingMethod }}<br />Completed on:
-                  {{ training.trainingCompletionDate }}<br />Evidence:
-                  <a target="_blank" href="">Click Here</a>
-                </div>
-              </div>
-
-              <div v-else>No training details provided.</div>
-            </b-form-group>
-          </b-col>
-        </b-row>
-      </section>
-      <section class="border-top border-secondary mb-4 pt-4">
+      <section class=" mb-4 pt-4">
         <b-row>
           <b-col cols="">
-            <h6>Declaration</h6>
+            <h6>Proposed permit holder declaration</h6>
             <label>Answer each question in the declaration below.</label>
 
             <notice
@@ -68,54 +42,9 @@
               :form="form"
               :dec="form.permitHolder.dec"
             ></f-42-holder-dec-comp>
-           
           </b-col>
         </b-row>
       </section>
-        <section  :class="'border-top border-secondary  mb-4 pt-4' + (disableSignature === true ? ' disabled ' : '')">
-        <b-row>
-          <b-col cols="4">
-            <h6>Signature</h6>
-          </b-col>
-          <b-col>
-            <b-row>
-              <b-col cols="6">
-                <b-form-group label="Name">
-                  <b-form-input  v-model="form.permitHolder.dec.signedName">
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col>
-                <b-form-group label="Date">
-                  <b-form-datepicker placeholder=""  v-model="form.permitHolder.dec.signedDate">
-                    </b-form-datepicker>
-                  </b-form-group>
-              </b-col>
-            </b-row>
-          </b-col>
-        </b-row>
-      </section>
- 
-      <section :class="'border-top border-secondary mb-4 pt-4 ' + (disableSignature === true? ' disabled ' : '')" >
-        <b-row>
-          <b-col>
-            <h5>Submit</h5>
-            <p></p>
-
-            <!-- <p v-if="form.permitHolder.confirmInfo === false">
-              The form will be sent to the administrator for review and
-              correction.
-            </p> -->
-            <p >
-              The form will be submitted for verification by the administrator.
-            </p>
-            <b-col class="text-center mt-3">
-              <b-button variant="primary">Submit the form</b-button>
-            </b-col>
-          </b-col>
-        </b-row>
-      </section>
-      
     </b-form>
   </div>
 </template>
@@ -124,10 +53,10 @@
 import entity from "../../common/entity.vue";
 import EntityAddress from "../../common/entityAddress.vue";
 import Notice from "../../common/notice.vue";
-import f42HolderDecComp from "./f42HolderDecComp.vue";
+import f42HolderDecComp from "../pph/f42HolderDecComp.vue";
 export default {
   components: { entity, Notice, EntityAddress, f42HolderDecComp },
-  name: "f42HolderViewSubmit",
+  name: "f42AdminAsPphDec",
   props: {
     form: {
       type: Object,
@@ -171,10 +100,12 @@ export default {
     contactPersonName: function () {
       return this.personToString(this.form.businessDetails.contactPerson);
     },
-     disableSignature: function() {
-        return !(this.form.permitHolder.dec.awareOfMatters === false || this.form.permitHolder.dec.awareOfMattersDetails.length > 2)
-    }
-
+    disableSignature: function () {
+      return !(
+        this.form.permitHolder.dec.awareOfMatters === false ||
+        this.form.permitHolder.dec.awareOfMattersDetails.length > 2
+      );
+    },
   },
   methods: {
     boolToString(val) {
@@ -206,7 +137,6 @@ export default {
       console.log("str", str);
       return str;
     },
- 
   },
 };
 </script>
@@ -215,7 +145,7 @@ export default {
 h6::first-letter {
   text-transform: uppercase;
 }
-.disabled{
-    opacity: 0.4;
+.disabled {
+  opacity: 0.4;
 }
 </style>

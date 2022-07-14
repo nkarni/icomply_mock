@@ -80,6 +80,22 @@
             </b-tab>
 
             <b-tab
+            v-if="form.permitHolder.isSameAsAdmin"
+              :title-link-class="[
+                'laap-title-link',
+                'mb-2',
+                'p-3',
+                { 'laap-nav-item-complete': false },
+              ]"
+            >
+              <template #title>
+                <h5>The proposed permit holder declaration</h5>
+                <!-- <span>Their details</span> -->
+              </template>
+              <f-42-admin-as-pph-dec :form="form"></f-42-admin-as-pph-dec>
+            </b-tab>
+
+            <b-tab
               :title-link-class="[
                 'laap-title-link',
                 'mb-2',
@@ -484,7 +500,7 @@
                       form).
                     </li>
                     <li>
-                      note: if admin is also the comm member, then steps 4 & 5
+                      note: if admin is also the comm member, then steps 4 & 5 ADMIN STILL NEEDS TO FILL IN DECLARATION
                       are skipped and the form is submitted to FWC (caseHQ)
                     </li>
                   </ul>
@@ -671,6 +687,8 @@ import F3OtherInfo from "../components/f3/f3OtherInfo.vue";
 import F3Review from "../components/f3/f3Review.vue";
 import F3files from "../components/f3/f3files.vue";
 import f42AdminMemberReviewSubmit from "../components/f42/adminMemberReview/f42AdminMemberReviewSubmit.vue";
+import f42AdminAsPphDecVue from "../components/f42/admin/f42AdminAsPphDec.vue";
+
 
 export default {
   components: {
@@ -697,7 +715,8 @@ export default {
     F3Review,
     F3files,
     f42AdminPphReviewSubmit,
-    f42AdminMemberReviewSubmit
+    f42AdminMemberReviewSubmit,
+    f42AdminAsPphDecVue
   },
   layout: "form",
   data() {
@@ -822,8 +841,8 @@ export default {
           ],
           phones: [
             {
-              number: "0432123123",
-              type: "mobile",
+              number: "",
+              type: "",
             },
           ],
           dec: {
@@ -861,6 +880,7 @@ export default {
   mounted: function () {},
   methods: {},
   watch: {
+    // COPY DATA ENTERED BY ADMIN FROM THE PPH/MEMBER TO admin.permitHolderDataEnteredByAdmin
     // DEV NOTE: FOR THE REAL FORM DO NOT USE WATCH, DO THIS OR SIMILAR CHECK WHEN A TAB IS SUBMITTED OR MAKE THE ADMIN PAGES SAVE TO permitHolderDataEnteredByAdmin ETC. Talk to me about it :) ...
     tabIndex(newValue, oldValue) {
       if (oldValue === 2 && this.form.userRole === "admin") {

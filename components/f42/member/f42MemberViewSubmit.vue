@@ -55,7 +55,7 @@
             </p>
 
             
-            <f-42-member-dec :form="form" :dec="form.committeeMember.dec"></f-42-member-dec>
+            <f-42-member-dec-comp :form="form" :dec="form.committeeMember.dec"></f-42-member-dec-comp>
             <div v-if="form.committeeMember.dec.beenDisqualified === false || form.committeeMember.dec.beenDisqualifiedDetails.length > 2">
              <notice class="mb-2"
               :message="'The Commission can take into account any other matter that it considers relevant to whether the proposed permit holder is a fit and proper person to hold a permit. This may include adverse comments made about the proposed permit holder in a Commission or court decision, regardless of whether the proposed permit holder was a party to the proceeding.'">
@@ -135,9 +135,9 @@
 import entity from "../../common/entity.vue";
 import EntityAddress from "../../common/entityAddress.vue";
 import Notice from "../../common/notice.vue";
-import f42MemberDec from "../common/f42MemberDec.vue";
+import f42MemberDecComp from "./f42MemberDecComp.vue";
 export default {
-  components: { entity, Notice, EntityAddress, f42MemberDec },
+  components: { entity, Notice, EntityAddress, f42MemberDecComp },
   name: "f42MemberViewSubmit",
   props: {
     form: {
