@@ -1,30 +1,44 @@
 <template>
- <div>
-  <b-row v-if="fulWidthLabel" class="mb-4">
-    <b-col cols="12">
-      <div class="mb-2" v-html="label"></div>
-
-<div class="font-italic" v-html="value"></div>
-     
-    </b-col>
-   
-  </b-row>
-    <b-row
-    v-else
-      :class="rowClass"
-    >
+  <div>
+    <b-row v-if="fulWidthLabel" class="mb-4">
+      <b-col cols="12">
+        <div class="mb-2" v-html="label"></div>
+        <div class="font-italic" v-html="value"></div>
+      </b-col>
+    </b-row>
+    <b-row v-else :class="rowClass">
       <b-col cols="4">
         <label>{{ label }}</label>
       </b-col>
       <b-col cols="8" v-html="value"> </b-col>
     </b-row>
+      <!-- <div :class="borderClass + ' notice p-2'" v-html="message"></div> -->
+
+<div class="mb-4 notice  p-2"  v-if="mismatchDetected">
+<b-row>
+  <b-col class="redtext">
+    {{misMatchMessage}}
+  </b-col>
+</b-row>
+<b-row class="redtext"  >
+    <b-col cols="4">
+        <label>{{ label }}</label>
+      </b-col>
+      <b-col >
+        <div  v-html="compareTo"></div>
+       
+        <!-- <Notice borderClass="red" :message="misMatchMessage + '<br>' + label + (compareTo.length > 30 ? '<br>': ' ') + compareTo"> </Notice> -->
+      </b-col>
+    </b-row>
+</div>
+    
   </div>
 </template>
 
 <script>
+import Notice from "../laap/notice.vue";
 
 export default {
-
   name: "reviewItem",
   props: {
     form: {
@@ -35,21 +49,29 @@ export default {
       type: Object,
       default: () => ({}),
     },
-     label: {
+    label: {
       type: String,
-      default: () => (''),
+      default: () => "",
     },
-     value: {
+    value: {
       type: String,
-      default: () => (''),
+      default: () => "",
     },
-     rowClass: {
+    rowClass: {
       type: String,
-      default: () => ('mb-2'),
+      default: () => "mb-2",
     },
-     fulWidthLabel: {
+    fulWidthLabel: {
       type: Boolean,
-      default: () => (false),
+      default: () => false,
+    },
+    compareTo: {
+      type: String,
+      default: () => "",
+    },
+    misMatchMessage: {
+      type: String,
+      default: () => "You have entered: ",
     },
   },
   data() {
@@ -61,6 +83,14 @@ export default {
     };
   },
   computed: {
+    mismatchDetected() {
+      if (this.compareTo !== "") {
+        if (this.value !== this.compareTo) {
+          return true;
+        }
+      }
+      return null;
+    },
     youString: function () {
       return this.form.repType === "self" ? "you" : "the Applicant";
     },
@@ -112,8 +142,17 @@ export default {
       this.court.othersCharged.splice(i, 1);
     },
   },
+  components: { Notice },
 };
 </script>
 
 <style lang="scss" scoped >
+.notice{
+  background: var(--grey-100) !important;
+  color: var(--primaryDark) !important;
+  border-left: 4px red solid;
+}
+.redtext{
+  color: red;
+}
 </style>

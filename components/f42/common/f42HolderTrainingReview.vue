@@ -13,7 +13,26 @@
       <review-item :rowClass="'mb-0'" :label="'Evidence:'" value="<a >Click Here</a>"></review-item>
 
     </div>
+
+    <div v-if="mismatchDetected"  class="mb-4 notice  p-2">
+      <div
+          v-for="(training, index) of form.permitHolder.trainings"
+          :key="index"
+          v-bind:id="index"
+          class="mb-4 redtext"
+        >
+          <strong v-if="form.admin.permitHolderDataEnteredByAdmin.trainings.length > 1">Training {{index + 1}}:</strong>
+          <review-item :rowClass="'mb-0'" :label="'Name:'" :value="training.trainingName"></review-item>
+          <review-item :rowClass="'mb-0'" :label="'Method:'" :value="training.trainingMethod"></review-item>
+          <review-item :rowClass="'mb-0'" :label="'Completed on:'" :value="training.trainingCompletionDate"></review-item>
+          <review-item :rowClass="'mb-0'" :label="'Evidence:'" value="<a >Click Here</a>"></review-item>
+
+        </div>
+    
+    </div>
+
   </div>
+
 </template>
 
 <script>
@@ -29,6 +48,14 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    compareToAdminEntered: {
+      type: Boolean,
+      default: () => (false),
+    },
+    misMatchMessage: {
+      type: String,
+      default: () => "You have entered: ",
+    },
   },
   data() {
     return {
@@ -42,6 +69,16 @@ export default {
     };
   },
   computed: {
+     mismatchDetected() {
+      // CURRENTLY WE DO NOT ALLOW PPH TO EDIT THEIR TRAINING, ONLY ADMIN
+      if (this.compareToAdminEntered ) {
+        if (this.form.permitHolder.trainings !== this.form.admin.permitHolderDataEnteredByAdmin.trainings) {
+          return true;
+        }
+      }
+      return null;
+    },
+
     employeeOrOfficeHolderLabel: function () {
       if (this.form.userRole === "permitHolder") {
         return "What is your role in ths organisation?";
@@ -172,5 +209,13 @@ export default {
 <style lang="scss" scoped>
 h6::first-letter {
   text-transform: uppercase;
+}
+.notice{
+  background: var(--grey-100) !important;
+  color: var(--primaryDark) !important;
+  border-left: 4px red solid;
+}
+.redtext{
+  color: red;
 }
 </style>

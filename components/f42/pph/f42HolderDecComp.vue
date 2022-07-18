@@ -16,223 +16,220 @@
     </b-row>
 
     <Transition>
-    <b-row  :class="disableConvictedIndustrialLaw ? 'disabled' : ''" >
-      <b-col class="numberCol"> b. </b-col>
-      <b-col class="pl-1">
-        <b-form-group
-          :label="
-            haveYouStr +
-            ' ever been convicted of an offence against an industrial law?'
-          "
-        >
-          <b-form-radio-group
-            :disabled="disableConvictedIndustrialLaw"
-            v-model="dec.convictedIndustrialLaw"
-            :options="boolOptions"
-          ></b-form-radio-group>
-        </b-form-group>
+      <b-row :class="disableConvictedIndustrialLaw ? 'disabled' : ''">
+        <b-col class="numberCol"> b. </b-col>
+        <b-col class="pl-1">
+          <b-form-group
+            :label="
+              haveYouStr +
+              ' ever been convicted of an offence against an industrial law?'
+            "
+          >
+            <b-form-radio-group
+              :disabled="disableConvictedIndustrialLaw"
+              v-model="dec.convictedIndustrialLaw"
+              :options="boolOptions"
+            ></b-form-radio-group>
+          </b-form-group>
 
-        <b-form-group
-          label="Please provide details"
-          v-if="dec.convictedIndustrialLaw === true"
-        >
-          <b-form-textarea
-            :disabled="readOnly"
-            v-model="dec.convictedIndustrialLawDetails"
-          ></b-form-textarea>
-        </b-form-group>
-      </b-col>
-    </b-row>
-</Transition>
-
-
-  
-<Transition>
-    <b-row :class="disableConvictedOther ? 'disabled' : ''">
-      <b-col class="numberCol"> c. </b-col>
-      <b-col class="pl-1">
-        <b-form-group>
-          <label>
-            {{ haveYouStr }} ever been convicted of an offence against a law of
-            the Commonwealth, a State, a Territory or a foreign country,
-            involving: <br />(i) entry onto premises; or <br />(ii) fraud or
-            dishonesty; or <br />(iii) intentional use of violence against
-            another person or intentional damage or destruction of property?
-          </label>
-
-          <b-form-radio-group
-            :disabled="disableConvictedOther"
-            v-model="dec.convictedOther"
-            :options="boolOptions"
-          ></b-form-radio-group>
-        </b-form-group>
-
-        <b-form-group
-          label="Please provide details"
-          v-if="dec.convictedOther === true"
-        >
-          <b-form-textarea
-            :disabled="readOnly"
-            v-model="dec.convictedOtherDetails"
-          ></b-form-textarea>
-        </b-form-group>
-      </b-col>
-    </b-row>
+          <b-form-group
+            label="Please provide details"
+            v-if="dec.convictedIndustrialLaw === true"
+          >
+            <b-form-textarea
+              :disabled="readOnly"
+              v-model="dec.convictedIndustrialLawDetails"
+            ></b-form-textarea>
+          </b-form-group>
+        </b-col>
+      </b-row>
     </Transition>
 
-<Transition>
-    <b-row :class="disableOrderedToPay ? 'disabled' : ''" >
-      <b-col class="numberCol"> d. </b-col>
-      <b-col class="pl-1">
-        <b-form-group
-          :label="
-            haveYouStr +
-            ', or any other person (which includes a union), ever been ordered to pay a penalty under the Fair Work Act 2009 or any other industrial law in relation to action taken by ' +
-            youStr +
-            '?'
-          "
-        >
-          <b-form-radio-group
-            :disabled="disableOrderedToPay"
-            v-model="dec.orderedToPay"
-            :options="boolOptions"
-          ></b-form-radio-group>
-        </b-form-group>
+    <Transition>
+      <b-row :class="disableConvictedOther ? 'disabled' : ''">
+        <b-col class="numberCol"> c. </b-col>
+        <b-col class="pl-1">
+          <b-form-group>
+            <label>
+              {{ haveYouStr }} ever been convicted of an offence against a law
+              of the Commonwealth, a State, a Territory or a foreign country,
+              involving: <br />(i) entry onto premises; or <br />(ii) fraud or
+              dishonesty; or <br />(iii) intentional use of violence against
+              another person or intentional damage or destruction of property?
+            </label>
 
-        <b-form-group
-          label="Please provide details"
-          v-if="dec.orderedToPay === true"
-        >
-          <b-form-textarea
-            :disabled="readOnly"
-            v-model="dec.orderedToPayDetails"
-          ></b-form-textarea>
-        </b-form-group>
-      </b-col>
-    </b-row>
-</Transition>
-<Transition>
-    <b-row :class="disableHadRevoked ? 'disabled' : ''">
-      <b-col class="numberCol"> e. </b-col>
-      <b-col class="pl-1">
-        <b-form-group
-          :label="
-            haveYouStr +
-            ' had revoked, suspended or made subject to conditions, any permit issued under Part 3 4 of the Fair Work Act 2009 or a similar law of the Commonwealth (no matter when in force)?'
-          "
-        >
-          <b-form-radio-group
-            :disabled="disableHadRevoked"
-            v-model="dec.hadRevoked"
-            :options="boolOptions"
-          ></b-form-radio-group>
-        </b-form-group>
+            <b-form-radio-group
+              :disabled="disableConvictedOther"
+              v-model="dec.convictedOther"
+              :options="boolOptions"
+            ></b-form-radio-group>
+          </b-form-group>
 
-        <b-form-group
-          label="Please provide details"
-          v-if="dec.hadRevoked === true"
-        >
-          <b-form-textarea
-            :disabled="readOnly"
-            v-model="dec.hadRevokedDetails"
-          ></b-form-textarea>
-        </b-form-group>
-      </b-col>
-    </b-row>
-</Transition>
+          <b-form-group
+            label="Please provide details"
+            v-if="dec.convictedOther === true"
+          >
+            <b-form-textarea
+              :disabled="readOnly"
+              v-model="dec.convictedOtherDetails"
+            ></b-form-textarea>
+          </b-form-group>
+        </b-col>
+      </b-row>
+    </Transition>
 
-<Transition>
-    <b-row :class="disableHadConditionsImposed ? 'disabled' : ''" >
-      <b-col class="numberCol"> f. </b-col>
-      <b-col class="pl-1">
-        <b-form-group
-          :label="
-            haveYouStr +
-            ' had cancelled or suspended or had conditions imposed on a right of entry for industrial or occupational health and safety (OHS) purposes, by any court, or other person or body, under a State or Territory industrial law or a State or Territory OHS law?'
-          "
-        >
-          <b-form-radio-group
-            :disabled="disableHadConditionsImposed"
-            v-model="dec.hadConditionsImposed"
-            :options="boolOptions"
-          ></b-form-radio-group>
-        </b-form-group>
+    <Transition>
+      <b-row :class="disableOrderedToPay ? 'disabled' : ''">
+        <b-col class="numberCol"> d. </b-col>
+        <b-col class="pl-1">
+          <b-form-group
+            :label="
+              haveYouStr +
+              ', or any other person (which includes a union), ever been ordered to pay a penalty under the Fair Work Act 2009 or any other industrial law in relation to action taken by ' +
+              youStr +
+              '?'
+            "
+          >
+            <b-form-radio-group
+              :disabled="disableOrderedToPay"
+              v-model="dec.orderedToPay"
+              :options="boolOptions"
+            ></b-form-radio-group>
+          </b-form-group>
 
-        <b-form-group
-          label="Please provide details"
-          v-if="dec.hadConditionsImposed === true"
-        >
-          <b-form-textarea
-            :disabled="readOnly"
-            v-model="dec.hadConditionsImposedDetails"
-          ></b-form-textarea>
-        </b-form-group>
-      </b-col>
-    </b-row>
-</Transition>
+          <b-form-group
+            label="Please provide details"
+            v-if="dec.orderedToPay === true"
+          >
+            <b-form-textarea
+              :disabled="readOnly"
+              v-model="dec.orderedToPayDetails"
+            ></b-form-textarea>
+          </b-form-group>
+        </b-col>
+      </b-row>
+    </Transition>
+    <Transition>
+      <b-row :class="disableHadRevoked ? 'disabled' : ''">
+        <b-col class="numberCol"> e. </b-col>
+        <b-col class="pl-1">
+          <b-form-group
+            :label="
+              haveYouStr +
+              ' had revoked, suspended or made subject to conditions, any permit issued under Part 3 4 of the Fair Work Act 2009 or a similar law of the Commonwealth (no matter when in force)?'
+            "
+          >
+            <b-form-radio-group
+              :disabled="disableHadRevoked"
+              v-model="dec.hadRevoked"
+              :options="boolOptions"
+            ></b-form-radio-group>
+          </b-form-group>
 
-<Transition>
-    <b-row :class="disableBeenDisqualified ? 'disabled' : ''" >
-      <b-col class="numberCol"> g. </b-col>
-      <b-col class="pl-1">
-        <b-form-group
-          :label="
-            haveYouStr +
-            ' been disqualified, by any court, or other person or body, under a State or Territory industrial law or a State or Territory OHS law, from exercising, or applying for, a right of entry for industrial or OHS purposes under that law?'
-          "
-        >
-          <b-form-radio-group
-            :disabled="disableBeenDisqualified"
-            v-model="dec.beenDisqualified"
-            :options="boolOptions"
-          ></b-form-radio-group>
-        </b-form-group>
+          <b-form-group
+            label="Please provide details"
+            v-if="dec.hadRevoked === true"
+          >
+            <b-form-textarea
+              :disabled="readOnly"
+              v-model="dec.hadRevokedDetails"
+            ></b-form-textarea>
+          </b-form-group>
+        </b-col>
+      </b-row>
+    </Transition>
 
-        <b-form-group
-          label="Please provide details"
-          v-if="dec.beenDisqualified === true"
-        >
-          <b-form-textarea
-            :disabled="readOnly"
-            v-model="dec.beenDisqualifiedDetails"
-          ></b-form-textarea>
-        </b-form-group>
-      </b-col>
-    </b-row>
-</Transition>
+    <Transition>
+      <b-row :class="disableHadConditionsImposed ? 'disabled' : ''">
+        <b-col class="numberCol"> f. </b-col>
+        <b-col class="pl-1">
+          <b-form-group
+            :label="
+              haveYouStr +
+              ' had cancelled or suspended or had conditions imposed on a right of entry for industrial or occupational health and safety (OHS) purposes, by any court, or other person or body, under a State or Territory industrial law or a State or Territory OHS law?'
+            "
+          >
+            <b-form-radio-group
+              :disabled="disableHadConditionsImposed"
+              v-model="dec.hadConditionsImposed"
+              :options="boolOptions"
+            ></b-form-radio-group>
+          </b-form-group>
 
-<Transition>
-    <b-row :class="disableAwareOfMatters ? 'disabled' : ''" >
-      <b-col class="numberCol"> h. </b-col>
-      <b-col class="pl-1"> 
-       <b-form-group
-              :label="'Are you aware of any other matters that may be relevant to whether you are a fit and proper person to hold a permit?'"
-            >
-              <b-form-radio-group
+          <b-form-group
+            label="Please provide details"
+            v-if="dec.hadConditionsImposed === true"
+          >
+            <b-form-textarea
+              :disabled="readOnly"
+              v-model="dec.hadConditionsImposedDetails"
+            ></b-form-textarea>
+          </b-form-group>
+        </b-col>
+      </b-row>
+    </Transition>
+
+    <Transition>
+      <b-row :class="disableBeenDisqualified ? 'disabled' : ''">
+        <b-col class="numberCol"> g. </b-col>
+        <b-col class="pl-1">
+          <b-form-group
+            :label="
+              haveYouStr +
+              ' been disqualified, by any court, or other person or body, under a State or Territory industrial law or a State or Territory OHS law, from exercising, or applying for, a right of entry for industrial or OHS purposes under that law?'
+            "
+          >
+            <b-form-radio-group
+              :disabled="disableBeenDisqualified"
+              v-model="dec.beenDisqualified"
+              :options="boolOptions"
+            ></b-form-radio-group>
+          </b-form-group>
+
+          <b-form-group
+            label="Please provide details"
+            v-if="dec.beenDisqualified === true"
+          >
+            <b-form-textarea
+              :disabled="readOnly"
+              v-model="dec.beenDisqualifiedDetails"
+            ></b-form-textarea>
+          </b-form-group>
+        </b-col>
+      </b-row>
+    </Transition>
+
+    <Transition>
+      <b-row :class="disableAwareOfMatters ? 'disabled' : ''">
+        <b-col class="numberCol"> h. </b-col>
+        <b-col class="pl-1">
+          <b-form-group
+            :label="'Are you aware of any other matters that may be relevant to whether you are a fit and proper person to hold a permit?'"
+          >
+            <b-form-radio-group
               :readOnly="disableAwareOfMatters"
-                v-model="form.permitHolder.dec.awareOfMatters"
-                :options="boolOptions"
-              >
-              </b-form-radio-group>
-            </b-form-group>
+              v-model="form.permitHolder.dec.awareOfMatters"
+              :options="boolOptions"
+            >
+            </b-form-radio-group>
+          </b-form-group>
 
-            <b-form-group
-              label="Please provide details"
-              v-if="form.permitHolder.dec.awareOfMatters === true"
-            >
-              <b-form-textarea
-                v-model="form.permitHolder.dec.awareOfMattersDetails"
-              ></b-form-textarea>
-            </b-form-group>
-            <notice
-              class=""
-              :message="'The Commission can take into account any other matter that it considers relevant to whether you are a fit and proper person to hold a permit. This may include adverse comments made about you in a Commission or court decision, regardless of whether you were a party to the proceeding.'"
-            >
-            </notice>
-            </b-col>
-    </b-row>
-</Transition>
-   
+          <b-form-group
+            label="Please provide details"
+            v-if="form.permitHolder.dec.awareOfMatters === true"
+          >
+            <b-form-textarea
+              v-model="form.permitHolder.dec.awareOfMattersDetails"
+            ></b-form-textarea>
+          </b-form-group>
+          <notice
+            class=""
+            :message="'The Commission can take into account any other matter that it considers relevant to whether you are a fit and proper person to hold a permit. This may include adverse comments made about you in a Commission or court decision, regardless of whether you were a party to the proceeding.'"
+          >
+          </notice>
+        </b-col>
+      </b-row>
+    </Transition>
   </div>
 </template>
 
@@ -260,14 +257,14 @@ export default {
   data() {
     return {
       decItems: [
-        'didAboveTraining',
-        'convictedIndustrialLaw',
-        'convictedOther',
-        'orderedToPay',
-        'hadRevoked',
-        'hadConditionsImposed',
-        'beenDisqualified',
-        'awareOfMatters'
+        "didAboveTraining",
+        "convictedIndustrialLaw",
+        "convictedOther",
+        "orderedToPay",
+        "hadRevoked",
+        "hadConditionsImposed",
+        "beenDisqualified",
+        "awareOfMatters",
       ],
       businessDetailsWereWrong: false,
       showIsBusinessDetailsCorrect: true,
@@ -311,27 +308,44 @@ export default {
         return "The proposed permit holder";
       }
     },
-    disableConvictedIndustrialLaw: function() {
-        return this.dec.didAboveTraining === null
+    disableConvictedIndustrialLaw: function () {
+      return this.dec.didAboveTraining === null;
     },
-     disableConvictedOther: function() {
-        return !(this.dec.convictedIndustrialLaw === false || this.dec.convictedIndustrialLawDetails.length > 2)
+    disableConvictedOther: function () {
+      return !(
+        this.dec.convictedIndustrialLaw === false ||
+        this.dec.convictedIndustrialLawDetails.length > 2
+      );
     },
-     disableOrderedToPay: function() {
-        return !(this.dec.convictedOther === false || this.dec.convictedOtherDetails.length > 2)
+    disableOrderedToPay: function () {
+      return !(
+        this.dec.convictedOther === false ||
+        this.dec.convictedOtherDetails.length > 2
+      );
     },
-    disableHadRevoked: function() {
-        return !(this.dec.orderedToPay === false || this.dec.orderedToPayDetails.length > 2)
+    disableHadRevoked: function () {
+      return !(
+        this.dec.orderedToPay === false ||
+        this.dec.orderedToPayDetails.length > 2
+      );
     },
-    disableHadConditionsImposed: function() {
-        return !(this.dec.hadRevoked === false || this.dec.hadRevokedDetails.length > 2)
+    disableHadConditionsImposed: function () {
+      return !(
+        this.dec.hadRevoked === false || this.dec.hadRevokedDetails.length > 2
+      );
     },
-     disableBeenDisqualified: function() {
-        return !(this.dec.hadConditionsImposed === false || this.dec.hadConditionsImposedDetails.length > 2)
+    disableBeenDisqualified: function () {
+      return !(
+        this.dec.hadConditionsImposed === false ||
+        this.dec.hadConditionsImposedDetails.length > 2
+      );
     },
-       disableAwareOfMatters: function() {
-        return !(this.dec.beenDisqualified === false || this.dec.beenDisqualifiedDetails.length > 2)
-    }
+    disableAwareOfMatters: function () {
+      return !(
+        this.dec.beenDisqualified === false ||
+        this.dec.beenDisqualifiedDetails.length > 2
+      );
+    },
   },
   methods: {
     onWrongBusinessNameClick() {
@@ -356,10 +370,11 @@ h6::first-letter {
   transition: opacity 2.5s ease !important;
 }
 
-.v-enter-from, .v-leave-to {
+.v-enter-from,
+.v-leave-to {
   opacity: 0;
 }
-.disabled{
-    opacity: 0.4;
+.disabled {
+  opacity: 0.4;
 }
 </style>

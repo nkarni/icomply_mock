@@ -42,9 +42,13 @@
               :form="form"
               :dec="form.permitHolder.dec"
             ></f-42-holder-dec-comp>
+           
           </b-col>
         </b-row>
       </section>
+      <section :class="'border-top border-secondary mb-4 pt-4 ' + (disableSignature ? 'disabled' : '')">    
+       <f42-signature-vue  :form="form" :signature="form.permitHolder.dec.signature"></f42-signature-vue>
+       </section>
     </b-form>
   </div>
 </template>
@@ -54,8 +58,9 @@ import entity from "../../common/entity.vue";
 import EntityAddress from "../../common/entityAddress.vue";
 import Notice from "../../common/notice.vue";
 import f42HolderDecComp from "../pph/f42HolderDecComp.vue";
+import f42SignatureVue from "../common/f42Signature.vue";
 export default {
-  components: { entity, Notice, EntityAddress, f42HolderDecComp },
+  components: { entity, Notice, EntityAddress, f42HolderDecComp, f42SignatureVue },
   name: "f42AdminAsPphDec",
   props: {
     form: {

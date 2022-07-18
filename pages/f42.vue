@@ -750,8 +750,90 @@ export default {
           ],
           hasHolderTrainingInfo: null,
           hasHolderPhoto: null,
-          permitHolderDataEnteredByAdmin: {},
+          permitHolderDataEnteredByAdmin: {
+  
+          isSameAsAdmin: false,
+          hasDigitalId: null,
+          infoCorrection: "",
+          confirmInfo: null,
+          firstName: "",
+          middleName: "",
+          lastName: "",
+          preferredName: "",
+          hasOtherNames: null,
+          hasPreferredName: null,
+          otherNames: [
+            {
+              firstName: "",
+              lastName: "",
+            },
+          ],
+          hasOtherNames: null,
+          email: "",
+          phones: [
+            {
+              number: "",
+              type: "",
+            },
+          ],
+          mobilePhone: "",
+          employeeOrOfficeHolder: null,
+          positionOrOfficeHeld: "",
+          previouslyHeldAnEntryPermit: null,
+          previousPermitReturned: null,
+          previousPermitNumber: "",
+          previousPermitNotReturnedReason: "",
+          previousPermitReturnedOnTime: null,
+          previousPermitStatDecFile: "",
+          photoFile: null,
+          trainings: [
+            {
+              trainingName: "",
+              trainingMethod: "",
+              trainingCompletionDate: "",
+              trainingFile: null,
+              trainingNameDetails: "",
+            },
+          ],
+          adminPhotoIsCorrect: null,
+          correctPhoto2: null,
+          confirmDetails: null,
+          dec: {
+            didAboveTraining: null,
+            convictedIndustrialLaw: null,
+            convictedIndustrialLawDetails: "",
+            convictedOther: null,
+            convictedOtherDetails: "",
+            orderedToPay: null,
+            orderedToPayDetails: "",
+            hadRevoked: null,
+            hadRevokedDetails: "",
+            hadConditionsImposed: null,
+            hadConditionsImposedDetails: "",
+            beenDisqualified: null,
+            beenDisqualifiedDetails: "",
+            awareOfMatters: null,
+            awareOfMattersDetails: "",
+            signedName: "",
+            signedDate: "",
+            beenDisqualified: null,
+            beenDisqualifiedDetails: "",
+            signature: {
+              name: '',
+              date: ''
+            }
+          },
+          confirmPhotoSignatureDeclaration: false,
+        },
+
+   
           memberDataEnteredByAdmin: {},
+          dec: {
+            signature: {
+              name: '',
+              date: ''
+            }
+          }
         },
         permitHolder: {
           isSameAsAdmin: false,
@@ -820,6 +902,10 @@ export default {
             signedDate: "",
             beenDisqualified: null,
             beenDisqualifiedDetails: "",
+            signature: {
+              name: '',
+              date: ''
+            }
           },
           confirmPhotoSignatureDeclaration: false,
         },
@@ -864,6 +950,10 @@ export default {
             viewedDocs: "",
             signedName: "",
             signedDate: "",
+            signature: {
+              name: '',
+              date: ''
+            }
           },
         },
 
@@ -883,10 +973,10 @@ export default {
     // COPY DATA ENTERED BY ADMIN FROM THE PPH/MEMBER TO admin.permitHolderDataEnteredByAdmin
     // DEV NOTE: FOR THE REAL FORM DO NOT USE WATCH, DO THIS OR SIMILAR CHECK WHEN A TAB IS SUBMITTED OR MAKE THE ADMIN PAGES SAVE TO permitHolderDataEnteredByAdmin ETC. Talk to me about it :) ...
     tabIndex(newValue, oldValue) {
-      if (oldValue === 2 && this.form.userRole === "admin") {
+      if (oldValue === 2 && this.form.userRole === "admin" && this.form.userRolePhase === "") {
         this.form.admin.permitHolderDataEnteredByAdmin = JSON.parse(JSON.stringify(this.form.permitHolder));
       }
-      if (oldValue === 3 && this.form.userRole === "admin") {
+      if (oldValue === 3 && this.form.userRole === "admin" && this.form.userRolePhase === "") {
         this.form.admin.memberDataEnteredByAdmin = JSON.parse(JSON.stringify(this.form.committeeMember));
       }
     },

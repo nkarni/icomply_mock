@@ -105,17 +105,14 @@
                                 statement is made recklessly - see Part 7.4, s.136 and s.137.1 of the Criminal Code.</p>"
               ></notice>
             </div>
-            <b-form-group>
-              <b-form-checkbox
-                v-model="form.permitHolder.confirmPhotoSignatureDeclaration"
-                :value="true"
-                :unchecked-value="false"
-              >
-                I Confirm
-              </b-form-checkbox>
-            </b-form-group>
           </b-col>
         </b-row>
+      </section>
+      <section :class="'border-top border-secondary mb-4 pt-4 '">
+        <f42-signature
+          :form="form"
+          :signature="form.permitHolder.dec.signature"
+        ></f42-signature>
       </section>
     </b-form>
   </div>

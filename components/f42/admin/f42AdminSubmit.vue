@@ -16,11 +16,7 @@
         <!-- <notice :message="'mockup notice: HC means hard coded, it will be dynamic and show provided info in the final build. Similarly, the link to the relevant tab for editing will be activated in the final build.'"></notice> -->
       </section>
 
-     
-
-      
-
-      <section  class="border-bottom border-secondary mb-4 pb-2">
+      <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>
@@ -37,49 +33,50 @@
             </h6>
           </b-col>
           <b-col cols="8">
-
             <div v-if="!form.permitHolder.isSameAsAdmin">
-            
-             <review-item
-              :label="'Name:'"
+              <review-item
+                :label="'Name:'"
+                :value="form.admin.firstName + ' ' + form.admin.lastName"
+              ></review-item>
+
+              <review-item
+                :label="'Email:'"
+                :value="form.admin.email"
+              ></review-item>
+
+              <review-item
+                :label="'Phone(s):'"
+                :value="phoneToString(form.admin.phones)"
+              ></review-item>
+            </div>
+
+            <review-item
+              :label="'Organisation details:'"
               :value="
-                form.admin.firstName + ' ' + form.admin.lastName
+                form.businessDetails.name +
+                ' ' +
+                form.businessDetails.address +
+                ' ' +
+                form.businessDetails.town +
+                ' ' +
+                form.businessDetails.state
               "
             ></review-item>
 
             <review-item
-              :label="'Email:'"
-              :value="form.admin.email"
-            ></review-item>
-
-            <review-item
-              :label="'Phone(s):'"
-              :value="phoneToString(form.admin.phones)"
-            ></review-item>
-
-            
-            </div>
-
-        
-          
-           
-            <review-item
-              :label="'Organisation details:'"
-              :value="form.businessDetails.name + ' '  + form.businessDetails.address + ' ' + form.businessDetails.town + ' ' + form.businessDetails.state"
-            ></review-item>
-
-            <review-item
-            v-if="!form.permitHolder.isSameAsAdmin"
+              v-if="!form.permitHolder.isSameAsAdmin"
               :label="'Role/Position:'"
               :value="form.admin.position"
             ></review-item>
 
-              <review-item
+            <review-item
               :label="'Post permit to a different address?'"
-              :value="form.admin.hasDifferentPostalAddress === true ? form.admin.otherAddress : 'No'"
+              :value="
+                form.admin.hasDifferentPostalAddress === true
+                  ? form.admin.otherAddress
+                  : 'No'
+              "
             ></review-item>
-
-           
           </b-col>
         </b-row>
       </section>
@@ -150,30 +147,57 @@
             </h6>
           </b-col>
           <b-col cols="8">
-           
             <f-42-member-details-review
-            v-if="!form.committeeMember.isSameAsAdmin"
+              v-if="!form.committeeMember.isSameAsAdmin"
               :form="form"
               dec="form.permitHolder.dec"
             ></f-42-member-details-review>
-            <div v-else > See Your details section</div>
+            <div v-else>See Your details section</div>
           </b-col>
         </b-row>
       </section>
 
-      <section class="mb-4 pb-2">
+      <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Your declaration</h6>
+          </b-col>
+          <b-col cols="8">
+            <b-form-group>
+              <b-form-checkbox
+                v-model="form.admin.confirmAuthorised"
+                :value="true"
+                :unchecked-value="false"
+              >
+                I am authorised to lodge this application on behalf of the above
+                named Organisation or Branch.
+              </b-form-checkbox>
+            </b-form-group>
+          </b-col>
+        </b-row>
+      </section>
+
+      <f42-signature :signature="form.admin.dec.signature"></f42-signature>
+
+      <section class="border-top border-secondary mt-4 pt-4">
         <b-row>
           <b-col cols="4">
             <h6>Save and Proceed</h6>
-            <p v-if="!form.permitHolder.isSameAsAdmin">Invite the proposed permit holder to verify their information</p>
-            <p v-else>Invite the committee member to verify their information</p>
+            <p v-if="!form.permitHolder.isSameAsAdmin">
+              Invite the proposed permit holder to verify their information
+            </p>
+            <p v-else>
+              Invite the committee member to verify their information
+            </p>
           </b-col>
           <b-col>
             <b-col class="text-center mt-3">
               <b-button variant="primary" v-if="form.permitHolder.isSameAsAdmin"
                 >Invite the committee member</b-button
               >
-              <b-button variant="primary" v-if="!form.permitHolder.isSameAsAdmin"
+              <b-button
+                variant="primary"
+                v-if="!form.permitHolder.isSameAsAdmin"
                 >Invite the proposed permit holder</b-button
               >
             </b-col>
@@ -192,6 +216,7 @@ import reviewItem from "../../common/reviewItem.vue";
 import f42HolderDetailsReview from "../common/f42HolderDetailsReview.vue";
 import f42MemberDetailsReview from "../common/f42MemberDetailsReview.vue";
 import f42HolderTrainingReview from "../common/f42HolderTrainingReview.vue";
+import F42Signature from "../common/f42Signature.vue";
 
 export default {
   components: {
@@ -202,6 +227,7 @@ export default {
     f42HolderDetailsReview,
     f42MemberDetailsReview,
     f42HolderTrainingReview,
+    F42Signature,
   },
   name: "f42AdminSubmit",
   props: {
@@ -247,8 +273,6 @@ export default {
     contactPersonName: function () {
       return this.personToString(this.form.businessDetails.contactPerson);
     },
-
-  
   },
   methods: {
     boolToString(val) {
@@ -257,7 +281,7 @@ export default {
       }
       return "No";
     },
-     phoneToString(phones) {
+    phoneToString(phones) {
       var str = "";
 
       if (phones.length > 0) {

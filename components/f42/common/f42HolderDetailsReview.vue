@@ -9,6 +9,7 @@
       v-if="form.permitHolder.hasMiddleName === false"
       :label="'Name:'"
       :value="form.permitHolder.firstName + ' ' + form.permitHolder.lastName"
+      :compareTo="form.admin.permitHolderDataEnteredByAdmin.firstName + ' ' + form.admin.permitHolderDataEnteredByAdmin.lastName"
     ></review-item>
 
     <review-item
@@ -21,33 +22,43 @@
         ' ' +
         form.permitHolder.lastName
       "
+      :compareTo="form.admin.permitHolderDataEnteredByAdmin.firstName +
+        ' ' +
+        form.admin.permitHolderDataEnteredByAdmin.middleName +
+        ' ' +
+        form.admin.permitHolderDataEnteredByAdmin.lastName"
     ></review-item>
 
     <review-item
       v-if="form.permitHolder.hasPreferredName === true"
       :label="'Preferred name:'"
       :value="form.permitHolder.preferredName"
+      :compareTo="form.admin.permitHolderDataEnteredByAdmin.preferredName"
     ></review-item>
 
     <review-item
       v-if="form.permitHolder.hasOtherNames === true"
       :label="'Other names:'"
       :value="namesToString(form.permitHolder.otherNames)"
+      :compareTo="namesToString(form.admin.permitHolderDataEnteredByAdmin.otherNames)"
     ></review-item>
 
     <review-item
       :label="'Email:'"
       :value="form.permitHolder.email"
+      :compareTo="form.admin.permitHolderDataEnteredByAdmin.email"
     ></review-item>
 
     <review-item
       :label="'Phone(s):'"
       :value="phoneToString(form.permitHolder.phones)"
+      :compareTo="phoneToString(form.admin.permitHolderDataEnteredByAdmin.phones)"
     ></review-item>
 
     <review-item
       :label="'Holds a matching Digital iD™?'"
       :value="boolToString(form.permitHolder.hasDigitalId)"
+      :compareTo="boolToString(form.admin.permitHolderDataEnteredByAdmin.hasDigitalId)"
     ></review-item>
 
     <review-item
@@ -57,6 +68,8 @@
         'An office holder holding the office: ' +
         form.permitHolder.positionOrOfficeHeld
       "
+       :compareTo="'An office holder holding the office: ' +
+        form.admin.permitHolderDataEnteredByAdmin.positionOrOfficeHeld"
     ></review-item>
 
     <review-item
@@ -66,11 +79,16 @@
         'An employee holding the position: ' +
         form.permitHolder.positionOrOfficeHeld
       "
+      :compareTo="
+        'An employee holding the position: ' +
+        form.admin.permitHolderDataEnteredByAdmin.positionOrOfficeHeld
+      "
     ></review-item>
 
     <review-item
       :label="'Previous permit:'"
-      :value="prevPermitToString()"
+      :value="prevPermitToStringPph()"
+      :compareTo="prevPermitToStringAdminEntered()"
     ></review-item>
 
   </div>
@@ -203,7 +221,7 @@ export default {
       }
       return "No";
     },
-    prevPermitToString() {
+    prevPermitToStringPph() {
       if (this.form.permitHolder.previouslyHeldAnEntryPermit === false) {
         return "No previous permit";
       } else {
@@ -221,6 +239,28 @@ export default {
           str +=
             "<br>The permit was not returned for the reason: " +
             this.form.permitHolder.previousPermitNotReturnedReason;
+        }
+        return str;
+      }
+    },
+    prevPermitToStringAdminEntered() {
+      if (this.form.admin.permitHolderDataEnteredByAdmin.previouslyHeldAnEntryPermit === false) {
+        return "No previous permit";
+      } else {
+        let str = "Permit no. " + this.form.admin.permitHolderDataEnteredByAdmin.previousPermitNumber;
+        if (this.form.admin.permitHolderDataEnteredByAdmin.previousPermitReturned === true) {
+          if (this.form.admin.permitHolderDataEnteredByAdmin.previousPermitReturnedOnTime === true) {
+            str += "<br>The permit was returned on time";
+          } else {
+            str += "<br>The permit was returned late";
+            if (this.form.admin.permitHolderDataEnteredByAdmin.previousPermitStatDecFile !== "") {
+              str += "<br>(statutory declaration attached)";
+            }
+          }
+        } else {
+          str +=
+            "<br>The permit was not returned for the reason: " +
+            this.form.admin.permitHolderDataEnteredByAdmin.previousPermitNotReturnedReason;
         }
         return str;
       }

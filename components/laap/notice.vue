@@ -25,7 +25,6 @@ export default {
 
 <style  scoped >
 .notice{
-  
   background: var(--grey-100) !important;
   color: var(--grey-500) !important;
 }

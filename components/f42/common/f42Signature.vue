@@ -1,5 +1,5 @@
 <template>
-  <div>
+  
     <b-row>
           <b-col cols="4">
             <h6>Signature</h6>
@@ -8,20 +8,20 @@
             <b-row>
               <b-col cols="6">
                 <b-form-group label="Name">
-                  <b-form-input  v-model="entity.signedName">
+                  <b-form-input  v-model="signature.name">
                   </b-form-input>
                 </b-form-group>
               </b-col>
               <b-col>
                 <b-form-group label="Date">
-                  <b-form-datepicker placeholder=""  v-model="entity.signedDate">
+                  <b-form-datepicker placeholder=""  v-model="signature.date">
                     </b-form-datepicker>
                   </b-form-group>
               </b-col>
             </b-row>
           </b-col>
         </b-row>
-  </div>
+  
 </template>
 
 <script>
@@ -32,7 +32,7 @@ export default {
       type: Object,
       default: () => ({}),
     },
-    entity: {
+    signature: {
       type: Object,
       default: () => ({}),
     },

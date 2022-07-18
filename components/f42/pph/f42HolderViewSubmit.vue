@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-form>
-      <section class=" mb-4 pb-2">
+      <section class="mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Right of entry training</h6>
@@ -68,35 +68,28 @@
               :form="form"
               :dec="form.permitHolder.dec"
             ></f-42-holder-dec-comp>
-           
           </b-col>
         </b-row>
       </section>
-        <section  :class="'border-top border-secondary  mb-4 pt-4' + (disableSignature === true ? ' disabled ' : '')">
-        <b-row>
-          <b-col cols="4">
-            <h6>Signature</h6>
-          </b-col>
-          <b-col>
-            <b-row>
-              <b-col cols="6">
-                <b-form-group label="Name">
-                  <b-form-input  v-model="form.permitHolder.dec.signedName">
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col>
-                <b-form-group label="Date">
-                  <b-form-datepicker placeholder=""  v-model="form.permitHolder.dec.signedDate">
-                    </b-form-datepicker>
-                  </b-form-group>
-              </b-col>
-            </b-row>
-          </b-col>
-        </b-row>
+
+      <section
+        :class="
+          'border-top border-secondary mb-4 pt-4 ' +
+          (disableSignature ? 'disabled' : '')
+        "
+      >
+        <f42-signature
+          :form="form"
+          :signature="form.permitHolder.dec.signature"
+        ></f42-signature>
       </section>
- 
-      <section :class="'border-top border-secondary mb-4 pt-4 ' + (disableSignature === true? ' disabled ' : '')" >
+
+      <section
+        :class="
+          'border-top border-secondary mb-4 pt-4 ' +
+          (disableSignature === true ? ' disabled ' : '')
+        "
+      >
         <b-row>
           <b-col>
             <h5>Submit</h5>
@@ -106,7 +99,7 @@
               The form will be sent to the administrator for review and
               correction.
             </p> -->
-            <p >
+            <p>
               The form will be submitted for verification by the administrator.
             </p>
             <b-col class="text-center mt-3">
@@ -115,7 +108,6 @@
           </b-col>
         </b-row>
       </section>
-      
     </b-form>
   </div>
 </template>
@@ -125,8 +117,9 @@ import entity from "../../common/entity.vue";
 import EntityAddress from "../../common/entityAddress.vue";
 import Notice from "../../common/notice.vue";
 import f42HolderDecComp from "./f42HolderDecComp.vue";
+import f42Signature from "../common/f42Signature.vue";
 export default {
-  components: { entity, Notice, EntityAddress, f42HolderDecComp },
+  components: { entity, Notice, EntityAddress, f42HolderDecComp, f42Signature },
   name: "f42HolderViewSubmit",
   props: {
     form: {
@@ -171,10 +164,12 @@ export default {
     contactPersonName: function () {
       return this.personToString(this.form.businessDetails.contactPerson);
     },
-     disableSignature: function() {
-        return !(this.form.permitHolder.dec.awareOfMatters === false || this.form.permitHolder.dec.awareOfMattersDetails.length > 2)
-    }
-
+    disableSignature: function () {
+      return !(
+        this.form.permitHolder.dec.awareOfMatters === false ||
+        this.form.permitHolder.dec.awareOfMattersDetails.length > 2
+      );
+    },
   },
   methods: {
     boolToString(val) {
@@ -206,7 +201,6 @@ export default {
       console.log("str", str);
       return str;
     },
- 
   },
 };
 </script>
@@ -215,7 +209,7 @@ export default {
 h6::first-letter {
   text-transform: uppercase;
 }
-.disabled{
-    opacity: 0.4;
+.disabled {
+  opacity: 0.4;
 }
 </style>
