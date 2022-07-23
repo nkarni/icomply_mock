@@ -36,6 +36,9 @@
             <p>
              The applicant gave us these details about the business. Please update them if they are not correct.
             </p>
+            <p>
+             
+            </p>
           </b-col>
           <b-col>
             <div>
@@ -122,14 +125,21 @@
               should be the main contact. Please update any information if
               needed.
             </p> -->
-            <notice
+            <!-- <notice
               message="DEV NOTE: pre-populate contact person details as provided in F2"
               borderClass="none"
               class="mt-2"
             >
-            </notice>
+            </notice> -->
           </b-col>
           <b-col>
+            <Transition>
+              <div class="mb-4 text-right" v-if="form.businessDetails.contactPerson.firstName === '' || form.businessDetails.contactPerson.lastName === '' || form.businessDetails.contactPerson.email === ''">
+              <a href="" @click.prevent="populateContactPerson">Click to populate contact details with my OLS account information</a>
+            </div>
+            </Transition>
+            
+             
             <entity
               :entity="form.businessDetails.contactPerson"
               showPhones
@@ -153,7 +163,7 @@
            <p>Please provide details about this representative if you know them.</p>
           </b-col>
           <b-col>
-            <b-form-group label="Do you have a representative?">
+            <b-form-group label="Do the business have a representative?">
               <b-form-radio-group
                 v-model="form.hasRep"
                 :options="boolOptions"
@@ -179,7 +189,11 @@
                 v-model="form.repTypeDetails"
               ></b-form-input>
             </b-form-group> -->
-
+  <Transition>
+              <div class="mb-4 text-right" v-if="form.rep.firstName === '' || form.rep.lastName === '' || form.rep.email === ''">
+              <a href="" @click.prevent="populateRep">Click to populate contact details with my OLS account information</a>
+            </div>
+            </Transition>
             <entity
               v-if="form.hasRep === true"
               :entity="form.rep"
@@ -414,6 +428,16 @@ export default {
     onManualBusinessEntry() {
       this.manualBusinessEntry = true;
     },
+    populateContactPerson() {
+      this.form.businessDetails.contactPerson.firstName = 'populated firstname'
+      this.form.businessDetails.contactPerson.lastName = 'populated lastname'
+      this.form.businessDetails.contactPerson.email = 'populated email'
+    },
+     populateRep() {
+      this.form.rep.firstName = 'populated firstname'
+      this.form.rep.lastName = 'populated lastname'
+      this.form.rep.email = 'populated email'
+    }
   },
 };
 </script>

@@ -94,7 +94,8 @@
 
       <b-row>
         <b-col class="text-center mt-3">
-          <b-button variant="primary">Create and save a draft of the form</b-button>
+          <b-button variant="outline-primary" @click="alertIt('You will need to return to this page later to submit your response.')">Create and save a draft of the form</b-button>
+ <b-button class="mt-4" variant="primary">Submit the form to the Fair Work Commission</b-button>
         </b-col>
       </b-row>
     </b-form>
@@ -306,6 +307,9 @@ export default {
         return "Yes";
       }
       return "No";
+    },
+    alertIt(msg){
+      alert('You will need to return to this page later to submit your response. (Dev note: in UAT this will be a nicely styled pop up modal)')
     },
     personToString(person) {
       var str;

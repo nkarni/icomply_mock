@@ -304,42 +304,42 @@ export default {
         objections: [
           {
             text: 'The application is out of time (ie lodged more than 21 days after the dismissal took effect)',
-            selected: false,
+            selected: null,
             details: ''
           },
           {
             text: 'The Applicant was not an employee',
-            selected: false,
+            selected: null,
             details: ''
           },
           {
             text: 'The Applicant was not dismissed',
-            selected: false,
+            selected: null,
             details: ''
           },
           {
             text: 'The dismissal was a case of genuine redundancy',
-            selected: false,
+            selected: null,
             details: ''
           },
           {
             text: 'The Applicant’s employment does not meet the minimum employment period',
-            selected: false,
+            selected: null,
             details: ''
           },
           {
             text: 'The Applicant earned more than the high income threshold ',
-            selected: false,
+            selected: null,
             details: ''
           },
           {
             text: 'The employer is a small business employer and the employer complied with the Small Business Fair Dismissal Code',
-            selected: false,
+            selected: null,
             details: ''
           },
           {
             text: 'Other',
-            selected: false,
+            selected: null,
             details: ''
           },
         ]

@@ -16,7 +16,7 @@
            
            
             <b-form-group
-              :label="'How many employees did your business have when the employee was dismissed?'"
+              :label="'How many employees did the business have when the employee was dismissed?'"
             >
               <b-form-select
                 stacked

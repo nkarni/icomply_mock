@@ -6,7 +6,7 @@
       >
         <b-row>
           <b-col cols="4">
-            <h6>Business size</h6>
+            <h6>Business size {{ timeFromDismissal}}</h6>
             <p>
              Count all full-time and part-time employees, including the Applicant. Only count casuals if they were regular casual employees  </p>
              <p>You can find more information on our <a href="https://www.fwc.gov.au/what-minimum-period-employment" target="_blank">website</a>.</p>
@@ -33,7 +33,7 @@
           <b-col cols="4">
             <h6>Type of work and dates</h6>
             <p>
-              You can find out mor einformation about when a dismissal takes effect on our <a href="https://www.fwc.gov.au/independent-contractors" target="_blank">website</a>.
+              You can find out more information about when a dismissal takes effect on our <a href="https://www.fwc.gov.au/when-does-dismissal-take-effect" target="_blank">website</a>.
             </p>
           </b-col>
           <b-col>
@@ -46,7 +46,40 @@
               ></b-form-datepicker>
             </b-form-group>
 
-            <div id="trial">
+          
+
+            <!-- <b-form-group :label="employmentEndlabel">
+              <b-form-datepicker v-model="form.employmentEndDate" class="mb-2"></b-form-datepicker>
+            </b-form-group>
+ <notice class="mb-3" 
+              :message="'If you are not sure how to answer this enter the last day they attended work'"></notice>
+            <notice borderClass="nothing"
+              :message="'Dev note: <br>1. Validate that dismissal date is on or after employment start date <br>2. notification date must be on or after contract start date <br>3. validate that dates in the past for dismissal, employment start or employment notification'">
+            </notice> -->
+          </b-col>
+        </b-row>
+      </section>
+      <section class="border-bottom border-secondary mb-4 pb-4">
+        <b-row>
+          <b-col cols="4">
+            <h6>Dismissal information</h6>
+          </b-col>
+          <b-col>
+            <b-form-group :label="wereTheyDismissedLabel">
+              <b-form-radio-group
+                
+                v-model="form.wasDismissed"
+                :options="boolOptions"
+              ></b-form-radio-group>
+            </b-form-group>
+
+            <notice class="mb-3" :message="'If the Applicant was not dismissed you can object to the claim.'"></notice>
+
+            <objections :form="form" :objectionIndex="1"></objections>
+
+          
+
+              <div id="trial">
               <b-form-group
                 label="Is the Applicant still working for the business?"
                 class="mt-3"
@@ -85,31 +118,6 @@
               </div>
             </div>
 
-            <!-- <b-form-group :label="employmentEndlabel">
-              <b-form-datepicker v-model="form.employmentEndDate" class="mb-2"></b-form-datepicker>
-            </b-form-group>
- <notice class="mb-3" 
-              :message="'If you are not sure how to answer this enter the last day they attended work'"></notice>
-            <notice borderClass="nothing"
-              :message="'Dev note: <br>1. Validate that dismissal date is on or after employment start date <br>2. notification date must be on or after contract start date <br>3. validate that dates in the past for dismissal, employment start or employment notification'">
-            </notice> -->
-          </b-col>
-        </b-row>
-      </section>
-      <section class="border-bottom border-secondary mb-4 pb-4">
-        <b-row>
-          <b-col cols="4">
-            <h6>Dismissal information</h6>
-          </b-col>
-          <b-col>
-            <b-form-group :label="wereTheyDismissedLabel">
-              <b-form-radio-group
-                stacked
-                v-model="form.wasDismissed"
-                :options="boolOptions"
-              ></b-form-radio-group>
-            </b-form-group>
-
             <b-form-group
               :label="'What date were they told they were being dismissed?'"
               v-if="form.wasDismissed === true"
@@ -119,6 +127,20 @@
                 class="mb-2"
               ></b-form-datepicker>
             </b-form-group>
+
+<div v-if="employmentLength && employmentLength < 6">
+ <notice class="mb-3" :message="'An employee may make an application for an unfair dismissal remedy if they have completed a minimum employment period of six months, or one year if the employer is a \'small business\'.  If you believe the Applicant has not met the minimum employment period you can raise an objection to the Application'"></notice>
+ <objections :form="form" :objectionIndex="4"></objections>
+            
+</div>
+
+<div v-if="timeFromDismissal && timeFromDismissal > 21">
+ <notice class="mb-3" message="An unfair dismissal application must be lodged with the Fair Work Commission within 21 days after the dismissal takes effect (weekends and national public holidays may impact this timeframe). You can read more about the 21 day time frame for lodgment on our <a href='https://www.fwc.gov.au/timeframe-lodgment-0\'>website</a> You can raise an objection to the application if you believe it has been lodged outside the 21 day timeframe"></notice>
+ <objections :form="form" :objectionIndex="0"></objections>
+            
+</div>
+
+
             <div
               v-if="
                 form.businessDetails.numberOfEmployeesIsUnder < 15 &&
@@ -196,8 +218,9 @@
 import entity from "../common/entity.vue";
 import EntityAddress from "../common/entityAddress.vue";
 import Notice from "../common/notice.vue";
+import Objections from "../common/objections.vue";
 export default {
-  components: { entity, Notice, EntityAddress },
+  components: { entity, Notice, EntityAddress, Objections },
   name: "dismissal",
   props: {
     form: {
@@ -217,7 +240,7 @@ export default {
         "A volunteer",
         "Other",
       ],
-         numberOfEmployeesOptionsUnder: [
+      numberOfEmployeesOptionsUnder: [
         {
           text: "1 to 4 ",
           value: "4",
@@ -258,6 +281,29 @@ export default {
     };
   },
   computed: {
+    employmentLength() {
+      if (
+        this.form.employmentDismissedDate.length > 0 &&
+        this.form.employmentStartDate.length > 0
+      ) {
+        return this.$moment(this.form.employmentDismissedDate).diff(
+          this.$moment(this.form.employmentStartDate),
+          "months"
+        );
+      }
+      return null;
+    },
+    timeFromDismissal() {
+      if (
+        this.form.employmentDismissedDate.length > 0
+      ) {
+        return this.$moment().diff(
+          this.$moment(this.form.employmentDismissedDate),
+          "days"
+        );
+      }
+      return null;
+    },
     employmentEndlabel: function () {
       // if (this.form.independentContractor === true) {
       //   return "What date did their contract end?";

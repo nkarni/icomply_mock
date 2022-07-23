@@ -11,18 +11,9 @@
 
             <!-- <b-form-group label="If you have any objections to the application please select them below and provide information for each (optional)"> -->
 
-              <div v-for="(objection, index) of form.objections" :key="index" v-bind:id="index" class="mb-2 ">
-                <b-form-group>
-                  <b-form-checkbox v-model="form.objections[index].selected" :value="true" :unchecked-value="false">
-                    {{ objection.text }}
-                  </b-form-checkbox>
-                </b-form-group>
-                <b-form-group  v-if="form.objections[index].selected === true" label="Please provide details">
-                  <b-form-textarea v-model="form.objections[index].details"></b-form-textarea>
-                </b-form-group>
-              </div>
+             <objections :form="form"></objections>
 
-             </b-form-group>
+             
 
             <b-form-group label="Would you like to participate in conciliation?"
               v-if="form.jurisdictionalObjections.length > 0">
@@ -56,8 +47,9 @@
 import entity from "../common/entity.vue";
 import EntityAddress from "../common/entityAddress.vue";
 import Notice from "../common/notice.vue";
+import Objections from '../common/objections.vue';
 export default {
-  components: { entity, Notice, EntityAddress },
+  components: { entity, Notice, EntityAddress, Objections },
   name: "otherInfo",
   props: {
     form: {
