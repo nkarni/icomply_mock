@@ -16,7 +16,7 @@
            
            
             <b-form-group
-              :label="'How many employees did your business have when the Applicant was dismissed?'"
+              :label="'How many employees did the business have when the Applicant was dismissed?'"
             >
               <b-form-select
                 stacked
@@ -73,9 +73,9 @@
               ></b-form-radio-group>
             </b-form-group>
 
-            <notice class="mb-3" :message="'If the Applicant was not dismissed you can object to the claim.'"></notice>
+            <notice v-if="form.wasDismissed === false" class="mb-3" :message="'If the Applicant was not dismissed you can object to the claim.'"></notice>
 
-            <objections :form="form" :objectionIndex="1"></objections>
+            <objections v-if="form.wasDismissed === false" :form="form" :objectionIndex="2"></objections>
 
           
 
@@ -97,10 +97,17 @@
                     class="mb-2"
                   ></b-form-datepicker>
                 </b-form-group>
-                <notice
+                <!-- <notice
                   class="mb-3"
                   :message="'If you are not sure how to answer this, enter the last day they attended work'"
-                ></notice>
+                ></notice> -->
+
+                <div v-if="timeFromDismissal && timeFromDismissal > 21">
+ <notice class="mb-3" message="An unfair dismissal application must be lodged with the Fair Work Commission within 21 days after the dismissal takes effect (weekends and national public holidays may impact this timeframe). You can read more about the 21 day time frame for lodgment on our <a href='https://www.fwc.gov.au/timeframe-lodgment-0\'>website</a> You can raise an objection to the application if you believe it has been lodged outside the 21 day timeframe"></notice>
+ <objections :form="form" :objectionIndex="0"></objections>
+            
+</div>
+
                 <notice
                   borderClass="nothing"
                   :message="'Dev note: <br>1. Validate that dismissal date is on or after employment start date <br>2. notification date must be on or after contract start date <br>3. validate that dates in the past for dismissal, employment start or employment notification'"
@@ -134,11 +141,7 @@
             
 </div>
 
-<div v-if="timeFromDismissal && timeFromDismissal > 21">
- <notice class="mb-3" message="An unfair dismissal application must be lodged with the Fair Work Commission within 21 days after the dismissal takes effect (weekends and national public holidays may impact this timeframe). You can read more about the 21 day time frame for lodgment on our <a href='https://www.fwc.gov.au/timeframe-lodgment-0\'>website</a> You can raise an objection to the application if you believe it has been lodged outside the 21 day timeframe"></notice>
- <objections :form="form" :objectionIndex="0"></objections>
-            
-</div>
+
 
 
             <div
@@ -295,10 +298,10 @@ export default {
     },
     timeFromDismissal() {
       if (
-        this.form.employmentDismissedDate.length > 0
+        this.form.employmentEndDate.length > 0
       ) {
         return this.$moment().diff(
-          this.$moment(this.form.employmentDismissedDate),
+          this.$moment(this.form.employmentEndDate),
           "days"
         );
       }

@@ -163,7 +163,7 @@
            <p>Please provide details about this representative if you know them.</p>
           </b-col>
           <b-col>
-            <b-form-group label="Do the business have a representative?">
+            <b-form-group label="Does the business have a representative?">
               <b-form-radio-group
                 v-model="form.hasRep"
                 :options="boolOptions"
@@ -190,7 +190,7 @@
               ></b-form-input>
             </b-form-group> -->
   <Transition>
-              <div class="mb-4 text-right" v-if="form.rep.firstName === '' || form.rep.lastName === '' || form.rep.email === ''">
+              <div  class="mb-4 text-right" v-if="form.hasRep === true && (form.rep.firstName === '' || form.rep.lastName === '' || form.rep.email === '')">
               <a href="" @click.prevent="populateRep">Click to populate contact details with my OLS account information</a>
             </div>
             </Transition>

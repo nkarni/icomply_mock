@@ -14,14 +14,14 @@
         >
         </b-form-radio-group>
       </b-form-group>
-      <!-- <b-form-group
+      <b-form-group
         v-if="form.objections[objectionIndex].selected === true"
         label="Please provide details"
       >
         <b-form-textarea
           v-model="form.objections[objectionIndex].details"
         ></b-form-textarea>
-      </b-form-group> -->
+      </b-form-group>
     </div>
     <div v-else>
       <div
