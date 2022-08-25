@@ -276,8 +276,9 @@ export default {
         formFillerPersonaDetails: '',
         engagementType: null,
         engagementTypeDetails: '',
-        engagementCommitment: '',
-        engagementRegularCasual: null,
+        // engagementCommitment: '',
+        // engagementRegularCasual: null,
+        casual: null,
         employeeFirstName: "John",
         employeeLastName: "Smith",
         caseNumber: "ABC123",
@@ -301,6 +302,11 @@ export default {
         mostRecentShift: '',
         otherInfo: "",
         wantsConciliation: null,
+        employmentStartDateNotApplicable: false,
+        employmentStartDateNotApplicableDetails: '',
+        employmentDismissedDateNotApplicable: false,
+        employmentDismissedDateNotApplicableDetails: '',
+        applicantWasNotDismissed: false,
         objections: [
           {
             text: 'The application is out of time (ie lodged more than 21 days after the dismissal took effect)',

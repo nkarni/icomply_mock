@@ -134,9 +134,13 @@
           </b-col>
           <b-col>
             <Transition>
-              <div class="mb-4 text-right" v-if="form.businessDetails.contactPerson.firstName === '' || form.businessDetails.contactPerson.lastName === '' || form.businessDetails.contactPerson.email === ''">
+              <!-- <div class="mb-4 text-right" v-if="form.businessDetails.contactPerson.firstName === '' || form.businessDetails.contactPerson.lastName === '' || form.businessDetails.contactPerson.email === ''">
               <a href="" @click.prevent="populateContactPerson">Click to populate contact details with my OLS account information</a>
-            </div>
+            </div> -->
+           
+            <notice v-if="form.formFillerPersona === 'self'" class="mb-4" :message="'Dev note: if selected \'owner\' in the relationship to the responder, then populate the contact details from their OLS account'">
+            </notice>
+           
             </Transition>
             
              
@@ -169,6 +173,13 @@
                 :options="boolOptions"
               ></b-form-radio-group>
             </b-form-group>
+             <Transition>
+              <!-- <div  class="mb-4 text-right" v-if="form.hasRep === true && (form.rep.firstName === '' || form.rep.lastName === '' || form.rep.email === '')">
+              <a href="" @click.prevent="populateRep">Click to populate contact details with my OLS account information</a>
+            </div> -->
+            <notice v-if="form.hasRep && form.formFillerPersona === 'rep'" class="mb-4" :message="'Dev note: f user selects \'I am representing the Respondent in this matter\' and ticks does the business have a representative as YES then automatically prepopulate rep contact details from OLS account'">
+            </notice>
+            </Transition>
 
             <b-form-group
               label="Type of representative"
@@ -189,11 +200,7 @@
                 v-model="form.repTypeDetails"
               ></b-form-input>
             </b-form-group> -->
-  <Transition>
-              <div  class="mb-4 text-right" v-if="form.hasRep === true && (form.rep.firstName === '' || form.rep.lastName === '' || form.rep.email === '')">
-              <a href="" @click.prevent="populateRep">Click to populate contact details with my OLS account information</a>
-            </div>
-            </Transition>
+ 
             <entity
               v-if="form.hasRep === true"
               :entity="form.rep"

@@ -34,7 +34,7 @@
             <h6>Type of work</h6>
           </b-col>
           <b-col>
-             <b-form-group label="Was the Applicant:">
+            <b-form-group label="Was the Applicant:">
               <b-form-radio-group
                 stacked
                 v-model="form.engagementType"
@@ -48,33 +48,35 @@
             >
               <b-form-input v-model="form.engagementTypeDetails"></b-form-input>
             </b-form-group>
-            <div v-if="form.engagementType && form.engagementType !== 'An employee'">
+            <div
+              v-if="
+                form.engagementType && form.engagementType !== 'An employee'
+              "
+            >
               <notice
-             
-              message="The Fair Work Act only protects employees from unfair dismissal.<br>
+                message="The Fair Work Act only protects employees from unfair dismissal.<br>
 If the Applicant was not an employee you can object to the claim"
-              class="my-4"
-              borderClass="red"
-            ></notice>
+                class="my-4"
+                borderClass="red"
+              ></notice>
 
-            <objections :form="form" :objectionIndex="1"></objections>
-            
+              
             </div>
-            <b-form-group label="Was the Applicant working:">
-              <b-form-radio-group
-                stacked
-                v-model="form.engagementCommitment"
-                :options="['Full time or Part time', 'Casual']"
-              >
+            <b-form-group label="Was the Applicant a casual?">
+              <b-form-radio-group v-model="form.casual" :options="boolOptions">
               </b-form-radio-group>
             </b-form-group>
-            <notice
-              v-if="form.engagementCommitment === 'Casual'"
-              class="mb-4"
-              message="The Fair Work Act only protects casual employees from unfair dismissal if their casual employment was regular and systematic and the employee reasonably expected that arrangement to continue.  <br>To be 'regular and systematic', the roster or pattern should be similar each time and part of an ongoing schedule or plan for the business."
-            ></notice>
 
-            <b-form-group
+            <div v-if="form.casual === true">
+              <notice
+                class="mb-4"
+                message="If you employed the Applicant a casual and their casual employment was not regular and systematic, you can object to the claim."
+              ></notice>
+
+              <objections :form="form" :objectionIndex="1"></objections>
+            </div>
+
+            <!-- <b-form-group
               label="Did the business employ the Applicant as a regular casual?"
             >
               <b-form-radio-group
@@ -82,19 +84,16 @@ If the Applicant was not an employee you can object to the claim"
                 :options="boolOptions"
               >
               </b-form-radio-group>
-            </b-form-group>
+            </b-form-group> -->
 
-            <div v-if="form.engagementRegularCasual === false">
+            <!-- <div v-if="form.engagementRegularCasual === false">
               <notice
                 class="mb-4"
                 message="If you employed the Applicant a casual and their casual employment was not regular and systematic, you can object to the claim below at the ‘Objections’ tab."
               ></notice>
 
               <objections :form="form" :objectionIndex="1"></objections>
-            </div>
-
-           
-            
+            </div> -->
           </b-col>
         </b-row>
       </section>
@@ -115,10 +114,9 @@ If the Applicant was not an employee you can object to the claim"
                 >website.</a
               >
             </p>
-            
           </b-col>
           <b-col>
-            <div v-if="form.engagementCommitment === 'Casual'">
+            <div v-if="form.casual === true">
               <b-row>
                 <b-col cols="6">
                   <b-form-group label="Hourly rate (gross, before tax):">
@@ -173,9 +171,10 @@ If the Applicant was not an employee you can object to the claim"
               :message="'Calculated annual wage is: $' + annualWage"
             ></notice>
 
-            <notice class="mb-3" :message="'If you believe the Applicant’s income was more than the high income threshold, you can object to the claim.'"></notice>
-
-            <objections :form="form" :objectionIndex="5"></objections>
+            <notice
+              class="mb-3"
+              :message="'If you believe the Applicant’s income was more than the high income threshold, you can object to the claim.'"
+            ></notice>
 
             <b-form-group
               :label="'Did they get any other benefits, such as a work car or mobile phone?'"
@@ -195,7 +194,7 @@ If the Applicant was not an employee you can object to the claim"
             </b-form-group>
 
             <b-form-group
-              :label="'Were they covered by an award or enterprise agreement?'"
+              :label="'Was the Applicant covered by an award or enterprise agreement?'"
             >
               <b-form-radio-group
                 v-model="form.employeeHasAwardAgreement"
@@ -225,6 +224,22 @@ If the Applicant was not an employee you can object to the claim"
               message="If you don’t have these details handy, use our <a href=''>agreement search</a> or <a href=''>awards list</a> to find the correct name and number"
             >
             </notice>
+
+            <div v-if="form.employeeHasAwardAgreement === false">
+              <notice
+                class="mb-4"
+                :borderClass="'red'"
+                :message="'If an employee is not covered by a modern award or enterprise agreement, they must have an annual rate of earnings of less than the high income threshold to be eligible to make an unfair dismissal claim.<a href=\'https://www.fwc.gov.au/high-income-threshold\' target=\'_blank\'> Click here</a> to read more about the high income threshold.'"
+              ></notice>
+
+              <objections
+                v-if="form.employeeHasAwardAgreement === false"
+                :form="form"
+                :objectionIndex="5"
+              ></objections>
+            </div>
+
+            <!-- <objections v-if="form.employeeHasAwardAgreement === false" :form="form" :objectionIndex="5" :title="'Do you want to object to the claim because the Applicant earned more than the high income threshold?'"></objections> -->
           </b-col>
         </b-row>
       </section>

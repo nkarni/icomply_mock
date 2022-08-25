@@ -2,12 +2,8 @@
   <div>
     <div v-if="objectionIndex > -1">
       <b-form-group
-        :label="
-          'Do you want to object to the claim because ' +
-          form.objections[objectionIndex].text.toLowerCase() +
-          '?'
-        "
       >
+      <label v-html="label"></label>
         <b-form-radio-group
           :options="boolOptions"
           v-model="form.objections[objectionIndex].selected"
@@ -66,6 +62,10 @@ export default {
       type: Number,
       default: -1,
     },
+     title: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return { boolOptions: [
@@ -73,7 +73,17 @@ export default {
         { text: "No", value: false },
       ],};
   },
-  computed: {},
+  computed: {
+    label: function (){
+      if(this.title === ''){
+        return 'Do you want to object to the claim because ' +
+          this.form.objections[this.objectionIndex].text.toLowerCase() +
+          '?'
+      } else {
+        return this.title
+      }
+    }
+  },
   methods: {},
 };
 </script>
