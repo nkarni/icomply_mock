@@ -307,6 +307,10 @@ export default {
         employmentDismissedDateNotApplicable: false,
         employmentDismissedDateNotApplicableDetails: '',
         applicantWasNotDismissed: false,
+        dismissalDateNotApplicable: false,
+        dismissalDateNotApplicableDetails: '',
+        employmentEndDateNotApplicable: false,
+        employmentEndDateNotApplicableDetails: '',
         objections: [
           {
             text: 'The application is out of time (ie lodged more than 21 days after the dismissal took effect)',
@@ -340,6 +344,11 @@ export default {
           },
           {
             text: 'The employer is a small business employer and the employer complied with the Small Business Fair Dismissal Code',
+            selected: null,
+            details: ''
+          },
+          {
+            text: 'The Applicant\'s casual employment was not regular and systematic',
             selected: null,
             details: ''
           },

@@ -31,14 +31,14 @@
             </b-form-group>
             <div
               v-if="
-              parseInt(form.businessDetails.numberOfEmployeesIsUnder) > 0 &&
+                parseInt(form.businessDetails.numberOfEmployeesIsUnder) > 0 &&
                 parseInt(form.businessDetails.numberOfEmployeesIsUnder) < 16
               "
             >
               <notice
                 class="mb-4"
                 :borderClass="'red'"
-                :message="'If the Respondent is a small business and have followed the Small Business Fair Dismissal code you can object to the claim.'"
+                :message="'If the Respondent is a small business and followed the Small Business Fair Dismissal code you can object to the claim.'"
               ></notice>
               <objections :form="form" :objectionIndex="5"></objections>
             </div>
@@ -48,7 +48,7 @@
       <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
-            <h6>Dates of engagement</h6>
+            <h6>Start date</h6>
             <p>
               You can find out more information about when a dismissal takes
               effect on our
@@ -85,10 +85,17 @@
               ></b-form-textarea>
             </b-form-group>
 
-            <div v-if="form.employmentStartDate != ''">
-            <notice class="mb-4" :message="'Dev note: <br> Once date is selected for this question - form does a calculation to see if period between Start date and Notified date is less than 6 months ALSO form does calculation to see if period between Start date and Notified date is less than 12 months when value selected in business size is [1-4] [5-9] [10-14]. If either of these is true then following note and objection option appear:'"></notice>
-            <notice class="mb-4" borderClass="red" :message="'The Applicant must have been working for at least 6 months to qualify for unfair dismissal. If the Applicant worked for a business with less than 15 employees, the Applicant must have worked there for at least 12 months. This is called the minimum employment period for unfair dismissal cases.<a href=\'https://www.fwc.gov.au/what-minimum-period-employment\' target=\'_blank\'> Click here</a> to read more about the minimum Employment period.'"></notice>
-<objections :form="form" :objectionIndex="1"></objections>
+            <div v-if="form.employmentStartDate != '' && form.employmentStartDateNotApplicable !== true">
+              <notice
+                class="mb-4"
+                :message="'Dev note: <br> Once date is selected for this question - form does a calculation to see if period between Start date and Notified date is less than 6 months ALSO form does calculation to see if period between Start date and Notified date is less than 12 months when value selected in business size is [1-4] [5-9] [10-14]. If either of these is true then following note and objection option appear:'"
+              ></notice>
+              <notice
+                class="mb-4"
+                borderClass="red"
+                :message="'The Applicant must have been working for at least 6 months to qualify for unfair dismissal. If the Applicant worked for a business with less than 15 employees, the Applicant must have worked there for at least 12 months. This is called the minimum employment period for unfair dismissal cases.<a href=\'https://www.fwc.gov.au/what-minimum-period-employment\' target=\'_blank\'> Click here</a> to read more about the minimum Employment period.'"
+              ></notice>
+              <objections :form="form" :objectionIndex="4"></objections>
             </div>
           </b-col>
         </b-row>
@@ -96,17 +103,25 @@
       <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
-            <h6>Dismissal information</h6>
+            <h6>Date notified</h6>
           </b-col>
           <b-col>
             <b-form-group>
-              <label>{{ whatDateWereDismissedLabel }}</label>
+              <label >{{ whatDateWereDismissedLabel }}</label>
               <b-form-datepicker
                 v-model="form.employmentDismissedDate"
+                @click="form.employmentDismissedDateNotApplicable = false"
                 class="mb-2"
               ></b-form-datepicker>
+           
+              <b-form-checkbox
+                v-model="form.employmentDismissedDateNotApplicable"
+                :value="true"
+                :unchecked-value="false"
+              >
+                Not applicable
+              </b-form-checkbox>
             </b-form-group>
-
             <b-form-group
               v-if="form.employmentDismissedDateNotApplicable === true"
               label="Please explain why"
@@ -116,78 +131,31 @@
               ></b-form-textarea>
             </b-form-group>
 
-            <b-form-group>
-              <b-form-checkbox
-                v-model="form.applicantWasNotDismissed"
-                :value="true"
-                :unchecked-value="false"
-              >
-                The Applicant was not dismissed
-              </b-form-checkbox>
-            </b-form-group>
-            <div v-if="form.applicantWasNotDismissed === true">
+            <div v-if="form.employmentDismissedDateNotApplicable === true">
               <notice
                 class="mb-3"
                 :borderClass="'red'"
                 :message="'If the Applicant was not dismissed you can object to the claim.'"
               ></notice>
 
-              <objections :form="form" :objectionIndex="1"></objections>
+              <objections :form="form" :objectionIndex="2"></objections>
             </div>
 
-            <!-- <objections
-              v-if="form.wasDismissed === false"
-              :form="form"
-              :objectionIndex="2"
-            ></objections> -->
-
-            <div id="trial">
-              <b-form-group
-                label="Is the Applicant still working for the business?"
-                class="mt-3"
-              >
-                <b-form-radio-group
-                  v-model="form.applicantStillWorksForBusiness"
-                  :options="boolOptions"
-                >
-                </b-form-radio-group>
-              </b-form-group>
-              <div v-if="form.applicantStillWorksForBusiness === false">
-                <b-form-group :label="employmentEndlabel">
-                  <b-form-datepicker
-                    v-model="form.employmentEndDate"
-                    class="mb-2"
-                  ></b-form-datepicker>
-                </b-form-group>
-                <!-- <notice
-                  class="mb-3"
-                  :message="'If you are not sure how to answer this, enter the last day they attended work'"
-                ></notice> -->
-
-                <div v-if="timeFromDismissal && timeFromDismissal > 21">
-                  <notice
-                    class="mb-3"
-                    message="An unfair dismissal application must be lodged with the Fair Work Commission within 21 days after the dismissal takes effect (weekends and national public holidays may impact this timeframe). You can read more about the 21 day time frame for lodgment on our <a href='https://www.fwc.gov.au/timeframe-lodgment-0\'>website</a> You can raise an objection to the application if you believe it has been lodged outside the 21 day timeframe"
-                  ></notice>
-                  <objections :form="form" :objectionIndex="0"></objections>
-                </div>
-
-                <notice
-                  borderClass="nothing"
-                  :message="'Dev note: <br>1. Validate that dismissal date is on or after employment start date <br>2. notification date must be on or after contract start date <br>3. validate that dates in the past for dismissal, employment start or employment notification'"
-                >
-                </notice>
-              </div>
-
-              <div v-if="form.applicantStillWorksForBusiness === true">
-                <b-form-group label="What date was their most recent shift?">
-                  <b-form-datepicker
-                    v-model="form.mostRecentShift"
-                    class="mb-2"
-                  ></b-form-datepicker>
-                </b-form-group>
-              </div>
+            <div v-if="form.employmentDismissedDate != '' && form.employmentDismissedDateNotApplicable === false">
+              <notice
+                class="mb-4"
+                :message="'Dev note: <br> Once date is selected for this question - form does a calculation to see if period between Start date and Notified date is less than 6 months ALSO form does calculation to see if period between Start date and Notified date is less than 12 months when value selected in business size is [1-4] [5-9] [10-14]. If either of these is true then following note and objection option appear:'"
+              ></notice>
+              <notice
+                class="mb-4"
+                borderClass="red"
+                :message="'The Applicant must have been working for at least 6 months to qualify for unfair dismissal. If the Applicant worked for a business with less than 15 employees, the Applicant must have worked there for at least 12 months. This is called the minimum employment period for unfair dismissal cases.<a href=\'https://www.fwc.gov.au/what-minimum-period-employment\' target=\'_blank\'> Click here</a> to read more about the minimum Employment period.'"
+              ></notice>
+              <objections :form="form" :objectionIndex="4"></objections>
             </div>
+
+
+      
 
             <b-form-group
               :label="'What date were they told they were being dismissed?'"
@@ -236,6 +204,85 @@
           </b-col>
         </b-row>
       </section>
+
+      <section class="border-bottom border-secondary mb-4 pb-4">
+        <b-row>
+          <b-col cols="4">
+            <h6>Last date</h6>
+          </b-col>
+          <b-col>
+
+            <div>
+             
+            
+               <b-form-group :label="employmentEndlabel">
+                 <b-form-datepicker
+                   v-model="form.employmentEndDate"
+                   class="mb-2"
+                 ></b-form-datepicker>
+              
+              <b-form-checkbox
+                v-model="form.employmentEndDateNotApplicable"
+                :value="true"
+                :unchecked-value="false"
+              >
+                Not applicable
+              </b-form-checkbox>
+            </b-form-group>
+
+               <b-form-group
+              v-if="form.employmentEndDateNotApplicable === true"
+              label="Please explain why"
+            >
+              <b-form-textarea
+                v-model="form.employmentEndDateNotApplicableDetails"
+              ></b-form-textarea>
+            </b-form-group>
+
+            <div v-if="form.employmentEndDate != '' && form.employmentEndDateNotApplicable !== true">
+              <notice
+                class="mb-4"
+                :message="'Dev note: <br> Once date is selected for this question - form does a calculation to see if period between date the Applicant lodged and the date selected is 21 days or less. If the number of days is greater than 21 then warning note appears:'"
+              ></notice>
+              <notice
+                class="mb-4"
+                borderClass="red"
+                :message="'If the Applicant has not lodged their application within 21 days of their dismissal taking effect you can object to the claim. There are some exceptions to the 21 day period.<a href=\'https://www.fwc.gov.au/timeframe-lodgment-0\' target=\'_blank\'> Click here</a> to read more about the timeframe for lodgment.'"
+              ></notice>
+              <objections :form="form" :objectionIndex="0"></objections>
+            </div>
+
+              
+
+               <!-- <div v-if="timeFromDismissal && timeFromDismissal > 21">
+                 <notice
+                   class="mb-3"
+                   message="An unfair dismissal application must be lodged with the Fair Work Commission within 21 days after the dismissal takes effect (weekends and national public holidays may impact this timeframe). You can read more about the 21 day time frame for lodgment on our <a href='https://www.fwc.gov.au/timeframe-lodgment-0\'>website</a> You can raise an objection to the application if you believe it has been lodged outside the 21 day timeframe"
+                 ></notice>
+                 <objections :form="form" :objectionIndex="0"></objections>
+               </div>
+
+               <notice
+                 borderClass="nothing"
+                 :message="'Dev note: <br>1. Validate that dismissal date is on or after employment start date <br>2. notification date must be on or after contract start date <br>3. validate that dates in the past for dismissal, employment start or employment notification'"
+               >
+               </notice> -->
+            
+
+             <!-- <div v-if="form.applicantStillWorksForBusiness === true">
+               <b-form-group label="What date was their most recent shift?">
+                 <b-form-datepicker
+                   v-model="form.mostRecentShift"
+                   class="mb-2"
+                 ></b-form-datepicker>
+               </b-form-group>
+             </div> -->
+           </div>
+
+            </b-col>
+            </b-row>
+            </section>
+            
       <section class="mb-4 pb-4">
         <b-row>
           <b-col cols="4">
@@ -417,6 +464,15 @@ export default {
       }
       return "what date was the applicant told they were dismissed?";
     },
+  },
+  watch: {
+    // Note: only simple paths. Expressions are not supported.
+    'form.employmentDismissedDateNotApplicable'(newValue) {
+      if(newValue === true){
+        this.form.employmentDismissedDate = ''
+      }
+    },
+   
   },
   methods: {
     onSelectedNewAbn() {

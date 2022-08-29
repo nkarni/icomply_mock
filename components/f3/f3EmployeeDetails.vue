@@ -59,6 +59,7 @@ If the Applicant was not an employee you can object to the claim"
                 class="my-4"
                 borderClass="red"
               ></notice>
+              <objections :form="form" :objectionIndex="7"></objections>
 
               
             </div>
@@ -73,7 +74,7 @@ If the Applicant was not an employee you can object to the claim"
                 message="If you employed the Applicant a casual and their casual employment was not regular and systematic, you can object to the claim."
               ></notice>
 
-              <objections :form="form" :objectionIndex="1"></objections>
+              
             </div>
 
             <!-- <b-form-group
@@ -204,7 +205,7 @@ If the Applicant was not an employee you can object to the claim"
 
             <b-form-group
               v-if="form.employeeHasAwardAgreement === true"
-              label="Name of award or agreement "
+              label="Name of award or agreement (optional)"
             >
               <b-form-input
                 v-model="form.employeeAwardAgreementName"

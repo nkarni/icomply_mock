@@ -9,7 +9,7 @@
               for {{ form.permitHolder.firstName }}
               {{ form.permitHolder.lastName }}<br
             /></span>
-            <small style="font-size: 16px">({{ form.userRole }} view)</small>
+            <small style="font-size: 16px">({{ roleName }} view)</small>
           </h3>
         </b-col>
         <b-col cols="4" class="text-right">
@@ -439,7 +439,7 @@
                     variant="link"
                     @click.prevent="form.userRole = 'admin';tabIndex = 0"
                   >
-                    Admin
+                    Contact Person
                     <span class="currentRole" v-if="form.userRole === 'admin' && form.userRolePhase === ''">
                       (current)</span
                     >
@@ -481,7 +481,7 @@
                       form.userRolePhase = 'pphInfoReview';tabIndex = 0;
                     "
                   >
-                    Admin (PPH info review)
+                    Contact Person (PPH info review)
                     <span
                       class="currentRole"
                       v-if="form.userRole === 'admin' && form.userRolePhase === 'pphInfoReview'"
@@ -532,7 +532,7 @@
                       form.userRolePhase = 'adminMemberReview';tabIndex = 0;
                     "
                   >
-                    Admin (Comm member info review and final submission)
+                    Contact Person (Comm member info review and final submission)
                     <span
                       class="currentRole"
                       v-if="form.userRole === 'admin' && form.userRolePhase === 'adminMemberReview'"
@@ -969,6 +969,11 @@ export default {
   },
   mounted: function () {},
   methods: {},
+  computed: {
+    roleName: function () {
+      return this.form.userRole === 'admin' ? "Contact Person" : this.form.userRole;
+    },
+  },
   watch: {
     // COPY DATA ENTERED BY ADMIN FROM THE PPH/MEMBER TO admin.permitHolderDataEnteredByAdmin
     // DEV NOTE: FOR THE REAL FORM DO NOT USE WATCH, DO THIS OR SIMILAR CHECK WHEN A TAB IS SUBMITTED OR MAKE THE ADMIN PAGES SAVE TO permitHolderDataEnteredByAdmin ETC. Talk to me about it :) ...
