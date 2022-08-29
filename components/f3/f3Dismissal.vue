@@ -109,6 +109,7 @@
             <b-form-group>
               <label >{{ whatDateWereDismissedLabel }}</label>
               <b-form-datepicker
+              v-if="form.employmentDismissedDateNotApplicable !== true"
                 v-model="form.employmentDismissedDate"
                 @click="form.employmentDismissedDateNotApplicable = false"
                 class="mb-2"
@@ -217,6 +218,7 @@
             
                <b-form-group :label="employmentEndlabel">
                  <b-form-datepicker
+                 v-if="form.employmentEndDateNotApplicable !== true"
                    v-model="form.employmentEndDate"
                    class="mb-2"
                  ></b-form-datepicker>
