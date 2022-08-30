@@ -4,7 +4,7 @@
       <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
-            <h6>Business size {{ timeFromDismissal }}</h6>
+            <h6>Business size </h6>
             <p>
               Count all full-time and part-time employees, including the
               Applicant. Only count casuals if they were regular casual
@@ -40,7 +40,7 @@
                 :borderClass="'red'"
                 :message="'If the Respondent is a small business and followed the Small Business Fair Dismissal code you can object to the claim.'"
               ></notice>
-              <objections :form="form" :objectionIndex="5"></objections>
+              <objections :form="form" :objectionIndex="6"></objections>
             </div>
           </b-col>
         </b-row>
@@ -49,15 +49,7 @@
         <b-row>
           <b-col cols="4">
             <h6>Start date</h6>
-            <p>
-              You can find out more information about when a dismissal takes
-              effect on our
-              <a
-                href="https://www.fwc.gov.au/when-does-dismissal-take-effect"
-                target="_blank"
-                >website</a
-              >.
-            </p>
+            
           </b-col>
           <b-col>
             <b-form-group>
@@ -84,19 +76,6 @@
                 v-model="form.employmentStartDateNotApplicableDetails"
               ></b-form-textarea>
             </b-form-group>
-
-            <div v-if="form.employmentStartDate != '' && form.employmentStartDateNotApplicable !== true">
-              <notice
-                class="mb-4"
-                :message="'Dev note: <br> Once date is selected for this question - form does a calculation to see if period between Start date and Notified date is less than 6 months ALSO form does calculation to see if period between Start date and Notified date is less than 12 months when value selected in business size is [1-4] [5-9] [10-14]. If either of these is true then following note and objection option appear:'"
-              ></notice>
-              <notice
-                class="mb-4"
-                borderClass="red"
-                :message="'The Applicant must have been working for at least 6 months to qualify for unfair dismissal. If the Applicant worked for a business with less than 15 employees, the Applicant must have worked there for at least 12 months. This is called the minimum employment period for unfair dismissal cases.<a href=\'https://www.fwc.gov.au/what-minimum-period-employment\' target=\'_blank\'> Click here</a> to read more about the minimum Employment period.'"
-              ></notice>
-              <objections :form="form" :objectionIndex="4"></objections>
-            </div>
           </b-col>
         </b-row>
       </section>
@@ -104,6 +83,15 @@
         <b-row>
           <b-col cols="4">
             <h6>Date notified</h6>
+            <p>
+              You can find out more information about when a dismissal takes
+              effect on our
+              <a
+                href="https://www.fwc.gov.au/when-does-dismissal-take-effect"
+                target="_blank"
+                >website</a
+              >.
+            </p>
           </b-col>
           <b-col>
             <b-form-group>

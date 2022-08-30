@@ -59,7 +59,7 @@ If the Applicant was not an employee you can object to the claim"
                 class="my-4"
                 borderClass="red"
               ></notice>
-              <objections :form="form" :objectionIndex="7"></objections>
+              <objections :form="form" :objectionIndex="1"></objections>
 
               
             </div>
@@ -73,7 +73,7 @@ If the Applicant was not an employee you can object to the claim"
                 class="mb-4"
                 message="If you employed the Applicant a casual and their casual employment was not regular and systematic, you can object to the claim."
               ></notice>
-
+              <objections :form="form" :objectionIndex="7"></objections>
               
             </div>
 
