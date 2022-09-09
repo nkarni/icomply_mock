@@ -127,7 +127,7 @@
           </b-col>
         </b-row>
       </section>
-      <section class="mb-4 pb-4">
+      <section class="mb-4 pb-2">
         <b-row>
           <b-col>
             <h6>Privacy</h6>
@@ -164,6 +164,39 @@
           </b-col>
         </b-row>
       </section>
+
+      <section class="border-top border-secondary mt-4 pt-4">
+        <b-row>
+          <b-col cols="4">
+            <h6>Your role</h6>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <b-form-group
+              label="Please indicate your role(s) in this application:"
+            >
+              <b-radio-group
+                v-model="adminUserRoleArraySelection"
+                stacked
+                @change="onAdminUserRoleArraySelection"
+                :options="[
+                  { text: 'I am the Contact Person', value: 'cp' },
+                  {
+                    text: 'I am the Contact Person AND Proposed Permit Holder',
+                    value: 'cppph',
+                  },
+                  {
+                    text: 'I am the Contact Person AND Member of Committee of Management',
+                    value: 'cpmember',
+                  },
+                ]"
+              >
+              </b-radio-group>
+            </b-form-group>
+          </b-col>
+        </b-row>
+      </section>
     </b-form>
   </div>
 </template>
@@ -183,6 +216,7 @@ export default {
   },
   data() {
     return {
+      adminUserRoleArraySelection: null,
       repTypeOptions: [
         "I am their lawyer or paid agent",
         "Union representative",
@@ -241,39 +275,14 @@ export default {
     },
   },
   methods: {
-    onSelectedNewAbn() {
-      this.form.businessDetailsCorrect = true;
-      this.$bvModal.hide("manual-abn");
-    },
-    onNumDepnedantsChange() {
-      if (this.form.entities.applicant.details.numOfDependants < 0) return;
-      if (
-        this.form.entities.applicant.details.numOfDependants <
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants <
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.pop();
-        }
-      } else if (
-        this.form.entities.applicant.details.numOfDependants >
-        this.form.entities.applicant.details.dependants.length
-      ) {
-        while (
-          this.form.entities.applicant.details.numOfDependants >
-          this.form.entities.applicant.details.dependants.length
-        ) {
-          this.form.entities.applicant.details.dependants.push({
-            firstName: "",
-            lastName: "",
-            dob: "",
-            relationship: "",
-            stayOvernight: null,
-            involvedInLegalIssue: null,
-          });
-        }
+    onAdminUserRoleArraySelection() {
+      console.log(this.adminUserRoleArraySelection, 'adminUserRoleArraySelection')
+      if (this.adminUserRoleArraySelection === 'cp') {
+        this.form.adminUserRolesArray = ["admin"];
+      } else if (this.adminUserRoleArraySelection === 'cppph') {
+        this.form.adminUserRolesArray = ["admin", "pph"];
+      } else if (this.adminUserRoleArraySelection === 'cpmember') {
+        this.form.adminUserRolesArray = ["admin", "member"];
       }
     },
   },

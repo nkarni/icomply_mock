@@ -724,6 +724,7 @@ export default {
       form: {
         userRole: "",
         userRolePhase: "",
+        adminUserRolesArray: [],
         admin: {
           hasDifferentPostalAddress: false,
           otherAddress: "33 main street, Sydney NSW 2000 (hard coded)",
