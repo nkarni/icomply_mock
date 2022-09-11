@@ -80,7 +80,7 @@
             </b-tab>
 
             <b-tab
-            v-if="form.permitHolder.isSameAsAdmin"
+              v-if="form.permitHolder.isSameAsAdmin"
               :title-link-class="[
                 'laap-title-link',
                 'mb-2',
@@ -95,7 +95,42 @@
               <f-42-admin-as-pph-dec :form="form"></f-42-admin-as-pph-dec>
             </b-tab>
 
+            <!-- If admin is also PPH -->
+            <div v-if="form.adminUserRolesArray.includes('pph')">
+              <b-tab
+                :title-link-class="[
+                  'laap-title-link',
+                  'mb-2',
+                  'p-3',
+                  { 'laap-nav-item-complete': false },
+                ]"
+              >
+                <template #title>
+                  <h5>Photo and signature</h5>
+                </template>
+                <f-42-holder-view-photo-signature
+                  :form="form"
+                ></f-42-holder-view-photo-signature>
+              </b-tab>
+
+              <b-tab
+                :title-link-class="[
+                  'laap-title-link',
+                  'mb-2',
+                  'p-3',
+                  { 'laap-nav-item-complete': false },
+                ]"
+              >
+                <template #title>
+                  <h5>Permit qualifications matters</h5>
+                  <!-- <span>Confirm details and submit the form</span> -->
+                </template>
+                <f-42-holder-view-submit :form="form"></f-42-holder-view-submit>
+              </b-tab>
+            </div>
+
             <b-tab
+            v-if="!form.adminUserRolesArray.includes('member')"
               :title-link-class="[
                 'laap-title-link',
                 'mb-2',
@@ -109,6 +144,42 @@
               </template>
               <f-42-committee-member :form="form"></f-42-committee-member>
             </b-tab>
+
+            <!-- If admin is also the com member -->
+            <div v-if="form.adminUserRolesArray.includes('member')">
+              <b-tab
+              :title-link-class="[
+                'laap-title-link',
+                'mb-2',
+                'p-3',
+                { 'laap-nav-item-complete': false },
+              ]"
+            >
+              <template #title>
+                <h5>Photo and signature</h5>
+              </template>
+              <f-42-member-view-photo-signature
+                :form="form"
+              ></f-42-member-view-photo-signature>
+            </b-tab>
+
+            <b-tab
+              :title-link-class="[
+                'laap-title-link',
+                'mb-2',
+                'p-3',
+                { 'laap-nav-item-complete': false },
+              ]"
+            >
+              <template #title>
+                <h5>Permit qualification matters</h5>
+                <!-- <span>Confirm details and submit the form</span> -->
+              </template>
+              <f-42-member-view-submit :form="form"></f-42-member-view-submit>
+            </b-tab>
+            
+            
+            </div>
             <!-- <b-tab
           :title-link-class="[
             'laap-title-link',
@@ -351,7 +422,9 @@
 
       <!-- adminView phase: PPH Review -->
       <div
-        v-if="form.userRole === 'admin' && form.userRolePhase === 'pphInfoReview'"
+        v-if="
+          form.userRole === 'admin' && form.userRolePhase === 'pphInfoReview'
+        "
       >
         <b-row class="mt-4">
           <b-tabs
@@ -375,15 +448,20 @@
                 <h5>The proposed permit holder</h5>
                 <!-- <span>How it works and what is expected of you</span> -->
               </template>
-               <f-42-admin-pph-review-submit :form="form"></f-42-admin-pph-review-submit>
+              <f-42-admin-pph-review-submit
+                :form="form"
+              ></f-42-admin-pph-review-submit>
             </b-tab>
           </b-tabs>
         </b-row>
       </div>
 
-       <!-- adminView phase: member info Review -->
+      <!-- adminView phase: member info Review -->
       <div
-        v-if="form.userRole === 'admin' && form.userRolePhase === 'adminMemberReview'"
+        v-if="
+          form.userRole === 'admin' &&
+          form.userRolePhase === 'adminMemberReview'
+        "
       >
         <b-row class="mt-4">
           <b-tabs
@@ -406,8 +484,9 @@
               <template #title>
                 <h5>The proposed permit holder</h5>
               </template>
-               <f-42-admin-pph-review-submit :form="form"></f-42-admin-pph-review-submit>
-              
+              <f-42-admin-pph-review-submit
+                :form="form"
+              ></f-42-admin-pph-review-submit>
             </b-tab>
             <b-tab
               :title-link-class="[
@@ -420,7 +499,9 @@
               <template #title>
                 <h5>The committee member</h5>
               </template>
-               <f-42-admin-member-review-submit :form="form"></f-42-admin-member-review-submit>
+              <f-42-admin-member-review-submit
+                :form="form"
+              ></f-42-admin-member-review-submit>
             </b-tab>
           </b-tabs>
         </b-row>
@@ -430,17 +511,29 @@
     <b-container>
       <b-row class="mt-4">
         <b-col>
-          <p>Follow the logical life cycle of the form by clicking on each phase below. Do take the time to fill in the data in each phase to get to correct impression.</p>
+          <p>
+            Follow the logical life cycle of the form by clicking on each phase
+            below. Do take the time to fill in the data in each phase to get to
+            correct impression.
+          </p>
           <b-form-group label="Form life cycle control:">
             <b-form-radio-group>
               <ol>
                 <li>
                   <b-button
                     variant="link"
-                    @click.prevent="form.userRole = 'admin';tabIndex = 0"
+                    @click.prevent="
+                      form.userRole = 'admin';
+                      tabIndex = 0;
+                    "
                   >
                     Contact Person
-                    <span class="currentRole" v-if="form.userRole === 'admin' && form.userRolePhase === ''">
+                    <span
+                      class="currentRole"
+                      v-if="
+                        form.userRole === 'admin' && form.userRolePhase === ''
+                      "
+                    >
                       (current)</span
                     >
                   </b-button>
@@ -454,10 +547,13 @@
                     </li>
                   </ul>
                 </li>
-                <li>
+                <li v-if="!form.adminUserRolesArray.includes('pph')">
                   <b-button
                     variant="link"
-                    @click.prevent="form.userRole = 'permitHolder';tabIndex = 0"
+                    @click.prevent="
+                      form.userRole = 'permitHolder';
+                      tabIndex = 0;
+                    "
                   >
                     PPH
                     <span
@@ -473,18 +569,22 @@
                     <li>when submitted the form - admin is informed</li>
                   </ul>
                 </li>
-                <li>
+                <li v-if="!form.adminUserRolesArray.includes('pph')">
                   <b-button
                     variant="link"
                     @click.prevent="
                       form.userRole = 'admin';
-                      form.userRolePhase = 'pphInfoReview';tabIndex = 0;
+                      form.userRolePhase = 'pphInfoReview';
+                      tabIndex = 0;
                     "
                   >
                     Contact Person (PPH info review)
                     <span
                       class="currentRole"
-                      v-if="form.userRole === 'admin' && form.userRolePhase === 'pphInfoReview'"
+                      v-if="
+                        form.userRole === 'admin' &&
+                        form.userRolePhase === 'pphInfoReview'
+                      "
                     >
                       (current)</span
                     >
@@ -500,15 +600,19 @@
                       form).
                     </li>
                     <li>
-                      note: if admin is also the comm member, then steps 4 & 5 ADMIN STILL NEEDS TO FILL IN DECLARATION
-                      are skipped and the form is submitted to FWC (caseHQ)
+                      note: if admin is also the comm member, then steps 4 & 5
+                      ADMIN STILL NEEDS TO FILL IN DECLARATION are skipped and
+                      the form is submitted to FWC (caseHQ)
                     </li>
                   </ul>
                 </li>
-                <li>
+                <li v-if="!form.adminUserRolesArray.includes('member')">
                   <b-button
                     variant="link"
-                    @click.prevent="form.userRole = 'committeeMember';tabIndex = 0"
+                    @click.prevent="
+                      form.userRole = 'committeeMember';
+                      tabIndex = 0;
+                    "
                   >
                     Comm member
                     <span
@@ -525,24 +629,27 @@
                   </ul>
                 </li>
                 <li>
- <b-button
+                  <b-button
                     variant="link"
                     @click.prevent="
                       form.userRole = 'admin';
-                      form.userRolePhase = 'adminMemberReview';tabIndex = 0;
+                      form.userRolePhase = 'adminMemberReview';
+                      tabIndex = 0;
                     "
                   >
-                    Contact Person (Comm member info review and final submission)
+                    Contact Person (Comm member info review and final
+                    submission)
                     <span
                       class="currentRole"
-                      v-if="form.userRole === 'admin' && form.userRolePhase === 'adminMemberReview'"
+                      v-if="
+                        form.userRole === 'admin' &&
+                        form.userRolePhase === 'adminMemberReview'
+                      "
                     >
                       (current)</span
                     >
                   </b-button>
 
-
-                  
                   <ul>
                     <li>
                       reviews data entered by Comm member, any mismatch with
@@ -689,7 +796,6 @@ import F3files from "../components/f3/f3files.vue";
 import f42AdminMemberReviewSubmit from "../components/f42/adminMemberReview/f42AdminMemberReviewSubmit.vue";
 import f42AdminAsPphDecVue from "../components/f42/admin/f42AdminAsPphDec.vue";
 
-
 export default {
   components: {
     f42MemberViewSubmit,
@@ -716,7 +822,7 @@ export default {
     F3files,
     f42AdminPphReviewSubmit,
     f42AdminMemberReviewSubmit,
-    f42AdminAsPphDecVue
+    f42AdminAsPphDecVue,
   },
   layout: "form",
   data() {
@@ -752,89 +858,87 @@ export default {
           hasHolderTrainingInfo: null,
           hasHolderPhoto: null,
           permitHolderDataEnteredByAdmin: {
-  
-          isSameAsAdmin: false,
-          hasDigitalId: null,
-          infoCorrection: "",
-          confirmInfo: null,
-          firstName: "",
-          middleName: "",
-          lastName: "",
-          preferredName: "",
-          hasOtherNames: null,
-          hasPreferredName: null,
-          otherNames: [
-            {
-              firstName: "",
-              lastName: "",
+            isSameAsAdmin: false,
+            hasDigitalId: null,
+            infoCorrection: "",
+            confirmInfo: null,
+            firstName: "",
+            middleName: "",
+            lastName: "",
+            preferredName: "",
+            hasOtherNames: null,
+            hasPreferredName: null,
+            otherNames: [
+              {
+                firstName: "",
+                lastName: "",
+              },
+            ],
+            hasOtherNames: null,
+            email: "",
+            phones: [
+              {
+                number: "",
+                type: "",
+              },
+            ],
+            mobilePhone: "",
+            employeeOrOfficeHolder: null,
+            positionOrOfficeHeld: "",
+            previouslyHeldAnEntryPermit: null,
+            previousPermitReturned: null,
+            previousPermitNumber: "",
+            previousPermitNotReturnedReason: "",
+            previousPermitReturnedOnTime: null,
+            previousPermitStatDecFile: "",
+            photoFile: null,
+            trainings: [
+              {
+                trainingName: "",
+                trainingMethod: "",
+                trainingCompletionDate: "",
+                trainingFile: null,
+                trainingNameDetails: "",
+              },
+            ],
+            adminPhotoIsCorrect: null,
+            correctPhoto2: null,
+            confirmDetails: null,
+            dec: {
+              didAboveTraining: null,
+              convictedIndustrialLaw: null,
+              convictedIndustrialLawDetails: "",
+              convictedOther: null,
+              convictedOtherDetails: "",
+              orderedToPay: null,
+              orderedToPayDetails: "",
+              hadRevoked: null,
+              hadRevokedDetails: "",
+              hadConditionsImposed: null,
+              hadConditionsImposedDetails: "",
+              beenDisqualified: null,
+              beenDisqualifiedDetails: "",
+              awareOfMatters: null,
+              awareOfMattersDetails: "",
+              signedName: "",
+              signedDate: "",
+              beenDisqualified: null,
+              beenDisqualifiedDetails: "",
+              signature: {
+                name: "",
+                date: "",
+              },
             },
-          ],
-          hasOtherNames: null,
-          email: "",
-          phones: [
-            {
-              number: "",
-              type: "",
-            },
-          ],
-          mobilePhone: "",
-          employeeOrOfficeHolder: null,
-          positionOrOfficeHeld: "",
-          previouslyHeldAnEntryPermit: null,
-          previousPermitReturned: null,
-          previousPermitNumber: "",
-          previousPermitNotReturnedReason: "",
-          previousPermitReturnedOnTime: null,
-          previousPermitStatDecFile: "",
-          photoFile: null,
-          trainings: [
-            {
-              trainingName: "",
-              trainingMethod: "",
-              trainingCompletionDate: "",
-              trainingFile: null,
-              trainingNameDetails: "",
-            },
-          ],
-          adminPhotoIsCorrect: null,
-          correctPhoto2: null,
-          confirmDetails: null,
-          dec: {
-            didAboveTraining: null,
-            convictedIndustrialLaw: null,
-            convictedIndustrialLawDetails: "",
-            convictedOther: null,
-            convictedOtherDetails: "",
-            orderedToPay: null,
-            orderedToPayDetails: "",
-            hadRevoked: null,
-            hadRevokedDetails: "",
-            hadConditionsImposed: null,
-            hadConditionsImposedDetails: "",
-            beenDisqualified: null,
-            beenDisqualifiedDetails: "",
-            awareOfMatters: null,
-            awareOfMattersDetails: "",
-            signedName: "",
-            signedDate: "",
-            beenDisqualified: null,
-            beenDisqualifiedDetails: "",
-            signature: {
-              name: '',
-              date: ''
-            }
+            confirmPhotoSignatureDeclaration: false,
           },
-          confirmPhotoSignatureDeclaration: false,
-        },
 
-   
           memberDataEnteredByAdmin: {},
           dec: {
             signature: {
-              name: '',
-              date: ''
-            }
-          }
+              name: "",
+              date: "",
+            },
+          },
         },
         permitHolder: {
           isSameAsAdmin: false,
@@ -904,9 +1008,9 @@ export default {
             beenDisqualified: null,
             beenDisqualifiedDetails: "",
             signature: {
-              name: '',
-              date: ''
-            }
+              name: "",
+              date: "",
+            },
           },
           confirmPhotoSignatureDeclaration: false,
         },
@@ -952,9 +1056,9 @@ export default {
             signedName: "",
             signedDate: "",
             signature: {
-              name: '',
-              date: ''
-            }
+              name: "",
+              date: "",
+            },
           },
         },
 
@@ -972,18 +1076,32 @@ export default {
   methods: {},
   computed: {
     roleName: function () {
-      return this.form.userRole === 'admin' ? "Contact Person" : this.form.userRole;
+      return this.form.userRole === "admin"
+        ? "Contact Person"
+        : this.form.userRole;
     },
   },
   watch: {
     // COPY DATA ENTERED BY ADMIN FROM THE PPH/MEMBER TO admin.permitHolderDataEnteredByAdmin
     // DEV NOTE: FOR THE REAL FORM DO NOT USE WATCH, DO THIS OR SIMILAR CHECK WHEN A TAB IS SUBMITTED OR MAKE THE ADMIN PAGES SAVE TO permitHolderDataEnteredByAdmin ETC. Talk to me about it :) ...
     tabIndex(newValue, oldValue) {
-      if (oldValue === 2 && this.form.userRole === "admin" && this.form.userRolePhase === "") {
-        this.form.admin.permitHolderDataEnteredByAdmin = JSON.parse(JSON.stringify(this.form.permitHolder));
+      if (
+        oldValue === 2 &&
+        this.form.userRole === "admin" &&
+        this.form.userRolePhase === ""
+      ) {
+        this.form.admin.permitHolderDataEnteredByAdmin = JSON.parse(
+          JSON.stringify(this.form.permitHolder)
+        );
       }
-      if (oldValue === 3 && this.form.userRole === "admin" && this.form.userRolePhase === "") {
-        this.form.admin.memberDataEnteredByAdmin = JSON.parse(JSON.stringify(this.form.committeeMember));
+      if (
+        oldValue === 3 &&
+        this.form.userRole === "admin" &&
+        this.form.userRolePhase === ""
+      ) {
+        this.form.admin.memberDataEnteredByAdmin = JSON.parse(
+          JSON.stringify(this.form.committeeMember)
+        );
       }
     },
   },

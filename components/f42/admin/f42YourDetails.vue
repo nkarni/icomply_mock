@@ -1,30 +1,7 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>Your role</h6>     
-          
-           
-          </b-col>
-          <b-col>
-          
-
-            <b-form-group  label="Your role(s) in this application">
-              <b-radio-group v-model="form.indicatedUserRoles" stacked :options="[
-                { text: 'Contact Person', value: 'cp'}, 
-                { text: 'Contact Person AND Proposed Permit Holder', value: 'pph'},
-                { text: 'Contact Person AND Member of Committee of Management', value: 'member'},]">
-              
-              </b-radio-group>
-             
-            </b-form-group>
-
-           
-          </b-col>
-        </b-row>
-      </section>
+     
 
          <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
