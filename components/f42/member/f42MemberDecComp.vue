@@ -2,7 +2,7 @@
   <div>
  
     <Transition>
-    <b-row>
+    <b-row :class="disableConvictedIndustrialLaw ? 'disabled' : ''">
       <b-col class="numberCol"> a. </b-col>
       <b-col class="pl-1">
         <b-form-group
@@ -12,7 +12,7 @@
           "
         >
           <b-form-radio-group
-            :disabled="readOnly"
+          :disabled="disableConvictedIndustrialLaw"
             v-model="dec.convictedIndustrialLaw"
             :options="boolOptions"
           ></b-form-radio-group>
@@ -32,7 +32,7 @@
 </Transition>
 
 <Transition>
-    <b-row v-if="dec.convictedIndustrialLaw === false || dec.convictedIndustrialLawDetails.length > 2">
+    <b-row :class="disableConvictedOther ? 'disabled' : ''">
       <b-col class="numberCol"> b. </b-col>
       <b-col class="pl-1">
         <b-form-group>
@@ -45,7 +45,7 @@
           </label>
 
           <b-form-radio-group
-            :disabled="readOnly"
+          :disabled="disableConvictedOther"
             v-model="dec.convictedOther"
             :options="boolOptions"
           ></b-form-radio-group>
@@ -65,7 +65,7 @@
 </Transition>
 
 <Transition>
-    <b-row v-if="dec.convictedOther === false || dec.convictedOtherDetails.length > 2">
+    <b-row :class="disableOrderedToPay ? 'disabled' : ''">
       <b-col class="numberCol"> c. </b-col>
       <b-col class="pl-1">
         <b-form-group
@@ -77,7 +77,7 @@
           "
         >
           <b-form-radio-group
-            :disabled="readOnly"
+          :disabled="disableOrderedToPay"
             v-model="dec.orderedToPay"
             :options="boolOptions"
           ></b-form-radio-group>
@@ -97,7 +97,7 @@
 </Transition>
 
 <Transition>
-    <b-row v-if="dec.orderedToPay === false || dec.orderedToPayDetails.length > 2">
+    <b-row :class="disableHadRevoked ? 'disabled' : ''">
       <b-col class="numberCol"> d. </b-col>
       <b-col class="pl-1">
         <b-form-group
@@ -107,7 +107,7 @@
           "
         >
           <b-form-radio-group
-            :disabled="readOnly"
+          :disabled="disableHadRevoked"
             v-model="dec.hadRevoked"
             :options="boolOptions"
           ></b-form-radio-group>
@@ -128,7 +128,7 @@
 </Transition>
 
 <Transition>
-     <b-row v-if="dec.hadRevoked === false || dec.hadRevokedDetails.length > 2">
+     <b-row :class="disableHadConditionsImposed ? 'disabled' : ''">
       <b-col class="numberCol"> e. </b-col>
       <b-col class="pl-1"> 
         <b-form-group
@@ -138,7 +138,7 @@
           "
         >
           <b-form-radio-group
-            :disabled="readOnly"
+          :disabled="disableHadConditionsImposed"
             v-model="dec.hadConditionsImposed"
             :options="boolOptions"
           ></b-form-radio-group>
@@ -158,7 +158,7 @@
 </Transition>
 
 <Transition>
-    <b-row  v-if="dec.hadConditionsImposed === false || dec.hadConditionsImposedDetails.length > 2">
+    <b-row  :class="disableBeenDisqualified ? 'disabled' : ''">
       <b-col class="numberCol"> f. </b-col>
       <b-col class="pl-1">
         <b-form-group
@@ -168,7 +168,7 @@
           "
         >
           <b-form-radio-group
-            :disabled="readOnly"
+          :disabled="disableBeenDisqualified"
             v-model="dec.beenDisqualified"
             :options="boolOptions"
           ></b-form-radio-group>
@@ -237,6 +237,44 @@ export default {
         return "The proposed permit holder";
       }
     },
+    disableConvictedIndustrialLaw: function () {
+      return this.dec.didAboveTraining === null;
+    },
+    disableConvictedOther: function () {
+      return !(
+        this.dec.convictedIndustrialLaw === false ||
+        this.dec.convictedIndustrialLawDetails.length > 2
+      );
+    },
+    disableOrderedToPay: function () {
+      return !(
+        this.dec.convictedOther === false ||
+        this.dec.convictedOtherDetails.length > 2
+      );
+    },
+    disableHadRevoked: function () {
+      return !(
+        this.dec.orderedToPay === false ||
+        this.dec.orderedToPayDetails.length > 2
+      );
+    },
+    disableHadConditionsImposed: function () {
+      return !(
+        this.dec.hadRevoked === false || this.dec.hadRevokedDetails.length > 2
+      );
+    },
+    disableBeenDisqualified: function () {
+      return !(
+        this.dec.hadConditionsImposed === false ||
+        this.dec.hadConditionsImposedDetails.length > 2
+      );
+    },
+    disableAwareOfMatters: function () {
+      return !(
+        this.dec.beenDisqualified === false ||
+        this.dec.beenDisqualifiedDetails.length > 2
+      );
+    },
   },
   methods: {
     onWrongBusinessNameClick() {
@@ -255,5 +293,8 @@ h6::first-letter {
 .numberCol {
   padding-right: 0px;
   max-width: 30px;
+}
+.disabled {
+  opacity: 0.4;
 }
 </style>
