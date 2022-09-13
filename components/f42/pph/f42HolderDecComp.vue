@@ -109,6 +109,7 @@
         </b-col>
       </b-row>
     </Transition>
+    
     <Transition>
       <b-row :class="disableHadRevoked ? 'disabled' : ''">
         <b-col class="numberCol"> e. </b-col>

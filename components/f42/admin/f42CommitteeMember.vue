@@ -16,15 +16,7 @@
             </p>
           </b-col>
           <b-col>
-            <b-form-group v-if="!form.permitHolder.isSameAsAdmin">
-              <b-form-checkbox
-                v-model="form.committeeMember.isSameAsAdmin"
-                :value="true"
-                :unchecked-value="false"
-              >
-                Check this box if you are also the committee member.
-              </b-form-checkbox>
-            </b-form-group>
+      
 
             <div v-if="form.committeeMember.isSameAsAdmin">
               <notice

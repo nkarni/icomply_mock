@@ -503,6 +503,21 @@
                 :form="form"
               ></f-42-admin-member-review-submit>
             </b-tab>
+            <b-tab
+              :title-link-class="[
+                'laap-title-link',
+                'mb-2',
+                'p-3',
+                { 'laap-nav-item-complete': false },
+              ]"
+            >
+              <template #title>
+                <h5>Review and Submit</h5>
+              </template>
+              <f-42-admin-final-review-submit
+                :form="form"
+              ></f-42-admin-final-review-submit>
+            </b-tab>
           </b-tabs>
         </b-row>
       </div>

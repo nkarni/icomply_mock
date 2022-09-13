@@ -12,9 +12,14 @@
       </b-col>
       <b-col cols="8" v-html="value"> </b-col>
     </b-row>
+    <b-row v-if="mismatchDetected" style="margin-top: -15px;margin-bottom: 15px; margin-left: 161px;">
+      <b-col style="font-size:12px;color:#808080fc">
+        {{misMatchMessage}}: <span  v-html="compareTo"></span>
+      </b-col>
+    </b-row>
       <!-- <div :class="borderClass + ' notice p-2'" v-html="message"></div> -->
 
-<div class="mb-4 notice  p-2"  v-if="mismatchDetected">
+<div class="mb-4 notice  p-2"  v-if="mismatchDetected && 1===3">
 <b-row>
   <b-col class="redtext">
     {{misMatchMessage}}
@@ -71,7 +76,7 @@ export default {
     },
     misMatchMessage: {
       type: String,
-      default: () => "You have entered: ",
+      default: () => "You entered: ",
     },
   },
   data() {

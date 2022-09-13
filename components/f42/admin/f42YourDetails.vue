@@ -54,15 +54,7 @@
             <p>We will contact you if we have questions about the application.</p>
           </b-col>
           <b-col>
-            <b-form-group>
-              <b-form-checkbox
-                v-model="form.permitHolder.isSameAsAdmin"
-                :value="true"
-                :unchecked-value="false"
-              >
-                Check this box if you are also the proposed permit holder.
-              </b-form-checkbox>
-            </b-form-group>
+           
             <notice class="mb-4" v-if="form.permitHolder.isSameAsAdmin" :message="'Enter your full details in the next step.'"></notice>
 
           <entity

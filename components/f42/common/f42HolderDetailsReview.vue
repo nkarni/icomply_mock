@@ -1,9 +1,9 @@
 <template>
   <div>
-    <notice
+    <!-- <notice
       class="mb-3"
       :message="'Legal name must match drivers license or name on an official ID document.'"
-    ></notice>
+    ></notice> -->
 
     <review-item
       v-if="form.permitHolder.hasMiddleName === false"
