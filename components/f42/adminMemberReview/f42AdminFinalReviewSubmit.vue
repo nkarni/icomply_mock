@@ -1,8 +1,110 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary mb-4 pb-2">
-      Coming soon: display of final information (read only) as it will be submitted to caseHQ.
+      <section class="mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Proposed permit holder</h6>
+          </b-col>
+          <b-col>
+            <div v-if="form.permitHolder.isSameAsAdmin">
+              <notice
+                class="mb-4"
+                :message="'Same as contact person.'"
+              ></notice>
+            </div>
+            <div v-else>
+              <b-row>
+                <b-col cols="4">
+                  <label>Name</label>
+                </b-col>
+                <b-col>
+                  {{form.permitHolder.firstName}} {{form.permitHolder.lastName}}
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col cols="4">
+                  <label>Email</label>
+                </b-col>
+                <b-col>
+                  {{form.permitHolder.email}} 
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col cols="4">
+                  <label>Phone number(s)</label>
+                </b-col>
+                <b-col>
+                  <div v-for="(phone, index) of form.permitHolder.phones" :key="index" v-bind:id="index">
+                    {{ form.permitHolder.phones[index].type }}: {{ form.permitHolder.phones[index].number}}
+                    </div>
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col cols="4">
+                  <label>Office held</label>
+                </b-col>
+                <b-col>
+                  {{form.permitHolder.officeHeld}} 
+                </b-col>
+              </b-row>
+             
+            </div>
+          </b-col>
+        </b-row>
+      </section>
+
+      <section class="mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>Member of Committee of Management</h6>
+          </b-col>
+          <b-col>
+            <div v-if="form.committeeMember.isSameAsAdmin">
+              <notice
+                class="mb-4"
+                :message="'Same as contact person.'"
+              ></notice>
+            </div>
+            <div v-else>
+              <b-row>
+                <b-col cols="4">
+                  <label>Name</label>
+                </b-col>
+                <b-col>
+                  {{form.committeeMember.firstName}} {{form.committeeMember.lastName}}
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col cols="4">
+                  <label>Email</label>
+                </b-col>
+                <b-col>
+                  {{form.committeeMember.email}} 
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col cols="4">
+                  <label>Phone number(s)</label>
+                </b-col>
+                <b-col>
+                  <div v-for="(phone, index) of form.committeeMember.phones" :key="index" v-bind:id="index">
+                    {{ form.committeeMember.phones[index].type }}: {{ form.committeeMember.phones[index].number}}
+                    </div>
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col cols="4">
+                  <label>Office held</label>
+                </b-col>
+                <b-col>
+                  {{form.committeeMember.officeHeld}} 
+                </b-col>
+              </b-row>
+             
+            </div>
+          </b-col>
+        </b-row>
       </section>
 
    

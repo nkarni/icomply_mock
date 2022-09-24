@@ -87,6 +87,60 @@
       "
     ></review-item>
 
+    <review-item
+    fulWidthLabel
+      :label="'g. ' +
+        ' Are you aware of any other matters that may be relevant to whether the proposed permit holder is a fit and proper person to hold a permit?'
+      "
+      :value="
+        boolToStringWithDetails(
+          form.committeeMember.dec.awareOfMatters,
+          form.committeeMember.dec.awareOfMattersDetails
+        )
+      "
+    ></review-item>
+
+    <review-item
+    fulWidthLabel
+      :label="'h. ' +
+        ' I have made the following inquiries (including inquiries of the proposed permit holder) to satisfy myself that my answers at paragraphs 2(a) to (g) above are true and correct.'
+      "
+      :value="form.committeeMember.dec.inquiries"
+    ></review-item>
+
+    <b-row :class="'mt-4'">
+      <b-col class="numberCol"> i. </b-col>
+      <b-col class="pl-1">
+        <b-form-group
+          label="The proposed permit holder has received appropriate training about the rights and responsibilities of an entry permit holder. The details of the training the proposed permit holder have completed are:
+"
+        >
+          <div
+            v-if="
+              form.permitHolder.trainings.length > 0 &&
+              form.permitHolder.trainings[0].trainingName.length > 0
+            "
+          >
+            <div
+              v-for="(training, index) of form.permitHolder.trainings"
+              :key="index"
+              v-bind:id="index"
+              class="mb-2"
+            >
+              Name: {{ training.trainingName }}<br />
+              Method: {{ training.trainingMethod }}<br />Completed on:
+              {{ training.trainingCompletionDate }}<br />Evidence:
+              <a target="_blank" href="">Click Here</a>
+            </div>
+          </div>
+
+          <div v-else>No training details provided.</div>
+        </b-form-group>
+      </b-col>
+    </b-row>
+
+ 
+
     
   </div>
 </template>

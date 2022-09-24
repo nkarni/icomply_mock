@@ -108,7 +108,7 @@
       <b-col class="numberCol"> h. </b-col>
       <b-col class="pl-1">
         <b-form-group
-          label="I have received appropriate training about the rights and responsibilities of an entry permit holder. The details of the traning I have completed are:
+          label="I have received appropriate training about the rights and responsibilities of an entry permit holder. The details of the training I have completed are:
 "
         >
           <div
