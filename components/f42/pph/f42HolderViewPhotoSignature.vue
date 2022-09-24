@@ -108,7 +108,7 @@
           </b-col>
         </b-row>
       </section>
-      <section :class="'border-top border-secondary mb-4 pt-4 '">
+      <section :class="' mb-4  '">
         <f42-signature
           :form="form"
           :signature="form.permitHolder.dec.signature"

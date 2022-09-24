@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-form>
-      <section class="mb-4 pb-2">
+      <!-- <section class="mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Right of entry training</h6>
@@ -26,8 +26,8 @@
             </b-form-group>
           </b-col>
         </b-row>
-      </section>
-      <section class="border-top border-secondary mb-4 pt-4">
+      </section> -->
+      <section class="mb-4 pt-4">
         <b-row>
           <b-col cols="">
             <h6>Declaration</h6>
@@ -68,13 +68,16 @@
               :form="form"
               :dec="form.permitHolder.dec"
             ></f-42-holder-dec-comp>
+
+            
+
           </b-col>
         </b-row>
       </section>
 
       <section
         :class="
-          'border-top border-secondary mb-4 pt-4 ' +
+          'mb-4 ' +
           (disableSignature ? 'disabled' : '')
         "
       >

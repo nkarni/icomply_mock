@@ -1,21 +1,20 @@
 <template>
   
     <b-row>
-          <b-col cols="4">
-            <h6>Signature</h6>
+          <b-col cols="4" v-if="indented">
+            <h6>&nbsp;</h6>
           </b-col>
           <b-col>
             <b-row>
-              <b-col cols="6">
-                <b-form-group label="Name">
+              <b-col :cols="indented ? 9 : 6">
+                <b-form-group label="Signature (type your name)">
                   <b-form-input  v-model="signature.name">
                   </b-form-input>
                 </b-form-group>
               </b-col>
-              <b-col>
-                <b-form-group label="Date">
-                  <b-form-datepicker placeholder=""  v-model="signature.date">
-                    </b-form-datepicker>
+              <b-col cols="12">
+                <b-form-group >
+                  Date: {{ this.$moment().format("D/M/YYYY") }}
                   </b-form-group>
               </b-col>
             </b-row>
@@ -35,6 +34,10 @@ export default {
     signature: {
       type: Object,
       default: () => ({}),
+    },
+    indented: {
+      type: Boolean,
+      default: true,
     },
    
   },

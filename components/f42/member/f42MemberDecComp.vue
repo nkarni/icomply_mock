@@ -186,6 +186,67 @@
       </b-col>
     </b-row>
 </Transition>
+
+<Transition>
+    <b-row  :class="disableAwareOfMatters ? 'disabled' : ''">
+      <b-col class="numberCol"> g. </b-col>
+      <b-col class="pl-1">
+        <b-form-group
+          :label="
+            'Are you aware of any other matters that may be relevant to whether the proposed permit holder is a fit and proper person to hold a permit?'
+          "
+        >
+          <b-form-radio-group
+          :disabled="disableAwareOfMatters"
+            v-model="dec.awareOfMatters"
+            :options="boolOptions"
+          ></b-form-radio-group>
+        </b-form-group>
+
+        <b-form-group
+          label="Please provide details"
+          v-if="dec.awareOfMatters === true"
+        >
+          <b-form-textarea
+            :disabled="readOnly"
+            v-model="dec.awareOfMattersDetails"
+          ></b-form-textarea>
+        </b-form-group>
+        <notice class="mb-2"
+              :message="'The Commission can take into account any other matter that it considers relevant to whether the proposed permit holder is a fit and proper person to hold a permit. This may include adverse comments made about the proposed permit holder in a Commission or court decision, regardless of whether the proposed permit holder was a party to the proceeding.'">
+            </notice>
+      </b-col>
+    </b-row>
+   
+           
+</Transition>
+
+<Transition>
+    <b-row  :class="disableInquiries ? 'disabled' : ''">
+      <b-col class="numberCol"> h. </b-col>
+      <b-col class="pl-1">
+        <b-form-group
+          :label="
+            'I have made the following inquiries (including inquiries of the proposed permit holder) to satisfy myself that my answers at paragraphs 2(a) to (g) above are true and correct.'
+          "
+        >
+        
+          
+        </b-form-group>
+
+        <b-form-group
+              label="Describe the inquiries you made and what you did to satisfy yourself that the proposed permit holder meets the permit qualification matters listed in s.513(1)(b) to (f) of the Fair Work Act 2009:">
+              <b-form-textarea :disabled="readOnly" :class="disableInquiries ? 'disabled' : ''" v-model="dec.inquiries" rows="6" max-rows="12"></b-form-textarea>
+
+       
+</b-form-group>
+
+      </b-col>
+    </b-row>
+   
+           
+</Transition>
+
    
   </div>
 </template>
@@ -275,6 +336,14 @@ export default {
         this.dec.beenDisqualifiedDetails.length > 2
       );
     },
+    disableInquiries: function () {
+      return !(
+        this.dec.awareOfMatters === false ||
+        this.dec.awareOfMattersDetails.length > 2
+      );
+    },
+
+    
   },
   methods: {
     onWrongBusinessNameClick() {

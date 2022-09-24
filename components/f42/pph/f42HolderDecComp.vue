@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-row>
+    <!-- <b-row>
       <b-col class="numberCol"> a. </b-col>
       <b-col class="pl-1">
         <b-form-group
@@ -13,11 +13,11 @@
           ></b-form-radio-group>
         </b-form-group>
       </b-col>
-    </b-row>
+    </b-row> -->
 
     <Transition>
-      <b-row :class="disableConvictedIndustrialLaw ? 'disabled' : ''">
-        <b-col class="numberCol"> b. </b-col>
+      <b-row>
+        <b-col class="numberCol"> a. </b-col>
         <b-col class="pl-1">
           <b-form-group
             :label="
@@ -26,7 +26,6 @@
             "
           >
             <b-form-radio-group
-              :disabled="disableConvictedIndustrialLaw"
               v-model="dec.convictedIndustrialLaw"
               :options="boolOptions"
             ></b-form-radio-group>
@@ -47,7 +46,7 @@
 
     <Transition>
       <b-row :class="disableConvictedOther ? 'disabled' : ''">
-        <b-col class="numberCol"> c. </b-col>
+        <b-col class="numberCol"> b. </b-col>
         <b-col class="pl-1">
           <b-form-group>
             <label>
@@ -80,7 +79,7 @@
 
     <Transition>
       <b-row :class="disableOrderedToPay ? 'disabled' : ''">
-        <b-col class="numberCol"> d. </b-col>
+        <b-col class="numberCol"> c. </b-col>
         <b-col class="pl-1">
           <b-form-group
             :label="
@@ -109,10 +108,10 @@
         </b-col>
       </b-row>
     </Transition>
-    
+
     <Transition>
       <b-row :class="disableHadRevoked ? 'disabled' : ''">
-        <b-col class="numberCol"> e. </b-col>
+        <b-col class="numberCol"> d. </b-col>
         <b-col class="pl-1">
           <b-form-group
             :label="
@@ -142,7 +141,7 @@
 
     <Transition>
       <b-row :class="disableHadConditionsImposed ? 'disabled' : ''">
-        <b-col class="numberCol"> f. </b-col>
+        <b-col class="numberCol"> e. </b-col>
         <b-col class="pl-1">
           <b-form-group
             :label="
@@ -172,7 +171,7 @@
 
     <Transition>
       <b-row :class="disableBeenDisqualified ? 'disabled' : ''">
-        <b-col class="numberCol"> g. </b-col>
+        <b-col class="numberCol"> f. </b-col>
         <b-col class="pl-1">
           <b-form-group
             :label="
@@ -202,7 +201,7 @@
 
     <Transition>
       <b-row :class="disableAwareOfMatters ? 'disabled' : ''">
-        <b-col class="numberCol"> h. </b-col>
+        <b-col class="numberCol"> g. </b-col>
         <b-col class="pl-1">
           <b-form-group
             :label="'Are you aware of any other matters that may be relevant to whether you are a fit and proper person to hold a permit?'"
@@ -231,6 +230,36 @@
         </b-col>
       </b-row>
     </Transition>
+    <b-row :class="'mt-4' + (disableLastP ? 'disabled' : '')">
+      <b-col class="numberCol"> h. </b-col>
+      <b-col class="pl-1">
+        <b-form-group
+          label="I have received appropriate training about the rights and responsibilities of an entry permit holder. The details of the traning I have completed are:
+"
+        >
+          <div
+            v-if="
+              form.permitHolder.trainings.length > 0 &&
+              form.permitHolder.trainings[0].trainingName.length > 0
+            "
+          >
+            <div
+              v-for="(training, index) of form.permitHolder.trainings"
+              :key="index"
+              v-bind:id="index"
+              class="mb-2"
+            >
+              Name: {{ training.trainingName }}<br />
+              Method: {{ training.trainingMethod }}<br />Completed on:
+              {{ training.trainingCompletionDate }}<br />Evidence:
+              <a target="_blank" href="">Click Here</a>
+            </div>
+          </div>
+
+          <div v-else>No training details provided.</div>
+        </b-form-group>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -345,6 +374,12 @@ export default {
       return !(
         this.dec.beenDisqualified === false ||
         this.dec.beenDisqualifiedDetails.length > 2
+      );
+    },
+    disableLastP: function () {
+      return !(
+        this.dec.awareOfMatters === false ||
+        this.dec.awareOfMattersDetails.length > 2
       );
     },
   },

@@ -7,25 +7,16 @@
             <h6>The proposed permit holder Identity</h6>
           </b-col>
           <b-col cols="8">
-           <f-42-holder-details-review :form="form" dec="form.permitHolder.dec"></f-42-holder-details-review>
+           <f-42-holder-details-review :form="form" dec="form.permitHolder.dec" :doComparison="false" ></f-42-holder-details-review>
 
             
           </b-col>
         </b-row>
       </section>
 
-       <section class="border-bottom border-secondary mb-4 pb-2">
-        <b-row>
-          <b-col cols="4">
-            <h6>The proposed permit holder photo and signature</h6>
-          </b-col>
-          <b-col cols="8">
-            Photo and signature will show here when it is decided how we collect them... (including any 'declaration' they fill in that tab)
-          </b-col>
-        </b-row>
-      </section>
+     
 
-       <section class="border-bottom border-secondary mb-4 pb-2">
+       <!-- <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>The proposed permit holder training</h6>
@@ -36,7 +27,7 @@
             ></f-42-holder-training-review>
           </b-col>
         </b-row>
-      </section>
+      </section> -->
 
        <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>

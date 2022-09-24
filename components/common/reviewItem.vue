@@ -12,7 +12,7 @@
       </b-col>
       <b-col cols="8" v-html="value"> </b-col>
     </b-row>
-    <b-row v-if="mismatchDetected" style="margin-top: -15px;margin-bottom: 15px; margin-left: 161px;">
+    <b-row v-if="mismatchDetected && doComparison" style="margin-top: -15px;margin-bottom: 15px; margin-left: 161px;">
       <b-col style="font-size:12px;color:#808080fc">
         {{misMatchMessage}}: <span  v-html="compareTo"></span>
       </b-col>
@@ -76,8 +76,12 @@ export default {
     },
     misMatchMessage: {
       type: String,
-      default: () => "You entered: ",
+      default: () => "You entered",
     },
+    doComparison: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {

@@ -1051,6 +1051,11 @@ export default {
               type: "",
             },
           ],
+          pphPhotoSignature: {
+              name: "",
+              date: "",
+            },
+
           dec: {
             confirm: null,
             convictedIndustrialLaw: null,
@@ -1067,6 +1072,7 @@ export default {
             beenDisqualifiedDetails: "",
             awareOfMatters: null,
             awareOfMattersDetails: "",
+            inquiries: "",
             viewedDocs: "",
             signedName: "",
             signedDate: "",

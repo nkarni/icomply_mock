@@ -1,14 +1,14 @@
 <template>
   <div>
-    <review-item
+    <!-- <review-item
     fulWidthLabel
       :label="'a. Have you received the appropriate training, shown above, about the rights and responsibilities of an entry permit holder?'"
       :value="boolToString(form.permitHolder.dec.didAboveTraining)"
-    ></review-item>
+    ></review-item> -->
 
     <review-item
     fulWidthLabel
-      :label="'b. ' +
+      :label="'a. ' +
         haveYouStr +
         ' ever been convicted of an offence against an industrial law?'
       "
@@ -22,7 +22,7 @@
 
     <review-item
     fulWidthLabel
-      :label="'c. ' +
+      :label="'b. ' +
         haveYouStr +
         ' ever been convicted of an offence against a law of the Commonwealth, a State, a Territory or a foreign country, involving: <br />(i) entry onto premises; or <br />(ii) fraud ordishonesty; or <br />(iii) intentional use of violence against another person or intentional damage or destruction of property?'
       "
@@ -36,7 +36,7 @@
 
     <review-item
     fulWidthLabel
-      :label=" 'd. ' +
+      :label=" 'c. ' +
         haveYouStr +
         ', or any other person (which includes a union), ever been ordered to pay a penalty under the Fair Work Act 2009 or any other industrial law in relation to action taken by ' +
         youStr +
@@ -52,7 +52,7 @@
 
     <review-item
     fulWidthLabel
-      :label="'e. ' +
+      :label="'d. ' +
         haveYouStr +
         ' had revoked, suspended or made subject to conditions, any permit issued under Part 3 4 of the Fair Work Act 2009 or a similar law of the Commonwealth (no matter when in force)?'
       "
@@ -66,7 +66,7 @@
 
     <review-item
     fulWidthLabel
-      :label="'f. ' +
+      :label="'e. ' +
         haveYouStr +
         ' had cancelled or suspended or had conditions imposed on a right of entry for industrial or occupational health and safety (OHS) purposes, by any court, or other person or body, under a State or Territory industrial law or a State or Territory OHS law?'
       "
@@ -80,7 +80,7 @@
 
     <review-item
     fulWidthLabel
-      :label="'g. ' +
+      :label="'f. ' +
         haveYouStr +
         ' been disqualified, by any court, or other person or body, under a State or Territory industrial law or a State or Territory OHS law, from exercising, or applying for, a right of entry for industrial or OHS purposes under that law?'
       "
@@ -94,7 +94,7 @@
 
     <review-item
     fulWidthLabel
-      :label="'h. ' +'Are you aware of any other matters that may be relevant to whether you are a fit and proper person to hold a permit?'"
+      :label="'g. ' +'Are you aware of any other matters that may be relevant to whether you are a fit and proper person to hold a permit?'"
       :value="
         boolToStringWithDetails(
           form.permitHolder.dec.awareOfMatters,
@@ -102,6 +102,41 @@
         )
       "
     ></review-item>
+
+
+    <b-row :class="'mt-4'">
+      <b-col class="numberCol"> h. </b-col>
+      <b-col class="pl-1">
+        <b-form-group
+          label="I have received appropriate training about the rights and responsibilities of an entry permit holder. The details of the traning I have completed are:
+"
+        >
+          <div
+            v-if="
+              form.permitHolder.trainings.length > 0 &&
+              form.permitHolder.trainings[0].trainingName.length > 0
+            "
+          >
+            <div
+              v-for="(training, index) of form.permitHolder.trainings"
+              :key="index"
+              v-bind:id="index"
+              class="mb-2"
+            >
+              Name: {{ training.trainingName }}<br />
+              Method: {{ training.trainingMethod }}<br />Completed on:
+              {{ training.trainingCompletionDate }}<br />Evidence:
+              <a target="_blank" href="">Click Here</a>
+            </div>
+          </div>
+
+          <div v-else>No training details provided.</div>
+        </b-form-group>
+      </b-col>
+    </b-row>
+
+
+    
   </div>
 </template>
 

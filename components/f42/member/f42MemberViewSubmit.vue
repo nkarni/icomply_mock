@@ -56,22 +56,10 @@
 
             
             <f-42-member-dec-comp :form="form" :dec="form.committeeMember.dec"></f-42-member-dec-comp>
-            <div v-if="form.committeeMember.dec.beenDisqualified === false || form.committeeMember.dec.beenDisqualifiedDetails.length > 2">
-             <notice class="mb-2"
-              :message="'The Commission can take into account any other matter that it considers relevant to whether the proposed permit holder is a fit and proper person to hold a permit. This may include adverse comments made about the proposed permit holder in a Commission or court decision, regardless of whether the proposed permit holder was a party to the proceeding.'">
-            </notice>
+            <!-- <div v-if="form.committeeMember.dec.beenDisqualified === false || form.committeeMember.dec.beenDisqualifiedDetails.length > 2">
+            
 
-            <!-- <f-42-holder-super-details :form="form" :dec="form.committeeMember.dec"></f-42-holder-super-details> -->
-            <b-form-group
-              :label="'Are you aware of any other matters that may be relevant to whether the proposed permit holder is a fit and proper person to hold a permit?'">
-              <b-form-radio-group v-model="form.committeeMember.dec.awareOfMatters" :options="boolOptions">
-              </b-form-radio-group>
-            </b-form-group>
-
-            <b-form-group label="Please provide details" v-if="form.committeeMember.dec.awareOfMatters === true">
-              <b-form-textarea v-model="form.committeeMember.dec.awareOfMattersDetails"></b-form-textarea>
-            </b-form-group>
-
+            
 
              
 
@@ -80,7 +68,7 @@
               label="Describe the inquiries you made and what you did to satisfy yourself that the proposed permit holder meets the permit qualification matters listed in s.513(1)(b) to (f) of the Fair Work Act 2009:">
               <b-form-textarea v-model="form.committeeMember.inquiries" rows="6" max-rows="12"></b-form-textarea>
             </b-form-group>
-            </div>
+            </div> -->
            
 
           </b-col>
@@ -88,28 +76,11 @@
       </section>
 
 
-      <section class="border-top border-secondary  mb-4 pt-4"  v-if="form.committeeMember.inquiries.length > 2">
-        <b-row>
-          <b-col cols="4">
-            <h6>Signature</h6>
-          </b-col>
-          <b-col>
-            <b-row>
-              <b-col cols="6">
-                <b-form-group label="Name">
-                  <b-form-input  v-model="form.committeeMember.dec.signedName">
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col>
-                <b-form-group label="Date">
-                  <b-form-datepicker placeholder=""  v-model="form.committeeMember.dec.signedDate">
-                    </b-form-datepicker>
-                  </b-form-group>
-              </b-col>
-            </b-row>
-          </b-col>
-        </b-row>
+      <section class=" mb-4 "  v-if="form.committeeMember.inquiries.length > 2">
+        <f42-signature-vue  :form="form" :signature="form.committeeMember.dec.signature" :indented="false"></f42-signature-vue>
+
+        
+    
       </section>
 
       <section class="border-top border-secondary mb-4 pt-4" v-if="form.committeeMember.dec.signedName.length > 2">
@@ -136,8 +107,9 @@ import entity from "../../common/entity.vue";
 import EntityAddress from "../../common/entityAddress.vue";
 import Notice from "../../common/notice.vue";
 import f42MemberDecComp from "./f42MemberDecComp.vue";
+import f42SignatureVue from "../common/f42Signature.vue";
 export default {
-  components: { entity, Notice, EntityAddress, f42MemberDecComp },
+  components: { entity, Notice, EntityAddress, f42MemberDecComp , f42SignatureVue},
   name: "f42MemberViewSubmit",
   props: {
     form: {

@@ -51,7 +51,7 @@
         </b-row>
       </section>
 
-      <section class="border-bottom border-secondary mb-4 pb-2">
+      <!-- <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>The proposed permit holder training</h6>
@@ -62,7 +62,7 @@
             ></f-42-holder-training-review>
           </b-col>
         </b-row>
-      </section>
+      </section> -->
 
        <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>

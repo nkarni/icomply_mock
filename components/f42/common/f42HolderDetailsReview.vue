@@ -9,6 +9,7 @@
       v-if="form.permitHolder.hasMiddleName === false"
       :label="'Name:'"
       :value="form.permitHolder.firstName + ' ' + form.permitHolder.lastName"
+      :doComparison="doComparison"
       :compareTo="form.admin.permitHolderDataEnteredByAdmin.firstName + ' ' + form.admin.permitHolderDataEnteredByAdmin.lastName"
     ></review-item>
 
@@ -22,6 +23,7 @@
         ' ' +
         form.permitHolder.lastName
       "
+      :doComparison="doComparison"
       :compareTo="form.admin.permitHolderDataEnteredByAdmin.firstName +
         ' ' +
         form.admin.permitHolderDataEnteredByAdmin.middleName +
@@ -33,6 +35,7 @@
       v-if="form.permitHolder.hasPreferredName === true"
       :label="'Preferred name:'"
       :value="form.permitHolder.preferredName"
+      :doComparison="doComparison"
       :compareTo="form.admin.permitHolderDataEnteredByAdmin.preferredName"
     ></review-item>
 
@@ -40,24 +43,28 @@
       v-if="form.permitHolder.hasOtherNames === true"
       :label="'Other names:'"
       :value="namesToString(form.permitHolder.otherNames)"
+      :doComparison="doComparison"
       :compareTo="namesToString(form.admin.permitHolderDataEnteredByAdmin.otherNames)"
     ></review-item>
 
     <review-item
       :label="'Email:'"
       :value="form.permitHolder.email"
+      :doComparison="doComparison"
       :compareTo="form.admin.permitHolderDataEnteredByAdmin.email"
     ></review-item>
 
     <review-item
       :label="'Phone(s):'"
       :value="phoneToString(form.permitHolder.phones)"
+      :doComparison="doComparison"
       :compareTo="phoneToString(form.admin.permitHolderDataEnteredByAdmin.phones)"
     ></review-item>
 
     <review-item
       :label="'Holds a matching Digital iD™?'"
       :value="boolToString(form.permitHolder.hasDigitalId)"
+      :doComparison="doComparison"
       :compareTo="boolToString(form.admin.permitHolderDataEnteredByAdmin.hasDigitalId)"
     ></review-item>
 
@@ -68,6 +75,7 @@
         'An office holder holding the office: ' +
         form.permitHolder.positionOrOfficeHeld
       "
+      :doComparison="doComparison"
        :compareTo="'An office holder holding the office: ' +
         form.admin.permitHolderDataEnteredByAdmin.positionOrOfficeHeld"
     ></review-item>
@@ -79,6 +87,7 @@
         'An employee holding the position: ' +
         form.permitHolder.positionOrOfficeHeld
       "
+      :doComparison="doComparison"
       :compareTo="
         'An employee holding the position: ' +
         form.admin.permitHolderDataEnteredByAdmin.positionOrOfficeHeld
@@ -88,6 +97,7 @@
     <review-item
       :label="'Previous permit:'"
       :value="prevPermitToStringPph()"
+      :doComparison="doComparison"
       :compareTo="prevPermitToStringAdminEntered()"
     ></review-item>
 
@@ -106,6 +116,10 @@ export default {
     form: {
       type: Object,
       default: () => ({}),
+    },
+    doComparison: {
+      type: Boolean,
+      default: true,
     },
   },
   data() {

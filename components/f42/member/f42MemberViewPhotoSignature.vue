@@ -45,9 +45,7 @@
                     </b-col>
                     <b-col>
 
-                        1. The photograph above is a true photograph of the proposed permit holder. 
-2.  
-3. The other signed document(s) shown to me by the proposed permit holder were: [text box]
+                        
 
                         <div>
                             <p>
@@ -70,16 +68,17 @@
                         <b-form-group label="The other signed document(s) shown to me by the proposed permit holder were:">
                             <b-form-textarea v-model="form.committeeMember.dec.viewedDocs"></b-form-textarea>
                         </b-form-group>
-                        <b-form-group>
-                            <b-form-checkbox v-model="form.permitHolder.confirmPhotoSignatureDeclaration" :value="true"
-                                :unchecked-value="false">
-                                I Confirm
-                            </b-form-checkbox>
-                        </b-form-group>
+
+                        
+      
+                       
 
                     </b-col>
                 </b-row>
             </section>
+            <section :class="' mb-4 '">    
+                <f42-signature-vue  :form="form" :signature="form.committeeMember.pphPhotoSignature"></f42-signature-vue>
+       </section>
 
 
         </b-form>
@@ -94,8 +93,9 @@ import Notice from "../../common/notice.vue";
 import f42Training from "../common/f42Training.vue";
 import f42HolderSuperDetails from "../common/f42HolderSuperDetails.vue";
 import f42HolderDetailsComp from "../common/f42HolderDetailsComp.vue";
+import f42SignatureVue from "../common/f42Signature.vue";
 export default {
-    components: { entity, Notice, EntityAddress, f42Training, f42HolderSuperDetails, f42HolderDetailsComp },
+    components: { f42SignatureVue, entity, Notice, EntityAddress, f42Training, f42HolderSuperDetails, f42HolderDetailsComp },
     name: "f42MemberViewPhotoSignature",
     props: {
         form: {
