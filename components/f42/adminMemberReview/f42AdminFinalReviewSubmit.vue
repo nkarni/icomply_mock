@@ -1,112 +1,100 @@
 <template>
   <div>
     <b-form>
-      <section class="mb-4 pb-2">
+      <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Proposed permit holder</h6>
+            <h6>The proposed permit holder Identity</h6>
           </b-col>
-          <b-col>
-            <div v-if="form.permitHolder.isSameAsAdmin">
-              <notice
-                class="mb-4"
-                :message="'Same as contact person.'"
-              ></notice>
-            </div>
-            <div v-else>
-              <b-row>
-                <b-col cols="4">
-                  <label>Name</label>
-                </b-col>
-                <b-col>
-                  {{form.permitHolder.firstName}} {{form.permitHolder.lastName}}
-                </b-col>
-              </b-row>
-              <b-row>
-                <b-col cols="4">
-                  <label>Email</label>
-                </b-col>
-                <b-col>
-                  {{form.permitHolder.email}} 
-                </b-col>
-              </b-row>
-              <b-row>
-                <b-col cols="4">
-                  <label>Phone number(s)</label>
-                </b-col>
-                <b-col>
-                  <div v-for="(phone, index) of form.permitHolder.phones" :key="index" v-bind:id="index">
-                    {{ form.permitHolder.phones[index].type }}: {{ form.permitHolder.phones[index].number}}
-                    </div>
-                </b-col>
-              </b-row>
-              <b-row>
-                <b-col cols="4">
-                  <label>Office held</label>
-                </b-col>
-                <b-col>
-                  {{form.permitHolder.officeHeld}} 
-                </b-col>
-              </b-row>
-             
-            </div>
+          <b-col cols="8">
+            <f-42-holder-details-review
+              :form="form"
+              :doComparison="false"
+            ></f-42-holder-details-review>
           </b-col>
         </b-row>
       </section>
 
-      <section class="mb-4 pb-2">
+      <section class="border-bottom border-secondary mb-4 pb-2">
         <b-row>
           <b-col cols="4">
-            <h6>Member of Committee of Management</h6>
+            <h6>The proposed permit holder photo and signature</h6>
           </b-col>
-          <b-col>
-            <div v-if="form.committeeMember.isSameAsAdmin">
-              <notice
-                class="mb-4"
-                :message="'Same as contact person.'"
-              ></notice>
-            </div>
-            <div v-else>
-              <b-row>
-                <b-col cols="4">
-                  <label>Name</label>
-                </b-col>
-                <b-col>
-                  {{form.committeeMember.firstName}} {{form.committeeMember.lastName}}
-                </b-col>
-              </b-row>
-              <b-row>
-                <b-col cols="4">
-                  <label>Email</label>
-                </b-col>
-                <b-col>
-                  {{form.committeeMember.email}} 
-                </b-col>
-              </b-row>
-              <b-row>
-                <b-col cols="4">
-                  <label>Phone number(s)</label>
-                </b-col>
-                <b-col>
-                  <div v-for="(phone, index) of form.committeeMember.phones" :key="index" v-bind:id="index">
-                    {{ form.committeeMember.phones[index].type }}: {{ form.committeeMember.phones[index].number}}
-                    </div>
-                </b-col>
-              </b-row>
-              <b-row>
-                <b-col cols="4">
-                  <label>Office held</label>
-                </b-col>
-                <b-col>
-                  {{form.committeeMember.officeHeld}} 
-                </b-col>
-              </b-row>
-             
-            </div>
+          <b-col cols="8">
+            Photo and signature will show here when it is decided how we collect them... (including any 'declaration' they fill in that tab)
           </b-col>
         </b-row>
       </section>
 
+       <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>The proposed permit holder declaration</h6>
+          </b-col>
+          <b-col cols="8">
+            <p>
+              I, <br />James Paul Roberts <br />positionName<br />Of orgName,
+              branch, full streetAddress
+            </p>
+            <p>Declare that each answer I give below is true and correct:</p>
+            <f-42-holder-dec-review
+              :form="form"
+            ></f-42-holder-dec-review>
+          </b-col>
+        </b-row>
+      </section>
+
+    
+      <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>The committee member identity</h6>
+          </b-col>
+          <b-col cols="8">
+            <f-42-member-details-review
+              :form="form"
+              
+            ></f-42-member-details-review>
+          </b-col>
+        </b-row>
+      </section>
+
+      <section class="border-bottom border-secondary mb-4 pb-2">
+        <b-row>
+          <b-col cols="4">
+            <h6>The committee member declaration</h6>
+          </b-col>
+          <b-col cols="8">
+           Show provided photograph and signature, then the dec
+          </b-col>
+        </b-row>
+      </section>
+
+      <section class="border-bottom border-secondary mb-4 pb-2" v-if="!form.committeeMember.isSameAsAdmin === true">
+        <b-row>
+          <b-col cols="4">
+            <h6>The committee member permit qualification matters declaration</h6>
+          </b-col>
+          <b-col cols="8">
+            <p>
+              I, <br>Don Burrows, <br> officeHeld <br>
+              Of orgName, branch, full streetAddress
+            </p>
+            <p>
+              Declare that:
+            <ol>
+              <li>Having made proper inquiries, I believe that the proposed permit holder is a fit and proper person to
+                hold an entry permit.</li>
+              <li> Each answer I give below is true and correct to the best of my knowledge:
+              </li>
+            </ol>
+
+
+            </p>
+            <f-42-member-dec-review :form="form"></f-42-member-dec-review>
+          </b-col>
+        </b-row>
+      </section>
    
 
      

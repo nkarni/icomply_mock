@@ -139,6 +139,12 @@
       </b-col>
     </b-row>
 
+    <b-row>
+      <b-col>
+        Signed: {{ form.committeeMember.dec.signature.name}} on {{form.committeeMember.dec.signature.date}}
+      </b-col>
+    </b-row>
+
  
 
     

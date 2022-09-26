@@ -37,6 +37,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    doComparison: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {

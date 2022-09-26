@@ -134,6 +134,11 @@
         </b-form-group>
       </b-col>
     </b-row>
+    <b-row>
+      <b-col>
+        Signed: {{ form.permitHolder.dec.signature.name}} on {{form.permitHolder.dec.signature.date}}
+      </b-col>
+    </b-row>
 
 
     
