@@ -5,7 +5,10 @@
         <b-row>
           <b-col cols="4">
             <h6>About you</h6>
-            <p>The Respondent is the business that the former employee (the Applicant) lodged an unfair dismissal claim against.</p>
+            <p>
+              The Respondent is the business that the former employee (the
+              Applicant) lodged an unfair dismissal claim against.
+            </p>
           </b-col>
           <b-col>
             <b-form-group
@@ -34,11 +37,10 @@
           <b-col cols="4">
             <h6>Business details</h6>
             <p>
-             The applicant gave us these details about the business. Please update them if they are not correct.
+              The applicant gave us these details about the business. Please
+              update them if they are not correct.
             </p>
-            <p>
-             
-            </p>
+            <p></p>
           </b-col>
           <b-col>
             <div>
@@ -48,7 +50,7 @@
                 {{ form.employeeProvidedBusinessNameString }}
               </b-form-group>
 
-              <b-form-group label="Are those details correct?" class="mt-3">
+              <b-form-group label="Are these details correct?" class="mt-3">
                 <b-form-radio-group
                   v-model="form.employeeProvidedBusinessIsCorrect"
                   :options="boolOptions"
@@ -110,15 +112,15 @@
           </b-col>
         </b-row>
       </section>
-      <section
-        class="border-bottom border-secondary mb-4 pb-4"
-        v-if="businessNameVerified"
-      >
+      <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>Contact person</h6>
             <p>
-              We will send information about the case to your contact person. You can change the contact person or update incorrect information
+              nformation about this case will be sent to the contact person. You
+              can change the contact person or update incorrect information. You
+              need to provide the details of a contact person from the business
+              even if the business has a representative.
             </p>
             <!-- <p>
               You can nominate a different person if there is someone else who
@@ -137,13 +139,15 @@
               <!-- <div class="mb-4 text-right" v-if="form.businessDetails.contactPerson.firstName === '' || form.businessDetails.contactPerson.lastName === '' || form.businessDetails.contactPerson.email === ''">
               <a href="" @click.prevent="populateContactPerson">Click to populate contact details with my OLS account information</a>
             </div> -->
-           
-            <notice v-if="form.formFillerPersona === 'self'" class="mb-4" :message="'Dev note: if selected \'owner\' in the relationship to the responder, then populate the contact details from their OLS account'">
-            </notice>
-           
+
+              <notice
+                v-if="form.formFillerPersona === 'self'"
+                class="mb-4"
+                :message="'Dev note: if selected \'owner\' in the relationship to the responder, then populate the contact details from their OLS account'"
+              >
+              </notice>
             </Transition>
-            
-             
+
             <entity
               :entity="form.businessDetails.contactPerson"
               showPhones
@@ -157,14 +161,14 @@
         </b-row>
       </section>
 
-      <section
-        class="border-bottom border-secondary mb-4 pb-4"
-        v-if="businessNameVerified"
-      >
+      <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>Representative</h6>
-           <p>Please provide details about this representative if you know them.</p>
+           <p>Please provide the representative's details. </p>
+           <p>There is no requirement to have a representative throughout this process. </p>
+            <p>Information about representation can be found on the <a href="https://www.fwc.gov.au/representation-lawyers-and-paid-agents-0" target="_blank">website</a>
+            </p>
           </b-col>
           <b-col>
             <b-form-group label="Does the business have a representative?">
@@ -173,12 +177,17 @@
                 :options="boolOptions"
               ></b-form-radio-group>
             </b-form-group>
-             <Transition>
+            <Transition>
               <!-- <div  class="mb-4 text-right" v-if="form.hasRep === true && (form.rep.firstName === '' || form.rep.lastName === '' || form.rep.email === '')">
               <a href="" @click.prevent="populateRep">Click to populate contact details with my OLS account information</a>
             </div> -->
-            <notice v-if="form.hasRep && form.formFillerPersona === 'rep'" class="mb-4" :message="'Dev note: f user selects \'I am representing the Respondent in this matter\' and ticks does the business have a representative as YES then automatically prepopulate rep contact details from OLS account'">
-            </notice>
+            <notice class="mb-4" message="Please provide details about this representative below." v-if="form.hasRep"></notice>
+              <notice
+                v-if="form.hasRep && form.formFillerPersona === 'rep'"
+                class="mb-4"
+                :message="'Dev note: f user selects \'I am representing the Respondent in this matter\' and ticks does the business have a representative as YES then automatically prepopulate rep contact details from OLS account'"
+              >
+              </notice>
             </Transition>
 
             <b-form-group
@@ -200,7 +209,7 @@
                 v-model="form.repTypeDetails"
               ></b-form-input>
             </b-form-group> -->
- 
+
             <entity
               v-if="form.hasRep === true"
               :entity="form.rep"
@@ -221,19 +230,24 @@
           </b-col>
         </b-row>
       </section>
-      <section
-        class="border-bottom border-secondary mb-4 pb-4"
-        v-if="businessNameVerified"
-      >
+      <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>Interpreter service</h6>
-            
-            <p>We might hold a conference or hearing about this case. We can arrange an interpreter. You can find information about help for non-English speakers on our 
-              <a href="https://www.fwc.gov.au/about-us/contact-us/language-help-non-english-speakers" target="_blank">website</a>.</p>
+
+            <p>
+              We might hold a conference or hearing about this case. We can
+              arrange an interpreter. You can find information about help for
+              non-English speakers on our
+              <a
+                href="https://www.fwc.gov.au/about-us/contact-us/language-help-non-english-speakers"
+                target="_blank"
+                >website</a
+              >.
+            </p>
           </b-col>
           <b-col>
-            <b-form-group label="Will you need an interpreter?">
+            <b-form-group label="Will the Respondent need an interpreter?">
               <b-form-radio-group
                 v-model="form.needsInterpreter"
                 :options="boolOptions"
@@ -248,40 +262,54 @@
                 v-model="form.needsInterpreterLanguage"
               ></b-form-select>
             </b-form-group>
-              <b-form-group v-if="form.needsInterpreter === true">
-              <b-form-checkbox v-model="form.needsInterpreterLanguageNotFound"  :value="true"
-                :unchecked-value="false">
+            <b-form-group v-if="form.needsInterpreter === true">
+              <b-form-checkbox
+                v-model="form.needsInterpreterLanguageNotFound"
+                :value="true"
+                :unchecked-value="false"
+              >
                 My langauge is not listed
               </b-form-checkbox>
-           </b-form-group>
-            <b-form-group label="Please provide details" v-if="form.needsInterpreterLanguageNotFound">
-            <b-form-input v-model="form.needsInterpreterLanguageDetails"></b-form-input>
+            </b-form-group>
+            <b-form-group
+              label="Please provide details"
+              v-if="form.needsInterpreterLanguageNotFound"
+            >
+              <b-form-input
+                v-model="form.needsInterpreterLanguageDetails"
+              ></b-form-input>
             </b-form-group>
           </b-col>
         </b-row>
       </section>
 
-      <section class="mb-4 pb-4" v-if="businessNameVerified">
+      <section class="mb-4 pb-4">
         <b-row>
           <b-col cols="4">
             <h6>Accessibility</h6>
             <p v-if="form.formFillerPersona === 'self'">
-             If you have access needs, we can make arrangements so that you can participate fully in the case. You can read more about accessibility on our <a
+              If the Respondent have access needs, we can make arrangements so that you can
+              participate fully in the case. You can read more about
+              accessibility on our
+              <a
                 href="https://www.fwc.gov.au/about-us/legal-and-freedom-information/about-website/accessibility"
                 target="_blank"
-                >website</a>.
-
-             
+                >website</a
+              >.
             </p>
             <p v-else>
-                If the Respondent contact person has access needs, we can make arrangements so that they can participate fully in the case. You can read more about accessibility on our <a
+              If the Respondent contact person has access needs, we can make
+              arrangements so that they can participate fully in the case. You
+              can read more about accessibility on our
+              <a
                 href="https://www.fwc.gov.au/about-us/legal-and-freedom-information/about-website/accessibility"
                 target="_blank"
-                >website</a>.
+                >website</a
+              >.
             </p>
           </b-col>
           <b-col>
-            <b-form-group label="Do you have any accessibility requirements?">
+            <b-form-group label="Does the Respondent have any accessibility requirements?">
               <b-form-radio-group
                 v-model="form.needsAccessibility"
                 :options="boolOptions"
@@ -289,7 +317,7 @@
             </b-form-group>
             <b-form-group
               v-if="form.needsAccessibility === true"
-              label="What do you need?"
+              label="What is needed?"
             >
               <b-form-input
                 v-model="form.needsAccessibilityDetails"
@@ -356,9 +384,9 @@ export default {
           value: "999999999",
         },
       ],
-      
+
       formFillerPersonaOptions: [
-         {
+        {
           text: "I am an owner/director/employee of the Respondent",
           value: "self",
         },
@@ -366,15 +394,16 @@ export default {
           text: "I am representing the Respondent in this matter",
           value: "rep",
         },
-       // { text: "Other", value: "Other" },
+        // { text: "Other", value: "Other" },
       ],
       boolOptions: [
         { text: "Yes", value: true },
         { text: "No", value: false },
       ],
       repTypeOptions: [
-        "lawyer, paid agent, employer association, peak body",
-        "Other",
+        "Lawyer",
+        "Employer association/Peak body",
+        "Paid agent/other",
       ],
       manualBusinessEntry: false,
     };
@@ -436,15 +465,15 @@ export default {
       this.manualBusinessEntry = true;
     },
     populateContactPerson() {
-      this.form.businessDetails.contactPerson.firstName = 'populated firstname'
-      this.form.businessDetails.contactPerson.lastName = 'populated lastname'
-      this.form.businessDetails.contactPerson.email = 'populated email'
+      this.form.businessDetails.contactPerson.firstName = "populated firstname";
+      this.form.businessDetails.contactPerson.lastName = "populated lastname";
+      this.form.businessDetails.contactPerson.email = "populated email";
     },
-     populateRep() {
-      this.form.rep.firstName = 'populated firstname'
-      this.form.rep.lastName = 'populated lastname'
-      this.form.rep.email = 'populated email'
-    }
+    populateRep() {
+      this.form.rep.firstName = "populated firstname";
+      this.form.rep.lastName = "populated lastname";
+      this.form.rep.email = "populated email";
+    },
   },
 };
 </script>

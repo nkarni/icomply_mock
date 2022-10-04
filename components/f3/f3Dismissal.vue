@@ -6,9 +6,7 @@
           <b-col cols="4">
             <h6>Business size </h6>
             <p>
-              Count all full-time and part-time employees, including the
-              Applicant. Only count casuals if they were regular casual
-              employees
+              Include full-time, part-time and regular casual employees (including the Applicant).
             </p>
             <p>
               You can find more information on our
@@ -21,7 +19,7 @@
           </b-col>
           <b-col>
             <b-form-group
-              :label="'How many employees did the business have when the Applicant was dismissed?'"
+              :label="'How many employees did the business have when the Applicant claims they were dismissed?'"
             >
               <b-form-select
                 stacked
@@ -82,7 +80,7 @@
       <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
-            <h6>Date notified</h6>
+            <h6>Dismissal notification date</h6>
             <p>
               You can find out more information about when a dismissal takes
               effect on our
@@ -197,7 +195,7 @@
       <section class="border-bottom border-secondary mb-4 pb-4">
         <b-row>
           <b-col cols="4">
-            <h6>Last date</h6>
+            <h6>Last date of work</h6>
           </b-col>
           <b-col>
 
@@ -409,7 +407,7 @@ export default {
       // if (this.form.independentContractor === true) {
       //   return "What date did their contract end?";
       // }
-      return "What date did the Applicant stop working for the business?";
+      return "What date was the Applicant's last day of work?";
     },
     youString: function () {
       return this.form.repType === "self" ? "you" : "the Applicant";

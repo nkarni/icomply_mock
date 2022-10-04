@@ -12,6 +12,7 @@
               dismissal from [first name] [last name]. We refer to [first name]
               [last name] as 'the Applicant'.
             </p>
+            <p>We refer to the business named in the application as 'the Respondent'</p>
             <p>
               We have not made a decision about whether the dismissal was
               unfair.

@@ -7,8 +7,7 @@
             <h6>Applicant's information</h6>
 
             <p>
-              During the case, we will call the person who has made the
-              application the Applicant.
+              This is the person who has lodged the claim. During the case, we will call this person the Applicant.
             </p>
           </b-col>
           <b-col>
@@ -32,6 +31,12 @@
         <b-row>
           <b-col cols="4">
             <h6>Type of work</h6>
+            <p>
+              Only employees are covered by national unfair dismissal laws. 
+            </p>
+            <p>
+              You can find information about who is and isn't covered on the <a href="https://www.fwc.gov.au/people-excluded-national-unfair-dismissal-laws" target="_blank">website</a>
+            </p>
           </b-col>
           <b-col>
             <b-form-group label="Was the Applicant:">
@@ -63,7 +68,9 @@ If the Applicant was not an employee you can object to the claim"
 
               
             </div>
-            <b-form-group label="Was the Applicant a casual?">
+            <b-form-group label="Was the Applicant a casual?"   v-if="
+                form.engagementType && form.engagementType === 'An employee'
+              " >
               <b-form-radio-group v-model="form.casual" :options="boolOptions">
               </b-form-radio-group>
             </b-form-group>
@@ -71,6 +78,7 @@ If the Applicant was not an employee you can object to the claim"
             <div v-if="form.casual === true">
               <notice
                 class="mb-4"
+                :borderClass="'red'"
                 message="If you employed the Applicant a casual and their casual employment was not regular and systematic, you can object to the claim."
               ></notice>
               <objections :form="form" :objectionIndex="7"></objections>
@@ -172,10 +180,10 @@ If the Applicant was not an employee you can object to the claim"
               :message="'Calculated annual wage is: $' + annualWage"
             ></notice>
 
-            <notice
+            <!-- <notice
               class="mb-3"
               :message="'If you believe the Applicant’s income was more than the high income threshold, you can object to the claim.'"
-            ></notice>
+            ></notice> -->
 
             <b-form-group
               :label="'Did they get any other benefits, such as a work car or mobile phone?'"
@@ -213,7 +221,7 @@ If the Applicant was not an employee you can object to the claim"
             </b-form-group>
             <b-form-group
               v-if="form.employeeHasAwardAgreement === true"
-              label="Award or agreement number "
+              label="Award number (optional)"
             >
               <b-form-input
                 v-model="form.employeeAwardAgreementNumber"

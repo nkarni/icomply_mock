@@ -23,7 +23,7 @@
             </b-form-group>
 
             <b-form-group
-              label="Are those details correct?"
+              label="Are these details correct?"
               v-if="showIsBusinessDetailsCorrect"
               class="mt-3"
             >
