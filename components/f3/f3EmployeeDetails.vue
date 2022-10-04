@@ -213,7 +213,7 @@ If the Applicant was not an employee you can object to the claim"
 
             <b-form-group
               v-if="form.employeeHasAwardAgreement === true"
-              label="Name of award or agreement (optional)"
+              label="Name of award or agreement"
             >
               <b-form-input
                 v-model="form.employeeAwardAgreementName"

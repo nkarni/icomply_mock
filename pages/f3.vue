@@ -189,7 +189,7 @@ import f3AboutYou from "../components/f3/f3AboutYou.vue";
 import F3Circumstances from "../components/f3/f3Circumstances.vue";
 import F3Dismissal from "../components/f3/f3Dismissal.vue";
 import f3EmployeeDetails from "../components/f3/f3EmployeeDetails.vue";
-import F3OtherInfo from "../components/f3/f3OtherInfo.vue";
+import F3OtherInfo from "../components/f3/f3Objections.vue";
 import F3Review from "../components/f3/f3Review.vue";
 import F3files from "../components/f3/f3files.vue";
 export default {

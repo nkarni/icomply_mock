@@ -805,7 +805,7 @@ import f42YourDetails from "../components/f42/admin/f42YourDetails.vue";
 import F3Circumstances from "../components/f3/f3Circumstances.vue";
 import F3Dismissal from "../components/f3/f3Dismissal.vue";
 import f3EmployeeDetails from "../components/f3/f3EmployeeDetails.vue";
-import F3OtherInfo from "../components/f3/f3OtherInfo.vue";
+import F3OtherInfo from "../components/f3/f3Objections.vue";
 import F3Review from "../components/f3/f3Review.vue";
 import F3files from "../components/f3/f3files.vue";
 import f42AdminMemberReviewSubmit from "../components/f42/adminMemberReview/f42AdminMemberReviewSubmit.vue";

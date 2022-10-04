@@ -5,7 +5,8 @@
         <b-row>
           <b-col cols="4">
             <h6>Jurisdictional objections</h6>
-            <p>Select any objections that apply (you can select more than one)</p>
+            <p>The Respondent can challenge the claim if they believe the Applicant is not eligible to claim unfair dismissal or if they were not dismissed. 
+You can add or review objections here. you can also remove a prefilled objection by un-ticking it.</p><p>Information about objecting to an application can be found on the <a href="https://www.fwc.gov.au/objecting-application-0" target="_blank">website</a></p>
           </b-col>
           <b-col>
 
