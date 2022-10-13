@@ -33,7 +33,7 @@
           v-model="address.line1"
         ></b-form-input>
       </b-form-group>
-      <b-form-group label="Address line 2">
+      <b-form-group label="Address line 2 (optional)">
         <b-form-input
           :id="idPrefix + '-line2'"
           :name="idPrefix + '-line2'"

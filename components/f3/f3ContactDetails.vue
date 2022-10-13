@@ -165,7 +165,6 @@
         <b-row>
           <b-col cols="4">
             <h6>Representative</h6>
-           <p>Please provide the representative's details. </p>
            <p>There is no requirement to have a representative throughout this process. </p>
             <p>Information about representation can be found on the <a href="https://www.fwc.gov.au/representation-lawyers-and-paid-agents-0" target="_blank">website</a>
             </p>

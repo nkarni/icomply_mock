@@ -310,7 +310,7 @@ export default {
       return this.form.repType === "self" ? "are you" : "the Applicant is";
     },
     annualWage: function () {
-      if (this.form.engagementCommitment === "Casual") {
+      if (this.form.casual) {
         if (this.form.averageWeeklyHours > 0 && this.form.employeeWage > 0) {
           return this.form.averageWeeklyHours * this.form.employeeWage * 52;
         }
