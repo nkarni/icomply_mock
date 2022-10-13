@@ -120,7 +120,8 @@
     <b-row class="mt-4" >
       <b-col cols="12" class="text-right">
         <b-button variant="primary" v-if="tabIndex > 0 && tabIndex < 6" @click="tabIndex--" class="mr-2">Save & Previous</b-button>
-        <b-button variant="primary" v-if="tabIndex < 6" @click="tabIndex++">Save & Next</b-button> 
+        <b-button variant="primary" v-if="tabIndex > 0 &&  tabIndex < 6" @click="tabIndex++">Save & Next</b-button> 
+        <b-button variant="primary" v-if="tabIndex === 0" @click="tabIndex++">Next</b-button> 
       </b-col>
     </b-row>
 

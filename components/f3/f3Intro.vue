@@ -45,7 +45,7 @@
             </ul>
                </p>
             <p>You must complete the Form F3 by the due date/by DD MMM YYYY.</p>
-            <p>Answer every question.  We will tell you if a question is optional.</p>
+            <p>All questions are mandatory unless marked as optional.</p>
           </b-col>
         </b-row>
       </section>

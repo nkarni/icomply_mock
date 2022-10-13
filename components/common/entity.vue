@@ -123,6 +123,9 @@
           </b-col>
         </b-row>
       </div>
+      <div class="text-right" v-if="entity.phones === 0 || entity.phones[0].number.length < 8">
+        At least one phone number is required.
+      </div>
 
       <div class="text-right">
         <b-button variant="link" class="p-0 mb-4" @click.prevent="addPhone">Click here to add another phone number

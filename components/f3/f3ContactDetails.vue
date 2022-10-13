@@ -117,7 +117,7 @@
           <b-col cols="4">
             <h6>Contact person</h6>
             <p>
-              nformation about this case will be sent to the contact person. You
+              Information about this case will be sent to the contact person. You
               can change the contact person or update incorrect information. You
               need to provide the details of a contact person from the business
               even if the business has a representative.
