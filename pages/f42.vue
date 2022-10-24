@@ -1,6 +1,9 @@
 <template>
   <div>
-    <b-container v-if="form.userRole !== ''">
+    <!-- A CONTAINER OF THE NAVIGATION ITEMS AND THE FLOW BASED ON POSITION IN THE FLOW -->
+
+    <b-container v-if="form.userRole !== '' && newFlow">
+      <!-- FORM HEADER -->
       <b-row>
         <b-col cols="8">
           <h3 class="text-primary">
@@ -17,11 +20,41 @@
           <b-button variant="primary">Save for later</b-button>
         </b-col>
       </b-row>
-      <!-- <b-row class="mt-4">
-        <b-col>
-          <f-42-progress-bar :form="form"></f-42-progress-bar>
-                 </b-col>
-      </b-row> -->
+
+      <!-- GLOBAL NAV -->
+      <b-row class="mt-4">
+          <b-tabs
+            v-model="tabIndex"
+            vertical
+            nav-wrapper-class="w-30"
+            class="w-100"
+            active-nav-item-class="text-primary laap-nav-item-active"
+            nav-class="laap-nav"
+            content-class="card p-3"
+          >
+          <div v-for="(tab, index) in currentWorkflow">
+            <b-tab
+              :title-link-class="[
+                'laap-title-link',
+                'mb-2',
+                'p-3',
+                { 'laap-nav-item-complete': false },
+              ]"
+            >
+              <template #title>
+                <h5>{{ tab.label }}</h5>
+                <!-- <span>How it works and what is expected of you</span> -->
+              </template>
+
+              <div v-for="comp in tab.comps">
+                <component :is="comp" :form="form"></component>
+              </div>
+            </b-tab>
+          
+          </div>
+          </b-tabs>
+        </b-row>
+
       <!-- ADMIN START VIEW -->
       <div v-if="form.userRole === 'admin' && form.userRolePhase === ''">
         <b-row class="mt-4">
@@ -34,6 +67,7 @@
             nav-class="laap-nav"
             content-class="card p-3"
           >
+          <div v-for="(tab, index) in workFlows.cpTabs">
             <b-tab
               :title-link-class="[
                 'laap-title-link',
@@ -43,41 +77,16 @@
               ]"
             >
               <template #title>
-                <h5>The process</h5>
+                <h5>{{ tab.label }}</h5>
                 <!-- <span>How it works and what is expected of you</span> -->
               </template>
-              <f-42-process-admin :form="form"></f-42-process-admin>
-            </b-tab>
 
-            <b-tab
-              :title-link-class="[
-                'laap-title-link',
-                'mb-2',
-                'p-3',
-                { 'laap-nav-item-complete': false },
-              ]"
-            >
-              <template #title>
-                <h5>Your details</h5>
-                <!-- <span>Union organisation and administrator details</span> -->
-              </template>
-              <f-42-your-details :form="form"></f-42-your-details>
+              <div v-for="comp in tab.comps">
+                <component :is="comp" :form="form"></component>
+              </div>
             </b-tab>
-
-            <b-tab
-              :title-link-class="[
-                'laap-title-link',
-                'mb-2',
-                'p-3',
-                { 'laap-nav-item-complete': false },
-              ]"
-            >
-              <template #title>
-                <h5>About the proposed permit holder</h5>
-                <!-- <span>Their details</span> -->
-              </template>
-              <f-42-holder-details :form="form"></f-42-holder-details>
-            </b-tab>
+          
+          </div>
 
             <b-tab
               v-if="form.permitHolder.isSameAsAdmin"
@@ -129,8 +138,8 @@
               </b-tab>
             </div>
 
-            <b-tab
-            v-if="!form.adminUserRolesArray.includes('member')"
+            <!-- <b-tab
+              v-if="!form.adminUserRolesArray.includes('member')"
               :title-link-class="[
                 'laap-title-link',
                 'mb-2',
@@ -140,45 +149,43 @@
             >
               <template #title>
                 <h5>About the member of Committee of Management</h5>
-                <!-- <span>Their details</span> -->
+               
               </template>
               <f-42-committee-member :form="form"></f-42-committee-member>
-            </b-tab>
+            </b-tab> -->
 
             <!-- If admin is also the com member -->
             <div v-if="form.adminUserRolesArray.includes('member')">
               <b-tab
-              :title-link-class="[
-                'laap-title-link',
-                'mb-2',
-                'p-3',
-                { 'laap-nav-item-complete': false },
-              ]"
-            >
-              <template #title>
-                <h5>Photo and signature</h5>
-              </template>
-              <f-42-member-view-photo-signature
-                :form="form"
-              ></f-42-member-view-photo-signature>
-            </b-tab>
+                :title-link-class="[
+                  'laap-title-link',
+                  'mb-2',
+                  'p-3',
+                  { 'laap-nav-item-complete': false },
+                ]"
+              >
+                <template #title>
+                  <h5>Photo and signature</h5>
+                </template>
+                <f-42-member-view-photo-signature
+                  :form="form"
+                ></f-42-member-view-photo-signature>
+              </b-tab>
 
-            <b-tab
-              :title-link-class="[
-                'laap-title-link',
-                'mb-2',
-                'p-3',
-                { 'laap-nav-item-complete': false },
-              ]"
-            >
-              <template #title>
-                <h5>Permit qualification matters</h5>
-                <!-- <span>Confirm details and submit the form</span> -->
-              </template>
-              <f-42-member-view-submit :form="form"></f-42-member-view-submit>
-            </b-tab>
-            
-            
+              <b-tab
+                :title-link-class="[
+                  'laap-title-link',
+                  'mb-2',
+                  'p-3',
+                  { 'laap-nav-item-complete': false },
+                ]"
+              >
+                <template #title>
+                  <h5>Permit qualification matters</h5>
+                  <!-- <span>Confirm details and submit the form</span> -->
+                </template>
+                <f-42-member-view-submit :form="form"></f-42-member-view-submit>
+              </b-tab>
             </div>
             <!-- <b-tab
           :title-link-class="[
@@ -194,7 +201,7 @@
           </template>
         
         </b-tab> -->
-            <b-tab
+            <!-- <b-tab
               :title-link-class="[
                 'laap-title-link',
                 'mb-2',
@@ -204,10 +211,9 @@
             >
               <template #title>
                 <h5>Review and submit</h5>
-                <!-- <span>Confirm details and submit the form</span> -->
               </template>
               <f-42-admin-submit :form="form"></f-42-admin-submit>
-            </b-tab>
+            </b-tab> -->
           </b-tabs>
         </b-row>
         <b-row class="mt-4">
@@ -523,6 +529,7 @@
       </div>
     </b-container>
 
+    <!-- MOCKUP CONTROL FOR REVIEW AND DEBUGGING OF THE PROCESS (TEMPORARY) -->
     <b-container>
       <b-row class="mt-4">
         <b-col>
@@ -683,44 +690,9 @@
           </b-form-group>
         </b-col>
       </b-row>
-      <!-- <b-row class="mt-4">
-        <b-col>
-          <h4>Select a role:</h4>
-          <div v-if="form.userRole != ''">
-            Current view is {{ form.userRole }}
-          </div>
-        </b-col>
-      </b-row> -->
-      <!-- <b-row class="mt-4">
-        <b-col cols="4">
-          <b-button
-            variant="outline-primary"
-            @click.prevent="form.userRole = 'admin'"
-          >
-            <h4>Administrator view</h4>
-            Start an application, or edit an existing one
-          </b-button>
-        </b-col>
-        <b-col cols="4">
-          <b-button
-            variant="outline-primary"
-            @click.prevent="form.userRole = 'permitHolder'"
-          >
-            <h4>Proposed Permit Holder view</h4>
-            Join an application
-          </b-button>
-        </b-col>
-        <b-col cols="4">
-          <b-button
-            variant="outline-primary"
-            @click.prevent="form.userRole = 'committeeMember'"
-          >
-            <h4>Member of Committee of Management view</h4>
-            Join an application
-          </b-button>
-        </b-col>
-      </b-row> -->
     </b-container>
+
+    <!-- MOCKUP FOOTER -->
     <b-container v-if="form.userRole !== ''">
       <b-row class="mt-4">
         <b-col cols="12">
@@ -785,6 +757,18 @@
 </template>
 
 <script>
+import cpProcessTab from "../components/f42/comps/cpProcessTab.vue";
+import f42OrgSearch from "../components/f42/comps/f42OrgSearch.vue";
+import cpIdentity from "../components/f42/comps/cpIdentity.vue";
+import cpPphDetailsTab from "../components/f42/comps/cpPphDetailsTab.vue";
+import cpMcmDetailsTab from "../components/f42/comps/cpMcmDetailsTab.vue";
+import cpSubmitTab from "../components/f42/comps/cpSubmitTab.vue";
+
+import pphProcessTab from "../components/f42/comps/pphProcessTab.vue";
+import pphYourDetailsTab from "../components/f42/comps/pphYourDetailsTab.vue";
+import pphPhotoSignatureTab from "../components/f42/comps/pphPhotoSignatureTab.vue";
+
+/********* Un Reviewed items */
 import f42MemberViewSubmit from "../components/f42/member/f42MemberViewSubmit.vue";
 import f42MemberViewPph from "../components/f42/member/f42MemberViewPph.vue";
 import f42MemberViewDetails from "../components/f42/member/f42MemberViewDetails.vue";
@@ -800,7 +784,6 @@ import f42AdminPphReviewSubmit from "../components/f42/adminPphDetailsReview/f42
 import f42CommitteeMember from "../components/f42/admin/f42CommitteeMember.vue";
 import f42ProgressBar from "../components/f42/common/f42ProgressBar.vue";
 import f42HolderDetails from "../components/f42/admin/f42HolderDetails.vue";
-import f42ProcessAdmin from "../components/f42/admin/f42ProcessAdmin.vue";
 import f42YourDetails from "../components/f42/admin/f42YourDetails.vue";
 import F3Circumstances from "../components/f3/f3Circumstances.vue";
 import F3Dismissal from "../components/f3/f3Dismissal.vue";
@@ -811,8 +794,20 @@ import F3files from "../components/f3/f3files.vue";
 import f42AdminMemberReviewSubmit from "../components/f42/adminMemberReview/f42AdminMemberReviewSubmit.vue";
 import f42AdminAsPphDecVue from "../components/f42/admin/f42AdminAsPphDec.vue";
 
+
 export default {
   components: {
+    cpProcessTab,
+    f42OrgSearch,
+    cpIdentity,
+    cpPphDetailsTab,
+    cpMcmDetailsTab,
+    cpSubmitTab,
+    pphProcessTab,
+    pphYourDetailsTab,
+    pphPhotoSignatureTab,
+
+    /*****/
     f42MemberViewSubmit,
     f42MemberViewPph,
     f42MemberViewDetails,
@@ -823,7 +818,7 @@ export default {
     f42HolderViewDetails,
     f42HolderViewTraining,
     f42ProgressBar,
-    f42ProcessAdmin,
+
     f42YourDetails,
     f42HolderDetails,
     f42CommitteeMember,
@@ -842,6 +837,50 @@ export default {
   layout: "form",
   data() {
     return {
+      newFlow: true,
+      workFlows: {
+        cpTabs: [
+          {
+            label: "Process",
+            comps: ["cpProcessTab"],
+          },
+          {
+            label: "Your details",
+            comps: ["f42OrgSearch", "cpIdentity"],
+          },
+          {
+            label: "About the proposed permit holder",
+            comps: ["cpPphDetailsTab"],
+          },
+          {
+            label: "About the member of Committee of Management",
+            comps: ["cpMcmDetailsTab"],
+          },
+          {
+            label: "Review and submit",
+            comps: ["cpSubmitTab"],
+          },
+        ],
+        pphTabs: [
+          {
+            label: "Process",
+            comps: ["pphProcessTab"],
+          },
+          {
+            label: "Your details",
+            comps: ["pphYourDetailsTab"],
+          },
+          {
+            label: "Photo and signature",
+            comps: ["pphPhotoSignatureTab"],
+          },
+          {
+            label: "Permit qualifications matters",
+            comps: ["cpMcmDetailsTab"],
+          },
+        
+        ],
+      },
       form: {
         userRole: "",
         userRolePhase: "",
@@ -946,7 +985,6 @@ export default {
             },
             confirmPhotoSignatureDeclaration: false,
           },
-
           memberDataEnteredByAdmin: {},
           dec: {
             signature: {
@@ -1052,9 +1090,9 @@ export default {
             },
           ],
           pphPhotoSignature: {
-              name: "",
-              date: "",
-            },
+            name: "",
+            date: "",
+          },
 
           dec: {
             confirm: null,
@@ -1101,6 +1139,16 @@ export default {
         ? "Contact Person"
         : this.form.userRole;
     },
+    currentWorkflow: function() {
+      if(this.form.userRole === 'admin' && this.form.userRolePhase === ''){
+        // An admin (Cp = contact person) is starting an application
+        return this.workFlows.cpTabs
+      }
+      if(this.form.userRole === 'permitHolder'){
+        return this.workFlows.pphTabs
+      }
+
+    }
   },
   watch: {
     // COPY DATA ENTERED BY ADMIN FROM THE PPH/MEMBER TO admin.permitHolderDataEnteredByAdmin
