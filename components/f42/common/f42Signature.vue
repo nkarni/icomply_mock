@@ -1,26 +1,41 @@
 <template>
+  <div>
   
-    <b-row>
-          <b-col cols="4" v-if="indented">
-            <h6>&nbsp;</h6>
-          </b-col>
-          <b-col>
-            <b-row>
-              <b-col :cols="indented ? 9 : 6">
-                <b-form-group label="Signature (type your name)">
-                  <b-form-input  v-model="signature.name">
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col cols="12">
-                <b-form-group >
-                  Date: {{ this.$moment().format("D/M/YYYY") }}
-                  </b-form-group>
-              </b-col>
-            </b-row>
-          </b-col>
-        </b-row>
-  
+  <b-row v-if="!readOnly">
+    <b-col cols="4" v-if="indented">
+      <h6>&nbsp;</h6>
+    </b-col>
+    <b-col>
+      <b-row>
+        <b-col :cols="indented ? 9 : 6">
+          <b-form-group label="Signature (type your name)">
+            <b-form-input v-model="signature.name"> </b-form-input>
+          </b-form-group>
+        </b-col>
+        <b-col cols="12">
+          <b-form-group>
+            Date: {{ this.$moment().format("D/M/YYYY") }}
+          </b-form-group>
+        </b-col>
+      </b-row>
+    </b-col>
+  </b-row>
+
+  <b-row v-if="readOnly">
+    <b-col cols="4" v-if="indented">
+      <h6>&nbsp;</h6>
+    </b-col>
+    <b-col>
+      <b-row>
+        
+        <b-col cols="12">
+          Signed by signedName on signatureDate
+        </b-col>
+      </b-row>
+    </b-col>
+  </b-row>
+    
+</div>
 </template>
 
 <script>
@@ -39,7 +54,10 @@ export default {
       type: Boolean,
       default: true,
     },
-   
+    readOnly: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -92,5 +110,4 @@ export default {
 </script>
 
 <style lang="scss" scoped >
-
 </style>

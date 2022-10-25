@@ -232,94 +232,7 @@
         </b-row>
       </div>
 
-      <!-- permitHolder  VIEW -->
-      <div v-if="form.userRole === 'permitHolder'">
-        <b-row class="mt-4">
-          <b-tabs
-            v-model="tabIndex"
-            vertical
-            nav-wrapper-class="w-30"
-            class="w-100"
-            active-nav-item-class="text-primary laap-nav-item-active"
-            nav-class="laap-nav"
-            content-class="card p-3"
-          >
-            <b-tab
-              :title-link-class="[
-                'laap-title-link',
-                'mb-2',
-                'p-3',
-                { 'laap-nav-item-complete': false },
-              ]"
-            >
-              <template #title>
-                <h5>The process</h5>
-                <!-- <span>How it works and what is expected of you</span> -->
-              </template>
-              <f-42-process-holder :form="form"></f-42-process-holder>
-            </b-tab>
-
-            <b-tab
-              :title-link-class="[
-                'laap-title-link',
-                'mb-2',
-                'p-3',
-                { 'laap-nav-item-complete': false },
-              ]"
-            >
-              <template #title>
-                <h5>Your details</h5>
-              </template>
-              <f-42-holder-view-details :form="form"></f-42-holder-view-details>
-            </b-tab>
-
-            <b-tab
-              :title-link-class="[
-                'laap-title-link',
-                'mb-2',
-                'p-3',
-                { 'laap-nav-item-complete': false },
-              ]"
-            >
-              <template #title>
-                <h5>Photo and signature</h5>
-              </template>
-              <f-42-holder-view-photo-signature
-                :form="form"
-              ></f-42-holder-view-photo-signature>
-            </b-tab>
-
-            <b-tab
-              :title-link-class="[
-                'laap-title-link',
-                'mb-2',
-                'p-3',
-                { 'laap-nav-item-complete': false },
-              ]"
-            >
-              <template #title>
-                <h5>Permit qualifications matters</h5>
-                <!-- <span>Confirm details and submit the form</span> -->
-              </template>
-              <f-42-holder-view-submit :form="form"></f-42-holder-view-submit>
-            </b-tab>
-          </b-tabs>
-        </b-row>
-        <b-row class="mt-4">
-          <b-col cols="12" class="text-right">
-            <b-button
-              variant="primary"
-              v-if="tabIndex > 0 && tabIndex < 6"
-              @click="tabIndex--"
-              class="mr-2"
-              >Save & Prev</b-button
-            >
-            <b-button variant="primary" v-if="tabIndex < 3" @click="tabIndex++"
-              >Save & Next</b-button
-            >
-          </b-col>
-        </b-row>
-      </div>
+    
 
       <!-- committeeMember  VIEW -->
       <div v-if="form.userRole === 'committeeMember'">
@@ -767,6 +680,18 @@ import cpSubmitTab from "../components/f42/comps/cpSubmitTab.vue";
 import pphProcessTab from "../components/f42/comps/pphProcessTab.vue";
 import pphYourDetailsTab from "../components/f42/comps/pphYourDetailsTab.vue";
 import pphPhotoSignatureTab from "../components/f42/comps/pphPhotoSignatureTab.vue";
+import pphPqmTab from "../components/f42/comps/pphPqmTab.vue";
+
+import cpPphReviewTab from "../components/f42/comps/cpPphReviewTab.vue";
+import mcmProcessTab from "../components/f42/comps/mcmProcessTab.vue";
+
+import mcmYourDetailsTab from "../components/f42/comps/mcmYourDetailsTab.vue";
+import mcmAboutPphTab from "../components/f42/comps/mcmAboutPphTab.vue";
+import mcmPhotoSignatureTab from "../components/f42/comps/mcmPhotoSignatureTab.vue";
+import mcmPqmTab from "../components/f42/comps/mcmPqmTab.vue";
+
+import cpPphFinalReviewTab from "../components/f42/comps/cpPphFinalReviewTab.vue";
+import cpMcmFinalReviewTab from "../components/f42/comps/cpMcmFinalReviewTab.vue";
 
 /********* Un Reviewed items */
 import f42MemberViewSubmit from "../components/f42/member/f42MemberViewSubmit.vue";
@@ -806,6 +731,15 @@ export default {
     pphProcessTab,
     pphYourDetailsTab,
     pphPhotoSignatureTab,
+    pphPqmTab,
+    cpPphReviewTab,
+    mcmProcessTab,
+    mcmYourDetailsTab,
+    mcmAboutPphTab,
+    mcmPhotoSignatureTab,
+    mcmPqmTab,
+    cpPphFinalReviewTab,
+    cpMcmFinalReviewTab,
 
     /*****/
     f42MemberViewSubmit,
@@ -876,9 +810,48 @@ export default {
           },
           {
             label: "Permit qualifications matters",
-            comps: ["cpMcmDetailsTab"],
+            comps: ["pphPqmTab"],
           },
-        
+        ],
+        cpPphReviewTabs: [
+        {
+            label: "The proposed permit holder",
+            comps: ["cpPphReviewTab"],
+          },
+        ],
+        mcmTabs: [
+          {
+            label: "Process",
+            comps: ["mcmProcessTab"],
+          },
+          {
+            label: "Your details",
+            comps: ["mcmYourDetailsTab"],
+          },
+          {
+            label: "About the proposed permit holder",
+            comps: ["mcmAboutPphTab"],
+          },
+          
+          {
+            label: "Photo and signature",
+            comps: ["mcmPhotoSignatureTab"],
+          },
+          {
+            label: "Permit qualifications matters",
+            comps: ["mcmPqmTab"],
+          },
+        ],
+        cpFinalReviewTabs: [
+        {
+            label: "The proposed permit holder",
+            comps: ["cpPphFinalReviewTab"],
+          },
+          {
+            label: "The committee member",
+            comps: ["cpMcmFinalReviewTab"],
+          },
+          
         ],
       },
       form: {
@@ -985,7 +958,7 @@ export default {
             },
             confirmPhotoSignatureDeclaration: false,
           },
-          memberDataEnteredByAdmin: {},
+          committeeMemberDataEnteredByAdmin: {},
           dec: {
             signature: {
               name: "",
@@ -1144,9 +1117,26 @@ export default {
         // An admin (Cp = contact person) is starting an application
         return this.workFlows.cpTabs
       }
+
       if(this.form.userRole === 'permitHolder'){
         return this.workFlows.pphTabs
       }
+
+      if(this.form.userRole === 'admin' && this.form.userRolePhase === 'pphInfoReview'){
+        // PPH has entered their details for review by CP
+        return this.workFlows.cpPphReviewTabs
+      }
+
+      if(this.form.userRole === 'committeeMember'){
+        return this.workFlows.mcmTabs
+      }
+      if(this.form.userRole === 'admin' && this.form.userRolePhase === 'adminMemberReview'){
+        // MCM has entered their details for review by CP
+        return this.workFlows.cpFinalReviewTabs
+      }
+      
+      console.log(this.form.userRolePhase)
+      
 
     }
   },
@@ -1168,7 +1158,7 @@ export default {
         this.form.userRole === "admin" &&
         this.form.userRolePhase === ""
       ) {
-        this.form.admin.memberDataEnteredByAdmin = JSON.parse(
+        this.form.admin.committeeMemberDataEnteredByAdmin = JSON.parse(
           JSON.stringify(this.form.committeeMember)
         );
       }
