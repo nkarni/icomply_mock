@@ -15,7 +15,7 @@
         :emailDesc="emailDesc"
         :haveMiddleNameLabel="DoYouString + ' have a middle name?'"
         :havePreferredNameLabel="DoYouString + ' have a preferred name?'"
-        :haveOtherNamesLabel="HaveYouString + ' known by any other names?'"
+        :haveOtherNamesLabel="(firstPerson ? 'Have you been known by any other names?' : 'Have they been known by any other names?')"
       >
       </entity>
       <notice
@@ -170,7 +170,7 @@
       firstPerson: function () {
         return (
           this.form.userRole === "permitHolder" ||
-          (this.form.userRole === "admin" && this.form.permitHolder.isSameAsAdmin)
+          (this.form.userRole === "admin" && this.form.adminUserRolesArray.includes("pph"))
         );
       },
   

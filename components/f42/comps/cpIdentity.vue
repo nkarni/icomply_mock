@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-form>
-      <section class="mb-4 pb-2">
+      <section class=" border-top border-secondary mt-4 pt-4">
         <b-row>
           <b-col cols="4">
             <h6>Your details</h6>

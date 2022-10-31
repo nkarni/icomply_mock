@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-form>
-      <section class="border-bottom border-secondary mb-4 pb-2">
+      <section class=" ">
         <b-row>
           <b-col cols="4">
             <h6>About the Applicant (organisation or branch)</h6>

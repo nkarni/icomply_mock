@@ -123,9 +123,7 @@
               </h6>
             </b-col>
             <b-col cols="8">
-              <f-42-holder-training-review
-                :form="form"
-              ></f-42-holder-training-review>
+              <pph-training-read-only :form="form"></pph-training-read-only>
             </b-col>
           </b-row>
         </section>
@@ -157,7 +155,7 @@
           </b-row>
         </section>
   
-        <section class="border-bottom border-secondary mb-4 pb-2">
+        <section class=" mb-4 pb-2">
           <b-row>
             <b-col cols="4">
               <h6>Your declaration</h6>
@@ -183,21 +181,16 @@
           <b-row>
             <b-col cols="4">
               <h6>Save and Proceed</h6>
-              <p v-if="!form.permitHolder.isSameAsAdmin">
+              <p>
                 Invite the proposed permit holder to verify their information
               </p>
-              <p v-else>
-                Invite the committee member to verify their information
-              </p>
+             
             </b-col>
             <b-col>
-              <b-col class="text-center mt-3">
-                <b-button variant="primary" v-if="form.permitHolder.isSameAsAdmin"
-                  >Invite the committee member</b-button
-                >
+              <b-col class=" mt-3">
+                
                 <b-button
                   variant="primary"
-                  v-if="!form.permitHolder.isSameAsAdmin"
                   >Invite the proposed permit holder</b-button
                 >
               </b-col>
@@ -213,6 +206,9 @@
   import EntityAddress from "../../common/entityAddress.vue";
   import Notice from "../../common/notice.vue";
   import reviewItem from "../../common/reviewItem.vue";
+  import pphTrainingReadOnly from "./pphTrainingReadOnly.vue";
+
+
   import f42HolderDetailsReview from "../common/f42HolderDetailsReview.vue";
   import f42MemberDetailsReview from "../common/f42MemberDetailsReview.vue";
   import f42HolderTrainingReview from "../common/f42HolderTrainingReview.vue";
@@ -228,6 +224,7 @@
       f42MemberDetailsReview,
       f42HolderTrainingReview,
       F42Signature,
+      pphTrainingReadOnly
     },
     name: "cpSubmitTab",
     props: {

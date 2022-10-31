@@ -38,10 +38,10 @@
                 branch, full streetAddress
               </p>
               <p>Declare that each answer I give below is true and correct:</p>
-              <mcmPqm
+              <pphPqm
                 :form="form"
                 :dec="form.committeeMember.dec"
-              ></mcmPqm>
+              ></pphPqm>
             </b-col>
           </b-row>
         </section>
@@ -84,7 +84,7 @@
   import mcmPqm from "./mcmPqm.vue";
   import f42Signature from "../common/f42Signature.vue";
   export default {
-    components: { entity, Notice, EntityAddress,f42Signature, mcmPqm },
+    components: { entity, Notice, EntityAddress,f42Signature, pphPqm },
     name: "pphPqmTab",
     props: {
       form: {
