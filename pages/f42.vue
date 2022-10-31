@@ -320,6 +320,7 @@ import cpAndPphPphPqmTab from "../components/f42/comps/cpAndPphPphPqmTab.vue";
 import cpAndMcmSubmitTab from "../components/f42/comps/cpAndMcmSubmitTab.vue";
 import cpAndMcmFinalReviewTab from "../components/f42/comps/cpAndMcmFinalReviewTab.vue";
 import cpAndMcmPphReviewTab from "../components/f42/comps/cpAndMcmPphReviewTab.vue";
+import cpAndMcmMcmPqmTab from "../components/f42/comps/cpAndMcmMcmPqmTab.vue";
 
 
 /********* Un Reviewed items */
@@ -375,6 +376,7 @@ export default {
     cpAndMcmSubmitTab,
     cpAndMcmFinalReviewTab,
     cpAndMcmPphReviewTab,
+    cpAndMcmMcmPqmTab,
 
     /*****/
     f42MemberViewSubmit,
@@ -545,7 +547,7 @@ export default {
           
           {
             label: "Permit qualifications matters",
-            comps: ["mcmPqmTab"],
+            comps: ["cpAndMcmMcmPqmTab"],
           },
           {
             label: "Review and submit",

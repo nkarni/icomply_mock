@@ -38,10 +38,10 @@
                 branch, full streetAddress
               </p>
               <p>Declare that each answer I give below is true and correct:</p>
-              <pphPqm
+              <mcmPqm
                 :form="form"
                 :dec="form.committeeMember.dec"
-              ></pphPqm>
+              ></mcmPqm>
             </b-col>
           </b-row>
         </section>
@@ -54,7 +54,7 @@
           ></f42-signature>
         </section>
   
-        <section
+        <!-- <section
           :class="
             'border-top border-secondary mb-4 pt-4 ' +
             (disableSignature === true ? ' disabled ' : '')
@@ -72,7 +72,7 @@
               </b-col>
             </b-col>
           </b-row>
-        </section>
+        </section> -->
       </b-form>
     </div>
   </template>
@@ -85,7 +85,7 @@
   import f42Signature from "../common/f42Signature.vue";
   export default {
     components: { entity, Notice, EntityAddress,f42Signature, mcmPqm },
-    name: "pphPqmTab",
+    name: "cpAndMcmMcmPqmTab",
     props: {
       form: {
         type: Object,
