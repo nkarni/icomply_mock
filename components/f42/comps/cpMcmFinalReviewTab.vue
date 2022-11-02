@@ -20,21 +20,16 @@
         <b-row>
           <b-col cols="4">
             <h6>Save and Proceed</h6>
-            <p v-if="!form.committeeMember.isSameAsAdmin">
-               Invite the committee member to verify their information
-            </p>
-            <p v-else>
+            
+            <p >
               Confirm and submit to the Commission
             </p>
           </b-col>
           <b-col>
             <b-col class=" mt-3">
-              <b-button variant="primary" v-if="!form.committeeMember.isSameAsAdmin"
-                >Invite the committee member</b-button
-              >
+              
               <b-button
                 variant="primary"
-                v-else
                 >Confirm and submit to the Commission</b-button
               >
             </b-col>

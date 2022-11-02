@@ -11,6 +11,7 @@
             <b-col cols="8">
               <pph-identity-read-only
                 :form="form"
+                :doComparison="false"
               ></pph-identity-read-only>
             </b-col>
           </b-row>
@@ -24,6 +25,7 @@
             </b-col>
             <b-col cols="8">
               <pph-pqm-read-only
+               
                 :form="form"
               ></pph-pqm-read-only>
             </b-col>

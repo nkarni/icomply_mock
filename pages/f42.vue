@@ -54,10 +54,20 @@
           </div>
           </b-tabs>
         </b-row>
-
-   
-    
-
+        <b-row class="mt-4">
+          <b-col cols="12" class="text-right">
+            <b-button
+              variant="primary"
+              v-if="tabIndex > 0"
+              @click="tabIndex--"
+              class="mr-2"
+              >Save & Prev</b-button
+            >
+            <b-button variant="primary" v-if="tabIndex < (currentWorkflow.length - 1)" @click="tabIndex++"
+              >Save & Next</b-button
+            >
+          </b-col>
+        </b-row>
 
 
     </b-container>
@@ -169,7 +179,7 @@
                       tabIndex = 0;
                     "
                   >
-                    Comm member
+                    Comm member 
                     <span
                       class="currentRole"
                       v-if="form.userRole === 'committeeMember'"
@@ -193,7 +203,7 @@
                     "
                   >
                     Contact Person (Comm member info review and final
-                    submission)
+                    submission) 
                     <span
                       class="currentRole"
                       v-if="
@@ -410,6 +420,12 @@ export default {
     return {
       newFlow: true,
       workFlows: {
+        startTabs: [
+          {
+            label: "Process",
+            comps: ["cpProcessTab"],
+          }
+        ],
         cpTabs: [
           {
             label: "Process",
@@ -851,6 +867,7 @@ export default {
         return this.workFlows.cpFinalReviewTabs
       }
 
+      return this.workFlows.startTabs
     
 
       
