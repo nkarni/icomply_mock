@@ -275,8 +275,9 @@
           </b-col>
         </b-row>
       </Transition>
+      
       <Transition>
-        <b-row :class="'mt-4'">
+        <b-row :class="'mt-4 ' + (disableTraining ? 'disabled' : '')">
         <b-col class="numberCol"> i. </b-col>
         <b-col class="pl-1">
           <b-form-group
@@ -401,6 +402,11 @@
           this.dec.awareOfMattersDetails.length > 2
         );
       },
+      disableTraining: function () {
+      return !(
+        this.dec.inquiries.length > 2
+      );
+    },
     },
     methods: {
       onWrongBusinessNameClick() {

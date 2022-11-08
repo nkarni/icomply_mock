@@ -93,10 +93,7 @@ export default {
       return this.personToString(this.form.businessDetails.contactPerson);
     },
     disableSignature: function () {
-      return !(
-        this.form.permitHolder.dec.awareOfMatters === false ||
-        this.form.permitHolder.dec.awareOfMattersDetails.length > 2
-      );
+      return !( this.form.committeeMember.dec.inquiries.length > 2);
     },
   },
   methods: {
