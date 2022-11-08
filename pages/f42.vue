@@ -74,8 +74,13 @@
 
     <!-- MOCKUP CONTROL FOR REVIEW AND DEBUGGING OF THE PROCESS (TEMPORARY) -->
     <b-container>
-      <b-row class="mt-4">
-        <b-col>
+
+      <!-- Admin is only admin -->
+      <b-row class="mt-4" v-if="form.adminUserRolesArray.length === 1">
+       
+          <b-col>
+            <h4 v-if="form.adminUserRolesArray.length > 0"> Contact person is only admin</h4>
+            <h4 v-else> Contact person starting an application</h4>
           <p>
             Follow the logical life cycle of the form by clicking on each phase
             below. Do take the time to fill in the data in each phase to get to
@@ -106,10 +111,7 @@
                   <ul>
                     <li>starts the form</li>
                     <li>fills it and sends to PPH</li>
-                    <li>
-                      note: if admin is also the PPH then the form is sent
-                      straight to the Comm member (step 4) skipping steps 2 & 3)
-                    </li>
+                   
                   </ul>
                 </li>
                 <li v-if="!form.adminUserRolesArray.includes('pph')">
@@ -134,7 +136,7 @@
                     <li>when submitted the form - admin is informed</li>
                   </ul>
                 </li>
-                <li v-if="!form.adminUserRolesArray.includes('pph')">
+                <li>
                   <b-button
                     variant="link"
                     @click.prevent="
@@ -164,14 +166,112 @@
                       confirms they corrected their own records if required (off
                       form).
                     </li>
-                    <li>
-                      note: if admin is also the comm member, then steps 4 & 5
-                      ADMIN STILL NEEDS TO FILL IN DECLARATION are skipped and
-                      the form is submitted to FWC (caseHQ)
-                    </li>
+                    
                   </ul>
                 </li>
-                <li v-if="!form.adminUserRolesArray.includes('member')">
+                <li >
+                  <b-button
+                    variant="link"
+                    @click.prevent="
+                      form.userRole = 'committeeMember';
+                      tabIndex = 0;
+                    "
+                  >
+                    Comm member 
+                    <span
+                      class="currentRole"
+                      v-if="form.userRole === 'committeeMember'"
+                    >
+                      (current)</span
+                    >
+                  </b-button>
+                  <ul>
+                    <li>reviews and add corrections, missing information</li>
+                    <li>fills in declaration</li>
+                    <li>when submitted the form - admin is informed</li>
+                  </ul>
+                </li>
+                <li>
+                  <b-button
+                    variant="link"
+                    @click.prevent="
+                      form.userRole = 'admin';
+                      form.userRolePhase = 'adminMemberReview';
+                      tabIndex = 0;
+                    "
+                  >
+                    Contact Person (Comm member info review and final
+                    submission) 
+                    <span
+                      class="currentRole"
+                      v-if="
+                        form.userRole === 'admin' &&
+                        form.userRolePhase === 'adminMemberReview'
+                      "
+                    >
+                      (current)</span
+                    >
+                  </b-button>
+
+                  <ul>
+                    <li>
+                      reviews data entered by Comm member, any mismatch with
+                      their previous information entered initially by admin is
+                      highlighted
+                    </li>
+                    <li>
+                      confirms they corrected their own records if required (off
+                      form).
+                    </li>
+                    <li>Submits the form to FWC (caseHQ)</li>
+                  </ul>
+                </li>
+              </ol>
+            </b-form-radio-group>
+          </b-form-group>
+        
+        </b-col>
+      </b-row>
+
+       <!-- Admin is also PPH -->
+       <b-row class="mt-4" v-if="form.adminUserRolesArray.length === 2 && form.adminUserRolesArray.includes('pph')">
+        <b-col>
+          <p>
+            Follow the logical life cycle of the form by clicking on each phase
+            below. Do take the time to fill in the data in each phase to get to
+            correct impression.
+          </p>
+          <b-form-group label="Form life cycle control:">
+            <b-form-radio-group>
+              <ol>
+                <li>
+                  <b-button
+                    variant="link"
+                    @click.prevent="
+                      form.userRole = 'admin';
+                      tabIndex = 0;
+                    "
+                  >
+                    Contact Person
+                    <span
+                      class="currentRole"
+                      v-if="
+                        form.userRole === 'admin' && form.userRolePhase === ''
+                      "
+                    >
+                      (current)</span
+                    >
+                  </b-button>
+
+                  <ul>
+                    <li>starts the form</li>
+                    <li>fills PPH details and sends to comm member</li>
+                   
+                  </ul>
+                </li>
+               
+               
+                <li>
                   <b-button
                     variant="link"
                     @click.prevent="
@@ -232,6 +332,99 @@
             </b-form-radio-group>
           </b-form-group>
         </b-col>
+      </b-row>
+
+        <!-- Admin is also Mcm -->
+        <b-row class="mt-4" v-if="form.adminUserRolesArray.length === 2 && form.adminUserRolesArray.includes('member')">
+          <b-col>
+          <p>
+            Follow the logical life cycle of the form by clicking on each phase
+            below. Do take the time to fill in the data in each phase to get to
+            correct impression.
+          </p>
+          <b-form-group label="Form life cycle control:">
+            <b-form-radio-group>
+              <ol>
+                <li>
+                  <b-button
+                    variant="link"
+                    @click.prevent="
+                      form.userRole = 'admin';
+                      tabIndex = 0;
+                    "
+                  >
+                    Contact Person
+                    <span
+                      class="currentRole"
+                      v-if="
+                        form.userRole === 'admin' && form.userRolePhase === ''
+                      "
+                    >
+                      (current)</span
+                    >
+                  </b-button>
+
+                  <ul>
+                    <li>starts the form</li>
+                    <li>fills it and sends to PPH</li>
+                    
+                  </ul>
+                </li>
+                <li >
+                  <b-button
+                    variant="link"
+                    @click.prevent="
+                      form.userRole = 'permitHolder';
+                      tabIndex = 0;
+                    "
+                  >
+                    PPH
+                    <span
+                      class="currentRole"
+                      v-if="form.userRole === 'permitHolder'"
+                    >
+                      (current)</span
+                    >
+                  </b-button>
+                  <ul>
+                    <li>reviews and add corrections, missing information</li>
+                    <li>fills in declaration</li>
+                    <li>when submitted the form - admin is informed</li>
+                  </ul>
+                </li>
+              
+                
+                <li>
+                  <b-button
+                    variant="link"
+                    @click.prevent="
+                      form.userRole = 'admin';
+                      form.userRolePhase = 'adminMemberReview';
+                      tabIndex = 0;
+                    "
+                  >
+                    Contact Person/ Comm member (review pph info, submit to FWC) 
+                    submission) 
+                    <span
+                      class="currentRole"
+                      v-if="
+                        form.userRole === 'admin' &&
+                        form.userRolePhase === 'adminMemberReview'
+                      "
+                    >
+                      (current)</span
+                    >
+                  </b-button>
+
+                </li>
+              </ol>
+            </b-form-radio-group>
+          </b-form-group>
+        </b-col>
+      </b-row>
+
+      <b-row class="mt-4">
+       
       </b-row>
     </b-container>
 
@@ -333,7 +526,7 @@ import cpAndMcmPphReviewTab from "../components/f42/comps/cpAndMcmPphReviewTab.v
 import cpAndMcmMcmPqmTab from "../components/f42/comps/cpAndMcmMcmPqmTab.vue";
 
 
-/********* Un Reviewed items */
+/********* Un Reviewed items, most likely not used and can be ignored */
 import f42MemberViewSubmit from "../components/f42/member/f42MemberViewSubmit.vue";
 import f42MemberViewPph from "../components/f42/member/f42MemberViewPph.vue";
 import f42MemberViewDetails from "../components/f42/member/f42MemberViewDetails.vue";
@@ -574,7 +767,7 @@ export default {
       form: {
         userRole: "",
         userRolePhase: "",
-        adminUserRolesArray: [],
+        adminUserRolesArray: ['admin'],
         admin: {
           hasDifferentPostalAddress: false,
           otherAddress: "33 main street, Sydney NSW 2000 (hard coded)",
