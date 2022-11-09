@@ -479,7 +479,7 @@
           </b-card>
         </b-col>
       </b-row> -->
-      <b-row class="mt-4">
+      <!-- <b-row class="mt-4">
         <b-col cols="12">
           <b-card>
             <p>Current data:</p>
@@ -487,7 +487,7 @@
             <pre>{{ form }}</pre>
           </b-card>
         </b-col>
-      </b-row>
+      </b-row> -->
     </b-container>
   </div>
 </template>
