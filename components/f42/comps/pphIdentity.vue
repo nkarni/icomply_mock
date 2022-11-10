@@ -72,8 +72,9 @@
         <b-form-input v-model="form.permitHolder.positionOrOfficeHeld">
         </b-form-input>
       </b-form-group>
-  
-      <b-form-group :label="previouslyHeldAnEntryPermitLabel">
+
+      <div v-if="!readOnlyPermitDetail">
+        <b-form-group :label="previouslyHeldAnEntryPermitLabel">
         <b-form-radio-group
           v-model="form.permitHolder.previouslyHeldAnEntryPermit"
           :options="boolOptions"
@@ -139,6 +140,14 @@
           v-model="form.permitHolder.previousPermitStatDecFile"
         ></b-form-file>
       </b-form-group>
+
+      </div>
+
+      <div v-if="readOnlyPermitDetail" v-html="prevPermitToStringPph()">
+    
+      </div>
+  
+   
     </div>
   </template>
   
@@ -154,6 +163,10 @@
         type: Object,
         default: () => ({}),
       },
+      readOnlyPermitDetail: {
+        type: Boolean,
+        default: false
+      }
     },
     data() {
       return {
@@ -237,6 +250,29 @@
       },
     },
     methods: {
+      prevPermitToStringPph() {
+        let str = "<label>Previous permit</label><br>"
+      if (this.form.permitHolder.previouslyHeldAnEntryPermit === false) {
+        return ster += "No previous permit";
+      } else {
+         str += "Permit no. " + this.form.permitHolder.previousPermitNumber;
+        if (this.form.permitHolder.previousPermitReturned === true) {
+          if (this.form.permitHolder.previousPermitReturnedOnTime === true) {
+            str += "<br>The permit was returned on time";
+          } else {
+            str += "<br>The permit was returned late";
+            if (this.form.permitHolder.previousPermitStatDecFile !== "") {
+              str += "<br>(statutory declaration attached)";
+            }
+          }
+        } else {
+          str +=
+            "<br>The permit was not returned for the reason: " +
+            this.form.permitHolder.previousPermitNotReturnedReason;
+        }
+        return str;
+      }
+    },
     },
   };
   </script>

@@ -2,34 +2,34 @@
   <div>
     <b-form>
       <section class="border-bottom border-secondary mb-4 pb-2">
-        <b-row >
+        <b-row>
           <b-col>
-            <h5>
-              Review the information provided by the member
-            </h5>
+            <h5>Review the information provided by the member</h5>
             <p>
-              Please check the information provided. Where the information you have provided differs than the information provided by the committee member - it is highlighted, please correct your records.
+              Please check the information provided. Where the information you
+              have provided differs than the information provided by the
+              committee member - it is highlighted, please correct your records.
             </p>
           </b-col>
-        </b-row >
+        </b-row>
       </section>
 
       <mcm-full-details-read-only :form="form"></mcm-full-details-read-only>
 
-      <section class="mb-4 pb-2" >
+      <section class="mb-4 pb-2">
         <b-row>
           <b-col cols="4">
             <h6>Save and Proceed</h6>
-            
-            <p >
-              Confirm and submit to the Commission
-            </p>
+
+            <p>Confirm and submit to the Commission</p>
           </b-col>
           <b-col>
-            <b-col class=" mt-3">
-              
-              <b-button
-                variant="primary"
+            <b-col class="text-center mt-3">
+              <b-button class="mb-4" variant="outline-primary"
+                >Download a draft PDF</b-button
+              >
+
+              <b-button variant="primary"
                 >Confirm and submit to the Commission</b-button
               >
             </b-col>
@@ -46,7 +46,6 @@ import EntityAddress from "../../common/entityAddress.vue";
 import Notice from "../../common/notice.vue";
 import reviewItem from "../../common/reviewItem.vue";
 
-
 import pphIdentityReadOnly from "./pphIdentityReadOnly.vue";
 import pphPhotoSignatureReadOnly from "./pphPhotoSignatureReadOnly.vue";
 import pphPqmReadOnly from "./pphPqmReadOnly.vue";
@@ -61,7 +60,7 @@ export default {
     pphIdentityReadOnly,
     pphPhotoSignatureReadOnly,
     pphPqmReadOnly,
-    mcmFullDetailsReadOnly
+    mcmFullDetailsReadOnly,
   },
   name: "cpMcmFinalReviewTab",
   props: {

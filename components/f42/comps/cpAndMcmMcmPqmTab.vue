@@ -14,6 +14,7 @@
           :form="form"
           :signature="form.committeeMember.dec.signature"
           :indented="false"
+          :inclWarning="true"
         ></f42-signature>
       </section>
       

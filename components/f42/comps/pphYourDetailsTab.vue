@@ -15,7 +15,7 @@
             </p>
           </b-col>
           <b-col>
-            <pph-identity :form="form"></pph-identity>
+            <pph-identity :form="form" :readOnlyPermitDetail="true"></pph-identity>
           </b-col>
         </b-row>
       </section>

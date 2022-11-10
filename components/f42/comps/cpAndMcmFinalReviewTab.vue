@@ -40,7 +40,10 @@
             <p v-else>Confirm and submit to the Commission</p>
           </b-col>
           <b-col>
-            <b-col class="mt-3">
+            <b-col class="text-center mt-3">
+              <b-button class="mb-4" variant="outline-primary"
+                >Download a draft PDF</b-button
+              >
               <b-button variant="primary"
                 >Confirm and submit to the Commission</b-button
               >
