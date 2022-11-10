@@ -7,7 +7,28 @@
     </b-col>
     <b-col>
       <b-row>
+        <b-col>
+          <notice
+          v-if="inclWarning"
+                class="danger mb-4"
+                :borderClass="'red'"
+                message="<p>Giving false or misleading information is a serious offence. A person who:
+                              <ul>
+                                  <li>knowingly or recklessly makes a false or misleading statement in an application for
+                                      an entry permit; or</li>
+                                  <li>knowingly gives false or misleading information in an application for an entry
+                                      permit</li>
+                              </ul>
+                              is guilty of an offence, the punishment for which is imprisonment for up to 12 months if
+                                  the statement is made or information is provided knowingly, or up to 6 months if the
+                                  statement is made recklessly - see Part 7.4, s.136 and s.137.1 of the Criminal Code.</p>"
+              ></notice>
+        </b-col>
+      </b-row>
+      <b-row>
+        
         <b-col :cols="indented ? 9 : 6">
+          
           <b-form-group label="Signature (type your name)">
             <b-form-input v-model="signature.name"> </b-form-input>
           </b-form-group>
@@ -39,8 +60,13 @@
 </template>
 
 <script>
+import Notice from "../../common/notice.vue";
+
 export default {
   name: "f42Signature",
+  components: {
+    Notice
+  },
   props: {
     form: {
       type: Object,
@@ -58,6 +84,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    inclWarning : {
+      type: Boolean,
+      default: false,
+    }
   },
   data() {
     return {

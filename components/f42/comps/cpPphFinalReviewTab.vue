@@ -16,7 +16,7 @@
 
       <pph-full-details-read-only :form="form"></pph-full-details-read-only>
 
-      <section class="border-top border-secondary mb-4 pb-2" >
+      <!-- <section class="border-top border-secondary mb-4 pb-2" >
         <b-row>
           <b-col cols="4">
             <h6>Save and Proceed</h6>
@@ -40,7 +40,7 @@
             </b-col>
           </b-col>
         </b-row>
-      </section>
+      </section> -->
     </b-form>
   </div>
 </template>

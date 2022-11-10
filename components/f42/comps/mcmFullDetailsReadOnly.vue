@@ -13,6 +13,38 @@
             </b-col>
           </b-row>
         </section>
+
+        <section class="border-bottom border-secondary mb-4 pb-2">
+          <b-row>
+            <b-col cols="4">
+              <h6>Photo and signature</h6>
+            </b-col>
+            <b-col cols="8">
+              <div>
+              <p>
+                I, <br />Sam Smith<br />positionName<br />Of orgName,
+                branch, full streetAddress
+              </p>
+
+              <p>Declare that:</p>
+              <ol>
+                <li>
+                  The photograph above is a true photograph of the proposed permit holder [PPH Name and position to embed here].
+                </li>
+                <li>
+                  I have compared the signature above to the signatures in one or more other signed documents shown to me by the proposed permit holder [PPH Name and position], and I believe the signature to be a true signature of the proposed permit holder.
+                </li>
+                <li>
+                  The other signed document(s) shown to me by the proposed permit holder [Name and position] were:
+                  <br>ABCD</br>
+                  XYZ
+                </li>
+                
+              </ol>
+            </div>
+            </b-col>
+          </b-row>
+        </section>
   
          <section class="border-bottom border-secondary mb-4 pb-2">
           <b-row>

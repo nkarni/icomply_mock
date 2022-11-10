@@ -59,7 +59,7 @@
         </b-row>
       </section>
 
-      <section class="mb-4 pb-2">
+      <section class="mb-4">
         <b-row>
           <b-col cols="4">
             <h6>Declaration</h6>
@@ -75,35 +75,26 @@
               <p>Declare that:</p>
               <ol>
                 <li>
-                  I have provided a photograph of myself to the member of the
-                  Committee of Management named above (the member of the
-                  Committee of Management). The photograph meets the Fair Work
-                  Commission&rsquo;s requirements for entry permit photographs.
+                  I have attached a photograph of myself that meets the Fair
+                  Work Commission’s requirements for entry permit photographs.
                 </li>
+                <li>I have attached an image of my signature</li>
                 <li>
-                  I have provided my signature in the space below (Placeholder
-                  this process is still being decided)
-                </li>
-                <li>
-                  Have shown the member of the Committee of Management the
-                  following other document(s) containing my signature:<br />[Free
-                  text box to describe document containing signature]
+                  I Have shown the member of the Committee of Management, [MCM
+                  Name and Position to embed here], the following other
+                  document(s) containing my signature:
+                  
                 </li>
               </ol>
-              <notice
-                class="mb-4 danger"
-                :borderClass="'red'"
-                message="<p>Giving false or misleading information is a serious offence. A person who:
-                              <ul>
-                                  <li>knowingly or recklessly makes a false or misleading statement in an application for
-                                      an entry permit; or</li>
-                                  <li>knowingly gives false or misleading information in an application for an entry
-                                      permit</li>
-                              </ul>
-                              is guilty of an offence, the punishment for which is imprisonment for up to 12 months if
-                                  the statement is made or information is provided knowingly, or up to 6 months if the
-                                  statement is made recklessly - see Part 7.4, s.136 and s.137.1 of the Criminal Code.</p>"
-              ></notice>
+<b-form-group>
+              <b-form-textarea
+                v-model="form.permitHolder.showedDocs"
+                rows="3"
+                max-rows="12"
+              ></b-form-textarea>
+            </b-form-group>
+
+             
             </div>
           </b-col>
         </b-row>
@@ -112,6 +103,7 @@
         <f42-signature
           :form="form"
           :signature="form.permitHolder.dec.signature"
+          :inclWarning="true"
         ></f42-signature>
       </section>
     </b-form>

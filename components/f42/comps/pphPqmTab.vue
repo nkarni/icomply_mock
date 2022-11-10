@@ -8,20 +8,6 @@
             <label>Answer each question in the declaration below.</label>
 
             <notice
-              class="mb-2 danger"
-              :borderClass="'red'"
-              message="<p>Giving false or misleading information is a serious offence. A person who:
-                              <ul>
-                                  <li>knowingly or recklessly makes a false or misleading statement in an application for
-                                      an entry permit; or</li>
-                                  <li>knowingly gives false or misleading information in an application for an entry
-                                      permit</li>
-                              </ul>
-                              is guilty of an offence, the punishment for which is imprisonment for up to 12 months if
-                                  the statement is made or information is provided knowingly, or up to 6 months if the
-                                  statement is made recklessly - see Part 7.4, s.136 and s.137.1 of the Criminal Code.</p>"
-            ></notice>
-            <notice
               class="mb-2"
               message=" Section 513(2) of the Fair Work Act 2009 has the effect that certain offences do not need to be disclosed.
   "
@@ -38,10 +24,7 @@
               branch, full streetAddress
             </p>
             <p>Declare that each answer I give below is true and correct:</p>
-            <pphPqm
-              :form="form"
-              :dec="form.permitHolder.dec"
-            ></pphPqm>
+            <pphPqm :form="form" :dec="form.permitHolder.dec"></pphPqm>
           </b-col>
         </b-row>
       </section>
@@ -51,6 +34,7 @@
           :form="form"
           :signature="form.permitHolder.dec.signature"
           :indented="false"
+          :inclWarning="true"
         ></f42-signature>
       </section>
 
@@ -84,7 +68,7 @@ import Notice from "../../common/notice.vue";
 import pphPqm from "./pphPqm.vue";
 import f42Signature from "../common/f42Signature.vue";
 export default {
-  components: { entity, Notice, EntityAddress,f42Signature, pphPqm },
+  components: { entity, Notice, EntityAddress, f42Signature, pphPqm },
   name: "pphPqmTab",
   props: {
     form: {

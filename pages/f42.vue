@@ -23,15 +23,15 @@
 
       <!-- GLOBAL NAV -->
       <b-row class="mt-4">
-          <b-tabs
-            v-model="tabIndex"
-            vertical
-            nav-wrapper-class="w-30"
-            class="w-100"
-            active-nav-item-class="text-primary laap-nav-item-active"
-            nav-class="laap-nav"
-            content-class="card p-3"
-          >
+        <b-tabs
+          v-model="tabIndex"
+          vertical
+          nav-wrapper-class="w-30"
+          class="w-100"
+          active-nav-item-class="text-primary laap-nav-item-active"
+          nav-class="laap-nav"
+          content-class="card p-3"
+        >
           <div v-for="(tab, index) in currentWorkflow">
             <b-tab
               :title-link-class="[
@@ -50,37 +50,37 @@
                 <component :is="comp" :form="form"></component>
               </div>
             </b-tab>
-          
           </div>
-          </b-tabs>
-        </b-row>
-        <b-row class="mt-4">
-          <b-col cols="12" class="text-right">
-            <b-button
-              variant="primary"
-              v-if="tabIndex > 0"
-              @click="tabIndex--"
-              class="mr-2"
-              >Save & Prev</b-button
-            >
-            <b-button variant="primary" v-if="tabIndex < (currentWorkflow.length - 1)" @click="tabIndex++"
-              >Save & Next</b-button
-            >
-          </b-col>
-        </b-row>
-
-
+        </b-tabs>
+      </b-row>
+      <b-row class="mt-4">
+        <b-col cols="12" class="text-right">
+          <b-button
+            variant="primary"
+            v-if="tabIndex > 0"
+            @click="tabIndex--"
+            class="mr-2"
+            >Save & Prev</b-button
+          >
+          <b-button
+            variant="primary"
+            v-if="tabIndex < currentWorkflow.length - 1"
+            @click="tabIndex++"
+            >Save & Next</b-button
+          >
+        </b-col>
+      </b-row>
     </b-container>
 
     <!-- MOCKUP CONTROL FOR REVIEW AND DEBUGGING OF THE PROCESS (TEMPORARY) -->
     <b-container>
-
       <!-- Admin is only admin -->
       <b-row class="mt-4" v-if="form.adminUserRolesArray.length === 1">
-       
-          <b-col>
-            <h4 v-if="form.adminUserRolesArray.length > 0"> Contact person is only admin</h4>
-            <h4 v-else> Contact person starting an application</h4>
+        <b-col>
+          <h4 v-if="form.adminUserRolesArray.length > 0">
+            Contact person is only admin
+          </h4>
+          <h4 v-else>Contact person starting an application</h4>
           <p>
             Follow the logical life cycle of the form by clicking on each phase
             below. Do take the time to fill in the data in each phase to get to
@@ -111,7 +111,6 @@
                   <ul>
                     <li>starts the form</li>
                     <li>fills it and sends to PPH</li>
-                   
                   </ul>
                 </li>
                 <li v-if="!form.adminUserRolesArray.includes('pph')">
@@ -166,10 +165,9 @@
                       confirms they corrected their own records if required (off
                       form).
                     </li>
-                    
                   </ul>
                 </li>
-                <li >
+                <li>
                   <b-button
                     variant="link"
                     @click.prevent="
@@ -177,7 +175,7 @@
                       tabIndex = 0;
                     "
                   >
-                    Comm member 
+                    Comm member
                     <span
                       class="currentRole"
                       v-if="form.userRole === 'committeeMember'"
@@ -201,7 +199,7 @@
                     "
                   >
                     Contact Person (Comm member info review and final
-                    submission) 
+                    submission)
                     <span
                       class="currentRole"
                       v-if="
@@ -229,12 +227,17 @@
               </ol>
             </b-form-radio-group>
           </b-form-group>
-        
         </b-col>
       </b-row>
 
-       <!-- Admin is also PPH -->
-       <b-row class="mt-4" v-if="form.adminUserRolesArray.length === 2 && form.adminUserRolesArray.includes('pph')">
+      <!-- Admin is also PPH -->
+      <b-row
+        class="mt-4"
+        v-if="
+          form.adminUserRolesArray.length === 2 &&
+          form.adminUserRolesArray.includes('pph')
+        "
+      >
         <b-col>
           <p>
             Follow the logical life cycle of the form by clicking on each phase
@@ -266,11 +269,9 @@
                   <ul>
                     <li>starts the form</li>
                     <li>fills PPH details and sends to comm member</li>
-                   
                   </ul>
                 </li>
-               
-               
+
                 <li>
                   <b-button
                     variant="link"
@@ -279,7 +280,7 @@
                       tabIndex = 0;
                     "
                   >
-                    Comm member 
+                    Comm member
                     <span
                       class="currentRole"
                       v-if="form.userRole === 'committeeMember'"
@@ -303,7 +304,7 @@
                     "
                   >
                     Contact Person (Comm member info review and final
-                    submission) 
+                    submission)
                     <span
                       class="currentRole"
                       v-if="
@@ -334,9 +335,15 @@
         </b-col>
       </b-row>
 
-        <!-- Admin is also Mcm -->
-        <b-row class="mt-4" v-if="form.adminUserRolesArray.length === 2 && form.adminUserRolesArray.includes('member')">
-          <b-col>
+      <!-- Admin is also Mcm -->
+      <b-row
+        class="mt-4"
+        v-if="
+          form.adminUserRolesArray.length === 2 &&
+          form.adminUserRolesArray.includes('member')
+        "
+      >
+        <b-col>
           <p>
             Follow the logical life cycle of the form by clicking on each phase
             below. Do take the time to fill in the data in each phase to get to
@@ -367,10 +374,9 @@
                   <ul>
                     <li>starts the form</li>
                     <li>fills it and sends to PPH</li>
-                    
                   </ul>
                 </li>
-                <li >
+                <li>
                   <b-button
                     variant="link"
                     @click.prevent="
@@ -392,8 +398,7 @@
                     <li>when submitted the form - admin is informed</li>
                   </ul>
                 </li>
-              
-                
+
                 <li>
                   <b-button
                     variant="link"
@@ -403,8 +408,8 @@
                       tabIndex = 0;
                     "
                   >
-                    Contact Person/ Comm member (review pph info, submit to FWC) 
-                    submission) 
+                    Contact Person/ Comm member (review pph info, submit to FWC)
+                    submission)
                     <span
                       class="currentRole"
                       v-if="
@@ -415,7 +420,6 @@
                       (current)</span
                     >
                   </b-button>
-
                 </li>
               </ol>
             </b-form-radio-group>
@@ -423,9 +427,7 @@
         </b-col>
       </b-row>
 
-      <b-row class="mt-4">
-       
-      </b-row>
+      <b-row class="mt-4"> </b-row>
     </b-container>
 
     <!-- MOCKUP FOOTER -->
@@ -479,7 +481,7 @@
           </b-card>
         </b-col>
       </b-row> -->
-      <!-- <b-row class="mt-4">
+      <b-row class="mt-4">
         <b-col cols="12">
           <b-card>
             <p>Current data:</p>
@@ -487,7 +489,7 @@
             <pre>{{ form }}</pre>
           </b-card>
         </b-col>
-      </b-row> -->
+      </b-row>
     </b-container>
   </div>
 </template>
@@ -525,7 +527,6 @@ import cpAndMcmFinalReviewTab from "../components/f42/comps/cpAndMcmFinalReviewT
 import cpAndMcmPphReviewTab from "../components/f42/comps/cpAndMcmPphReviewTab.vue";
 import cpAndMcmMcmPqmTab from "../components/f42/comps/cpAndMcmMcmPqmTab.vue";
 
-
 /********* Un Reviewed items, most likely not used and can be ignored */
 import f42MemberViewSubmit from "../components/f42/member/f42MemberViewSubmit.vue";
 import f42MemberViewPph from "../components/f42/member/f42MemberViewPph.vue";
@@ -551,7 +552,6 @@ import F3Review from "../components/f3/f3Review.vue";
 import F3files from "../components/f3/f3files.vue";
 import f42AdminMemberReviewSubmit from "../components/f42/adminMemberReview/f42AdminMemberReviewSubmit.vue";
 import f42AdminAsPphDecVue from "../components/f42/admin/f42AdminAsPphDec.vue";
-
 
 export default {
   components: {
@@ -617,7 +617,7 @@ export default {
           {
             label: "Process",
             comps: ["cpProcessTab"],
-          }
+          },
         ],
         cpTabs: [
           {
@@ -660,7 +660,7 @@ export default {
           },
         ],
         cpPphReviewTabs: [
-        {
+          {
             label: "The proposed permit holder",
             comps: ["cpPphReviewTab"],
           },
@@ -678,7 +678,7 @@ export default {
             label: "About the proposed permit holder",
             comps: ["mcmAboutPphTab"],
           },
-          
+
           {
             label: "Photo and signature",
             comps: ["mcmPhotoSignatureTab"],
@@ -689,7 +689,7 @@ export default {
           },
         ],
         cpFinalReviewTabs: [
-        {
+          {
             label: "The proposed permit holder",
             comps: ["cpPphFinalReviewTab"],
           },
@@ -747,13 +747,14 @@ export default {
           },
         ],
         cpAndMcmFinalReviewTabs: [
-        
           {
             label: "About the proposed permit holder",
             comps: ["cpAndMcmPphReviewTab"],
           },
-          
-          
+          {
+            label: "Photo and signature",
+            comps: ["mcmPhotoSignatureTab"],
+          },
           {
             label: "Permit qualifications matters",
             comps: ["cpAndMcmMcmPqmTab"],
@@ -767,7 +768,7 @@ export default {
       form: {
         userRole: "",
         userRolePhase: "",
-        adminUserRolesArray: ['admin'],
+        adminUserRolesArray: ["admin"],
         admin: {
           hasDifferentPostalAddress: false,
           otherAddress: "33 main street, Sydney NSW 2000 (hard coded)",
@@ -1022,54 +1023,80 @@ export default {
         ? "Contact Person"
         : this.form.userRole;
     },
-    currentWorkflow: function() {
-      if(this.form.userRole === 'admin' && this.form.userRolePhase === '' && this.form.adminUserRolesArray.length < 2){
+    currentWorkflow: function () {
+      if (
+        this.form.userRole === "admin" &&
+        this.form.userRolePhase === "" &&
+        this.form.adminUserRolesArray.length < 2
+      ) {
         // An admin (Cp = contact person) is starting an application (and they are not the pph or mcm)
-        return this.workFlows.cpTabs
+        return this.workFlows.cpTabs;
       }
 
-      if(this.form.userRole === 'admin' && this.form.adminUserRolesArray.includes('pph')){
+      if (
+        this.form.userRole === "admin" &&
+        this.form.adminUserRolesArray.includes("pph") &&
+        this.form.userRolePhase === "adminMemberReview"
+      ) {
         // An admin (Cp = contact person) who is also the PPH is starting an application
-        return this.workFlows.cpAndPphTabs
+        return this.workFlows.cpFinalReviewTabs;
       }
 
-      if(this.form.userRole === 'admin' && this.form.adminUserRolesArray.includes('member') && this.form.userRolePhase === ''){
+
+      if (
+        this.form.userRole === "admin" &&
+        this.form.adminUserRolesArray.includes("pph")
+      ) {
         // An admin (Cp = contact person) who is also the PPH is starting an application
-        return this.workFlows.cpAndMcmTabs
-      }
-      if(this.form.userRole === 'admin' && this.form.adminUserRolesArray.includes('member') && this.form.userRolePhase === 'adminMemberReview'){
-        // An admin (Cp = contact person) who is also the PPH is starting an application
-        return this.workFlows.cpAndMcmFinalReviewTabs
-      }
-      
-
-      if(this.form.userRole === 'permitHolder'){
-        return this.workFlows.pphTabs
+        return this.workFlows.cpAndPphTabs;
       }
 
-      if(this.form.userRole === 'admin' && this.form.userRolePhase === 'pphInfoReview'){
-        // PPH has entered their details for review by CP
-        return this.workFlows.cpPphReviewTabs
-      }
-
-      if(this.form.userRole === 'committeeMember'){
-        return this.workFlows.mcmTabs
-      }
-      if(this.form.userRole === 'admin' && this.form.userRolePhase === 'adminMemberReview'){
-        // MCM has entered their details for review by CP
-        return this.workFlows.cpFinalReviewTabs
-      }
-
-      return this.workFlows.startTabs
-    
-
-      
      
-      
-      console.log(this.form.userRolePhase)
-      
 
-    }
+      if (
+        this.form.userRole === "admin" &&
+        this.form.adminUserRolesArray.includes("member") &&
+        this.form.userRolePhase === ""
+      ) {
+        // An admin (Cp = contact person) who is also the PPH is starting an application
+        return this.workFlows.cpAndMcmTabs;
+      }
+      if (
+        this.form.userRole === "admin" &&
+        this.form.adminUserRolesArray.includes("member") &&
+        this.form.userRolePhase === "adminMemberReview"
+      ) {
+        // An admin (Cp = contact person) who is also the PPH is starting an application
+        return this.workFlows.cpAndMcmFinalReviewTabs;
+      }
+
+      if (this.form.userRole === "permitHolder") {
+        return this.workFlows.pphTabs;
+      }
+
+      if (
+        this.form.userRole === "admin" &&
+        this.form.userRolePhase === "pphInfoReview"
+      ) {
+        // PPH has entered their details for review by CP
+        return this.workFlows.cpPphReviewTabs;
+      }
+
+      if (this.form.userRole === "committeeMember") {
+        return this.workFlows.mcmTabs;
+      }
+      if (
+        this.form.userRole === "admin" &&
+        this.form.userRolePhase === "adminMemberReview"
+      ) {
+        // MCM has entered their details for review by CP
+        return this.workFlows.cpFinalReviewTabs;
+      }
+
+      return this.workFlows.startTabs;
+
+      console.log(this.form.userRolePhase);
+    },
   },
   watch: {
     // COPY DATA ENTERED BY ADMIN FROM THE PPH/MEMBER TO admin.permitHolderDataEnteredByAdmin

@@ -4,45 +4,40 @@
         <section class="">
           <b-row>
             <b-col>
-              <h6>How the process works</h6>
-              <ol>
-                <li>
-                  An administrator from you union has started an entry permit
-                  application on your behalf.
-                </li>
-                <li>
-                  You will need to provide your personal details, ID documents,
-                  supporting documents and sign a statuary declaration confirming
-                  your details.
-                </li>
-                <li>
-                  Your application will then be submitted to FWC by your union
-                  administrator.
-                </li>
-                <li>
-                  Once submitted you will be contacted by FWC to complete a final
-                  interview via video call to complete the application to receive
-                  your permit.
-                </li>
-              </ol>
+              <h6>Process overview</h6>
+              <p>Your organisation has started an application for the Fair Work Commission to issue an entry permit to you.</p>
             </b-col>
           </b-row>
         </section>
         <section class="">
           <b-row>
             <b-col>
-              <h6>What you will provide now</h6>
+              <h6>What you need to do:</h6>
               <ul>
-                <li>Confirm Full legal names (given, middle and surname)</li>
+                <li>upload your signature and a recent photograph; and </li>
                 <li>
-                  Details of entry permit training Photograph of yourself Two
-                  forms of identification
+                  complete your declarations in support of the application.
                 </li>
               </ul>
-              <p>
+              <p><a
+                target="_blank"
+                href="https://www.fwc.gov.au/registered-organisations/entry-permits/about-fair-work-entry-permits/how-we-process-fair-work-entry"
+                >Click here</a
+              > for information about photograph requirements.</p>
+              <!-- <p>
                 Throughout this form - all fields are mandatory unless
                 specifically marked as optional.
-              </p>
+              </p> -->
+            </b-col>
+          </b-row>
+        </section>
+        <section class="">
+          <b-row>
+            <b-col>
+              <h6>What happens next?</h6>
+              <p>After you submit your declarations, the Committee of Management member will be invited to make a declaration in support of the application. </p>
+              <p>The application will then be lodged with the Commission.</p>
+              <p>After the application is lodged, the Commission may contact you so we can confirm your identity in a recorded video call.</p>
             </b-col>
           </b-row>
         </section>

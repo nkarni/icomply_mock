@@ -4,48 +4,41 @@
       <section class="">
         <b-row>
           <b-col>
-            <h6>How the process works</h6>
-            <ol>
-              <li>
-                An administrator from you union has started an entry permit
-                application.
-              </li>
-              <li>
-                The proposed permit holder has been identified and provided
-                their ID, supporting documents and signed a statuary declaration
-                verifying the information they have provided.
-              </li>
-              <li>
-                You now need to confirm the identity of the Proposed Permit
-                Holder, assess their suitability for an entry permit and sign a
-                statuary declaration confirming these details.
-              </li>
-              <li>The application will then be submitted to FWC.</li>
-            </ol>
+            <h6>Process overview</h6>
+            <p>
+              Your organisation has started an entry permit application. You have been nominated as the Committee of Management member making the application.
+
+            </p>
+            <p>The proposed permit holder has completed their declarations and has attached their photograph and signature. 
+</p>
           </b-col>
         </b-row>
       </section>
       <section class="">
         <b-row>
           <b-col>
-            <h6>What you will provide now</h6>
+            <h6>What you need to do:</h6>
             <ul>
               <li>
-                Confirm your legal name Confirm the ID of the Proposed Permit
-                Holder
+                review the proposed permit holder’s declarations,
               </li>
               <li>
-                Confirm training details and date of the proposed permit holder
+                complete your declarations in support of the application. 
               </li>
-              <li>
-                Provide additional details of the suitability of the Proposed
-                Permit Holder
-              </li>
+           
             </ul>
-            <p>
+            <!-- <p>
               Throughout this form - all fields are mandatory unless
               specifically marked as optional.
-            </p>
+            </p> -->
+          </b-col>
+        </b-row>
+      </section>
+      <section class="">
+        <b-row>
+          <b-col>
+            <h6>What happens next?</h6>
+            <p>After you submit your declarations, the contact person for the application will lodge it with the Commission.</p>
           </b-col>
         </b-row>
       </section>
